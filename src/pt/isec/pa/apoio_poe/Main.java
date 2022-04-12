@@ -3,6 +3,6 @@ package pt.isec.pa.apoio_poe;
 public class Main {
 
     public static void main(String[] args) {
-	    System.out.println("Teste");
+	    System.out.println("Teste2");
     }
 }
