@@ -3,6 +3,7 @@ package pt.isec.pa.apoio_poe.model.data;
 import java.util.HashSet;
 
 public class GestaoProj {
+
    /* //arrays para guardar objetos das classes ALUNOS , DOCENTES e PROJETOS
     Aluno[] alunos;
     Docente[] docentes;
