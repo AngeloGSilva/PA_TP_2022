@@ -11,10 +11,6 @@ public class T2 extends Propostas {
     }
     //Aluno opcional
     public T2(String codid,String tit,String ramo,String docente,String codaluno) {
-        this.ramo = ramo;
-        this.cod_ID = codid;
-        this.titulo = tit;
-        this.docente = docente;
-        this.codAluno = codaluno;
+        super(codid,tit,ramo,docente,codaluno);
     }
 }
