@@ -1,4 +1,4 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
-public class teste1 {
+public class teste {
 }
