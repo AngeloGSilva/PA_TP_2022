@@ -7,7 +7,7 @@ public class GestaoProj {
    /* //arrays para guardar objetos das classes ALUNOS , DOCENTES e PROJETOS
     Aluno[] alunos;
     Docente[] docentes;
-    Propostas[] propostas;
+    Proposta[] propostas;
     int nr_Alunos;
     int nr_Docentes;
     int nr_Projetos;
