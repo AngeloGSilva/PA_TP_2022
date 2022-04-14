@@ -3,12 +3,12 @@ package pt.isec.pa.apoio_poe.model.data;
 import java.util.Objects;
 
 public class Aluno {
-    long nr_Aluno;
-    String nome_Aluno;
-    String email_Aluno;
-    String ramo_Aluno;
-    double classificacao_Aluno;
-    boolean aceder_a_Estagio;
+    private long nr_Aluno;
+    private String nome_Aluno;
+    private String email_Aluno;
+    private String ramo_Aluno;
+    private double classificacao_Aluno;
+    private boolean aceder_a_Estagio;
 
     public Aluno(long nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio) {
         this.nr_Aluno = nr_Aluno;
