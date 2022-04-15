@@ -14,7 +14,7 @@ public class atriOrientador extends IStateAdaptar {
 
     @Override
     public boolean avancar(boolean guardado, int op) {
-        alterarState(new consulta(dados, contexto));
+        alterarState(new ConsultaState(dados, contexto));
         return false;
     }
 
