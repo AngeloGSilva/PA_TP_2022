@@ -5,5 +5,6 @@ public interface IState {
     boolean voltar(boolean guardado);
     boolean avancar(boolean guardado,int op);
     boolean selecionar(int escolha);
+
     PoeState getState();
 }

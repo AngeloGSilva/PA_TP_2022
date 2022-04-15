@@ -6,8 +6,8 @@ import pt.isec.pa.apoio_poe.ui.text.PoeUI;
 public class Main {
 
     public static void main(String[] args) {
-        ProContexto ControladorDoPrograma = new ProContexto();
-        PoeUI ui = new PoeUI(ControladorDoPrograma);
+        ProContexto controladorDoPrograma = new ProContexto();
+        PoeUI ui = new PoeUI(controladorDoPrograma);
         ui.start();
 	    System.out.println("Teste2");
     }

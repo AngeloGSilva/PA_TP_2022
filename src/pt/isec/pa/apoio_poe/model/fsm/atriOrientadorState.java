@@ -2,8 +2,8 @@ package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
-public class opCandidatura extends IStateAdaptar {
-    public opCandidatura(GestaoProj dados, ProContexto contexto) {
+public class atriOrientadorState extends IStateAdaptar {
+    public atriOrientadorState(GestaoProj dados, ProContexto contexto) {
         super(dados, contexto);
     }
 
@@ -14,7 +14,7 @@ public class opCandidatura extends IStateAdaptar {
 
     @Override
     public boolean avancar(boolean guardado, int op) {
-        alterarState(new atriProposta(dados, contexto));
+        alteraState(new ConsultaState(dados, contexto));
         return false;
     }
 

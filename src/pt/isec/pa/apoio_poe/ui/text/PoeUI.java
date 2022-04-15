@@ -78,12 +78,7 @@ public class PoeUI {
     private void configuracaoUI() {
         System.out.println("---Inicial---\n");
         System.out.println("Bem Vindo\n");
-        switch (PAInput.chooseOption("Gerir:", "Gestao de Alunos", "Gestao de Docentes", "Gestao de Projetos", "Sair")){
-            case 1 -> System.out.println("Alunos");
-            case 2 -> System.out.println("Docentes");
-            case 3 -> System.out.println("Projetos");
-            default -> acabou = true;
-        }
+        controladorDoPrograma.selecionar(PAInput.chooseOption("Gerir:", "Gestao de Alunos", "Gestao de Docentes", "Gestao de Projetos", "Sair"));
     }
 
     private void gestaoAlunos() {

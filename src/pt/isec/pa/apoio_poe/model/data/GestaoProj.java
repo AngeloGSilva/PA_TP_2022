@@ -19,7 +19,13 @@ public class GestaoProj {
         nr_Alunos++;
     }*/
 
-    private HashSet<Aluno> alunos = new HashSet<>();
+    private HashSet<Aluno> alunos;
+
+
+    public GestaoProj() {
+        alunos = new HashSet<>();
+    }
+
 
     public void adicinarAluno(Aluno aluno){
         alunos.add(aluno);

@@ -6,12 +6,31 @@ abstract class IStateAdaptar implements IState{
     protected GestaoProj dados;
     protected ProContexto contexto;
 
-    public IStateAdaptar(GestaoProj dados, ProContexto contexto) {
+    protected IStateAdaptar(GestaoProj dados, ProContexto contexto) {
         this.dados = dados;
         this.contexto = contexto;
     }
 
-    protected void alterarState(IState novoState){
+    protected void alteraState(IState novoState){
         contexto.alterarState(novoState);
     }
+
+
+    @Override
+    public boolean voltar(boolean guardado) {
+        return false;
+    }
+
+    @Override
+    public boolean avancar(boolean guardado, int op) {
+        return false;
+    }
+
+
+    @Override
+    public boolean selecionar(int escolha) {
+        return false;
+
+    }
+
 }
