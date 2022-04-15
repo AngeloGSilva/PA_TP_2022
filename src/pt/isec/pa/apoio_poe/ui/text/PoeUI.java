@@ -64,6 +64,11 @@ public class PoeUI {
         }
     }
 
+    private void carregarFicheirosUI(){
+
+    }
+
+
     private void gestaoAlunosUI() {
         System.out.println("Gestão de alunos:\n");
         switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Edição","Eliminação")) {

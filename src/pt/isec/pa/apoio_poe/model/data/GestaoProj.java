@@ -31,6 +31,11 @@ public class GestaoProj {
     }
 
 
+    //arranjar state para ler ficheiros utilizar funcao assim
+    //LerFicheiro.lerDoncentes("ola");
+
+
+
     public void adicinarAluno(Aluno aluno){
         alunos.add(aluno);
     }

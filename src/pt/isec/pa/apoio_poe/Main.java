@@ -9,6 +9,5 @@ public class Main {
         ProContexto controladorDoPrograma = new ProContexto();
         PoeUI ui = new PoeUI(controladorDoPrograma);
         ui.start();
-	    System.out.println("Teste2");
     }
 }

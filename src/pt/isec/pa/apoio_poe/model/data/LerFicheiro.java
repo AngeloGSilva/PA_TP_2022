@@ -3,10 +3,13 @@ package pt.isec.pa.apoio_poe.model.data;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-abstract class LerFicheiro {
-    String fileName;
-    String linha;
-    BufferedReader bufferedReader = null;
+public final class LerFicheiro {
+
+    private LerFicheiro(){}
+
+    private static String fileName;
+    private static String linha;
+    private static BufferedReader bufferedReader = null;
 
 
     //Aluno aluno = new aluno();
@@ -20,7 +23,7 @@ abstract class LerFicheiro {
     //lerProjetos()
     //lerCandidaturas()
 
-    public void lerDoncentes(String fileName){
+    public static void lerDoncentes(String fileName){
         FileReader fileReader = new FileReader(fileName);
         bufferedReader = new BufferedReader(fileReader);
         while ((linha = bufferedReader.readLine()) != null){
