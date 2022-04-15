@@ -3,7 +3,7 @@ package pt.isec.pa.apoio_poe;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 import pt.isec.pa.apoio_poe.ui.text.PoeUI;
 
-public class Main {
+public class App {
 
     public static void main(String[] args) {
         ProContexto controladorDoPrograma = new ProContexto();
