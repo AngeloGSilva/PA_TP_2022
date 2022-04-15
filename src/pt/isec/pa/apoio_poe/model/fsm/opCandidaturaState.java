@@ -25,6 +25,6 @@ public class opCandidaturaState extends IStateAdaptar {
 
     @Override
     public PoeState getState() {
-        return null;
+        return PoeState.OPCAO_CANDIDATURA;
     }
 }

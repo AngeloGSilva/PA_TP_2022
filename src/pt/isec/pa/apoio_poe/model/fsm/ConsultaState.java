@@ -24,6 +24,6 @@ public class ConsultaState extends IStateAdaptar {
 
     @Override
     public PoeState getState() {
-        return null;
+        return PoeState.CONSULTA;
     }
 }

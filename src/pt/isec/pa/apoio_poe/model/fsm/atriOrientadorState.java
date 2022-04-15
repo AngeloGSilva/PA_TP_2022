@@ -25,6 +25,6 @@ public class atriOrientadorState extends IStateAdaptar {
 
     @Override
     public PoeState getState() {
-        return null;
+        return PoeState.ATRIBUIR_ORIENTADOR;
     }
 }

@@ -25,6 +25,6 @@ public class GestaoPropostaState extends IStateAdaptar {
 
     @Override
     public PoeState getState() {
-        return null;
+        return PoeState.GESTAO_PROPOSTA;
     }
 }
