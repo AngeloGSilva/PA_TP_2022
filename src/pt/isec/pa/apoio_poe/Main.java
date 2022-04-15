@@ -8,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
         ProContexto ControladorDoPrograma = new ProContexto();
         ProUI ui = new ProUI(ControladorDoPrograma);
+        ui.start();
 	    System.out.println("Teste2");
     }
 }

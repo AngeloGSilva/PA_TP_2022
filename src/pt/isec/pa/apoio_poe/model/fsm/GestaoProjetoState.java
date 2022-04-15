@@ -2,11 +2,9 @@ package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
-
-public class ConfiguracaoState extends IStateAdaptar {
-    protected ConfiguracaoState(GestaoProj dados, ProContexto contexto) {
-        super(dados ,contexto);
-        //comecar
+public class GestaoProjetoState extends IStateAdaptar {
+    public GestaoProjetoState(GestaoProj dados, ProContexto contexto) {
+        super(dados,contexto);
     }
 
     @Override
@@ -19,16 +17,9 @@ public class ConfiguracaoState extends IStateAdaptar {
         return false;
     }
 
-
     @Override
     public boolean selecionar(int escolha) {
-        switch (escolha) {
-            case 1 -> alterarState(new GestaoAlunoState(dados, contexto));
-            case 2 -> alterarState(new GestaoDocenteState(dados, contexto));
-            case 3 -> alterarState(new GestaoProjetoState(dados, contexto));
-        }
         return false;
-
     }
 
     @Override

@@ -10,4 +10,8 @@ abstract class IStateAdaptar implements IState{
         this.dados = dados;
         this.contexto = contexto;
     }
+
+    protected void alterarState(IState novoState){
+        contexto.alterarState(novoState);
+    }
 }

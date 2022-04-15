@@ -16,6 +16,10 @@ public class ProContexto {
         return null;
     }
 
+    public void alterarState(IState novoState){
+        state = novoState;
+    }
+
 
     //conjunto de metodos correspondentes as transiçoes de estados ... IState
 
