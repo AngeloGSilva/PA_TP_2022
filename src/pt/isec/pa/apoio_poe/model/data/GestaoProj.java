@@ -20,10 +20,14 @@ public class GestaoProj {
     }*/
 
     private HashSet<Aluno> alunos;
+    private HashSet<Docente> docentes;
+    private HashSet<Proposta> propostas;
 
 
     public GestaoProj() {
         alunos = new HashSet<>();
+        docentes = new HashSet<>();
+        propostas = new HashSet<>();
     }
 
 
@@ -31,4 +35,22 @@ public class GestaoProj {
         alunos.add(aluno);
     }
 
+    public void adicinarDocente(Docente docente){
+        docentes.add(docente);
+    }
+
+    public void adicinarProsta(Proposta proposta){
+        propostas.add(proposta);
+    }
+
+    public void removeAluno(Aluno aluno){
+        alunos.remove(aluno);
+    }
+
+    public void removeDocente(Docente docente){
+        docentes.remove(docente);
+    }
+    public void removeProposta(Proposta proposta){
+        propostas.remove(proposta);
+    }
 }
