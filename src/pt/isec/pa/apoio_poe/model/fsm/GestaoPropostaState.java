@@ -2,8 +2,8 @@ package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
-public class GestaoProjetoState extends IStateAdaptar {
-    public GestaoProjetoState(GestaoProj dados, ProContexto contexto) {
+public class GestaoPropostaState extends IStateAdaptar {
+    public GestaoPropostaState(GestaoProj dados, ProContexto contexto) {
         super(dados,contexto);
     }
 

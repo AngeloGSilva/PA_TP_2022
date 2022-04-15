@@ -25,7 +25,7 @@ public class ConfiguracaoState extends IStateAdaptar {
         switch (escolha) {
             case 1 -> alterarState(new GestaoAlunoState(dados, contexto));
             case 2 -> alterarState(new GestaoDocenteState(dados, contexto));
-            case 3 -> alterarState(new GestaoProjetoState(dados, contexto));
+            case 3 -> alterarState(new GestaoPropostaState(dados, contexto));
         }
         return false;
 
