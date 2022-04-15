@@ -14,6 +14,7 @@ public class GestaoProjetoState extends IStateAdaptar {
 
     @Override
     public boolean avancar(boolean guardado, int op) {
+        alterarState(new opCandidatura(dados, contexto));
         return false;
     }
 

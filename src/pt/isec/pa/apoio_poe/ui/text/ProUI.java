@@ -15,8 +15,41 @@ public class ProUI {
         while(!acabou){
             switch (controladorDoPrograma.getState()){
                 case CONFIGURACAO -> configuracaoUI();
+                case GESTAO_ALUNO -> gestaoAlunosUI();
+                case GESTAO_DOCENTE ->gestaoDocentesUI();
+                case GESTAO_PROJETO -> gestaoProjetosUI();
+                case OPCAO_CANDIDATURA -> opCandidaturaUI();
+                case ATRIBUIR_PROPOSTA -> atrPropostaUI();
+                case ATRIBUIR_ORIENTADOR -> atrOrientadorUI();
+                case CONSULTA -> consultaUI();
             }
         }
+    }
+
+    private void consultaUI() {
+        
+    }
+
+    private void atrOrientadorUI() {
+
+    }
+
+    private void atrPropostaUI() {
+
+    }
+
+    private void gestaoProjetosUI() {
+    }
+
+    private void opCandidaturaUI() {
+
+    }
+
+    private void gestaoDocentesUI() {
+
+    }
+
+    private void gestaoAlunosUI() {
     }
 
     private void configuracaoUI() {
