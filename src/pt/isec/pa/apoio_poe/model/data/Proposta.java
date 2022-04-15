@@ -1,11 +1,11 @@
 package pt.isec.pa.apoio_poe.model.data;
 
 public class Proposta {
-    String cod_ID= null;
-    String titulo= null;
-    String codigo_Aluno= null;;
-    String codigo_Docente= null;;
-    String ramo= null;;
+    String cod_ID = null;
+    String titulo = null;
+    String codigo_Aluno = null;
+    String codigo_Docente = null;
+    String ramo = null;
 
     //geral
     public Proposta(String cod_ID, String titulo, String codigo_Aluno, String codigo_Docente, String ramo) {
