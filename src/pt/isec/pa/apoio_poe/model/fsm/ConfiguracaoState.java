@@ -33,6 +33,6 @@ public class ConfiguracaoState extends IStateAdaptar {
 
     @Override
     public PoeState getState() {
-        return null;
+        return PoeState.CONFIGURACAO;
     }
 }
