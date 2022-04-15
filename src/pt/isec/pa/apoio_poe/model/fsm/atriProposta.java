@@ -24,7 +24,7 @@ public class atriProposta extends IStateAdaptar {
     }
 
     @Override
-    public ProState getState() {
+    public PoeState getState() {
         return null;
     }
 }

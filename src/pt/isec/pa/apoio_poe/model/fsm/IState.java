@@ -5,5 +5,5 @@ public interface IState {
     boolean avancar(boolean guardado,int op);
     boolean selecionar(int escolha);
 
-    ProState getState();
+    PoeState getState();
 }

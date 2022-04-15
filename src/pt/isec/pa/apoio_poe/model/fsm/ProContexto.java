@@ -11,7 +11,7 @@ public class ProContexto {
         state = new ConfiguracaoState(dados,this);
     }
 
-    public ProState getState(){
+    public PoeState getState(){
         //return state.getState();
         return null;
     }

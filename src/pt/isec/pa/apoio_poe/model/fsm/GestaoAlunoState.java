@@ -25,7 +25,7 @@ public class GestaoAlunoState extends IStateAdaptar {
     }
 
     @Override
-    public ProState getState() {
+    public PoeState getState() {
         return null;
     }
 }

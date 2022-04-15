@@ -1,6 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-public enum ProState {
+public enum PoeState {
     CONFIGURACAO,
     GESTAO_ALUNO,
     GESTAO_DOCENTE,
