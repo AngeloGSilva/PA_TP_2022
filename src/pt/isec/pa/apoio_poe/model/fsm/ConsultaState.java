@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
+import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
 public class ConsultaState extends IStateAdaptar {
@@ -20,6 +21,11 @@ public class ConsultaState extends IStateAdaptar {
     @Override
     public boolean selecionar(int escolha) {
         return false;
+    }
+
+    @Override
+    public void adicionarAluno(Aluno aluno) {
+
     }
 
     @Override

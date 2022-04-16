@@ -35,9 +35,15 @@ public class GestaoProj {
     //LerFicheiro.lerDoncentes("ola");
 
 
+    @Override
+    public String toString() {
+        return "GestaoProj{" +
+                "alunos=" + alunos +
+                '}';
+    }
 
-    public void adicinarAluno(Aluno aluno){
-        alunos.add(aluno);
+    public boolean adicinarAlunos(Aluno aluno){
+        return alunos.add(aluno);
     }
 
     public void adicinarDocente(Docente docente){

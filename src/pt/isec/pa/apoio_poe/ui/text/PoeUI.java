@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.ui.text;
 
 import pt.isec.pa.apoio_poe.Utils.PAInput;
+import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
 public class PoeUI {
@@ -72,8 +73,23 @@ public class PoeUI {
     private void gestaoAlunosUI() {
         System.out.println("Gestão de alunos:\n");
         switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Edição","Eliminação")) {
-            //case 1 -> Inserção;
-            //case 2 -> consulta;
+            case 1 -> {
+                String nome_Aluno = PAInput.readString("Nome do aluno",false);
+                long nr_Aluno = PAInput.readInt("Numero do aluno");
+                String email_Aluno = PAInput.readString("Email do aluno",false);
+                String ramo_Aluno = PAInput.readString("Ramo do aluno",true);
+                double classificacao_Aluno = PAInput.readInt("Classificao do aluno");
+                boolean aceder_a_Estagio = true;
+                switch (PAInput.chooseOption("Aceder ao Estagio", "PODE","NAO PODE")){
+                    case 1: aceder_a_Estagio = true;
+                    case 2: aceder_a_Estagio = false;
+                }
+                Aluno aluno = new Aluno(nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
+                controladorDoPrograma.adicionarAluno(aluno);
+            }
+            case 2 -> {
+                System.out.println(controladorDoPrograma.getAlunos());
+            }
             //case 3 -> edição;
             //case 4 -> eliminação;
             //default -> acabou = true;

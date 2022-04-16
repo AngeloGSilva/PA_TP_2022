@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
+import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
 abstract class IStateAdaptar implements IState{
@@ -31,6 +32,9 @@ abstract class IStateAdaptar implements IState{
     public boolean selecionar(int escolha) {
         return false;
 
+    }
+    @Override
+    public void adicionarAluno(Aluno aluno) {
     }
 
 }

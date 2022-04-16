@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
+import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
 public class ProContexto {
@@ -33,6 +34,15 @@ public class ProContexto {
         return state.avancar(guardado,op);
     }
 
+    public void adicionarAluno(Aluno aluno){
+        state.adicionarAluno(aluno);
+    }
+
     //metodos para aceder a dados..
     //public getNr_alunos_Inscritos(){return dados.getAlunos();}
+
+    public String getAlunos(){
+        return dados.toString();
+    }
+
 }

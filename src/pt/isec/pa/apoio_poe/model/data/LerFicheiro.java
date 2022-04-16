@@ -1,3 +1,4 @@
+/*
 package pt.isec.pa.apoio_poe.model.data;
 
 import java.io.BufferedReader;
@@ -39,3 +40,4 @@ public final class LerFicheiro {
 
 
 }
+*/

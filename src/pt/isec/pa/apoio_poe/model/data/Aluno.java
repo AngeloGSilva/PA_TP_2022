@@ -55,4 +55,16 @@ public class Aluno {
     public int hashCode() {
         return Objects.hash(nr_Aluno, nome_Aluno, email_Aluno, ramo_Aluno, classificacao_Aluno, aceder_a_Estagio);
     }
+
+    @Override
+    public String toString() {
+        return "Aluno{" +
+                "nr_Aluno=" + nr_Aluno +
+                ", nome_Aluno='" + nome_Aluno + '\'' +
+                ", email_Aluno='" + email_Aluno + '\'' +
+                ", ramo_Aluno='" + ramo_Aluno + '\'' +
+                ", classificacao_Aluno=" + classificacao_Aluno +
+                ", aceder_a_Estagio=" + aceder_a_Estagio +
+                '}';
+    }
 }

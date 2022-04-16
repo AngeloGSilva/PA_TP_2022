@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
+import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
 public class GestaoDocenteState extends IStateAdaptar {
@@ -22,6 +23,7 @@ public class GestaoDocenteState extends IStateAdaptar {
     public boolean selecionar(int escolha) {
         return false;
     }
+
 
     @Override
     public PoeState getState() {
