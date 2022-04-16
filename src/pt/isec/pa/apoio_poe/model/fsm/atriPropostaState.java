@@ -25,11 +25,6 @@ public class atriPropostaState extends IStateAdaptar {
     }
 
     @Override
-    public void adicionarAluno(Aluno aluno) {
-
-    }
-
-    @Override
     public PoeState getState() {
         return PoeState.ATRIBUIR_PROPOSTA;
     }

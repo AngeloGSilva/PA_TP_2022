@@ -34,7 +34,8 @@ abstract class IStateAdaptar implements IState{
 
     }
     @Override
-    public void adicionarAluno(Aluno aluno) {
+    public boolean adicionarAluno(Aluno aluno) {
+        return false;
     }
 
 }

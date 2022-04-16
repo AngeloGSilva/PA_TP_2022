@@ -24,11 +24,6 @@ public class ConsultaState extends IStateAdaptar {
     }
 
     @Override
-    public void adicionarAluno(Aluno aluno) {
-
-    }
-
-    @Override
     public PoeState getState() {
         return PoeState.CONSULTA;
     }

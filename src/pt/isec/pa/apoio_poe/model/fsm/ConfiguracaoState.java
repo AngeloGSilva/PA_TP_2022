@@ -32,10 +32,7 @@ public class ConfiguracaoState extends IStateAdaptar {
 
     }
 
-    @Override
-    public void adicionarAluno(Aluno aluno) {
 
-    }
 
     @Override
     public PoeState getState() {

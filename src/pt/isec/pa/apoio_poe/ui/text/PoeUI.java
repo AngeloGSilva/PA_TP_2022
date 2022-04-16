@@ -85,7 +85,10 @@ public class PoeUI {
                     case 2: aceder_a_Estagio = false;
                 }
                 Aluno aluno = new Aluno(nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
-                controladorDoPrograma.adicionarAluno(aluno);
+                if(controladorDoPrograma.adicionarAluno(aluno)){
+                    System.out.println("Aluno adicionado\n");
+                }else
+                    System.out.println("Aluno ja existe\n");
             }
             case 2 -> {
                 System.out.println(controladorDoPrograma.getAlunos());

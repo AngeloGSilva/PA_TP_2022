@@ -24,10 +24,7 @@ public class GestaoPropostaState extends IStateAdaptar {
         return false;
     }
 
-    @Override
-    public void adicionarAluno(Aluno aluno) {
 
-    }
 
     @Override
     public PoeState getState() {

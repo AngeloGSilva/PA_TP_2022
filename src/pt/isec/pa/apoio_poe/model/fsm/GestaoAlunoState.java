@@ -10,12 +10,14 @@ public class GestaoAlunoState extends IStateAdaptar {
     }
 
     @Override
-    public void adicionarAluno(Aluno aluno){
+    public boolean adicionarAluno(Aluno aluno){
         if(dados.adicinarAlunos(aluno)){
            alteraState(new GestaoAlunoState(dados,contexto));
         }else{
             alteraState(new GestaoAlunoState(dados,contexto));
+            return false;
         }
+        return true;
     }
 
     @Override

@@ -34,8 +34,8 @@ public class ProContexto {
         return state.avancar(guardado,op);
     }
 
-    public void adicionarAluno(Aluno aluno){
-        state.adicionarAluno(aluno);
+    public boolean adicionarAluno(Aluno aluno){
+        return state.adicionarAluno(aluno);
     }
 
     //metodos para aceder a dados..

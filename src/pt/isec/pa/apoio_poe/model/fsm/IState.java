@@ -7,7 +7,7 @@ public interface IState {
     boolean voltar(boolean guardado);
     boolean avancar(boolean guardado,int op);
     boolean selecionar(int escolha);
-    void adicionarAluno(Aluno aluno);
+    boolean adicionarAluno(Aluno aluno);
 
 
     PoeState getState();
