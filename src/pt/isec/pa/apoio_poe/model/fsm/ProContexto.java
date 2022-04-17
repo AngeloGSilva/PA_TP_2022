@@ -63,4 +63,8 @@ public class ProContexto {
     public boolean adicionarProposta(Proposta proposta) {
         return dados.adicinarProsta(proposta);
     }
+
+    public String getPropostas() {
+        return dados.toStringPropostas();
+    }
 }

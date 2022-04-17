@@ -50,10 +50,16 @@ public class PoeUI {
         System.out.println("Gestão de Propostas:\n");
         switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Edição","Eliminação")) {
             case 1 -> {
-                Proposta proposta = new T1("ramo","ola","1223","ola");
-                controladorDoPrograma.adicionarProposta(proposta);
+                String tipo;
+                while (!(tipo = PAInput.readString("tipo de proposta",true)).equals("T1")){
+                    System.out.println("Tipo invalido");
+                }
+                if(tipo.equals("T1")) {
+                    Proposta proposta = new T1("ramo", "ola", "1223", "ola");
+                    controladorDoPrograma.adicionarProposta(proposta);
+                }
             }
-            //case 2 -> consulta;
+            case 2 -> System.out.println(controladorDoPrograma.getPropostas());
             //case 3 -> edição;
             //case 4 -> eliminação;
             //default -> acabou = true;
