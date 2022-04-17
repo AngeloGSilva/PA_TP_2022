@@ -2,6 +2,7 @@ package pt.isec.pa.apoio_poe.ui.text;
 
 import pt.isec.pa.apoio_poe.Utils.PAInput;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
 public class PoeUI {
@@ -57,10 +58,27 @@ public class PoeUI {
     private void gestaoDocentesUI() {
         System.out.println("Gestão de Docentes:\n");
         switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Edição","Eliminação")) {
-            //case 1 -> Inserção;
-            //case 2 -> consulta;
+            case 1 -> {
+                String nome_Docente = PAInput.readString("Nome do aluno",false);
+                String email_Docente = PAInput.readString("Email do aluno",false);
+                boolean papel_Docente = true;
+                switch (PAInput.chooseOption("Aceder ao Estagio", "PODE","NAO PODE")){
+                    case 1: papel_Docente = true;
+                    case 2: papel_Docente = false;
+                }
+                Docente docente = new Docente(nome_Docente,email_Docente,papel_Docente);
+            }
+            case 2 -> {
+                System.out.println(controladorDoPrograma.getDocentes());
+            }
             //case 3 -> edição;
-            //case 4 -> eliminação;
+            case 4 -> {
+                boolean apagou = controladorDoPrograma.removerDocente(PAInput.readInt("email do docente"));
+                if(!apagou)
+                    System.out.println("nao encontrado");
+                else
+                    System.out.println("apagou");
+            }
             //default -> acabou = true;
         }
     }
