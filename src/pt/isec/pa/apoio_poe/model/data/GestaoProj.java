@@ -51,8 +51,12 @@ public class GestaoProj {
         return alunos.add(aluno);
     }
 
-    public void adicinarProsta(Proposta proposta){
-        propostas.add(proposta);
+    public String toStringPropostas(){
+        return "Propostas:" + propostas;
+    }
+
+    public boolean adicinarProsta(Proposta proposta){
+        return propostas.add(proposta);
     }
 
     public void removeAluno(Aluno aluno){

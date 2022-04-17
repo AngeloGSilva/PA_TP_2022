@@ -30,4 +30,15 @@ public class Proposta {
     public int hashCode() {
         return Objects.hash(cod_ID, titulo, codigo_Aluno, codigo_Docente, ramo);
     }
+
+    @Override
+    public String toString() {
+        return "Proposta{" +
+                "cod_ID='" + cod_ID + '\'' +
+                ", titulo='" + titulo + '\'' +
+                ", codigo_Aluno='" + codigo_Aluno + '\'' +
+                ", codigo_Docente='" + codigo_Docente + '\'' +
+                ", ramo='" + ramo + '\'' +
+                '}';
+    }
 }

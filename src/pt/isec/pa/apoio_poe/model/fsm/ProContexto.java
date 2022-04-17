@@ -3,6 +3,7 @@ package pt.isec.pa.apoio_poe.model.fsm;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
+import pt.isec.pa.apoio_poe.model.data.Proposta;
 
 public class ProContexto {
     private GestaoProj dados;
@@ -59,4 +60,7 @@ public class ProContexto {
         return dados.toStringDocentes();
     }
 
+    public boolean adicionarProposta(Proposta proposta) {
+        return dados.adicinarProsta(proposta);
+    }
 }

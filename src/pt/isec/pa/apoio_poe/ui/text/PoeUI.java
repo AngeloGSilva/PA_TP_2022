@@ -3,6 +3,8 @@ package pt.isec.pa.apoio_poe.ui.text;
 import pt.isec.pa.apoio_poe.Utils.PAInput;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Docente;
+import pt.isec.pa.apoio_poe.model.data.Proposta;
+import pt.isec.pa.apoio_poe.model.data.T1;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
 public class PoeUI {
@@ -48,7 +50,8 @@ public class PoeUI {
         System.out.println("Gestão de Propostas:\n");
         switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Edição","Eliminação")) {
             case 1 -> {
-
+                Proposta proposta = new T1("ramo","ola","1223","ola");
+                controladorDoPrograma.adicionarProposta(proposta);
             }
             //case 2 -> consulta;
             //case 3 -> edição;
