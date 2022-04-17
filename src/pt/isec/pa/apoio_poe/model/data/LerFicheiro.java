@@ -1,8 +1,9 @@
-/*
 package pt.isec.pa.apoio_poe.model.data;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 
 public final class LerFicheiro {
 
@@ -25,13 +26,20 @@ public final class LerFicheiro {
     //lerCandidaturas()
 
     public static void lerDoncentes(String fileName){
-        FileReader fileReader = new FileReader(fileName);
-        bufferedReader = new BufferedReader(fileReader);
-        while ((linha = bufferedReader.readLine()) != null){
-            System.out.println(linha);
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(fileName);
+            bufferedReader = new BufferedReader(fileReader);
+            while ((linha = bufferedReader.readLine()) != null){
+                System.out.println(linha);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        fileReader.close();
-        bufferedReader.close();
+
+        //fileReader.close();
+        //bufferedReader.close();
         //return da leitura dos ficheiros
         //return array de docentes
         //ou
@@ -40,4 +48,4 @@ public final class LerFicheiro {
 
 
 }
-*/
+

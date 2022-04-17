@@ -1,10 +1,7 @@
 package pt.isec.pa.apoio_poe.ui.text;
 
 import pt.isec.pa.apoio_poe.Utils.PAInput;
-import pt.isec.pa.apoio_poe.model.data.Aluno;
-import pt.isec.pa.apoio_poe.model.data.Docente;
-import pt.isec.pa.apoio_poe.model.data.Proposta;
-import pt.isec.pa.apoio_poe.model.data.T1;
+import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
 public class PoeUI {
@@ -16,6 +13,8 @@ public class PoeUI {
     boolean acabou = false;
 
     public void start(){
+        LerFicheiro.lerDoncentes("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv");
+
         while(!acabou){
             switch (controladorDoPrograma.getState()){
                 case CONFIGURACAO -> configuracaoUI();
