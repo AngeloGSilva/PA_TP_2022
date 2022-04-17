@@ -51,10 +51,6 @@ public class GestaoProj {
         return alunos.add(aluno);
     }
 
-    public void adicinarDocente(Docente docente){
-        docentes.add(docente);
-    }
-
     public void adicinarProsta(Proposta proposta){
         propostas.add(proposta);
     }

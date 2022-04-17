@@ -47,7 +47,9 @@ public class PoeUI {
     private void gestaoPropostaUI() {
         System.out.println("Gestão de Propostas:\n");
         switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Edição","Eliminação")) {
-            //case 1 -> Inserção;
+            case 1 -> {
+
+            }
             //case 2 -> consulta;
             //case 3 -> edição;
             //case 4 -> eliminação;
@@ -93,7 +95,6 @@ public class PoeUI {
 
     }
 
-
     private void gestaoAlunosUI() {
         System.out.println("Gestão de alunos:\n");
         switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Edição","Eliminação")) {
@@ -133,10 +134,6 @@ public class PoeUI {
         System.out.println("---Inicial---\n");
         System.out.println("Bem Vindo\n");
         controladorDoPrograma.selecionar(PAInput.chooseOption("Gerir:", "Gestao de Alunos", "Gestao de Docentes", "Gestao de Projetos", "Sair"));
-    }
-
-    private void gestaoAlunos() {
-
     }
 
 }
