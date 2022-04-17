@@ -75,6 +75,7 @@ public class PoeUI {
 
 
                 Docente docente = new Docente(nome_Docente,email_Docente,papel_Docente);
+                controladorDoPrograma.adicionarDocente(docente);
             }
             case 2 -> {
                 System.out.println(controladorDoPrograma.getDocentes());
