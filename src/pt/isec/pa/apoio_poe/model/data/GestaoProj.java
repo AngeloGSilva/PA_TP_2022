@@ -35,9 +35,12 @@ public class GestaoProj {
     //LerFicheiro.lerDoncentes("ola");
 
 
-    @Override
-    public String toString() {
+    public String toStringAlunos() {
         return "Alunos:" + alunos;
+    }
+
+    public String toStringDocentes() {
+        return "Alunos:" + docentes;
     }
 
     public boolean removerAlunos(long nr_aluno){

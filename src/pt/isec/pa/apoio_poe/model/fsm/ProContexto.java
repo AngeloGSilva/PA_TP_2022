@@ -46,7 +46,10 @@ public class ProContexto {
     //public getNr_alunos_Inscritos(){return dados.getAlunos();}
 
     public String getAlunos(){
-        return dados.toString();
+        return dados.toStringAlunos();
     }
 
+    public String getDocentes(){
+        return dados.toStringDocentes();
+    }
 }
