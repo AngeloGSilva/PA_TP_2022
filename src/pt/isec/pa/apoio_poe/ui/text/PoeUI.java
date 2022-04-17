@@ -62,7 +62,7 @@ public class PoeUI {
                 String nome_Docente = PAInput.readString("Nome do aluno",false);
                 String email_Docente = PAInput.readString("Email do aluno",false);
                 boolean papel_Docente = true;
-                switch (PAInput.chooseOption("Aceder ao Estagio", "PODE","NAO PODE")){
+                switch (PAInput.chooseOption("Papel", "orientador","proponente")){
                     case 1: papel_Docente = true;
                     case 2: papel_Docente = false;
                 }
