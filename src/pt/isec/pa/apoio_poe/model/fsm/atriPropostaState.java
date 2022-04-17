@@ -19,6 +19,7 @@ public class atriPropostaState extends IStateAdaptar {
         return false;
     }
 
+
     @Override
     public boolean selecionar(int escolha) {
         return false;
