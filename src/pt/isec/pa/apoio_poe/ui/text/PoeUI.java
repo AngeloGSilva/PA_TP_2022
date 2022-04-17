@@ -79,11 +79,11 @@ public class PoeUI {
             }
             //case 3 -> edição;
             case 4 -> {
-                boolean apagou = controladorDoPrograma.removerDocente(PAInput.readInt("email do docente"));
-                if(!apagou)
+                //boolean apagou = controladorDoPrograma.removerDocente(PAInput.readInt("email do docente"));
+               /* if(!apagou)
                     System.out.println("nao encontrado");
                 else
-                    System.out.println("apagou");
+                    System.out.println("apagou");*/
             }
             //default -> acabou = true;
         }

@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
 public class ProContexto {
@@ -38,6 +39,11 @@ public class ProContexto {
         return state.removerAluno(nr_aluno);
     }
 
+
+    public boolean adicionarDocente(Docente docente) {
+        return state.adicionarDocente(docente);
+    }
+
     public boolean adicionarAluno(Aluno aluno){
         return state.adicionarAluno(aluno);
     }
@@ -52,4 +58,5 @@ public class ProContexto {
     public String getDocentes(){
         return dados.toStringDocentes();
     }
+
 }

@@ -25,4 +25,13 @@ public class Docente {
     public int hashCode() {
         return Objects.hash(nome_Docente, email_Docente, papel_Docente);
     }
+
+    @Override
+    public String toString() {
+        return "Docente{" +
+                "nome_Docente='" + nome_Docente + '\'' +
+                ", email_Docente='" + email_Docente + '\'' +
+                ", papel_Docente=" + papel_Docente +
+                '}';
+    }
 }

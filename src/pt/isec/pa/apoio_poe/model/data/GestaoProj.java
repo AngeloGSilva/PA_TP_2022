@@ -40,7 +40,7 @@ public class GestaoProj {
     }
 
     public String toStringDocentes() {
-        return "Alunos:" + docentes;
+        return "Docentes:" + docentes;
     }
 
     public boolean removerAlunos(long nr_aluno){
@@ -68,5 +68,10 @@ public class GestaoProj {
     }
     public void removeProposta(Proposta proposta){
         propostas.remove(proposta);
+    }
+
+
+    public boolean adicinarDocentes(Docente docente) {
+        return docentes.add(docente);
     }
 }
