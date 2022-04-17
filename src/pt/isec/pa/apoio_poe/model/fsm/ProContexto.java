@@ -34,6 +34,10 @@ public class ProContexto {
         return state.avancar(guardado,op);
     }
 
+    public boolean removerAluno(long nr_aluno){
+        return state.removerAluno(nr_aluno);
+    }
+
     public boolean adicionarAluno(Aluno aluno){
         return state.adicionarAluno(aluno);
     }

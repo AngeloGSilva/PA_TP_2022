@@ -13,4 +13,5 @@ public interface IState {
     PoeState getState();
 
 
+    boolean removerAluno(long nr_aluno);
 }

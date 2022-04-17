@@ -42,6 +42,10 @@ public class GestaoProj {
                 '}';
     }
 
+    public boolean removerAlunos(long nr_aluno){
+        return alunos.remove(Aluno.getDummyAluno(nr_aluno));
+    }
+
     public boolean adicinarAlunos(Aluno aluno){
         return alunos.add(aluno);
     }

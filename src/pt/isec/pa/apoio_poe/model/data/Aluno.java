@@ -19,6 +19,19 @@ public class Aluno {
         this.aceder_a_Estagio = aceder_a_Estagio;
     }
 
+    public Aluno(long nr_Aluno){
+        this.nr_Aluno=nr_Aluno;
+        this.nome_Aluno = null;
+        this.email_Aluno = null;
+        this.ramo_Aluno = null;
+        //this.classificacao_Aluno = false;
+        //this.aceder_a_Estagio = null;
+    }
+
+    public static Aluno getDummyAluno(long nr_Aluno){
+        return new Aluno(nr_Aluno);
+    }
+
     public long getNr_Aluno() {
         return nr_Aluno;
     }

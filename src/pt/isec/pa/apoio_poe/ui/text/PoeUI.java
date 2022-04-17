@@ -94,7 +94,13 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getAlunos());
             }
             //case 3 -> edição;
-            //case 4 -> eliminação;
+            case 4 -> {
+                boolean apagou = controladorDoPrograma.removerAluno(PAInput.readInt("Classificao do aluno"));
+                if(!apagou)
+                    System.out.println("nao encontrado");
+                else
+                    System.out.println("apagou");
+            }
             //default -> acabou = true;
         }
     }
