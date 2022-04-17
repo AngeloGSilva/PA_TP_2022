@@ -38,4 +38,9 @@ abstract class IStateAdaptar implements IState{
         return false;
     }
 
+    @Override
+    public boolean removerAluno(long nr_aluno){
+        return false;
+    }
+
 }

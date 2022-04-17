@@ -71,13 +71,11 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return "Aluno{" +
-                "nr_Aluno=" + nr_Aluno +
-                ", nome_Aluno='" + nome_Aluno + '\'' +
-                ", email_Aluno='" + email_Aluno + '\'' +
-                ", ramo_Aluno='" + ramo_Aluno + '\'' +
-                ", classificacao_Aluno=" + classificacao_Aluno +
-                ", aceder_a_Estagio=" + aceder_a_Estagio +
-                '}';
+        return "nr_Aluno:" + nr_Aluno +
+                ", nome_Aluno:'" + nome_Aluno + '\'' +
+                ", email_Aluno:'" + email_Aluno + '\'' +
+                ", ramo_Aluno:'" + ramo_Aluno + '\'' +
+                ", classificacao_Aluno:" + classificacao_Aluno +
+                ", aceder_a_Estagio:" + aceder_a_Estagio;
     }
 }

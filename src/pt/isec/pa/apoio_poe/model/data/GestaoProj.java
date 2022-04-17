@@ -37,9 +37,7 @@ public class GestaoProj {
 
     @Override
     public String toString() {
-        return "GestaoProj{" +
-                "alunos=" + alunos +
-                '}';
+        return "Alunos:" + alunos;
     }
 
     public boolean removerAlunos(long nr_aluno){
