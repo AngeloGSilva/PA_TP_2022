@@ -45,6 +45,10 @@ public class ProContexto {
         return state.adicionarDocente(docente);
     }
 
+    public boolean adicionarProposta(Proposta proposta) {
+        return state.adicionarProposta(proposta);
+    }
+
     public boolean adicionarAluno(Aluno aluno){
         return state.adicionarAluno(aluno);
     }
@@ -60,9 +64,7 @@ public class ProContexto {
         return dados.toStringDocentes();
     }
 
-    public boolean adicionarProposta(Proposta proposta) {
-        return dados.adicinarProsta(proposta);
-    }
+
 
     public String getPropostas() {
         return dados.toStringPropostas();

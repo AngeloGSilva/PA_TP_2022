@@ -17,4 +17,5 @@ public interface IState {
 
 
     boolean removerAluno(long nr_aluno);
+
 }

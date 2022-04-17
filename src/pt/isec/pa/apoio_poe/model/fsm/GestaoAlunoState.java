@@ -2,6 +2,7 @@ package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
+import pt.isec.pa.apoio_poe.model.data.Proposta;
 
 public class GestaoAlunoState extends IStateAdaptar {
     public GestaoAlunoState(GestaoProj dados, ProContexto contexto) {
@@ -24,6 +25,7 @@ public class GestaoAlunoState extends IStateAdaptar {
     public boolean removerAluno(long nr_aluno){
         return dados.removerAlunos(nr_aluno);
     }
+
 
     @Override
     public boolean voltar(boolean guardado) {

@@ -1,7 +1,7 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
+import pt.isec.pa.apoio_poe.model.data.Proposta;
 
 public class GestaoPropostaState extends IStateAdaptar {
     public GestaoPropostaState(GestaoProj dados, ProContexto contexto) {
@@ -17,6 +17,17 @@ public class GestaoPropostaState extends IStateAdaptar {
     public boolean avancar(boolean guardado, int op) {
         alteraState(new opCandidaturaState(dados, contexto));
         return false;
+    }
+
+    @Override
+    public boolean adicionarProposta(Proposta proposta){
+        if(dados.adicinarProsta(proposta)){
+            alteraState(new GestaoPropostaState(dados,contexto));
+        }else{
+            alteraState(new GestaoPropostaState(dados,contexto));
+            return false;
+        }
+        return true;
     }
 
     @Override
