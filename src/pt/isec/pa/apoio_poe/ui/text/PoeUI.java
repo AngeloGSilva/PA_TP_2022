@@ -66,6 +66,12 @@ public class PoeUI {
                     case 1: papel_Docente = true;
                     case 2: papel_Docente = false;
                 }
+
+
+                //isto nao pode estar aqui nem o do new aluno pq é logica tem de passar para o state correspondente de cada
+
+
+
                 Docente docente = new Docente(nome_Docente,email_Docente,papel_Docente);
             }
             case 2 -> {
