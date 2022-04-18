@@ -1,9 +1,8 @@
 package pt.isec.pa.apoio_poe.model.data;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class LerFicheiro {
 
@@ -26,18 +25,72 @@ public final class LerFicheiro {
     //lerCandidaturas()
 
     public static void lerDoncentes(String fileName){
-        FileReader fileReader = null;
-        try {
-            fileReader = new FileReader(fileName);
-            bufferedReader = new BufferedReader(fileReader);
-            while ((linha = bufferedReader.readLine()) != null){
-                System.out.println(linha);
-            }
+        // pecorrer a linha td ate ao email e verificar se este tem em algum sitio o @
+        //e um ".com"
+        //ALUNOS
+        //contar os digitos dos numeros
+        //email igual ao docente
+        //e por ai em diante
+        // a maneira a baixo nao esta a funcionar
 
+
+        // email ids written to myOutputFile.txt file
+        PrintWriter p = null;
+        try {
+            p = new PrintWriter(fileName);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+// Regular expression for email id
+        Pattern pat=Pattern.compile( "[a-zA-Z0-9]" + "[a-zA-Z0-9_.]" + "*@[a-zA-Z0-9]" + "+([.][a-zA-Z]+)+");
+        BufferedReader b = null;
+        try {
+            b = new BufferedReader(new FileReader(fileName));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+//reading myInputFile.txt file
+        String l = null;
+        try {
+            l = b.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        while (l != null) {
+            Matcher mat = pat.matcher(l);
+            while (mat.find()) {
+                p.println(mat.group());
+            }
+            try {
+                l = b.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        p.flush();
 
+
+
+
+        /*FileReader fileReader = null;
+        Pattern pat= Pattern.compile( "[a-zA-Z0-9]" + "[a-zA-Z0-9_.]" + "*@[a-zA-Z0-9]" + "+([.][a-zA-Z]+)+");
+        try {
+            PrintWriter p = new PrintWriter(fileName);
+            fileReader = new FileReader(fileName);
+            bufferedReader = new BufferedReader(fileReader);
+            while ((linha = bufferedReader.readLine()) != null){
+                Matcher mat = pat.matcher(linha);
+                while (mat.find()) {
+                    p.println(mat.group());
+                }
+                linha = bufferedReader.readLine();
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+*/
         //fileReader.close();
         //bufferedReader.close();
         //return da leitura dos ficheiros
