@@ -46,6 +46,47 @@ public final class LerFicheiro {
         //return de 1 docente
     }
 
+    public static void lerAlunos(String fileName){
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(fileName);
+            bufferedReader = new BufferedReader(fileReader);
+            while ((linha = bufferedReader.readLine()) != null){
+                System.out.println(linha);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //fileReader.close();
+        //bufferedReader.close();
+        //return da leitura dos ficheiros
+        //return array de docentes
+        //ou
+        //return de 1 docente
+    }
+
+    public static void lerPropostas(String fileName){
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(fileName);
+            bufferedReader = new BufferedReader(fileReader);
+            while ((linha = bufferedReader.readLine()) != null){
+                System.out.println(linha);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //fileReader.close();
+        //bufferedReader.close();
+        //return da leitura dos ficheiros
+        //return array de docentes
+        //ou
+        //return de 1 docente
+    }
 
 }
 
