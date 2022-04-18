@@ -18,20 +18,20 @@ public class Docente {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Docente docente = (Docente) o;
-        return papel_Docente == docente.papel_Docente && Objects.equals(nome_Docente, docente.nome_Docente) && Objects.equals(email_Docente, docente.email_Docente);
+        return email_Docente.equals(docente.email_Docente);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome_Docente, email_Docente, papel_Docente);
+        return Objects.hash(email_Docente);
     }
 
     @Override
     public String toString() {
         return "Docente{" +
-                "nome_Docente='" + nome_Docente + '\'' +
-                ", email_Docente='" + email_Docente + '\'' +
-                ", papel_Docente=" + papel_Docente +
+                "Nome do Docente='" + nome_Docente + '\'' +
+                ", Email do Docente='" + email_Docente + '\'' +
+                ", Papel do Docente=" + papel_Docente +
                 '}';
     }
 }

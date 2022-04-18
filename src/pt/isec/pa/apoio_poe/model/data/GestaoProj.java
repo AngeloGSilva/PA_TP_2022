@@ -66,6 +66,7 @@ public class GestaoProj {
     public void removeDocente(Docente docente){
         docentes.remove(docente);
     }
+
     public void removeProposta(Proposta proposta){
         propostas.remove(proposta);
     }

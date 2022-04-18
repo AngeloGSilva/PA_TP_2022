@@ -61,21 +61,21 @@ public class Aluno {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Aluno aluno = (Aluno) o;
-        return nr_Aluno == aluno.nr_Aluno && Double.compare(aluno.classificacao_Aluno, classificacao_Aluno) == 0 && aceder_a_Estagio == aluno.aceder_a_Estagio && Objects.equals(nome_Aluno, aluno.nome_Aluno) && Objects.equals(email_Aluno, aluno.email_Aluno) && Objects.equals(ramo_Aluno, aluno.ramo_Aluno);
+        return nr_Aluno == aluno.nr_Aluno && email_Aluno.equals(aluno.email_Aluno);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nr_Aluno, nome_Aluno, email_Aluno, ramo_Aluno, classificacao_Aluno, aceder_a_Estagio);
+        return Objects.hash(nr_Aluno, email_Aluno);
     }
 
     @Override
     public String toString() {
-        return "nr_Aluno:" + nr_Aluno +
-                ", nome_Aluno:'" + nome_Aluno + '\'' +
-                ", email_Aluno:'" + email_Aluno + '\'' +
-                ", ramo_Aluno:'" + ramo_Aluno + '\'' +
-                ", classificacao_Aluno:" + classificacao_Aluno +
-                ", aceder_a_Estagio:" + aceder_a_Estagio;
+        return "Numero de aluno:" + nr_Aluno +
+                ", Nome do aluno:'" + nome_Aluno + '\'' +
+                ", Email do aluno:'" + email_Aluno + '\'' +
+                ", Ramo do aluno:'" + ramo_Aluno + '\'' +
+                ", Classificação do aluno:" + classificacao_Aluno +
+                ", Acesso a estagio:" + aceder_a_Estagio;
     }
 }
