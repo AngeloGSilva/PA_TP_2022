@@ -2,6 +2,7 @@ package pt.isec.pa.apoio_poe.model.data;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -134,7 +135,12 @@ public final class LerFicheiro {
                 if(data[0].length() == 10 && data[1].contains(" ") &&
                         data[2].contains("@isec.pt") &&
                         data[3].contains("LEI") &&
-                        !data[4].isEmpty()){    //FALTAM VERIFICACOES
+                        !data[4].isEmpty() &&
+                        Double.parseDouble(data[5]) < 1 &&
+                                "true".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT)) ||
+                        "false".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT))
+                ){
+                        //FALTAM VERIFICACOES
                     for (int i = 0; i<data.length; i++) {
                         System.out.print(data[i] + " " );
                     }
