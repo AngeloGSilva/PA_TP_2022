@@ -133,7 +133,7 @@ public final class LerFicheiro {
                 String[] data = linha.split(",");
                 if(data[0].length() == 10 && data[1].contains(" ") && data[2].contains("@isec.pt") && data[3].contains("LEI") && !data[4].isEmpty()){
                     for (int i = 0; i<data.length; i++) {
-                        System.out.print(data[i] + " ");
+                        System.out.print(data[i] + " " );
                     }
                     System.out.println();
                 }else
