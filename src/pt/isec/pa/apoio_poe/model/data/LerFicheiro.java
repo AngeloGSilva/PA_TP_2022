@@ -28,6 +28,8 @@ public final class LerFicheiro {
         //experiemtentar com o inputStream e Outptscream com o readObj
 
 
+        //https://simplesolution.dev/java-read-and-parse-csv-file-using-apache-commons-csv/
+
         // pecorrer a linha td ate ao email e verificar se este tem em algum sitio o @
         //e um ".com"
         //ALUNOS
