@@ -136,7 +136,7 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getAlunos());
             }
             case 3 -> {
-                if(controladorDoPrograma.lerFicheiro("PA_TP2022\\\\PA_TP_2022\\\\Resources\\\\ficheiros\\\\alunos.csv")){
+                if(controladorDoPrograma.lerFicheiro("PA_TP_2022\\\\Resources\\\\ficheiros\\\\alunos.csv")){
                     System.out.println("Leu tudo bem");
                 }else
                     System.out.println("Nao leu td");

@@ -30,7 +30,6 @@ public class GestaoProj {
         propostas = new HashSet<>();
     }
 
-
     //arranjar state para ler ficheiros utilizar funcao assim
     //LerFicheiro.lerDoncentes("ola");
 
@@ -71,6 +70,9 @@ public class GestaoProj {
         propostas.remove(proposta);
     }
 
+    public HashSet<Aluno> getAlunos() {
+        return alunos;
+    }
 
     public boolean adicinarDocentes(Docente docente) {
         return docentes.add(docente);

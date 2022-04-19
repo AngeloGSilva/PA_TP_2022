@@ -2,6 +2,8 @@ package pt.isec.pa.apoio_poe.model.data;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -111,17 +113,20 @@ public final class LerFicheiro {
 
         FileReader fileReader = null;
         try {
-            String[] ramos = {"SI", "DA", "RAS"};
+            String[] ramos = {"DA","SI","RAS"};
+            List<String> Ramos = Arrays.asList(ramos); // para poder usar contains
             String[] curso = {"LEI", "LEI_PL"};
-
+            List<String> Curso = Arrays.asList(curso);
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null){
                 String[] data = linha.split(",");
-                if(data[0].length() == 10 && data[1].contains(" ") &&
+                if(data[0].length() == 10 &&
+                        !gestaoProj.getAlunos().contains(data[0]) && data[1].contains(" ") &&  //numero repetido
                         data[2].contains("@isec.pt") &&
+                        !gestaoProj.getAlunos().contains(data[2]) && //email repetido
                         !data[3].isEmpty() &&
-                        //data[4].equalsIgnoreCase(String.valueOf(ramos)) &&
+                        Ramos.contains(data[4]) && //ramo valido
                         Double.parseDouble(data[5]) < 1 &&
                         "true".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT)) ||
                         "false".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT))
@@ -130,6 +135,7 @@ public final class LerFicheiro {
                     for (int i = 0; i<data.length; i++) {
                         System.out.print(data[i] + " " );
                     }
+                    gestaoProj.adicinarAlunos(new Aluno(Long.parseLong(data[0]),data[1],data[2],data[4],Double.parseDouble(data[5]),Boolean.parseBoolean(data[6])));
                     System.out.println();
                 }else
                     System.out.println("nao tem");
