@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public final class LerFicheiro {
 
@@ -128,16 +129,19 @@ public final class LerFicheiro {
 
         FileReader fileReader = null;
         try {
+            String[] ramos = {"SI", "DA", "RAS"};
+            String[] curso = {"LEI", "LEI_PL"};
+
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null){
                 String[] data = linha.split(",");
                 if(data[0].length() == 10 && data[1].contains(" ") &&
                         data[2].contains("@isec.pt") &&
-                        data[3].contains("LEI") &&
-                        !data[4].isEmpty() &&
+                        !data[3].isEmpty() &&
+                        //data[4].equalsIgnoreCase(String.valueOf(ramos)) &&
                         Double.parseDouble(data[5]) < 1 &&
-                                "true".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT)) ||
+                        "true".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT)) ||
                         "false".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT))
                 ){
                         //FALTAM VERIFICACOES
