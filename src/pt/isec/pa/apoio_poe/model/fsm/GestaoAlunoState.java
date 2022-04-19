@@ -44,6 +44,17 @@ public class GestaoAlunoState extends IStateAdaptar {
     }
 
     @Override
+    public boolean lerFicheiro(String fileName){
+        if(dados.lerficheiro(fileName)){
+            alteraState(new GestaoAlunoState(dados,contexto));
+            return true;
+        }else {
+            alteraState(new GestaoAlunoState(dados, contexto));
+            return false;
+        }
+    }
+
+    @Override
     public PoeState getState() {
         return PoeState.GESTAO_ALUNO;
     }

@@ -50,4 +50,9 @@ abstract class IStateAdaptar implements IState{
         return false;
     }
 
+    @Override
+    public boolean lerFicheiro(String fileName){
+        return false;
+    }
+
 }

@@ -75,4 +75,8 @@ public class GestaoProj {
     public boolean adicinarDocentes(Docente docente) {
         return docentes.add(docente);
     }
+
+    public boolean lerficheiro(String fileName) {
+        return LerFicheiro.lerAlunos(fileName,this);
+    }
 }

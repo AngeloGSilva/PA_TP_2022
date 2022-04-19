@@ -52,6 +52,10 @@ public class ProContexto {
     public boolean adicionarAluno(Aluno aluno){
         return state.adicionarAluno(aluno);
     }
+    
+    public boolean lerFicheiro(String fileName){
+        return state.lerFicheiro(fileName);
+    }
 
     //metodos para aceder a dados..
     //public getNr_alunos_Inscritos(){return dados.getAlunos();}

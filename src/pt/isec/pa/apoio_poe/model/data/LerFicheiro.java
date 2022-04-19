@@ -107,25 +107,7 @@ public final class LerFicheiro {
         //return de 1 docente
     }
 
-    public static void lerAlunos(String fileName){
-/*
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(fileName);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            try {
-                ArrayList<Aluno> docentes = (ArrayList<Aluno>) ois.readObject();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            System.out.println();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-*/
-
+    public static boolean lerAlunos(String fileName, GestaoProj gestaoProj){
 
         FileReader fileReader = null;
         try {
@@ -157,12 +139,8 @@ public final class LerFicheiro {
             e.printStackTrace();
         }
 
-        //fileReader.close();
-        //bufferedReader.close();
-        //return da leitura dos ficheiros
-        //return array de docentes
-        //ou
-        //return de 1 docente
+    return true;// se correu bem false se correu mal
+
     }
 
     public static void lerPropostas(String fileName){

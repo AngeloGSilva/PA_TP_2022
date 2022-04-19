@@ -13,7 +13,7 @@ public class PoeUI {
     boolean acabou = false;
 
     public void start(){
-        LerFicheiro.lerAlunos("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\alunos.csv");
+        //LerFicheiro.lerAlunos("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\alunos.csv");
 
         while(!acabou){
             switch (controladorDoPrograma.getState()){
@@ -114,7 +114,7 @@ public class PoeUI {
 
     private void gestaoAlunosUI() {
         System.out.println("Gestão de alunos:\n");
-        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Edição","Eliminação")) {
+        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","ler de ficheiro","Eliminação")) {
             case 1 -> {
                 String nome_Aluno = PAInput.readString("Nome do aluno",false);
                 long nr_Aluno = PAInput.readInt("Numero do aluno");
@@ -135,7 +135,13 @@ public class PoeUI {
             case 2 -> {
                 System.out.println(controladorDoPrograma.getAlunos());
             }
-            //case 3 -> edição;
+            case 3 -> {
+                if(controladorDoPrograma.lerFicheiro("PA_TP2022\\\\PA_TP_2022\\\\Resources\\\\ficheiros\\\\alunos.csv")){
+                    System.out.println("Leu tudo bem");
+                }else
+                    System.out.println("Nao leu td");
+
+            }
             case 4 -> {
                 boolean apagou = controladorDoPrograma.removerAluno(PAInput.readInt("Classificao do aluno"));
                 if(!apagou)
