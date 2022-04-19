@@ -131,7 +131,10 @@ public final class LerFicheiro {
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null){
                 String[] data = linha.split(",");
-                if(data[0].length() == 10 && data[1].contains(" ") && data[2].contains("@isec.pt") && data[3].contains("LEI") && !data[4].isEmpty()){
+                if(data[0].length() == 10 && data[1].contains(" ") &&
+                        data[2].contains("@isec.pt") &&
+                        data[3].contains("LEI") &&
+                        !data[4].isEmpty()){    //FALTAM VERIFICACOES
                     for (int i = 0; i<data.length; i++) {
                         System.out.print(data[i] + " " );
                     }
