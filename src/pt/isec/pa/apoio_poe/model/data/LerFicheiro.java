@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.model.data;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -108,29 +109,15 @@ public final class LerFicheiro {
         FileInputStream fis = null;
         try {
             fis = new FileInputStream(fileName);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            try {
+                ArrayList<Aluno> docentes = (ArrayList<Aluno>) ois.readObject();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            System.out.println();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        ObjectInputStream ois = null;
-        try {
-            ois = new ObjectInputStream(fis);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            int i = ois.readInt();
-
-            String today = (String) ois.readObject();
-            Aluno date = (Aluno) ois.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            ois.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
