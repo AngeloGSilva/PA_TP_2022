@@ -105,7 +105,12 @@ public final class LerFicheiro {
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null){
-                System.out.println(linha);
+                String[] data = linha.split(",");
+                if(data[0].length() == 10){
+                    //adicionaAluno(data[0]);
+                    System.out.println("Tem DEZ");
+                }else
+                    System.out.println("nao tem");
             }
 
         } catch (IOException e) {

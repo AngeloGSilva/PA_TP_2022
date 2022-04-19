@@ -13,7 +13,7 @@ public class PoeUI {
     boolean acabou = false;
 
     public void start(){
-        LerFicheiro.lerDoncentes("PA_TP_2022\\Resources\\ficheiros\\docentes.csv");
+        LerFicheiro.lerAlunos("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\alunos.csv");
 
         while(!acabou){
             switch (controladorDoPrograma.getState()){
