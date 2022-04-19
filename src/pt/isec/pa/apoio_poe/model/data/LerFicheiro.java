@@ -27,7 +27,7 @@ public final class LerFicheiro {
     public static void lerDoncentes(String fileName){
         //experiemtentar com o inputStream e Outptscream com o readObj
 
-        
+
         // pecorrer a linha td ate ao email e verificar se este tem em algum sitio o @
         //e um ".com"
         //ALUNOS
@@ -103,6 +103,37 @@ public final class LerFicheiro {
     }
 
     public static void lerAlunos(String fileName){
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(fileName);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        ObjectInputStream ois = null;
+        try {
+            ois = new ObjectInputStream(fis);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            int i = ois.readInt();
+
+            String today = (String) ois.readObject();
+            Aluno date = (Aluno) ois.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ois.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+/*
         FileReader fileReader = null;
         try {
             fileReader = new FileReader(fileName);
@@ -118,7 +149,7 @@ public final class LerFicheiro {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
         //fileReader.close();
         //bufferedReader.close();
