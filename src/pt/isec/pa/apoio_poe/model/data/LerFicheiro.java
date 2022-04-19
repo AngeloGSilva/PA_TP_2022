@@ -106,6 +106,7 @@ public final class LerFicheiro {
     }
 
     public static void lerAlunos(String fileName){
+/*
         FileInputStream fis = null;
         try {
             fis = new FileInputStream(fileName);
@@ -121,24 +122,27 @@ public final class LerFicheiro {
         } catch (IOException e) {
             e.printStackTrace();
         }
+*/
 
-/*
+
         FileReader fileReader = null;
         try {
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null){
                 String[] data = linha.split(",");
-                if(data[0].length() == 10){
-                    //adicionaAluno(data[0]);
-                    System.out.println("Tem DEZ");
+                if(data[0].length() == 10 && data[1].contains(" ") && data[2].contains("@isec.pt") && data[3].contains("LEI") && !data[4].isEmpty()){
+                    for (int i = 0; i<data.length; i++) {
+                        System.out.print(data[i] + " ");
+                    }
+                    System.out.println();
                 }else
                     System.out.println("nao tem");
             }
 
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
 
         //fileReader.close();
         //bufferedReader.close();
