@@ -25,6 +25,9 @@ public final class LerFicheiro {
     //lerCandidaturas()
 
     public static void lerDoncentes(String fileName){
+        //experiemtentar com o inputStream e Outptscream com o readObj
+
+        
         // pecorrer a linha td ate ao email e verificar se este tem em algum sitio o @
         //e um ".com"
         //ALUNOS
