@@ -57,7 +57,7 @@ public class Aluno {
     }
 
     @Override
-    public boolean equals(Object o) {gi
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Aluno aluno = (Aluno) o;
