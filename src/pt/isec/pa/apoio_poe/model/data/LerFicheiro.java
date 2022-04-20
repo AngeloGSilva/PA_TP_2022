@@ -97,7 +97,7 @@ public final class LerFicheiro {
                 if (Tipos.contains(data[0])) {//data[1].contains("P[0-9][0-9][0-9]") tentativa .. pede para eu explicar que eu explico o q esta a fazer .. mas kinda da para perceber
                     switch (data[0]) {
                         case "T1" -> {
-                            if(data.length == 4) {
+                            if(data.length == 5) {
                                 gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1]));
                             }else
                                 gestaoProj.adicinarProsta(new T1(data[2],data[3],data[5]));
