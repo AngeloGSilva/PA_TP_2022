@@ -39,6 +39,6 @@ public class Proposta {
                 ", Codigo Aluno ='" + codigo_Aluno + '\'' +
                 ", Codigo Docente ='" + codigo_Docente + '\'' +
                 ", Ramo ='" + ramo + '\'' +
-                '}';
+                "}\n";
     }
 }

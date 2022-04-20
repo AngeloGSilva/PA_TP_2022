@@ -32,6 +32,6 @@ public class Docente {
                 "Nome do Docente='" + nome_Docente + '\'' +
                 ", Email do Docente='" + email_Docente + '\'' +
                 ", Papel do Docente=" + papel_Docente +
-                '}';
+                "}\n";
     }
 }
