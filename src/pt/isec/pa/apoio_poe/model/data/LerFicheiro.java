@@ -96,8 +96,18 @@ public final class LerFicheiro {
                 String[] data = linha.split(",");
                 if (Tipos.contains(data[0])) {//data[1].contains("P[0-9][0-9][0-9]") tentativa .. pede para eu explicar que eu explico o q esta a fazer .. mas kinda da para perceber
                     switch (data[0]) {
-                        case "T1" -> gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1]));
-                        case "T2" -> gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4], data[5]));
+                        case "T1" -> {
+                            if(data.length == 4) {
+                                gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1]));
+                            }else
+                                gestaoProj.adicinarProsta(new T1(data[2],data[3],data[5]));
+                        }
+                        case "T2" -> {
+                            if(data.length == 5) {
+                                gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4]));
+                            }else
+                                gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4], data[5]));
+                        }
                         case "T3" -> gestaoProj.adicinarProsta(new T3(data[1], data[2], data[3]));
                     }   //para alterar conforme as cenas fornecidas
                         // vai ser usar o length e chamar o construtor correspondente
