@@ -13,15 +13,12 @@ public final class LerFicheiro {
 
     private LerFicheiro(){}
 
-    private static String fileName;
+    private static FileReader fileReader = null;
     private static String linha;
     private static BufferedReader bufferedReader = null;
-
-
     //Aluno aluno = new aluno();
     //Docente docente = new docente();
     //Proposta proposta = new proposta();
-
 
     //metodos para ler os varios ficheiros
     //lerDocentes()
@@ -30,7 +27,6 @@ public final class LerFicheiro {
     //lerCandidaturas()
 
     public static boolean lerDoncentes(String fileName, GestaoProj gestaoProj){
-        FileReader fileReader = null;
         try {
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
@@ -49,9 +45,7 @@ public final class LerFicheiro {
         }
 
         return true;// se correu bem false se correu mal
-
     }
-
 
     public static boolean lerAlunos(String fileName, GestaoProj gestaoProj){
 
