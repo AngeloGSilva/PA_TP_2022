@@ -20,6 +20,17 @@ public class GestaoPropostaState extends IStateAdaptar {
     }
 
     @Override
+    public boolean lerFicheiro(String fileName){
+        if(dados.lerficheiroProposta(fileName)){
+            alteraState(new GestaoPropostaState(dados,contexto));
+            return true;
+        }else {
+            alteraState(new GestaoPropostaState(dados, contexto));
+            return false;
+        }
+    }
+
+    @Override
     public boolean adicionarProposta(Proposta proposta){
         if(dados.adicinarProsta(proposta)){
             alteraState(new GestaoPropostaState(dados,contexto));

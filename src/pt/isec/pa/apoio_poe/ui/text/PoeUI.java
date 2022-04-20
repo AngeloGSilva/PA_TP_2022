@@ -47,7 +47,7 @@ public class PoeUI {
 
     private void gestaoPropostaUI() {
         System.out.println("Gestão de Propostas:\n");
-        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Edição","Eliminação")) {
+        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Ler ficheiro","Eliminação")) {
             case 1 -> {
                 String tipo;
                 while (!(tipo = PAInput.readString("tipo de proposta",true)).equals("T1") &&
@@ -67,7 +67,13 @@ public class PoeUI {
                 }
             }
             case 2 -> System.out.println(controladorDoPrograma.getPropostas());
-            //case 3 -> edição;
+            case 3 -> {
+                if(controladorDoPrograma.lerFicheiro("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\propostasTeste.csv")){
+                    System.out.println("Leu tudo bem");
+                }else
+                    System.out.println("Nao leu td");
+
+            }
             //case 4 -> eliminação;
             //default -> acabou = true;
         }
@@ -75,7 +81,7 @@ public class PoeUI {
 
     private void gestaoDocentesUI() {
         System.out.println("Gestão de Docentes:\n");
-        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Edição","Eliminação")) {
+        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Ler ficheiro","Eliminação")) {
             case 1 -> {
                 String nome_Docente = PAInput.readString("Nome do aluno",false);
                 String email_Docente = PAInput.readString("Email do aluno",false);

@@ -11,7 +11,8 @@ import java.util.stream.Stream;
 
 public final class LerFicheiro {
 
-    private LerFicheiro(){}
+    private LerFicheiro() {
+    }
 
     private static FileReader fileReader = null;
     private static String linha;
@@ -26,17 +27,17 @@ public final class LerFicheiro {
     //lerProjetos()
     //lerCandidaturas()
 
-    public static boolean lerDoncentes(String fileName, GestaoProj gestaoProj){
+    public static boolean lerDoncentes(String fileName, GestaoProj gestaoProj) {
         try {
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
-            while ((linha = bufferedReader.readLine()) != null){
+            while ((linha = bufferedReader.readLine()) != null) {
                 String[] data = linha.split(",");
-                if(!gestaoProj.getDocentes().contains(data[1]) && data[0].contains(" ") &&  //numero repetido
+                if (!gestaoProj.getDocentes().contains(data[1]) && data[0].contains(" ") &&  //numero repetido
                         data[1].contains("@isec.pt")
-                ){
-                    gestaoProj.adicinarDocentes(new Docente(data[0],data[1],false)); //nao pode estar false pq isto vai dar dor de cabecas ... precisamos de outra solucao para o papel do docente
-                }else
+                ) {
+                    gestaoProj.adicinarDocentes(new Docente(data[0], data[1], false)); //nao pode estar false pq isto vai dar dor de cabecas ... precisamos de outra solucao para o papel do docente
+                } else
                     System.out.println("nao tem");
             }
 
@@ -47,19 +48,17 @@ public final class LerFicheiro {
         return true;// se correu bem false se correu mal
     }
 
-    public static boolean lerAlunos(String fileName, GestaoProj gestaoProj){
-
-        FileReader fileReader = null;
+    public static boolean lerAlunos(String fileName, GestaoProj gestaoProj) {
         try {
-            String[] ramos = {"DA","SI","RAS"};
+            String[] ramos = {"DA", "SI", "RAS"};
             List<String> Ramos = Arrays.asList(ramos); // para poder usar contains
             String[] curso = {"LEI", "LEI_PL"};
             List<String> Curso = Arrays.asList(curso);
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
-            while ((linha = bufferedReader.readLine()) != null){
+            while ((linha = bufferedReader.readLine()) != null) {
                 String[] data = linha.split(",");
-                if(data[0].length() == 10 &&
+                if (data[0].length() == 10 &&
                         !gestaoProj.getAlunos().contains(data[0]) && data[1].contains(" ") &&  //numero repetido
                         data[2].contains("@isec.pt") &&
                         !gestaoProj.getAlunos().contains(data[2]) && //email repetido
@@ -68,14 +67,14 @@ public final class LerFicheiro {
                         Double.parseDouble(data[5]) < 1 &&
                         "true".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT)) ||
                         "false".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT))
-                ){
-                        //FALTAM VERIFICACOES
-                    for (int i = 0; i<data.length; i++) {
-                        System.out.print(data[i] + " " );
+                ) {
+                    //FALTAM VERIFICACOES
+                    for (int i = 0; i < data.length; i++) {
+                        System.out.print(data[i] + " ");
                     }
-                    gestaoProj.adicinarAlunos(new Aluno(Long.parseLong(data[0]),data[1],data[2],data[4],Double.parseDouble(data[5]),Boolean.parseBoolean(data[6])));
+                    gestaoProj.adicinarAlunos(new Aluno(Long.parseLong(data[0]), data[1], data[2], data[4], Double.parseDouble(data[5]), Boolean.parseBoolean(data[6])));
                     System.out.println();
-                }else
+                } else
                     System.out.println("nao tem");
             }
 
@@ -83,31 +82,34 @@ public final class LerFicheiro {
             e.printStackTrace();
         }
 
-    return true;// se correu bem false se correu mal
+        return true;// se correu bem false se correu mal
 
     }
 
-    public static boolean lerPropostas(String fileName, GestaoProj gestaoProj){
-        FileReader fileReader = null;
+    public static boolean lerPropostas(String fileName, GestaoProj gestaoProj) {
         try {
+            String[] tipos = {"T1", "T2", "T3"};
+            List<String> Tipos = Arrays.asList(tipos);
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
-            while ((linha = bufferedReader.readLine()) != null){
-                System.out.println(linha);
+            while ((linha = bufferedReader.readLine()) != null) {
+                String[] data = linha.split(",");
+                if (Tipos.contains(data[0])) {//data[1].contains("P[0-9][0-9][0-9]") tentativa .. pede para eu explicar que eu explico o q esta a fazer .. mas kinda da para perceber
+                    switch (data[0]) {
+                        case "T1" -> gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1]));
+                        case "T2" -> gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4], data[5]));
+                        case "T3" -> gestaoProj.adicinarProsta(new T3(data[1], data[2], data[3]));
+                    }
+               /*     for (int i = 0;i< data.length ; i++) {
+                        System.out.println(data[i]);
+                    }*/
+                } else
+                    System.out.println("nao tem");
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        //fileReader.close();
-        //bufferedReader.close();
-        //return da leitura dos ficheiros
-        //return array de docentes
-        //ou
-        //return de 1 docente
-        return true;
+        return true;// se correu bem false se correu mal
     }
-
 }
-

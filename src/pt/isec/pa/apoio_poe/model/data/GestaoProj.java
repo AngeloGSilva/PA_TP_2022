@@ -54,6 +54,10 @@ public class GestaoProj {
         return docentes;
     }
 
+    public HashSet<Proposta> getPropostas() {
+        return propostas;
+    }
+
     public boolean adicinarAlunos(Aluno aluno){
         return alunos.add(aluno);
     }
