@@ -20,7 +20,6 @@ public class ConfiguracaoState extends IStateAdaptar {
         return false;
     }
 
-
     @Override
     public boolean selecionar(int escolha) {
         switch (escolha) {
@@ -29,10 +28,7 @@ public class ConfiguracaoState extends IStateAdaptar {
             case 3 -> alteraState(new GestaoPropostaState(dados, contexto));
         }
         return false;
-
     }
-
-
 
     @Override
     public PoeState getState() {

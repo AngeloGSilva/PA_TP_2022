@@ -10,13 +10,11 @@ public interface IState {
     boolean avancar(boolean guardado,int op);
     boolean selecionar(int escolha);
     boolean adicionarAluno(Aluno aluno);
+    boolean removerAluno(long nr_aluno);
     boolean adicionarDocente(Docente docente);
     boolean adicionarProposta(Proposta proposta);
+    boolean lerFicheiro(String fileName);
+
 
     PoeState getState();
-
-
-    boolean removerAluno(long nr_aluno);
-
-    boolean lerFicheiro(String fileName);
 }

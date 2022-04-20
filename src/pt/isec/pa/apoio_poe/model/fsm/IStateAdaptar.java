@@ -18,7 +18,6 @@ abstract class IStateAdaptar implements IState{
         contexto.alterarState(novoState);
     }
 
-
     @Override
     public boolean voltar(boolean guardado) {
         return false;
@@ -29,13 +28,23 @@ abstract class IStateAdaptar implements IState{
         return false;
     }
 
-
     @Override
     public boolean selecionar(int escolha) {
         return false;
     }
+
+    @Override
+    public boolean lerFicheiro(String fileName){
+        return false;
+    }
+
     @Override
     public boolean adicionarAluno(Aluno aluno) {
+        return false;
+    }
+
+    @Override
+    public boolean removerAluno(long nr_aluno){
         return false;
     }
 
@@ -44,15 +53,5 @@ abstract class IStateAdaptar implements IState{
 
     @Override
     public boolean adicionarProposta(Proposta proposta){return false;}
-
-    @Override
-    public boolean removerAluno(long nr_aluno){
-        return false;
-    }
-
-    @Override
-    public boolean lerFicheiro(String fileName){
-        return false;
-    }
 
 }

@@ -93,7 +93,7 @@ public final class LerFicheiro {
 
     }
 
-    public static void lerPropostas(String fileName){
+    public static boolean lerPropostas(String fileName, GestaoProj gestaoProj){
         FileReader fileReader = null;
         try {
             fileReader = new FileReader(fileName);
@@ -112,6 +112,7 @@ public final class LerFicheiro {
         //return array de docentes
         //ou
         //return de 1 docente
+        return true;
     }
 
 }

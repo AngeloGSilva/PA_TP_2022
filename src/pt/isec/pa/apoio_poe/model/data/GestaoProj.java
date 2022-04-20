@@ -42,20 +42,32 @@ public class GestaoProj {
         return "Docentes:" + docentes;
     }
 
-    public boolean removerAlunos(long nr_aluno){
-        return alunos.remove(Aluno.getDummyAluno(nr_aluno));
+    public String toStringPropostas(){
+        return "Propostas:" + propostas;
+    }
+
+    public HashSet<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public HashSet<Docente> getDocentes() {
+        return docentes;
     }
 
     public boolean adicinarAlunos(Aluno aluno){
         return alunos.add(aluno);
     }
 
-    public String toStringPropostas(){
-        return "Propostas:" + propostas;
+    public boolean adicinarDocentes(Docente docente) {
+        return docentes.add(docente);
     }
 
     public boolean adicinarProsta(Proposta proposta){
         return propostas.add(proposta);
+    }
+
+    public boolean removerAlunos(long nr_aluno){
+        return alunos.remove(Aluno.getDummyAluno(nr_aluno));
     }
 
     public void removeAluno(Aluno aluno){
@@ -70,23 +82,15 @@ public class GestaoProj {
         propostas.remove(proposta);
     }
 
-    public HashSet<Aluno> getAlunos() {
-        return alunos;
-    }
-
-    public HashSet<Docente> getDocentes() {
-        return docentes;
-    }
-
-    public boolean adicinarDocentes(Docente docente) {
-        return docentes.add(docente);
-    }
-
     public boolean lerficheiroAluno(String fileName) {
         return LerFicheiro.lerAlunos(fileName,this);
     }
 
     public boolean lerficheiroDocente(String fileName) {
         return LerFicheiro.lerDoncentes(fileName,this);
+    }
+
+    public boolean lerficheiroProposta(String fileName) {
+        return LerFicheiro.lerPropostas(fileName,this);
     }
 }

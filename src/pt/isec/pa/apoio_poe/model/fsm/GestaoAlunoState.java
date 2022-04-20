@@ -11,6 +11,17 @@ public class GestaoAlunoState extends IStateAdaptar {
     }
 
     @Override
+    public boolean lerFicheiro(String fileName){
+        if(dados.lerficheiroAluno(fileName)){
+            alteraState(new GestaoAlunoState(dados,contexto));
+            return true;
+        }else {
+            alteraState(new GestaoAlunoState(dados, contexto));
+            return false;
+        }
+    }
+
+    @Override
     public boolean adicionarAluno(Aluno aluno){
         if(dados.adicinarAlunos(aluno)){
            alteraState(new GestaoAlunoState(dados,contexto));
@@ -26,7 +37,6 @@ public class GestaoAlunoState extends IStateAdaptar {
         return dados.removerAlunos(nr_aluno);
     }
 
-
     @Override
     public boolean voltar(boolean guardado) {
         return false;
@@ -41,17 +51,6 @@ public class GestaoAlunoState extends IStateAdaptar {
     @Override
     public boolean selecionar(int escolha) {
         return false;
-    }
-
-    @Override
-    public boolean lerFicheiro(String fileName){
-        if(dados.lerficheiroAluno(fileName)){
-            alteraState(new GestaoAlunoState(dados,contexto));
-            return true;
-        }else {
-            alteraState(new GestaoAlunoState(dados, contexto));
-            return false;
-        }
     }
 
     @Override

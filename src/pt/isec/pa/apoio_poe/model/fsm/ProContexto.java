@@ -22,7 +22,6 @@ public class ProContexto {
         state = novoState;
     }
 
-
     //conjunto de metodos correspondentes as transiçoes de estados ... IState
     public boolean selecionar(int escolha){
         return state.selecionar(escolha);
@@ -36,10 +35,10 @@ public class ProContexto {
         return state.avancar(guardado,op);
     }
 
-    public boolean removerAluno(long nr_aluno){
-        return state.removerAluno(nr_aluno);
-    }
 
+    public boolean lerFicheiro(String fileName){
+        return state.lerFicheiro(fileName);
+    }
 
     public boolean adicionarDocente(Docente docente) {
         return state.adicionarDocente(docente);
@@ -52,10 +51,12 @@ public class ProContexto {
     public boolean adicionarAluno(Aluno aluno){
         return state.adicionarAluno(aluno);
     }
-    
-    public boolean lerFicheiro(String fileName){
-        return state.lerFicheiro(fileName);
+
+    public boolean removerAluno(long nr_aluno){
+        return state.removerAluno(nr_aluno);
     }
+    
+
 
     //metodos para aceder a dados..
     //public getNr_alunos_Inscritos(){return dados.getAlunos();}
