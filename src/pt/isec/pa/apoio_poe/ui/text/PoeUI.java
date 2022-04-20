@@ -68,7 +68,7 @@ public class PoeUI {
             }
             case 2 -> System.out.println(controladorDoPrograma.getPropostas());
             case 3 -> {
-                if(controladorDoPrograma.lerFicheiro("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\propostasTeste.csv")){
+                if(controladorDoPrograma.lerFicheiro("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\propostas.csv")){
                     System.out.println("Leu tudo bem");
                 }else
                     System.out.println("Nao leu td");
