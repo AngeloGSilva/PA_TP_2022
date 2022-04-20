@@ -23,12 +23,12 @@ public class Proposta {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Proposta proposta = (Proposta) o;
-        return Objects.equals(cod_ID, proposta.cod_ID) && Objects.equals(titulo, proposta.titulo) && Objects.equals(codigo_Aluno, proposta.codigo_Aluno) && Objects.equals(codigo_Docente, proposta.codigo_Docente) && Objects.equals(ramo, proposta.ramo);
+        return Objects.equals(cod_ID, proposta.cod_ID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cod_ID, titulo, codigo_Aluno, codigo_Docente, ramo);
+        return Objects.hash(cod_ID);
     }
 
     @Override
