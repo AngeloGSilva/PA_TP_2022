@@ -61,12 +61,12 @@ public class Aluno {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Aluno aluno = (Aluno) o;
-        return nr_Aluno == aluno.nr_Aluno && email_Aluno.equals(aluno.email_Aluno);
+        return nr_Aluno == aluno.nr_Aluno;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nr_Aluno, email_Aluno);
+        return Objects.hash(nr_Aluno);
     }
 
     @Override
