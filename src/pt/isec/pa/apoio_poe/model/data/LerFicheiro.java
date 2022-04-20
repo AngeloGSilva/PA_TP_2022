@@ -99,7 +99,10 @@ public final class LerFicheiro {
                         case "T1" -> gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1]));
                         case "T2" -> gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4], data[5]));
                         case "T3" -> gestaoProj.adicinarProsta(new T3(data[1], data[2], data[3]));
-                    }
+                    }   //para alterar conforme as cenas fornecidas
+                        // vai ser usar o length e chamar o construtor correspondente
+
+
                /*     for (int i = 0;i< data.length ; i++) {
                         System.out.println(data[i]);
                     }*/
