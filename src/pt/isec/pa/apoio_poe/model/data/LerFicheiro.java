@@ -29,85 +29,29 @@ public final class LerFicheiro {
     //lerProjetos()
     //lerCandidaturas()
 
-    public static void lerDoncentes(String fileName){
-        //experiemtentar com o inputStream e Outptscream com o readObj
-
-
-        //https://simplesolution.dev/java-read-and-parse-csv-file-using-apache-commons-csv/
-
-        // pecorrer a linha td ate ao email e verificar se este tem em algum sitio o @
-        //e um ".com"
-        //ALUNOS
-        //contar os digitos dos numeros
-        //email igual ao docente
-        //e por ai em diante
-        // a maneira a baixo nao esta a funcionar
-
-
-        // email ids written to myOutputFile.txt file
-        PrintWriter p = null;
+    public static boolean lerDoncentes(String fileName, GestaoProj gestaoProj){
+        FileReader fileReader = null;
         try {
-            p = new PrintWriter(fileName);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-// Regular expression for email id
-        Pattern pat=Pattern.compile( "[a-zA-Z0-9]" + "[a-zA-Z0-9_.]" + "*@[a-zA-Z0-9]" + "+([.][a-zA-Z]+)+");
-        BufferedReader b = null;
-        try {
-            b = new BufferedReader(new FileReader(fileName));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-//reading myInputFile.txt file
-        String l = null;
-        try {
-            l = b.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        while (l != null) {
-            Matcher mat = pat.matcher(l);
-            while (mat.find()) {
-                p.println(mat.group());
-            }
-            try {
-                l = b.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        p.flush();
-
-
-
-
-        /*FileReader fileReader = null;
-        Pattern pat= Pattern.compile( "[a-zA-Z0-9]" + "[a-zA-Z0-9_.]" + "*@[a-zA-Z0-9]" + "+([.][a-zA-Z]+)+");
-        try {
-            PrintWriter p = new PrintWriter(fileName);
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null){
-                Matcher mat = pat.matcher(linha);
-                while (mat.find()) {
-                    p.println(mat.group());
-                }
-                linha = bufferedReader.readLine();
+                String[] data = linha.split(",");
+                if(!gestaoProj.getDocentes().contains(data[1]) && data[0].contains(" ") &&  //numero repetido
+                        data[1].contains("@isec.pt")
+                ){
+                    gestaoProj.adicinarDocentes(new Docente(data[0],data[1],false)); //nao pode estar false pq isto vai dar dor de cabecas ... precisamos de outra solucao para o papel do docente
+                }else
+                    System.out.println("nao tem");
             }
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-*/
-        //fileReader.close();
-        //bufferedReader.close();
-        //return da leitura dos ficheiros
-        //return array de docentes
-        //ou
-        //return de 1 docente
+
+        return true;// se correu bem false se correu mal
+
     }
+
 
     public static boolean lerAlunos(String fileName, GestaoProj gestaoProj){
 

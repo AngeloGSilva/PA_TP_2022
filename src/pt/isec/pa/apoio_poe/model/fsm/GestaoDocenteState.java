@@ -37,6 +37,16 @@ public class GestaoDocenteState extends IStateAdaptar {
         return dados.removerAlunos(nr_aluno);
     }
 */
+@Override
+public boolean lerFicheiro(String fileName){
+    if(dados.lerficheiroDocente(fileName)){
+        alteraState(new GestaoDocenteState(dados,contexto));
+        return true;
+    }else {
+        alteraState(new GestaoDocenteState(dados, contexto));
+        return false;
+    }
+}
 
 
     @Override

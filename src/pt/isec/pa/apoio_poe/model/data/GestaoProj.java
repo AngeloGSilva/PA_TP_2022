@@ -74,11 +74,19 @@ public class GestaoProj {
         return alunos;
     }
 
+    public HashSet<Docente> getDocentes() {
+        return docentes;
+    }
+
     public boolean adicinarDocentes(Docente docente) {
         return docentes.add(docente);
     }
 
-    public boolean lerficheiro(String fileName) {
+    public boolean lerficheiroAluno(String fileName) {
         return LerFicheiro.lerAlunos(fileName,this);
+    }
+
+    public boolean lerficheiroDocente(String fileName) {
+        return LerFicheiro.lerDoncentes(fileName,this);
     }
 }
