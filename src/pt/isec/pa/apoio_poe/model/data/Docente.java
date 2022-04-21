@@ -13,6 +13,18 @@ public class Docente {
         this.papel_Docente = papel_Docente;
     }
 
+    public String getNome_Docente() {
+        return nome_Docente;
+    }
+
+    public String getEmail_Docente() {
+        return email_Docente;
+    }
+
+    public boolean isPapel_Docente() {
+        return papel_Docente;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

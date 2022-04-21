@@ -57,6 +57,24 @@ public class GestaoProj {
         return alunos;
     }
 
+    public boolean getDocentePorEmail(String email) {
+        for (Docente d: docentes
+        ) {
+            if (d.getEmail_Docente().equals(email))
+                return true;
+        }
+        return false;
+    }
+    public boolean getAlunoPorNr(long nr) {
+        for (Aluno d: alunos
+        ) {
+            if (d.getNr_Aluno() == nr)
+                return true;
+        }
+        return false;
+    }
+
+
     public HashSet<Docente> getDocentes() {
         return docentes;
     }
