@@ -94,29 +94,28 @@ public final class LerFicheiro {
             while ((linha = bufferedReader.readLine()) != null) {
                 String[] data = linha.split(",");
                 //data[2].split("|");
-                if (Tipos.contains(data[0]) && Ramos.contains(data[2])) {//data[1].contains("P[0-9][0-9][0-9]") tentativa .. pede para eu explicar que eu explico o q esta a fazer .. mas kinda da para perceber
-                    switch (data[0]) {
-                        case "T1" -> {
-                            if(data.length == 5) {
-                                gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1]));
-                            }else
-                                gestaoProj.adicinarProsta(new T1(data[2],data[3],data[5]));
-                        }
-                        case "T2" -> {
-                            if(data.length == 5 && gestaoProj.getDocentes().contains(data[4])) {
-                                gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4]));
-                            }else if(gestaoProj.getDocentes().contains(data[4]) && gestaoProj.getAlunos().contains(data[5])) {
-                                gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4], data[5]));
+                if (Tipos.contains(data[0])){//data[1].contains("P[0-9][0-9][0-9]") tentativa .. pede para eu explicar que eu explico o q esta a fazer .. mas kinda da para perceber
+                        switch (data[0]) {
+                            case "T1" -> {
+                                if (data.length == 5 && data[2].length() > 3 && data[2].contains("|")) {
+                                    gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1]));
+                                } else
+                                    gestaoProj.adicinarProsta(new T1(data[2], data[3], data[5]));
                             }
-                        }
-                        case "T3" -> {
-                            if(gestaoProj.getAlunos().contains(data[3])) {
-                                gestaoProj.adicinarProsta(new T3(data[1], data[2], data[3]));
+                            case "T2" -> {
+                                if (data.length == 5 && gestaoProj.getDocentes().contains(data[4]) && data[2].length() > 3 && data[2].contains("|")) {
+                                    gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4]));
+                                } else if (gestaoProj.getDocentes().contains(data[4]) && gestaoProj.getAlunos().contains(data[5])) {
+                                    gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4], data[5]));
+                                }
                             }
-                        }
-                    }   //para alterar conforme as cenas fornecidas
+                            case "T3" -> {
+                                if (gestaoProj.getAlunos().contains(data[3])) {
+                                    gestaoProj.adicinarProsta(new T3(data[1], data[2], data[3]));
+                                }
+                            }
+                        }   //para alterar conforme as cenas fornecidas
                         // vai ser usar o length e chamar o construtor correspondente
-
 
                /*     for (int i = 0;i< data.length ; i++) {
                         System.out.println(data[i]);
