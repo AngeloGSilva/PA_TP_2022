@@ -108,9 +108,10 @@ public final class LerFicheiro {
                 if (Tipos.contains(data[0])){//data[1].contains("P[0-9][0-9][0-9]") tentativa .. pede para eu explicar que eu explico o q esta a fazer .. mas kinda da para perceber
                         switch (data[0]) {
                             case "T1" -> {
+                                //  length = 5 quer dizer que nao tem aluno .... maior que 5 tem aluno
                                 if (data.length == 5 && data[2].length() > 3 && data[2].contains("|") || data[2].length() < 3 && Ramos.contains(data[2])) {
                                     gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1]));
-                                } else if(data[2].length() > 3 && data[2].contains("|") || data[2].length() < 3 && Ramos.contains(data[2])) {
+                                } else if(data[2].length() > 3 && data[2].contains("|") || data[2].length() <= 3 && Ramos.contains(data[2])) {
                                     gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1] ,data[5]));
                                 } else {
                                     System.out.print("[ERRO] na seguinte proposta: ");
@@ -121,7 +122,7 @@ public final class LerFicheiro {
                                 }
                             }
                             case "T2" -> {
-                                if (data.length == 5 && gestaoProj.getDocentes().contains(data[4]) && data[2].length() > 3 && data[2].contains("|")  || data[2].length() < 3 && Ramos.contains(data[2]) ) {
+                                if (data.length == 5 && gestaoProj.getDocentes().contains(data[4]) && data[2].length() > 3 && data[2].contains("|")  || (data[2].length() < 3 && Ramos.contains(data[2]))) {
                                     gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4]));
                                 } else if (gestaoProj.getDocentes().contains(data[4]) && gestaoProj.getAlunos().contains(data[5]) || data[2].length() < 3 && Ramos.contains(data[2])) {
                                     gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4], data[5]));

@@ -74,7 +74,7 @@ public class PoeUI {
                     System.out.println("Nao leu td");
 
             }
-            //case 4 -> eliminação;
+            case 4 -> controladorDoPrograma.voltar(false);
             //default -> acabou = true;
         }
     }
@@ -109,6 +109,9 @@ public class PoeUI {
                     System.out.println("nao encontrado");
                 else
                     System.out.println("apagou");*/
+                controladorDoPrograma.voltar(false);
+
+
             }
             //default -> acabou = true;
         }
@@ -149,11 +152,12 @@ public class PoeUI {
 
             }
             case 4 -> {
-                boolean apagou = controladorDoPrograma.removerAluno(PAInput.readInt("Classificao do aluno"));
+                /*boolean apagou = controladorDoPrograma.removerAluno(PAInput.readInt("Classificao do aluno"));
                 if(!apagou)
                     System.out.println("Não encontrado");
                 else
-                    System.out.println("Apagou ");
+                    System.out.println("Apagou ");*/
+                controladorDoPrograma.voltar(false);
             }
             //default -> acabou = true;
         }

@@ -10,6 +10,7 @@ public class GestaoPropostaState extends IStateAdaptar {
 
     @Override
     public boolean voltar(boolean guardado) {
+        alteraState(new ConfiguracaoState(dados,contexto));
         return false;
     }
 
