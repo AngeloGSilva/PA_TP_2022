@@ -9,9 +9,9 @@ public interface IState {
     boolean voltar(boolean guardado);
     boolean avancar(boolean guardado,int op);
     boolean selecionar(int escolha);
-    boolean adicionarAluno(Aluno aluno);
+    boolean adicionarAluno(long nr_Aluno,String nome_Aluno,String email_Aluno,String ramo_Aluno,double classificacao_Aluno,boolean aceder_a_Estagio);
     boolean removerAluno(long nr_aluno);
-    boolean adicionarDocente(Docente docente);
+    boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente);
     boolean adicionarProposta(Proposta proposta);
     boolean lerFicheiro(String fileName);
 

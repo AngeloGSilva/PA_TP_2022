@@ -31,11 +31,16 @@ public final class LerFicheiro {
             while ((linha = bufferedReader.readLine()) != null) {
                 String[] data = linha.split(",");
                 if (!gestaoProj.getDocentes().contains(data[1]) && data[0].contains(" ") &&  //numero repetido
-                        data[1].contains("@isec.pt")
+                        data[1].contains("@isec.pt") && data.length < 3
                 ) {
                     gestaoProj.adicinarDocentes(new Docente(data[0], data[1], false)); //nao pode estar false pq isto vai dar dor de cabecas ... precisamos de outra solucao para o papel do docente
-                } else
-                    System.out.println("nao tem");
+                } else {
+                    System.out.print("[ERRO] no seguinte docente: ");
+                    for (String x : data) {
+                        System.out.print(x + ", ");
+                    }
+                    System.out.println();
+                }
             }
 
         } catch (IOException e) {
@@ -65,14 +70,14 @@ public final class LerFicheiro {
                         "true".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT)) ||
                         "false".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT))
                 ) {
-                    //FALTAM VERIFICACOES
-                    for (int i = 0; i < data.length; i++) {
-                        System.out.print(data[i] + " ");
-                    }
                     gestaoProj.adicinarAlunos(new Aluno(Long.parseLong(data[0]), data[1], data[2], data[4], Double.parseDouble(data[5]), Boolean.parseBoolean(data[6])));
+                } else {
+                    System.out.print("[ERRO] no seguinte aluno: ");
+                    for (String x : data) {
+                        System.out.print(x + ", ");
+                    }
                     System.out.println();
-                } else
-                    System.out.println("nao tem");
+                }
             }
 
         } catch (IOException e) {

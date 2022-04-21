@@ -39,7 +39,7 @@ abstract class IStateAdaptar implements IState{
     }
 
     @Override
-    public boolean adicionarAluno(Aluno aluno) {
+    public boolean adicionarAluno(long nr_Aluno,String nome_Aluno,String email_Aluno,String ramo_Aluno,double classificacao_Aluno,boolean aceder_a_Estagio) {
         return false;
     }
 
@@ -49,7 +49,7 @@ abstract class IStateAdaptar implements IState{
     }
 
     @Override
-    public boolean adicionarDocente(Docente docente){return false;}
+    public boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente){return false;}
 
     @Override
     public boolean adicionarProposta(Proposta proposta){return false;}

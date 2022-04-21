@@ -40,16 +40,16 @@ public class ProContexto {
         return state.lerFicheiro(fileName);
     }
 
-    public boolean adicionarDocente(Docente docente) {
-        return state.adicionarDocente(docente);
+    public boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente) {
+        return state.adicionarDocente(nome_Docente, email_Docente, papel_Docente);
     }
 
     public boolean adicionarProposta(Proposta proposta) {
         return state.adicionarProposta(proposta);
     }
 
-    public boolean adicionarAluno(Aluno aluno){
-        return state.adicionarAluno(aluno);
+    public boolean adicionarAluno(long nr_Aluno,String nome_Aluno,String email_Aluno,String ramo_Aluno,double classificacao_Aluno,boolean aceder_a_Estagio){
+        return state.adicionarAluno(nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
     }
 
     public boolean removerAluno(long nr_aluno){

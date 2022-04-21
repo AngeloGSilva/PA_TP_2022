@@ -34,16 +34,23 @@ public class GestaoProj {
     //LerFicheiro.lerDoncentes("ola");
 
 
+    @Override
+    public String toString() {
+        return "Alunos: " + alunos +
+                ", Docente: " + docentes +
+                ", Propostas: " + propostas;
+    }
+
     public String toStringAlunos() {
-        return "Alunos:" + alunos;
+        return "Alunos: " + alunos;
     }
 
     public String toStringDocentes() {
-        return "Docentes:" + docentes;
+        return "Docentes: " + docentes;
     }
 
     public String toStringPropostas(){
-        return "Propostas:" + propostas;
+        return "Propostas: " + propostas;
     }
 
     public HashSet<Aluno> getAlunos() {

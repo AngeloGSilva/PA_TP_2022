@@ -90,14 +90,8 @@ public class PoeUI {
                     case 1: papel_Docente = true;
                     case 2: papel_Docente = false;
                 }
-
-
-                //isto nao pode estar aqui nem o do new aluno pq é logica tem de passar para o state correspondente de cada
-
-
-
-                Docente docente = new Docente(nome_Docente,email_Docente,papel_Docente);
-                controladorDoPrograma.adicionarDocente(docente);
+                //Docente docente = new Docente(nome_Docente,email_Docente,papel_Docente);
+                controladorDoPrograma.adicionarDocente(nome_Docente,email_Docente,papel_Docente);
             }
             case 2 -> {
                 System.out.println(controladorDoPrograma.getDocentes());
@@ -138,8 +132,8 @@ public class PoeUI {
                     case 1: aceder_a_Estagio = true;
                     case 2: aceder_a_Estagio = false;
                 }
-                Aluno aluno = new Aluno(nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
-                if(controladorDoPrograma.adicionarAluno(aluno)){
+                //Aluno aluno = new Aluno(nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
+                if(controladorDoPrograma.adicionarAluno(nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio)){
                     System.out.println("Aluno adicionado\n");
                 }else
                     System.out.println("Aluno ja existe\n");
