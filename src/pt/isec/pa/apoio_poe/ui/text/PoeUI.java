@@ -68,7 +68,7 @@ public class PoeUI {
             }
             case 2 -> System.out.println(controladorDoPrograma.getPropostas());
             case 3 -> {
-                if(controladorDoPrograma.lerFicheiro("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\propostas.csv")){
+                if(controladorDoPrograma.lerFicheiro("PA_TP_2022\\Resources\\ficheiros\\propostas.csv")){
                     System.out.println("Leu tudo bem");
                 }else
                     System.out.println("Nao leu td");
@@ -97,7 +97,7 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getDocentes());
             }
             case 3 -> {
-                if(controladorDoPrograma.lerFicheiro("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv")){
+                if(controladorDoPrograma.lerFicheiro("PA_TP_2022\\Resources\\ficheiros\\docentes.csv")){
                     System.out.println("Leu tudo bem");
                 }else
                     System.out.println("Nao leu td");
@@ -142,7 +142,7 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getAlunos());
             }
             case 3 -> {
-                if(controladorDoPrograma.lerFicheiro("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\alunos.csv")){
+                if(controladorDoPrograma.lerFicheiro("PA_TP_2022\\Resources\\ficheiros\\alunos.csv")){
                     System.out.println("Leu tudo bem");
                 }else
                     System.out.println("Nao leu td");

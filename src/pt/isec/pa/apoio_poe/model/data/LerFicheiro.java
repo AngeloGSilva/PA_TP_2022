@@ -8,6 +8,8 @@ import java.util.Locale;
 
 public final class LerFicheiro {
 
+    private static String[] data;
+
     private LerFicheiro() {
     }
 
@@ -30,8 +32,10 @@ public final class LerFicheiro {
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null) {
                 String[] data = linha.split(",");
-                if (!gestaoProj.getDocentes().contains(data[1]) && data[0].contains(" ") &&  //numero repetido
-                        data[1].contains("@isec.pt") && data.length < 3
+                if (data[0].contains(" ") &&  //sem nome
+                        data[1].contains("@isec.pt") && //email valido
+                        !gestaoProj.getDocentes().contains(data[1]) && //email existe
+                         data.length == 2 //2 parametros
                 ) {
                     gestaoProj.adicinarDocentes(new Docente(data[0], data[1], false)); //nao pode estar false pq isto vai dar dor de cabecas ... precisamos de outra solucao para o papel do docente
                 } else {
@@ -94,8 +98,10 @@ public final class LerFicheiro {
             List<String> Ramos = Arrays.asList(ramos);
             String[] tipos = {"T1", "T2", "T3"};
             List<String> Tipos = Arrays.asList(tipos);
+
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
+
             while ((linha = bufferedReader.readLine()) != null) {
                 String[] data = linha.split(",");
                 //data[2].split("|");
