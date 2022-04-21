@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 public final class LerFicheiro {
 
@@ -88,13 +85,16 @@ public final class LerFicheiro {
 
     public static boolean lerPropostas(String fileName, GestaoProj gestaoProj) {
         try {
+            String[] ramos = {"DA", "SI", "RAS"};
+            List<String> Ramos = Arrays.asList(ramos);
             String[] tipos = {"T1", "T2", "T3"};
             List<String> Tipos = Arrays.asList(tipos);
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null) {
                 String[] data = linha.split(",");
-                if (Tipos.contains(data[0])) {//data[1].contains("P[0-9][0-9][0-9]") tentativa .. pede para eu explicar que eu explico o q esta a fazer .. mas kinda da para perceber
+                //data[2].split("|");
+                if (Tipos.contains(data[0]) && Ramos.contains(data[2])) {//data[1].contains("P[0-9][0-9][0-9]") tentativa .. pede para eu explicar que eu explico o q esta a fazer .. mas kinda da para perceber
                     switch (data[0]) {
                         case "T1" -> {
                             if(data.length == 5) {
@@ -103,12 +103,17 @@ public final class LerFicheiro {
                                 gestaoProj.adicinarProsta(new T1(data[2],data[3],data[5]));
                         }
                         case "T2" -> {
-                            if(data.length == 5) {
+                            if(data.length == 5 && gestaoProj.getDocentes().contains(data[4])) {
                                 gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4]));
-                            }else
+                            }else if(gestaoProj.getDocentes().contains(data[4]) && gestaoProj.getAlunos().contains(data[5])) {
                                 gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4], data[5]));
+                            }
                         }
-                        case "T3" -> gestaoProj.adicinarProsta(new T3(data[1], data[2], data[3]));
+                        case "T3" -> {
+                            if(gestaoProj.getAlunos().contains(data[3])) {
+                                gestaoProj.adicinarProsta(new T3(data[1], data[2], data[3]));
+                            }
+                        }
                     }   //para alterar conforme as cenas fornecidas
                         // vai ser usar o length e chamar o construtor correspondente
 
