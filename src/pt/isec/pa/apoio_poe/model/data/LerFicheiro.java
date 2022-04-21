@@ -101,6 +101,12 @@ public final class LerFicheiro {
                                     gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1]));
                                 } else if(data[2].length() > 3 && data[2].contains("|") || data[2].length() < 3 && Ramos.contains(data[2])) {
                                     gestaoProj.adicinarProsta(new T1(data[2], data[3], data[5]));
+                                } else {
+                                    System.out.print("[ERRO] na seguinte proposta: ");
+                                    for (String x : data) {
+                                        System.out.print(x + ", ");
+                                    }
+                                    System.out.println();
                                 }
                             }
                             case "T2" -> {
@@ -108,11 +114,23 @@ public final class LerFicheiro {
                                     gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4]));
                                 } else if (gestaoProj.getDocentes().contains(data[4]) && gestaoProj.getAlunos().contains(data[5]) || data[2].length() < 3 && Ramos.contains(data[2])) {
                                     gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4], data[5]));
+                                } else {
+                                    System.out.print("[ERRO] na seguinte proposta: ");
+                                    for (String x : data) {
+                                        System.out.print(x + ", ");
+                                    }
+                                    System.out.println();
                                 }
                             }
                             case "T3" -> {
                                 if (gestaoProj.getAlunos().contains(data[3])) {
                                     gestaoProj.adicinarProsta(new T3(data[1], data[2], data[3]));
+                                } else {
+                                    System.out.print("[ERRO] na seguinte proposta: ");
+                                    for (String x : data) {
+                                        System.out.print(x + ", ");
+                                    }
+                                    System.out.println();
                                 }
                             }
                         }   //para alterar conforme as cenas fornecidas
@@ -121,8 +139,13 @@ public final class LerFicheiro {
                /*     for (int i = 0;i< data.length ; i++) {
                         System.out.println(data[i]);
                     }*/
-                } else
-                    System.out.println("nao tem");
+                } else {
+                    System.out.print("[ERRO] na seguinte proposta: ");
+                    for (String x : data) {
+                        System.out.print(x + ", ");
+                    }
+                    System.out.println();
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
