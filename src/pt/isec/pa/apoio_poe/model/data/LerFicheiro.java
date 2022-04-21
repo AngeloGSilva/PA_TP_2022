@@ -111,7 +111,7 @@ public final class LerFicheiro {
                                 if (data.length == 5 && data[2].length() > 3 && data[2].contains("|") || data[2].length() < 3 && Ramos.contains(data[2])) {
                                     gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1]));
                                 } else if(data[2].length() > 3 && data[2].contains("|") || data[2].length() < 3 && Ramos.contains(data[2])) {
-                                    gestaoProj.adicinarProsta(new T1(data[2], data[3], data[5]));
+                                    gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1] ,data[5]));
                                 } else {
                                     System.out.print("[ERRO] na seguinte proposta: ");
                                     for (String x : data) {
