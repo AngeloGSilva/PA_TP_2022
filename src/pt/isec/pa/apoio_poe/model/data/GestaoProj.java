@@ -1,12 +1,23 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class GestaoProj {
+    ArrayList<String> erros = new ArrayList<>();
+
     private boolean fase_Fechada_Config = false;
     private boolean fase_Fechada_Candidatura = false;
     private boolean fase_Fechada_atriOrientador = false;
     private boolean fase_Fechada_atriProposta = false;
+
+    public ArrayList<String> getErros() {
+        return erros;
+    }
+
+    public void setErros(String erro) {
+        erros.add(erro);
+    }
 
     public boolean isFase_Fechada_Candidatura() {
         return fase_Fechada_Candidatura;
