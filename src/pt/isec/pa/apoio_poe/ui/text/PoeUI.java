@@ -87,7 +87,7 @@ public class PoeUI {
 
     private void gestaoPropostaUI() {
         System.out.println("Gestão de Propostas:\n");
-        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Ler ficheiro","Eliminação","Avancar")) {
+        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Ler ficheiro","voltar","Avancar")) {
             case 1 -> {
                 String tipo;
                 while (!(tipo = PAInput.readString("tipo de proposta",true)).equals("T1") &&
@@ -108,7 +108,7 @@ public class PoeUI {
             }
             case 2 -> System.out.println(controladorDoPrograma.getPropostas());
             case 3 -> {
-                if(controladorDoPrograma.lerFicheiro("PA_TP_2022\\Resources\\ficheiros\\propostas.csv")){
+                if(controladorDoPrograma.lerFicheiro(PAInput.readString("Nome do Ficheiro csv", true))){
                     System.out.println("Leu tudo bem");
                 }else
                     System.out.println("Nao leu td");
@@ -126,7 +126,7 @@ public class PoeUI {
 
     private void gestaoDocentesUI() {
         System.out.println("Gestão de Docentes:\n");
-        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Ler ficheiro","Eliminação", "Avancar")) {
+        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Ler ficheiro","voltar", "Avancar")) {
             case 1 -> {
                 String nome_Docente = PAInput.readString("Nome do aluno",false);
                 String email_Docente = PAInput.readString("Email do aluno",false);
@@ -142,7 +142,7 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getDocentes());
             }
             case 3 -> {
-                if(controladorDoPrograma.lerFicheiro("PA_TP_2022\\Resources\\ficheiros\\docentes.csv")){
+                if(controladorDoPrograma.lerFicheiro(PAInput.readString("Nome do Ficheiro csv", true))){
                     System.out.println("Leu tudo bem");
                 }else
                     System.out.println("Nao leu td");
@@ -165,7 +165,7 @@ public class PoeUI {
 
     private void gestaoAlunosUI() {
         System.out.println("Gestão de alunos:\n");
-        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","ler de ficheiro","Eliminação","Avancar")) {
+        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","ler de ficheiro","voltar","Avancar")) {
             case 1 -> {
                 String nome_Aluno = PAInput.readString("Nome do aluno",false);
                 long nr_Aluno = PAInput.readInt("Numero do aluno");
@@ -187,7 +187,7 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getAlunos());
             }
             case 3 -> {
-                if(controladorDoPrograma.lerFicheiro("PA_TP_2022\\Resources\\ficheiros\\alunos.csv")){
+                if(controladorDoPrograma.lerFicheiro(PAInput.readString("Nome do Ficheiro csv", true))){
                     System.out.println("Leu tudo bem");
                 }else
                     System.out.println("Nao leu td");
