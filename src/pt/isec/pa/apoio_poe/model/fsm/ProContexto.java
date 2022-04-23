@@ -69,7 +69,9 @@ public class ProContexto {
         return dados.toStringDocentes();
     }
 
-
+    public boolean getFase_gestao(){
+        return dados.isFase_Fechada_Config();
+    }
 
     public String getPropostas() {
         return dados.toStringPropostas();

@@ -17,6 +17,7 @@ public class ConfiguracaoState extends IStateAdaptar {
 
     @Override
     public boolean avancar(boolean guardado, int op) {
+        alteraState(new opCandidaturaState(dados, contexto));
         return false;
     }
 

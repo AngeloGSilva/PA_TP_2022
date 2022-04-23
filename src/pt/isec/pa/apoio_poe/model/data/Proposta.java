@@ -9,6 +9,14 @@ public class Proposta {
     String nomeDocente = null;
     String ramo = null;
 
+    public String getCodigo_Aluno() {
+        return codigo_Aluno;
+    }
+
+    public String getCod_ID() {
+        return cod_ID;
+    }
+
     //geral
     public Proposta(String cod_ID, String titulo, String codigo_Aluno, String nomeDocente, String ramo) {
         this.cod_ID = cod_ID;

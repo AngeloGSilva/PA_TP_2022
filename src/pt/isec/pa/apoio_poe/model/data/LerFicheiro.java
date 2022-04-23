@@ -65,7 +65,8 @@ public final class LerFicheiro {
             while ((linha = bufferedReader.readLine()) != null) {
                 String[] data = linha.split(",");
                 if (data[0].length() == 10 &&
-                        !gestaoProj.getAlunoPorNr(Long.parseLong(data[0])) && data[1].contains(" ") &&  //numero repetido
+                        !gestaoProj.getAlunoPorNr(Long.parseLong(data[0])) &&
+                        data[1].contains(" ") &&  //numero repetido
                         data[2].contains("@isec.pt") &&
                         !gestaoProj.getAlunos().contains(data[2]) && //email repetido
                         !data[3].isEmpty() &&
@@ -109,9 +110,9 @@ public final class LerFicheiro {
                         switch (data[0]) {
                             case "T1" -> {
                                 //  length = 5 quer dizer que nao tem aluno .... maior que 5 tem aluno
-                                if (data.length == 5 && ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) {
+                                if (data.length == 5 && !gestaoProj.get_idProposta(data[1]) && ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) {
                                     gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1]));
-                                } else if((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2]))) {
+                                } else if(!gestaoProj.get_idProposta(data[1]) && (data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2]))) { //ver o aluno
                                     gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1] ,data[5]));
                                 } else {
                                     System.out.print("[ERRO] na seguinte proposta: ");
@@ -122,9 +123,15 @@ public final class LerFicheiro {
                                 }
                             }
                             case "T2" -> {
-                                if (data.length == 5 && gestaoProj.getDocentePorEmail(data[4]) && ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() < 3 && Ramos.contains(data[2])))) {
+                                if (data.length == 5 &&
+                                        !gestaoProj.get_idProposta(data[1]) &&
+                                        gestaoProj.getDocentePorEmail(data[4]) &&
+                                        ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) {
                                     gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4]));
-                                } else if (gestaoProj.getDocentePorEmail(data[4]) && gestaoProj.getAlunoPorNr(Long.parseLong(data[5])) && ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) {
+                                } else if (gestaoProj.getDocentePorEmail(data[4]) &&
+                                        !gestaoProj.get_idProposta(data[1]) &&
+                                        gestaoProj.getAlunoPorNr(Long.parseLong(data[5])) &&
+                                        ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) {
                                     gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4], data[5]));
                                 } else {
                                     System.out.print("[ERRO] na seguinte proposta: ");
@@ -135,7 +142,7 @@ public final class LerFicheiro {
                                 }
                             }
                             case "T3" -> {
-                                if (gestaoProj.getAlunoPorNr(Long.parseLong(data[3]))) {
+                                if (gestaoProj.getAlunoPorNr(Long.parseLong(data[3])) && !gestaoProj.get_idProposta(data[1]) && !gestaoProj.get_codigoAluno(data[3])) {
                                     gestaoProj.adicinarProsta(new T3(data[1], data[2], data[3]));
                                 } else {
                                     System.out.print("[ERRO] na seguinte proposta: ");

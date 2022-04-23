@@ -3,8 +3,20 @@ package pt.isec.pa.apoio_poe.model.data;
 import java.util.HashSet;
 
 public class GestaoProj {
+    private boolean fase_Fechada_Config = false;
+    private boolean fase_Fechada_Candidatura = false;
+    private boolean fase_Fechada_atriOrientador = false;
+    private boolean fase_Fechada_atriProposta = false;
 
-   /* //arrays para guardar objetos das classes ALUNOS , DOCENTES e PROJETOS
+
+    public boolean isFase_Fechada_Config() {
+        return fase_Fechada_Config;
+    }
+
+    public void setFase_Fechada_Config(boolean fase_Fechada_Config) {
+        this.fase_Fechada_Config = fase_Fechada_Config;
+    }
+/* //arrays para guardar objetos das classes ALUNOS , DOCENTES e PROJETOS
     Aluno[] alunos;
     Docente[] docentes;
     Proposta[] propostas;
@@ -65,6 +77,7 @@ public class GestaoProj {
         }
         return false;
     }
+
     public boolean getAlunoPorNr(long nr) {
         for (Aluno d: alunos
         ) {
@@ -74,6 +87,25 @@ public class GestaoProj {
         return false;
     }
 
+    public boolean get_codigoAluno(String nrAluno){
+        for (Proposta x: propostas) {
+            if(x.getClass().getSimpleName().equals("T3")){
+                if(x.getCodigo_Aluno().equals(nrAluno)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean get_idProposta(String IDPro){
+        for (Proposta x: propostas) {
+            if(x.getCod_ID().equals(IDPro)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public HashSet<Docente> getDocentes() {
         return docentes;

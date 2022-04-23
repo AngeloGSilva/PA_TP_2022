@@ -1,6 +1,5 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
 public class opCandidaturaState extends IStateAdaptar {
@@ -10,6 +9,12 @@ public class opCandidaturaState extends IStateAdaptar {
 
     @Override
     public boolean voltar(boolean guardado) {
+        if(!dados.isFase_Fechada_Config()){
+            alteraState(new ConfiguracaoState(dados,contexto));
+        }else {
+            System.out.println("Fase fechada");
+            alteraState(new ConfiguracaoState(dados,contexto));
+        }
         return false;
     }
 

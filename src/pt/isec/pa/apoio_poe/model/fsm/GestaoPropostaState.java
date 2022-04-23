@@ -10,13 +10,22 @@ public class GestaoPropostaState extends IStateAdaptar {
 
     @Override
     public boolean voltar(boolean guardado) {
-        alteraState(new ConfiguracaoState(dados,contexto));
+        if(!dados.isFase_Fechada_Config()){
+            alteraState(new ConfiguracaoState(dados,contexto));
+        }else {
+            System.out.println("Fase fechada");
+            alteraState(new ConfiguracaoState(dados,contexto));
+        }
         return false;
     }
 
     @Override
     public boolean avancar(boolean guardado, int op) {
-        alteraState(new opCandidaturaState(dados, contexto));
+        if(guardado){
+            dados.setFase_Fechada_Config(true);
+            alteraState(new opCandidaturaState(dados, contexto));
+        }else
+            alteraState(new opCandidaturaState(dados, contexto));
         return false;
     }
 
