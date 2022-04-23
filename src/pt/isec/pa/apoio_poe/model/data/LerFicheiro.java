@@ -83,10 +83,11 @@ public final class LerFicheiro {
                 ) {
                     gestaoProj.adicinarAlunos(new Aluno(Long.parseLong(data[0]), data[1], data[2], data[4], Double.parseDouble(data[5]), Boolean.parseBoolean(data[6])));
                 } else {
-                    System.out.print("[ERRO] no seguinte aluno: ");
-                    for (String x : data) {
-                        System.out.print(x + ", ");
-                    }
+                    gestaoProj.setErros("[Erro] no seguinte aluno" + Arrays.toString(data) + "\n");
+                    //System.out.print("[ERRO] no seguinte aluno: ");
+                    //for (String x : data) {
+                        //System.out.print(x + ", ");
+                    //}
                     System.out.println();
                 }
             }

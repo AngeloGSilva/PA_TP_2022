@@ -196,9 +196,12 @@ public class PoeUI {
                     System.out.println("Leu tudo bem");
                 }else
                     System.out.println("Nao leu td");
-
-                System.out.println(controladorDoPrograma.getErros());
+                String errorDisplay = controladorDoPrograma.getErros().toString();
+                errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
+                System.out.println(errorDisplay);
                 controladorDoPrograma.limparErros();
+                //System.out.println(controladorDoPrograma.getErros());
+                //controladorDoPrograma.limparErros();
             }
             case 4 -> {
                 /*boolean apagou = controladorDoPrograma.removerAluno(PAInput.readInt("Classificao do aluno"));
