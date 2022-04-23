@@ -6,7 +6,7 @@ import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
 public class PoeUI {
     ProContexto controladorDoPrograma;
-    private String caminhoDefaultFicheiros = "PA_TP_2022\\\\Resources\\\\ficheiros\\\\";
+    private String caminhoDefaultFicheiros = "PA_TP2022\\\\PA_TP_2022\\\\Resources\\\\ficheiros\\\\";
     public PoeUI(ProContexto controladorDoPrograma) {
         this.controladorDoPrograma = controladorDoPrograma;
     }

@@ -28,6 +28,7 @@ public final class LerFicheiro {
 
     public static boolean lerDoncentes(String fileName, GestaoProj gestaoProj) {
         try {
+            //fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv";
             f = new File(fileName);
             fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
@@ -60,6 +61,7 @@ public final class LerFicheiro {
 
     public static boolean lerAlunos(String fileName, GestaoProj gestaoProj) {
         try {
+            //fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\alunos.csv";
             String[] ramos = {"DA", "SI", "RAS"};
             List<String> Ramos = Arrays.asList(ramos); // para poder usar contains
             String[] curso = {"LEI", "LEI_PL"};
@@ -105,6 +107,7 @@ public final class LerFicheiro {
 
     public static boolean lerPropostas(String fileName, GestaoProj gestaoProj) {
         try {
+            //fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\propostas.csv";
             String[] ramos = {"DA", "SI", "RAS"};
             List<String> Ramos = Arrays.asList(ramos);
             String[] tipos = {"T1", "T2", "T3"};
