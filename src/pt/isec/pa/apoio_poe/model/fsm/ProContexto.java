@@ -73,6 +73,18 @@ public class ProContexto {
         return dados.isFase_Fechada_Config();
     }
 
+    public boolean getFase_Candidatura(){
+        return dados.isFase_Fechada_Candidatura();
+    }
+
+    public boolean getFase_Orientador(){
+        return dados.isFase_Fechada_atriOrientador();
+    }
+
+    public boolean getFase_Proposta(){
+        return dados.isFase_Fechada_atriProposta();
+    }
+
     public String getPropostas() {
         return dados.toStringPropostas();
     }

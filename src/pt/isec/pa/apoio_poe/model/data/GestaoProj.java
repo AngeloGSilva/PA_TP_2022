@@ -8,6 +8,29 @@ public class GestaoProj {
     private boolean fase_Fechada_atriOrientador = false;
     private boolean fase_Fechada_atriProposta = false;
 
+    public boolean isFase_Fechada_Candidatura() {
+        return fase_Fechada_Candidatura;
+    }
+
+    public void setFase_Fechada_Candidatura(boolean fase_Fechada_Candidatura) {
+        this.fase_Fechada_Candidatura = fase_Fechada_Candidatura;
+    }
+
+    public boolean isFase_Fechada_atriOrientador() {
+        return fase_Fechada_atriOrientador;
+    }
+
+    public void setFase_Fechada_atriOrientador(boolean fase_Fechada_atriOrientador) {
+        this.fase_Fechada_atriOrientador = fase_Fechada_atriOrientador;
+    }
+
+    public boolean isFase_Fechada_atriProposta() {
+        return fase_Fechada_atriProposta;
+    }
+
+    public void setFase_Fechada_atriProposta(boolean fase_Fechada_atriProposta) {
+        this.fase_Fechada_atriProposta = fase_Fechada_atriProposta;
+    }
 
     public boolean isFase_Fechada_Config() {
         return fase_Fechada_Config;

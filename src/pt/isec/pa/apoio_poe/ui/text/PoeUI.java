@@ -30,50 +30,59 @@ public class PoeUI {
     }
 
     private void consultaUI() {
-        
+        System.out.println(controladorDoPrograma.getAlunos());
+        System.out.println(controladorDoPrograma.getPropostas());
+        System.out.println(controladorDoPrograma.getDocentes());
+        controladorDoPrograma.voltar(controladorDoPrograma.getFase_Orientador());
+        PAInput.readNumber("poe numero qualquer .... so para parar o programa e dar debug");
     }
 
     private void atrOrientadorUI() {
-
+        System.out.println("Gestão de candidatura:\n");
+        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar")) {
+            case 1 -> {
+                switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
+                    case 1 -> controladorDoPrograma.avancar(true, 0);
+                    case 2 -> controladorDoPrograma.avancar(false, 0);
+                }
+            }
+            case 2 -> {
+                controladorDoPrograma.voltar(controladorDoPrograma.getFase_Orientador());
+            }
+            //default -> acabou = true;
+        }
     }
 
     private void atrPropostaUI() {
-
+        System.out.println("Gestão de candidatura:\n");
+        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar")) {
+            case 1 -> {
+                switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
+                    case 1 -> controladorDoPrograma.avancar(true, 0);
+                    case 2 -> controladorDoPrograma.avancar(false, 0);
+                }
+            }
+            case 2 -> {
+                controladorDoPrograma.voltar(controladorDoPrograma.getFase_Proposta());
+            }
+            //default -> acabou = true;
+        }
     }
 
     private void opCandidaturaUI() {
         System.out.println("Gestão de candidatura:\n");
-        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Ler ficheiro","Eliminação")) {
+        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar")) {
             case 1 -> {
-                String nome_Docente = PAInput.readString("Nome do aluno",false);
-                String email_Docente = PAInput.readString("Email do aluno",false);
-                boolean papel_Docente = true;
-                switch (PAInput.chooseOption("Papel", "orientador","proponente")){
-                    case 1: papel_Docente = true;
-                    case 2: papel_Docente = false;
+                switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
+                    case 1 -> controladorDoPrograma.avancar(true, 0);
+                    case 2 -> controladorDoPrograma.avancar(false, 0);
                 }
-                //Docente docente = new Docente(nome_Docente,email_Docente,papel_Docente);
-                controladorDoPrograma.adicionarDocente(nome_Docente,email_Docente,papel_Docente);
             }
             case 2 -> {
-                System.out.println(controladorDoPrograma.getDocentes());
-            }
-            case 3 -> {
-                if(controladorDoPrograma.lerFicheiro("PA_TP_2022\\Resources\\ficheiros\\docentes.csv")){
-                    System.out.println("Leu tudo bem");
-                }else
-                    System.out.println("Nao leu td");
-
-            }
-            case 4 -> {
-
-                controladorDoPrograma.voltar(false);
-
-
+                controladorDoPrograma.voltar(controladorDoPrograma.getFase_Candidatura());
             }
             //default -> acabou = true;
         }
-
     }
 
     private void gestaoPropostaUI() {

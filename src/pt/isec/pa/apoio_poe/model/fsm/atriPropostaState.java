@@ -10,12 +10,17 @@ public class atriPropostaState extends IStateAdaptar {
 
     @Override
     public boolean voltar(boolean guardado) {
+        alteraState(new opCandidaturaState(dados,contexto));
         return false;
     }
 
     @Override
     public boolean avancar(boolean guardado, int op) {
-        alteraState(new atriOrientadorState(dados, contexto));
+        if(guardado){
+            dados.setFase_Fechada_atriProposta(guardado);
+            alteraState(new atriOrientadorState(dados, contexto));
+        }else
+            alteraState(new atriOrientadorState(dados, contexto));
         return false;
     }
 

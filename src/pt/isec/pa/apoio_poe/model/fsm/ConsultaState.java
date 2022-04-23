@@ -10,6 +10,7 @@ public class ConsultaState extends IStateAdaptar {
 
     @Override
     public boolean voltar(boolean guardado) {
+        alteraState(new atriOrientadorState(dados,contexto));
         return false;
     }
 
