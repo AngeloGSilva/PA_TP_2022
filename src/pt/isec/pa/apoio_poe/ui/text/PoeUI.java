@@ -114,7 +114,9 @@ public class PoeUI {
                 }else
                     System.out.println("Nao leu bem");
 
-                System.out.println(controladorDoPrograma.getErros());
+                String errorDisplay = controladorDoPrograma.getErros().toString();
+                errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
+                System.out.println(errorDisplay);
                 controladorDoPrograma.limparErros();
             }
             case 4 -> controladorDoPrograma.voltar(false);
@@ -150,7 +152,9 @@ public class PoeUI {
                 }else
                     System.out.println("Nao leu td");
 
-                System.out.println(controladorDoPrograma.getErros());
+                String errorDisplay = controladorDoPrograma.getErros().toString();
+                errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
+                System.out.println(errorDisplay);
                 controladorDoPrograma.limparErros();
             }
             case 4 -> {

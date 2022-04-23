@@ -40,11 +40,12 @@ public final class LerFicheiro {
                 ) {
                     gestaoProj.adicinarDocentes(new Docente(data[0], data[1], false)); //nao pode estar false pq isto vai dar dor de cabecas ... precisamos de outra solucao para o papel do docente
                 } else {
-                    System.out.print("[ERRO] no seguinte docente: ");
+                    gestaoProj.setErros("[Erro] no seguinte Docente" + Arrays.toString(data) + "\n");
+/*                    System.out.print("[ERRO] no seguinte docente: ");
                     for (String x : data) {
                         System.out.print(x + ", ");
                     }
-                    System.out.println();
+                    System.out.println();*/
                 }
             }
 
@@ -83,12 +84,12 @@ public final class LerFicheiro {
                 ) {
                     gestaoProj.adicinarAlunos(new Aluno(Long.parseLong(data[0]), data[1], data[2], data[4], Double.parseDouble(data[5]), Boolean.parseBoolean(data[6])));
                 } else {
-                    gestaoProj.setErros("[Erro] no seguinte aluno" + Arrays.toString(data) + "\n");
+                    gestaoProj.setErros("[Erro] no seguinte Aluno" + Arrays.toString(data) + "\n");
                     //System.out.print("[ERRO] no seguinte aluno: ");
                     //for (String x : data) {
                         //System.out.print(x + ", ");
                     //}
-                    System.out.println();
+                    //System.out.println();
                 }
             }
 
@@ -125,11 +126,12 @@ public final class LerFicheiro {
                                 } else if(!gestaoProj.get_idProposta(data[1]) && (data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2]))) { //ver o aluno
                                     gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1] ,data[5]));
                                 } else {
-                                    System.out.print("[ERRO] na seguinte proposta: ");
+                                    gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
+/*                                    System.out.print("[ERRO] na seguinte proposta: ");
                                     for (String x : data) {
                                         System.out.print(x + ", ");
                                     }
-                                    System.out.println();
+                                    System.out.println();*/
                                 }
                             }
                             case "T2" -> {
@@ -144,24 +146,28 @@ public final class LerFicheiro {
                                         ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) {
                                     gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4], data[5]));
                                 } else {
-                                    System.out.print("[ERRO] na seguinte proposta: ");
+                                    gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
+/*                                    System.out.print("[ERRO] na seguinte proposta: ");
                                     for (String x : data) {
                                         System.out.print(x + ", ");
                                     }
-                                    System.out.println();
+                                    System.out.println();*/
                                 }
                             }
                             case "T3" -> {
                                 if (gestaoProj.getAlunoPorNr(Long.parseLong(data[3])) && !gestaoProj.get_idProposta(data[1]) && !gestaoProj.get_codigoAluno(data[3])) {
                                     gestaoProj.adicinarProsta(new T3(data[1], data[2], data[3]));
                                 } else {
-                                    System.out.print("[ERRO] na seguinte proposta: ");
+                                    gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
+                                }
+/*                                    System.out.print("[ERRO] na seguinte proposta: ");
                                     for (String x : data) {
                                         System.out.print(x + ", ");
                                     }
                                     System.out.println();
+                                }*/
+
                                 }
-                            }
                         }   //para alterar conforme as cenas fornecidas
                         // vai ser usar o length e chamar o construtor correspondente
 
@@ -169,11 +175,12 @@ public final class LerFicheiro {
                         System.out.println(data[i]);
                     }*/
                 } else {
-                    System.out.print("[ERRO] na seguinte proposta: ");
+                    gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
+/*                    System.out.print("[ERRO] na seguinte proposta: ");
                     for (String x : data) {
                         System.out.print(x + ", ");
                     }
-                    System.out.println();
+                    System.out.println();*/
                 }
             }
         } catch (FileNotFoundException e) {
