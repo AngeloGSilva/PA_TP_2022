@@ -12,7 +12,7 @@ public final class LerFicheiro {
 
     private LerFicheiro() {
     }
-
+    private static File f = null;
     private static FileReader fileReader = null;
     private static String linha;
     private static BufferedReader bufferedReader = null;
@@ -28,7 +28,8 @@ public final class LerFicheiro {
 
     public static boolean lerDoncentes(String fileName, GestaoProj gestaoProj) {
         try {
-            fileReader = new FileReader(fileName);
+            f = new File(fileName);
+            fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null) {
                 String[] data = linha.split(",");
@@ -47,7 +48,9 @@ public final class LerFicheiro {
                 }
             }
 
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
+            System.out.println("Ficheiro nao existe!");
+        }catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -60,7 +63,10 @@ public final class LerFicheiro {
             List<String> Ramos = Arrays.asList(ramos); // para poder usar contains
             String[] curso = {"LEI", "LEI_PL"};
             List<String> Curso = Arrays.asList(curso);
-            fileReader = new FileReader(fileName);
+            f = new File(fileName);
+            //if(!f.exists())
+               // System.out.println();
+            fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null) {
                 String[] data = linha.split(",");
@@ -85,6 +91,8 @@ public final class LerFicheiro {
                 }
             }
 
+        }catch (FileNotFoundException e) {
+            System.out.println("Ficheiro nao existe!");
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -100,7 +108,8 @@ public final class LerFicheiro {
             String[] tipos = {"T1", "T2", "T3"};
             List<String> Tipos = Arrays.asList(tipos);
 
-            fileReader = new FileReader(fileName);
+            f = new File(fileName);
+            fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
 
             while ((linha = bufferedReader.readLine()) != null) {
@@ -166,7 +175,9 @@ public final class LerFicheiro {
                     System.out.println();
                 }
             }
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
+            System.out.println("Ficheiro nao existe!");
+        }catch (IOException e) {
             e.printStackTrace();
         }
 
