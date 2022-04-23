@@ -6,6 +6,7 @@ import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
 public class PoeUI {
     ProContexto controladorDoPrograma;
+    private String caminhoDefaultFicheiros = "PA_TP_2022\\\\Resources\\\\ficheiros\\\\";
     public PoeUI(ProContexto controladorDoPrograma) {
         this.controladorDoPrograma = controladorDoPrograma;
     }
@@ -108,10 +109,10 @@ public class PoeUI {
             }
             case 2 -> System.out.println(controladorDoPrograma.getPropostas());
             case 3 -> {
-                if(controladorDoPrograma.lerFicheiro(PAInput.readString("Nome do Ficheiro csv", true))){
+                if(controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true))){
                     System.out.println("Leu tudo bem");
                 }else
-                    System.out.println("Nao leu td");
+                    System.out.println("Nao leu bem");
 
             }
             case 4 -> controladorDoPrograma.voltar(false);
@@ -142,7 +143,7 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getDocentes());
             }
             case 3 -> {
-                if(controladorDoPrograma.lerFicheiro(PAInput.readString("Nome do Ficheiro csv", true))){
+                if(controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true))){
                     System.out.println("Leu tudo bem");
                 }else
                     System.out.println("Nao leu td");
@@ -187,7 +188,7 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getAlunos());
             }
             case 3 -> {
-                if(controladorDoPrograma.lerFicheiro(PAInput.readString("Nome do Ficheiro csv", true))){
+                if(controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true))){
                     System.out.println("Leu tudo bem");
                 }else
                     System.out.println("Nao leu td");

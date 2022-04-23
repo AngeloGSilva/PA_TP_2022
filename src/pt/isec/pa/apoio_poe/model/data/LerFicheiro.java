@@ -85,7 +85,7 @@ public final class LerFicheiro {
                 }
             }
 
-        } catch (IOException e) {
+        }catch (IOException e) {
             e.printStackTrace();
         }
 
