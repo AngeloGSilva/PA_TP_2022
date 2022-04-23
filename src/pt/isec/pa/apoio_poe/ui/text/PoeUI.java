@@ -114,6 +114,8 @@ public class PoeUI {
                 }else
                     System.out.println("Nao leu bem");
 
+                System.out.println(controladorDoPrograma.getErros());
+                controladorDoPrograma.limparErros();
             }
             case 4 -> controladorDoPrograma.voltar(false);
             case 5 ->{
@@ -148,6 +150,8 @@ public class PoeUI {
                 }else
                     System.out.println("Nao leu td");
 
+                System.out.println(controladorDoPrograma.getErros());
+                controladorDoPrograma.limparErros();
             }
             case 4 -> {
                 controladorDoPrograma.voltar(false);
@@ -193,6 +197,8 @@ public class PoeUI {
                 }else
                     System.out.println("Nao leu td");
 
+                System.out.println(controladorDoPrograma.getErros());
+                controladorDoPrograma.limparErros();
             }
             case 4 -> {
                 /*boolean apagou = controladorDoPrograma.removerAluno(PAInput.readInt("Classificao do aluno"));

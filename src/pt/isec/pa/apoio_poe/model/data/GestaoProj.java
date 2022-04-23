@@ -2,6 +2,7 @@ package pt.isec.pa.apoio_poe.model.data;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class GestaoProj {
     ArrayList<String> erros = new ArrayList<>();
@@ -11,7 +12,11 @@ public class GestaoProj {
     private boolean fase_Fechada_atriOrientador = false;
     private boolean fase_Fechada_atriProposta = false;
 
-    public ArrayList<String> getErros() {
+    public void limparErros(){
+        erros.clear();
+    }
+
+    public List<String> getErros() {
         return erros;
     }
 

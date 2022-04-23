@@ -1,9 +1,9 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import pt.isec.pa.apoio_poe.model.data.Aluno;
-import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
+
+import java.util.List;
 
 public class ProContexto {
     private GestaoProj dados;
@@ -60,6 +60,14 @@ public class ProContexto {
 
     //metodos para aceder a dados..
     //public getNr_alunos_Inscritos(){return dados.getAlunos();}
+
+    public List<String> getErros(){
+        return dados.getErros();
+    }
+
+    public void limparErros(){
+        dados.limparErros();
+    }
 
     public String getAlunos(){
         return dados.toStringAlunos();
