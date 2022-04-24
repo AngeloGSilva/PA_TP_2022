@@ -96,4 +96,8 @@ public class ProContexto {
     public String getPropostas() {
         return dados.toStringPropostas();
     }
+
+    public String getCandidaturas() {
+        return dados.toStringCandidaturas();
+    }
 }

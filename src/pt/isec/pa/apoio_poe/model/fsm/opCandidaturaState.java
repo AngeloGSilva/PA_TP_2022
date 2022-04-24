@@ -29,6 +29,16 @@ public class opCandidaturaState extends IStateAdaptar {
     }
 
     @Override
+    public boolean lerFicheiro(String fileName){
+        if(dados.lerficheiroCandidaturas(fileName)){
+            alteraState(new opCandidaturaState(dados,contexto));
+            return true;
+        }else {
+            alteraState(new opCandidaturaState(dados, contexto));
+            return false;
+        }
+    }
+    @Override
     public boolean selecionar(int escolha) {
         return false;
     }

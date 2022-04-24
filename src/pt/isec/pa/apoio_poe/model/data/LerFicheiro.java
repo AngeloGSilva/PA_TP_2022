@@ -194,4 +194,34 @@ public final class LerFicheiro {
 
         return true;// se correu bem false se correu mal
     }
+
+    public static boolean lercandidaturas(String fileName, GestaoProj gestaoProj){
+        ArrayList<String> propostas = new ArrayList<>();
+        try {
+            f = new File(fileName);
+            fileReader = new FileReader(f);
+            bufferedReader = new BufferedReader(fileReader);
+            while ((linha = bufferedReader.readLine()) != null) {
+                String[] data = linha.split(",");
+                if(gestaoProj.getAlunoPorNr(Long.parseLong(data[0])) && data.length > 1){
+                    for(int i = 1;i<data.length;i++){
+                        if(gestaoProj.get_idProposta(data[i])){ //
+                            propostas.add(data[i]);
+                        }
+                    }//se tem pelo menos 1 proposta
+                    if(!propostas.isEmpty()) {
+                        gestaoProj.adicionarCandidatura(new Candidatura(Long.parseLong(data[0]), propostas));
+                        propostas.clear();
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Ficheiro nao existe!");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
 }

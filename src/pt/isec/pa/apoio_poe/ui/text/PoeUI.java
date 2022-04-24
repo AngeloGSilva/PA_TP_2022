@@ -6,7 +6,7 @@ import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
 public class PoeUI {
     ProContexto controladorDoPrograma;
-    private String caminhoDefaultFicheiros = "PA_TP2022\\\\PA_TP_2022\\\\Resources\\\\ficheiros\\\\";
+    private String caminhoDefaultFicheiros = "PA_TP_2022\\\\Resources\\\\ficheiros\\\\";
     public PoeUI(ProContexto controladorDoPrograma) {
         this.controladorDoPrograma = controladorDoPrograma;
     }
@@ -72,14 +72,25 @@ public class PoeUI {
 
     private void opCandidaturaUI() {
         System.out.println("Gestão de candidatura:\n");
-        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar")) {
-            case 1 -> {
+        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta", "Ler Ficheiro" , "Eliminação","avançar","Voltar")) {
+            case 1 ->{
+
+            }
+            case 2 ->{
+                System.out.println(controladorDoPrograma.getCandidaturas());
+
+            }
+            case 3 ->{
+                controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true));
+
+            }
+            case 4 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
                     case 1 -> controladorDoPrograma.avancar(true, 0);
                     case 2 -> controladorDoPrograma.avancar(false, 0);
                 }
             }
-            case 2 -> {
+            case 5 -> {
                 controladorDoPrograma.voltar(controladorDoPrograma.getFase_Candidatura());
             }
             //default -> acabou = true;

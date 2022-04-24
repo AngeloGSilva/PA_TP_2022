@@ -73,12 +73,13 @@ public class GestaoProj {
     private HashSet<Aluno> alunos;
     private HashSet<Docente> docentes;
     private HashSet<Proposta> propostas;
-
+    private HashSet<Candidatura> candidaturas;
 
     public GestaoProj() {
         alunos = new HashSet<>();
         docentes = new HashSet<>();
         propostas = new HashSet<>();
+        candidaturas = new HashSet<>();
     }
 
     //arranjar state para ler ficheiros utilizar funcao assim
@@ -102,6 +103,10 @@ public class GestaoProj {
 
     public String toStringPropostas(){
         return "Propostas: " + propostas;
+    }
+
+    public String toStringCandidaturas() {
+        return "Candidaturas" + candidaturas;
     }
 
     public HashSet<Aluno> getAlunos() {
@@ -201,4 +206,13 @@ public class GestaoProj {
     public boolean lerficheiroProposta(String fileName) {
         return LerFicheiro.lerPropostas(fileName,this);
     }
+
+    public boolean lerficheiroCandidaturas(String filename){
+        return LerFicheiro.lercandidaturas(filename,this);
+    }
+
+    public boolean adicionarCandidatura(Candidatura candidatura) {
+        return candidaturas.add(candidatura);
+    }
+
 }
