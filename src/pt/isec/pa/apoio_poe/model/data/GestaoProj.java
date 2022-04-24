@@ -86,6 +86,21 @@ public class GestaoProj {
     //LerFicheiro.lerDoncentes("ola");
 
 
+
+    public boolean verificaNUmeroAssociado(String id_Proposta){
+        for (Proposta x : propostas) {
+            if (x.getCod_ID().equals(id_Proposta)){
+                if(x.getCodigo_Aluno() == null){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+
     @Override
     public String toString() {
         return "Alunos: " + alunos +

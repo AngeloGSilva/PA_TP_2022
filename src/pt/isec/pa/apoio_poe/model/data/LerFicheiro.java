@@ -208,7 +208,8 @@ public final class LerFicheiro {
                         !gestaoProj.getNrAlunoCandidatura(Long.parseLong(data[0])) &&
                         data.length > 1){ //data[1].contains("P[0-9]{3}")
                     for(int i = 1;i<data.length;i++){
-                        if(gestaoProj.get_idProposta(data[i])){ //
+                        if(gestaoProj.get_idProposta(data[i]) &&
+                                gestaoProj.verificaNUmeroAssociado(data[i])){ //
                             propostas.add(data[i]);
                         }
                     }//se tem pelo menos 1 proposta
