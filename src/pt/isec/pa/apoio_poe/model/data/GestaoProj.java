@@ -87,12 +87,21 @@ public class GestaoProj {
 
 
 
-    public boolean verificaNUmeroAssociado(String id_Proposta){
+    public boolean verificaPropostaAssociado(String id_Proposta){
         for (Proposta x : propostas) {
             if (x.getCod_ID().equals(id_Proposta)){
                 if(x.getCodigo_Aluno() == null){
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    public boolean VerificaNumeroAssociado(String codaluno){
+        for (Proposta x : propostas) {
+            if (codaluno.equals(x.getCodigo_Aluno())){
+                return true;
             }
         }
         return false;

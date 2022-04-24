@@ -28,7 +28,7 @@ public final class LerFicheiro {
 
     public static boolean lerDoncentes(String fileName, GestaoProj gestaoProj) {
         try {
-            fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv";
+            fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv";
             f = new File(fileName);
             fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
@@ -61,7 +61,7 @@ public final class LerFicheiro {
 
     public static boolean lerAlunos(String fileName, GestaoProj gestaoProj) {
         try {
-            fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\alunos.csv";
+            fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\alunos.csv";
             String[] ramos = {"DA", "SI", "RAS"};
             List<String> Ramos = Arrays.asList(ramos); // para poder usar contains
             String[] curso = {"LEI", "LEI_PL"};
@@ -107,7 +107,7 @@ public final class LerFicheiro {
 
     public static boolean lerPropostas(String fileName, GestaoProj gestaoProj) {
         try {
-            fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\propostas.csv";
+            fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\propostas.csv";
             String[] ramos = {"DA", "SI", "RAS"};
             List<String> Ramos = Arrays.asList(ramos);
             String[] tipos = {"T1", "T2", "T3"};
@@ -196,7 +196,7 @@ public final class LerFicheiro {
     }
 
     public static boolean lercandidaturas(String fileName, GestaoProj gestaoProj){
-        fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
+        fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
         ArrayList<String> propostas = new ArrayList<>();
         try {
             f = new File(fileName);
@@ -206,10 +206,11 @@ public final class LerFicheiro {
                 String[] data = linha.split(",");
                 if(gestaoProj.getAlunoPorNr(Long.parseLong(data[0])) &&
                         !gestaoProj.getNrAlunoCandidatura(Long.parseLong(data[0])) &&
+                        !gestaoProj.VerificaNumeroAssociado(data[0]) &&
                         data.length > 1){ //data[1].contains("P[0-9]{3}")
                     for(int i = 1;i<data.length;i++){
                         if(gestaoProj.get_idProposta(data[i]) &&
-                                gestaoProj.verificaNUmeroAssociado(data[i])){ //
+                                gestaoProj.verificaPropostaAssociado(data[i])){ //
                             propostas.add(data[i]);
                         }
                     }//se tem pelo menos 1 proposta
