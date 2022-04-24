@@ -121,6 +121,15 @@ public class GestaoProj {
         return alunos.size();
     }
 
+    public boolean getNrAlunoCandidatura(long nr_Aluno){
+        for (Candidatura x : candidaturas) {
+            if(x.getNraluno() == nr_Aluno){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean getDocentePorEmail(String email) {
         for (Docente d: docentes
         ) {

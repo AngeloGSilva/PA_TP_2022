@@ -8,8 +8,18 @@ public class Candidatura {
     private ArrayList<String> idspropostas = new ArrayList<>();
 
     public Candidatura(Long nraluno, ArrayList<String> idspropostas) {
-        this.idspropostas = idspropostas;
+        for (String x:idspropostas) {
+            this.idspropostas.add(x);
+        }
         this.nraluno = nraluno;
+    }
+
+    public Long getNraluno() {
+        return nraluno;
+    }
+
+    public ArrayList<String> getIdspropostas() {
+        return idspropostas;
     }
 
     @Override
