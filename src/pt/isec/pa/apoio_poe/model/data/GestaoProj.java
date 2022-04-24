@@ -108,6 +108,14 @@ public class GestaoProj {
         return alunos;
     }
 
+    public int getNrPropostas(){
+        return propostas.size();
+    }
+
+    public int getNrAlunos(){
+        return alunos.size();
+    }
+
     public boolean getDocentePorEmail(String email) {
         for (Docente d: docentes
         ) {

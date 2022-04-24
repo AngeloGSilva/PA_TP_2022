@@ -50,7 +50,7 @@ public class GestaoAlunoState extends IStateAdaptar {
 
     @Override
     public boolean avancar(boolean guardado, int op) {
-        if(guardado){
+        if(guardado && dados.getNrPropostas() >= dados.getNrAlunos()){
             dados.setFase_Fechada_Config(true);
             alteraState(new opCandidaturaState(dados, contexto));
         }else
