@@ -5,25 +5,28 @@ import java.util.HashSet;
 import java.util.List;
 
 public class GestaoProj {
+    //array de erros para utilizar no UI
     ArrayList<String> erros = new ArrayList<>();
 
+    //para o fecho das fases
     private boolean fase_Fechada_Config = false;
     private boolean fase_Fechada_Candidatura = false;
     private boolean fase_Fechada_atriOrientador = false;
     private boolean fase_Fechada_atriProposta = false;
 
-    public void limparErros(){
-        erros.clear();
+    private HashSet<Aluno> alunos;
+    private HashSet<Docente> docentes;
+    private HashSet<Proposta> propostas;
+    private HashSet<Candidatura> candidaturas;
+
+    public GestaoProj() {
+        alunos = new HashSet<>();
+        docentes = new HashSet<>();
+        propostas = new HashSet<>();
+        candidaturas = new HashSet<>();
     }
 
-    public List<String> getErros() {
-        return erros;
-    }
-
-    public void setErros(String erro) {
-        erros.add(erro);
-    }
-
+    //gets e sets para as fecho das fases
     public boolean isFase_Fechada_Candidatura() {
         return fase_Fechada_Candidatura;
     }
@@ -55,68 +58,9 @@ public class GestaoProj {
     public void setFase_Fechada_Config(boolean fase_Fechada_Config) {
         this.fase_Fechada_Config = fase_Fechada_Config;
     }
-/* //arrays para guardar objetos das classes ALUNOS , DOCENTES e PROJETOS
-    Aluno[] alunos;
-    Docente[] docentes;
-    Proposta[] propostas;
-    int nr_Alunos;
-    int nr_Docentes;
-    int nr_Projetos;
-    //alterar
 
 
-    public void adicionarAluno(long nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio){
-        alunos[nr_Alunos] = new Aluno(nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
-        nr_Alunos++;
-    }*/
-
-    private HashSet<Aluno> alunos;
-    private HashSet<Docente> docentes;
-    private HashSet<Proposta> propostas;
-    private HashSet<Candidatura> candidaturas;
-
-    public GestaoProj() {
-        alunos = new HashSet<>();
-        docentes = new HashSet<>();
-        propostas = new HashSet<>();
-        candidaturas = new HashSet<>();
-    }
-
-    //arranjar state para ler ficheiros utilizar funcao assim
-    //LerFicheiro.lerDoncentes("ola");
-
-
-
-    public boolean verificaPropostaAssociado(String id_Proposta){
-        for (Proposta x : propostas) {
-            if (x.getCod_ID().equals(id_Proposta)){
-                if(x.getCodigo_Aluno() == null){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public boolean VerificaNumeroAssociado(String codaluno){
-        for (Proposta x : propostas) {
-            if (codaluno.equals(x.getCodigo_Aluno())){
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-
-
-    @Override
-    public String toString() {
-        return "Alunos: " + alunos +
-                ", Docente: " + docentes +
-                ", Propostas: " + propostas;
-    }
-
+    //toStrings dos varios arrays.... (nao sei se é necessario)
     public String toStringAlunos() {
         return "Alunos: " + alunos;
     }
@@ -133,10 +77,7 @@ public class GestaoProj {
         return "Candidaturas" + candidaturas;
     }
 
-    public HashSet<Aluno> getAlunos() {
-        return alunos;
-    }
-
+    //tamanho dos arrays
     public int getNrPropostas(){
         return propostas.size();
     }
@@ -145,6 +86,8 @@ public class GestaoProj {
         return alunos.size();
     }
 
+
+    //verifica se o numero passado ja esta vincolado a alguma candidatura
     public boolean getNrAlunoCandidatura(long nr_Aluno){
         for (Candidatura x : candidaturas) {
             if(x.getNraluno() == nr_Aluno){
@@ -154,6 +97,7 @@ public class GestaoProj {
         return false;
     }
 
+    //verifica se o email pertence a algum docente
     public boolean getDocentePorEmail(String email) {
         for (Docente d: docentes
         ) {
@@ -163,6 +107,7 @@ public class GestaoProj {
         return false;
     }
 
+    //verifica se o numero pertence a algum aluno
     public boolean getAlunoPorNr(long nr) {
         for (Aluno d: alunos
         ) {
@@ -172,6 +117,7 @@ public class GestaoProj {
         return false;
     }
 
+    //verifica se o aluno passado esta associado a alguma proposta T3
     public boolean get_codigoAluno(String nrAluno){
         for (Proposta x: propostas) {
             if(x.getClass().getSimpleName().equals("T3")){
@@ -183,6 +129,7 @@ public class GestaoProj {
         return false;
     }
 
+    //verifica se o Id da proposta ja pertence a alguma proposta
     public boolean get_idProposta(String IDPro){
         for (Proposta x: propostas) {
             if(x.getCod_ID().equals(IDPro)){
@@ -190,6 +137,15 @@ public class GestaoProj {
             }
         }
         return false;
+    }
+
+
+    public HashSet<Candidatura> getCandidaturas() {
+        return candidaturas;
+    }
+
+    public HashSet<Aluno> getAlunos() {
+        return alunos;
     }
 
     public HashSet<Docente> getDocentes() {
@@ -200,6 +156,8 @@ public class GestaoProj {
         return propostas;
     }
 
+
+    //adicionar aos arrays
     public boolean adicinarAlunos(Aluno aluno){
         return alunos.add(aluno);
     }
@@ -212,6 +170,12 @@ public class GestaoProj {
         return propostas.add(proposta);
     }
 
+    public boolean adicionarCandidatura(Candidatura candidatura) {
+        return candidaturas.add(candidatura);
+    }
+
+
+    //remover dos arrays
     public boolean removerAlunos(long nr_aluno){
         return alunos.remove(Aluno.getDummyAluno(nr_aluno));
     }
@@ -228,6 +192,8 @@ public class GestaoProj {
         propostas.remove(proposta);
     }
 
+
+    //funcoes que recebem o nome do ficheiro do state e chama o metodo da class estatica correspondente
     public boolean lerficheiroAluno(String fileName) {
         return LerFicheiro.lerAlunos(fileName,this);
     }
@@ -244,8 +210,45 @@ public class GestaoProj {
         return LerFicheiro.lercandidaturas(filename,this);
     }
 
-    public boolean adicionarCandidatura(Candidatura candidatura) {
-        return candidaturas.add(candidatura);
+    //verifica se a proposta passada tem algum aluno
+    public boolean verificaPropostaAssociado(String id_Proposta){
+        for (Proposta x : propostas) {
+            if (x.getCod_ID().equals(id_Proposta)){
+                if(x.getCodigo_Aluno() == null){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
+    //verifica se o aluno passado esta associado a alguma proposta
+    public boolean VerificaNumeroAssociado(String codaluno){
+        for (Proposta x : propostas) {
+            if (codaluno.equals(x.getCodigo_Aluno())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //metodos para mostrar o erro no UI etc
+    public void limparErros(){
+        erros.clear();
+    }
+
+    public List<String> getErros() {
+        return erros;
+    }
+
+    public void setErros(String erro) {
+        erros.add(erro);
+    }
+
+    @Override
+    public String toString() {
+        return "Alunos: " + alunos +
+                ", Docente: " + docentes +
+                ", Propostas: " + propostas;
+    }
 }

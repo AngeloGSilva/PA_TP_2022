@@ -35,7 +35,6 @@ public class ProContexto {
         return state.avancar(guardado,op);
     }
 
-
     public boolean lerFicheiro(String fileName){
         return state.lerFicheiro(fileName);
     }
@@ -57,10 +56,7 @@ public class ProContexto {
     }
     
 
-
-    //metodos para aceder a dados..
-    //public getNr_alunos_Inscritos(){return dados.getAlunos();}
-
+    //metodos para aceder a dados... para o UI
     public List<String> getErros(){
         return dados.getErros();
     }
@@ -77,6 +73,14 @@ public class ProContexto {
         return dados.toStringDocentes();
     }
 
+    public String getPropostas() {
+        return dados.toStringPropostas();
+    }
+
+    public String getCandidaturas() {
+        return dados.toStringCandidaturas();
+    }
+
     public boolean getFase_gestao(){
         return dados.isFase_Fechada_Config();
     }
@@ -91,13 +95,5 @@ public class ProContexto {
 
     public boolean getFase_Proposta(){
         return dados.isFase_Fechada_atriProposta();
-    }
-
-    public String getPropostas() {
-        return dados.toStringPropostas();
-    }
-
-    public String getCandidaturas() {
-        return dados.toStringCandidaturas();
     }
 }

@@ -6,6 +6,7 @@ import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
 public class PoeUI {
     ProContexto controladorDoPrograma;
+    //colocar o caminhoDefaultFicheiros na classe LerFicheiro
     private String caminhoDefaultFicheiros = "PA_TP_2022\\\\Resources\\\\ficheiros\\\\";
     public PoeUI(ProContexto controladorDoPrograma) {
         this.controladorDoPrograma = controladorDoPrograma;
@@ -14,8 +15,6 @@ public class PoeUI {
     boolean acabou = false;
 
     public void start(){
-        //LerFicheiro.lerAlunos("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\alunos.csv");
-
         while(!acabou){
             switch (controladorDoPrograma.getState()){
                 case CONFIGURACAO -> configuracaoUI();
@@ -50,7 +49,6 @@ public class PoeUI {
             case 2 -> {
                 controladorDoPrograma.voltar(controladorDoPrograma.getFase_Orientador());
             }
-            //default -> acabou = true;
         }
     }
 
@@ -66,7 +64,6 @@ public class PoeUI {
             case 2 -> {
                 controladorDoPrograma.voltar(controladorDoPrograma.getFase_Proposta());
             }
-            //default -> acabou = true;
         }
     }
 
@@ -83,6 +80,13 @@ public class PoeUI {
             case 3 ->{
                 controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true));
 
+                //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
+                String errorDisplay = controladorDoPrograma.getErros().toString();
+                //Retirar os [] do print
+                errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
+                System.out.println(errorDisplay);
+                //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
+                controladorDoPrograma.limparErros();
             }
             case 4 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
@@ -125,9 +129,12 @@ public class PoeUI {
                 }else
                     System.out.println("Nao leu bem");
 
+                //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
+                //Retirar os [] do print
                 errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
                 System.out.println(errorDisplay);
+                //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
                 controladorDoPrograma.limparErros();
             }
             case 4 -> controladorDoPrograma.voltar(false);
@@ -151,7 +158,6 @@ public class PoeUI {
                     case 1: papel_Docente = true;
                     case 2: papel_Docente = false;
                 }
-                //Docente docente = new Docente(nome_Docente,email_Docente,papel_Docente);
                 controladorDoPrograma.adicionarDocente(nome_Docente,email_Docente,papel_Docente);
             }
             case 2 -> {
@@ -163,9 +169,12 @@ public class PoeUI {
                 }else
                     System.out.println("Nao leu td");
 
+                //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
+                //Retirar os [] do print
                 errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
                 System.out.println(errorDisplay);
+                //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
                 controladorDoPrograma.limparErros();
             }
             case 4 -> {
@@ -178,9 +187,6 @@ public class PoeUI {
                 }
             }
         }
-    }
-
-    private void carregarFicheirosUI(){
     }
 
     private void gestaoAlunosUI() {
@@ -197,7 +203,6 @@ public class PoeUI {
                     case 1: aceder_a_Estagio = true;
                     case 2: aceder_a_Estagio = false;
                 }
-                //Aluno aluno = new Aluno(nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
                 if(controladorDoPrograma.adicionarAluno(nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio)){
                     System.out.println("Aluno adicionado\n");
                 }else
@@ -211,19 +216,16 @@ public class PoeUI {
                     System.out.println("Leu tudo bem");
                 }else
                     System.out.println("Nao leu td");
+
+                //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
+                //Retirar os [] do print
                 errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
                 System.out.println(errorDisplay);
+                //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
                 controladorDoPrograma.limparErros();
-                //System.out.println(controladorDoPrograma.getErros());
-                //controladorDoPrograma.limparErros();
             }
             case 4 -> {
-                /*boolean apagou = controladorDoPrograma.removerAluno(PAInput.readInt("Classificao do aluno"));
-                if(!apagou)
-                    System.out.println("Não encontrado");
-                else
-                    System.out.println("Apagou ");*/
                 controladorDoPrograma.voltar(false);
             }
             case 5 ->{

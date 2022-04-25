@@ -24,8 +24,6 @@ public class Aluno {
         this.nome_Aluno = null;
         this.email_Aluno = null;
         this.ramo_Aluno = null;
-        //this.classificacao_Aluno = false;
-        //this.aceder_a_Estagio = null;
     }
 
     public static Aluno getDummyAluno(long nr_Aluno){
