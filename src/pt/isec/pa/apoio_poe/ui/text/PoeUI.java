@@ -80,6 +80,7 @@ public class PoeUI {
                         switch (PAInput.chooseOption("Escolher Filtro para alunos","Com autoproposto","Candidatura Registada", "Sem candidatura Registada","Voltar")){
                         case 1 ->{
                             System.out.println(controladorDoPrograma.getAlunosAutopropostos());
+                            break;
                         }
                         case 2 ->{
 
@@ -91,12 +92,13 @@ public class PoeUI {
                             break;
                         }
                     }
-
+                        break;
                     }
                     case 2 ->{
                         switch (PAInput.chooseOption("Escolher Filtro para Propostas    ","AutoPropostas de alunos","Propostas de Docentes","Propostas com candidaturas", "Propostas sem candidaturas","Voltar")){
                             case 1 ->{
                                 System.out.println(controladorDoPrograma.getAlunosAutopropostos());
+                                break;
                             }
                             case 2 ->{
 
@@ -111,12 +113,10 @@ public class PoeUI {
                                 break;
                             }
                         }
+                        break;
                     }
-
-
                 }
-
-
+            break;
             }
             case 3 ->{
                 controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true));

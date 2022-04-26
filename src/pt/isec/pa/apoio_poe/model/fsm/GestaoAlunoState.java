@@ -22,15 +22,11 @@ public class GestaoAlunoState extends IStateAdaptar {
 
     @Override
     public boolean lerFicheiroDebug(String fileName){
-        dados.lerficheiroProposta(fileName);
+        dados.lerficheiroAluno(fileName);
         dados.lerficheiroDocente(fileName);
-        if(dados.lerficheiroAluno(fileName)){
-            alteraState(new GestaoAlunoState(dados,contexto));
-            return true;
-        }else {
-            alteraState(new GestaoAlunoState(dados, contexto));
-            return false;
-        }
+        dados.lerficheiroProposta(fileName);
+        alteraState(new GestaoAlunoState(dados,contexto));
+        return false;
     }
 
     @Override

@@ -21,6 +21,14 @@ public class GestaoDocenteState extends IStateAdaptar {
     }
 
     @Override
+    public boolean lerFicheiroDebug(String fileName){
+        dados.lerficheiroProposta(fileName);
+        dados.lerficheiroDocente(fileName);
+        dados.lerficheiroAluno(fileName);
+        return false;
+    }
+
+    @Override
     public boolean avancar(boolean guardado, int op) {
         if(guardado && dados.getNrPropostas() >= dados.getNrAlunos()){
             dados.setFase_Fechada_Config(true);

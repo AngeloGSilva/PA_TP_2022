@@ -29,7 +29,7 @@ public final class LerFicheiro {
 
     public static boolean lerDoncentes(String fileName, GestaoProj gestaoProj) {
         try {
-            fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv";
+            fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv";
             f = new File(fileName);
             fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
@@ -57,7 +57,7 @@ public final class LerFicheiro {
 
     public static boolean lerAlunos(String fileName, GestaoProj gestaoProj) {
         try {
-            fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\alunos.csv";
+            fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\alunos.csv";
             f = new File(fileName);
             //if(!f.exists())
                // System.out.println();
@@ -96,7 +96,7 @@ public final class LerFicheiro {
 
     public static boolean lerPropostas(String fileName, GestaoProj gestaoProj) {
         try {
-            fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\propostas.csv";
+            fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\propostas.csv";
             f = new File(fileName);
             fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
@@ -165,7 +165,7 @@ public final class LerFicheiro {
     }
 
     public static boolean lercandidaturas(String fileName, GestaoProj gestaoProj){
-        fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
+        fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
         ArrayList<String> propostas = new ArrayList<>();
         try {
             f = new File(fileName);
