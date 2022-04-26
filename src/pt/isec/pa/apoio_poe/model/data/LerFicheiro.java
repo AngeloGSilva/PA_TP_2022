@@ -68,8 +68,9 @@ public final class LerFicheiro {
                 if (data[0].length() == 10 && //se o numero tem 10 digitos
                         !gestaoProj.getAlunoPorNr(Long.parseLong(data[0])) && //se o numero ja nao se encontra noutro aluno
                         data[1].contains(" ") &&  //se tem um espaco entre os dois nomes (lg tem 2 nomes)
+                        //email deve ter a + numero de aluno, seguido de @isec.pt
                         data[2].contains("@isec.pt") && //email valido
-                        !gestaoProj.getAlunos().contains(data[2]) && //verificacao mal .. nao se pode fazer o aluno e o contains do email
+                        !gestaoProj.getAlunoPorEmail(data[2]) && //Verifica se email existe
                         !data[3].isEmpty() && //se nao esta vazio
                         Ramos.contains(data[4]) && //ramo valido
                         Double.parseDouble(data[5]) < 1 && //classificao menor q 1

@@ -117,6 +117,15 @@ public class GestaoProj {
         return false;
     }
 
+    public boolean getAlunoPorEmail(String email) {
+        for (Aluno d : alunos) {
+            if (d.getEmail_Aluno().equals(email)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //verifica se o aluno passado esta associado a alguma proposta T3
     public boolean get_codigoAluno(String nrAluno){
         for (Proposta x: propostas) {
