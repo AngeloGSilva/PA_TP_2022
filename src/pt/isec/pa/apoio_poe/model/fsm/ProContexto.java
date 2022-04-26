@@ -106,4 +106,8 @@ public class ProContexto {
     public ArrayList<Aluno> getAlunosAutopropostos(){
         return dados.getAlunosAutopropostos();
     }
+
+    public ArrayList<Proposta> getPropostasDocentes() {
+        return dados.getPropostasDocentes();
+    }
 }

@@ -280,4 +280,15 @@ public class GestaoProj {
         }
         return null;
     }
+
+    public ArrayList<Proposta> getPropostasDocentes() {
+        ArrayList<Proposta> list;
+        list = new ArrayList<>();
+        for (Proposta x : propostas) {
+            if(x.getClass().getSimpleName().equals("T2")){
+                list.add(x);
+            }
+        }
+        return list;
+    }
 }

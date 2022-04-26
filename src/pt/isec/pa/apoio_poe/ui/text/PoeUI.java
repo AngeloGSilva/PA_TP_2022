@@ -101,7 +101,7 @@ public class PoeUI {
                                 break;
                             }
                             case 2 ->{
-
+                                System.out.println(controladorDoPrograma.getPropostasDocentes());
                             }
                             case 3 ->{
 
