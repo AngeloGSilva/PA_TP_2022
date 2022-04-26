@@ -17,6 +17,7 @@ public class Candidatura {
 
     public Candidatura(Aluno aluno,Proposta proposta){
         this.aluno = aluno;
+        propostas = new ArrayList<>();
         this.propostas.add(proposta);
     }
 
