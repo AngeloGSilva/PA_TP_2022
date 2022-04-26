@@ -75,17 +75,47 @@ public class PoeUI {
             }
             case 2 ->{
                 System.out.println(controladorDoPrograma.getCandidaturas());
-                switch (PAInput.chooseOption("Escolher Filtro para alunos","Com autoproposto","Candidatura Registada", "Sem candidatura Registada")){
-                    case 1 ->{
-                        System.out.println(controladorDoPrograma.getAlunosAutopropostos());
+                switch (PAInput.chooseOption("Dados a consultar","Alunos","Propostas", "Voltar")){
+                    case 1-> {
+                        switch (PAInput.chooseOption("Escolher Filtro para alunos","Com autoproposto","Candidatura Registada", "Sem candidatura Registada","Voltar")){
+                        case 1 ->{
+                            System.out.println(controladorDoPrograma.getAlunosAutopropostos());
+                        }
+                        case 2 ->{
+
+                        }
+                        case 3 ->{
+
+                        }
+                        case 4 ->{
+                            break;
+                        }
                     }
-                    case 2 ->{
 
                     }
-                    case 3 ->{
-                        
+                    case 2 ->{
+                        switch (PAInput.chooseOption("Escolher Filtro para Propostas    ","AutoPropostas de alunos","Propostas de Docentes","Propostas com candidaturas", "Propostas sem candidaturas","Voltar")){
+                            case 1 ->{
+                                System.out.println(controladorDoPrograma.getAlunosAutopropostos());
+                            }
+                            case 2 ->{
+
+                            }
+                            case 3 ->{
+
+                            }
+                            case 4 ->{
+
+                            }
+                            case 5 ->{
+                                break;
+                            }
+                        }
                     }
+
+
                 }
+
 
             }
             case 3 ->{
