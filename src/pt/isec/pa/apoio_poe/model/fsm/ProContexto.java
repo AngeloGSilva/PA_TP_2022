@@ -4,6 +4,7 @@ import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProContexto {
@@ -102,7 +103,7 @@ public class ProContexto {
         return dados.isFase_Fechada_atriProposta();
     }
 
-    public Aluno getAlunosAutopropostos(){
+    public ArrayList<Aluno> getAlunosAutopropostos(){
         return dados.getAlunosAutopropostos();
     }
 }

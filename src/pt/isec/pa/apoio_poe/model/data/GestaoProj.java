@@ -261,13 +261,15 @@ public class GestaoProj {
                 ", Propostas: " + propostas;
     }
 
-    public Aluno getAlunosAutopropostos() {
+    public ArrayList<Aluno> getAlunosAutopropostos() {
+        ArrayList<Aluno> list;
+        list = new ArrayList<>();
         for (Proposta x : propostas) {
             if(x.getClass().getSimpleName().equals("T3")){
-                return getAlunoPorNumero(Long.parseLong(x.getCodigo_Aluno()));
+                list.add(getAlunoPorNumero(Long.parseLong(x.getCodigo_Aluno())));
             }
         }
-        return null;
+        return list;
     }
 
     public Aluno getAlunoPorNumero(long nr) {
