@@ -114,7 +114,7 @@ public class PoeUI {
 
     private void gestaoPropostaUI() {
         System.out.println("Gestão de Propostas:\n");
-        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Ler ficheiro","voltar","Avancar")) {
+        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Ler ficheiro","voltar","Avancar","debug")) {
             case 1 -> {
                 String tipo;
                 while (!(tipo = PAInput.readString("tipo de proposta",true)).equals("T1") &&
@@ -155,12 +155,25 @@ public class PoeUI {
                     case 2 -> controladorDoPrograma.avancar(false, 0);
                 }
             }
+            case 6->{
+                controladorDoPrograma.lerFicheiro("a");
+                //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
+                String errorDisplay = controladorDoPrograma.getErros().toString();
+                //Retirar os [] do print
+                errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
+                System.out.println(errorDisplay);
+                //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
+                controladorDoPrograma.limparErros();
+
+                System.out.println("A passar de fase");
+                controladorDoPrograma.avancar(true,0);
+            }
         }
     }
 
     private void gestaoDocentesUI() {
         System.out.println("Gestão de Docentes:\n");
-        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Ler ficheiro","voltar", "Avancar")) {
+        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Ler ficheiro","voltar", "Avancar","debug")) {
             case 1 -> {
                 String nome_Docente = PAInput.readString("Nome do aluno",false);
                 String email_Docente = PAInput.readString("Email do aluno",false);
@@ -197,12 +210,25 @@ public class PoeUI {
                     case 2 -> controladorDoPrograma.avancar(false, 0);
                 }
             }
+            case 6->{
+                controladorDoPrograma.lerFicheiro("a");
+                //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
+                String errorDisplay = controladorDoPrograma.getErros().toString();
+                //Retirar os [] do print
+                errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
+                System.out.println(errorDisplay);
+                //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
+                controladorDoPrograma.limparErros();
+
+                System.out.println("A passar de fase");
+                controladorDoPrograma.avancar(true,0);
+            }
         }
     }
 
     private void gestaoAlunosUI() {
         System.out.println("Gestão de alunos:\n");
-        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","ler de ficheiro","voltar","Avancar")) {
+        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","ler de ficheiro","voltar","Avancar","debug")) {
             case 1 -> {
                 String nome_Aluno = PAInput.readString("Nome do aluno",false);
                 long nr_Aluno = PAInput.readInt("Numero do aluno");
@@ -244,6 +270,19 @@ public class PoeUI {
                     case 1 -> controladorDoPrograma.avancar(true, 0);
                     case 2 -> controladorDoPrograma.avancar(false, 0);
                 }
+            }
+            case 6->{
+                controladorDoPrograma.lerFicheiro("a");
+                //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
+                String errorDisplay = controladorDoPrograma.getErros().toString();
+                //Retirar os [] do print
+                errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
+                System.out.println(errorDisplay);
+                //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
+                controladorDoPrograma.limparErros();
+
+                System.out.println("A passar de fase");
+                controladorDoPrograma.avancar(true,0);
             }
         }
     }

@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
+import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
@@ -97,7 +98,7 @@ public class ProContexto {
         return dados.isFase_Fechada_atriProposta();
     }
 
-    public String getAlunosAutopropostos(){
+    public Aluno getAlunosAutopropostos(){
         return dados.getAlunosAutopropostos();
     }
 }
