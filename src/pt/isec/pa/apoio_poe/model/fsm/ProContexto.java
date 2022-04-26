@@ -111,9 +111,9 @@ public class ProContexto {
         return dados.getPropostasDocentes();
     }
 
-    public ArrayList<Proposta> getPropostasCandidadatos() {
-        return dados.getPropostasCandidatos();
-    }
+    //public ArrayList<Proposta> getPropostasCandidadatos() {
+        //return dados.getPropostasCandidatos();
+    //}
 
     public ArrayList<Proposta> getPropostasSemCandidatos() {
         return dados.getPropostasSemCandidatos();

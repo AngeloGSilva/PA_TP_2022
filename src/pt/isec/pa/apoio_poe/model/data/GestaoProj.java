@@ -108,7 +108,7 @@ public class GestaoProj {
     }
 
     //verifica se o numero pertence a algum aluno
-    public boolean getAlunoPorNr(long nr) {
+    public boolean VerificaAlunoExiste(long nr) {
         for (Aluno d: alunos
         ) {
             if (d.getNr_Aluno() == nr)
@@ -175,7 +175,7 @@ public class GestaoProj {
         return docentes.add(docente);
     }
 
-    public boolean adicinarProsta(Proposta proposta){
+    public boolean adicinarProposta(Proposta proposta){
         return propostas.add(proposta);
     }
 
@@ -281,6 +281,14 @@ public class GestaoProj {
         return null;
     }
 
+    public Proposta getPropostaPorId(String id){
+        for (Proposta p: propostas) {
+         if (p.getCod_ID().equals(id))
+                return p;
+    }
+        return null;
+    }
+
     public ArrayList<Proposta> getPropostasDocentes() {
         ArrayList<Proposta> list;
         list = new ArrayList<>();
@@ -291,17 +299,17 @@ public class GestaoProj {
         }
         return list;
     }
-
+/*
     public ArrayList<Proposta> getPropostasCandidatos() {
-        ArrayList<Proposta> list;
+        ArrayList<Candidatura> list;
         list = new ArrayList<>();
-        for (Proposta x : propostas) {
-            if(verificaPropostaAssociado(x.getCod_ID())){
+        for (Candidatura x : candidaturas) {
+            if(){
                 list.add(x);
             }
         }
         return list;
-    }
+    }*/
 
     public ArrayList<Proposta> getPropostasSemCandidatos() {
         ArrayList<Proposta> list;

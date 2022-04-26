@@ -4,22 +4,37 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Candidatura {
-    private Long nraluno;
-    private ArrayList<String> idspropostas = new ArrayList<>();
+    private Aluno aluno;
+    private ArrayList<Proposta> propostas = new ArrayList<>();
 
-    public Candidatura(Long nraluno, ArrayList<String> idspropostas) {
-        for (String x:idspropostas) {
-            this.idspropostas.add(x);
-        }
-        this.nraluno = nraluno;
+    public Candidatura(Aluno aluno, ArrayList<Proposta> propostas) {
+        this.aluno = aluno;
+        this.propostas = propostas;
+    }
+
+    public Candidatura(Aluno aluno,Proposta proposta){
+        this.aluno = aluno;
+        this.propostas.add(proposta);
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public ArrayList<Proposta> getPropostas() {
+        return propostas;
+    }
+
+    public void setPropostas(Proposta proposta) {
+        this.propostas.add(proposta);
     }
 
     public Long getNraluno() {
-        return nraluno;
-    }
-
-    public ArrayList<String> getIdspropostas() {
-        return idspropostas;
+        return aluno.getNr_Aluno();
     }
 
     @Override
@@ -27,19 +42,19 @@ public class Candidatura {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Candidatura that = (Candidatura) o;
-        return nraluno.equals(that.nraluno) && idspropostas.equals(that.idspropostas);
+        return aluno.equals(that.aluno) && propostas.equals(that.propostas);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nraluno, idspropostas);
+        return Objects.hash(aluno, propostas);
     }
 
     @Override
     public String toString() {
         return "Candidatura{" +
-                "nraluno=" + nraluno +
-                ", idspropostas=" + idspropostas +
-                '}';
+                "aluno=" + aluno +
+                ", propostas=" + propostas +
+                '}' + "\n";
     }
 }

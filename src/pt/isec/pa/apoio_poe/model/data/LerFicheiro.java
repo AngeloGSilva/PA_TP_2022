@@ -29,7 +29,7 @@ public final class LerFicheiro {
 
     public static boolean lerDoncentes(String fileName, GestaoProj gestaoProj) {
         try {
-            fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv";
+            fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv";
             f = new File(fileName);
             fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
@@ -57,7 +57,7 @@ public final class LerFicheiro {
 
     public static boolean lerAlunos(String fileName, GestaoProj gestaoProj) {
         try {
-            fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\alunos.csv";
+            fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\alunos.csv";
             f = new File(fileName);
             //if(!f.exists())
                // System.out.println();
@@ -66,7 +66,7 @@ public final class LerFicheiro {
             while ((linha = bufferedReader.readLine()) != null) {
                 data = linha.split(",");
                 if (data[0].length() == 10 && //se o numero tem 10 digitos
-                        !gestaoProj.getAlunoPorNr(Long.parseLong(data[0])) && //se o numero ja nao se encontra noutro aluno
+                        !gestaoProj.VerificaAlunoExiste(Long.parseLong(data[0])) && //se o numero ja nao se encontra noutro aluno
                         data[1].contains(" ") &&  //se tem um espaco entre os dois nomes (lg tem 2 nomes)
                         //email deve ter a + numero de aluno, seguido de @isec.pt
                         data[2].contains("@isec.pt") && //email valido
@@ -96,7 +96,7 @@ public final class LerFicheiro {
 
     public static boolean lerPropostas(String fileName, GestaoProj gestaoProj) {
         try {
-            fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\propostas.csv";
+            fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\propostas.csv";
             f = new File(fileName);
             fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
@@ -111,11 +111,11 @@ public final class LerFicheiro {
                                         !gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
                                         ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
-                                    gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1]));
+                                    gestaoProj.adicinarProposta(new T1(data[2], data[3], data[1]));
                                 } else if(!gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
                                         (data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2]))) //ver se tem mais q um ramo associado
                                 {
-                                    gestaoProj.adicinarProsta(new T1(data[2], data[3], data[1] ,data[5]));
+                                    gestaoProj.adicinarProposta(new T1(data[2], data[3], data[1] ,data[5]));
                                 } else {
                                     //metodo para gravar o erro e enviar para UI e informar o utilizador
                                     gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
@@ -127,24 +127,27 @@ public final class LerFicheiro {
                                         gestaoProj.getDocentePorEmail(data[4]) && //email de um docente valido
                                         ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ramos associados
                                 {
-                                    gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4]));
+                                    gestaoProj.adicinarProposta(new T2(data[1], data[3], data[2], data[4]));
                                 } else if (gestaoProj.getDocentePorEmail(data[4]) && //email de um docente valido
                                         !gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
-                                        gestaoProj.getAlunoPorNr(Long.parseLong(data[5])) && //numero de aluno valido
+                                        gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) && //numero de aluno valido
                                         ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ramos associado
                                 {
-                                    gestaoProj.adicinarProsta(new T2(data[1], data[3], data[2], data[4], data[5]));
+                                    gestaoProj.adicinarProposta(new T2(data[1], data[3], data[2], data[4], data[5]));
+                                    //Adicionar durante  leitura das propostas
+                                    gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[5])),gestaoProj.getPropostaPorId(data[1])));
                                 } else {
                                     //metodo para gravar o erro e enviar para UI e informar o utilizador
                                     gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
                                 }
                             }
                             case "T3" -> {
-                                if (gestaoProj.getAlunoPorNr(Long.parseLong(data[3])) && //numero de aluno valido
+                                if (gestaoProj.VerificaAlunoExiste(Long.parseLong(data[3])) && //numero de aluno valido
                                         !gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
                                         !gestaoProj.get_codigoAluno(data[3])) //se aluno ja nao esta associado a um T3
                                 {
-                                    gestaoProj.adicinarProsta(new T3(data[1], data[2], data[3]));
+                                    gestaoProj.adicinarProposta(new T3(data[1], data[2], data[3]));
+                                    gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[3])),gestaoProj.getPropostaPorId(data[1])));
                                 } else {
                                     //metodo para gravar o erro e enviar para UI e informar o utilizador
                                     gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
@@ -165,15 +168,15 @@ public final class LerFicheiro {
     }
 
     public static boolean lercandidaturas(String fileName, GestaoProj gestaoProj){
-        fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
-        ArrayList<String> propostas = new ArrayList<>();
+        fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
+        ArrayList<Proposta> propostas = new ArrayList<>();
         try {
             f = new File(fileName);
             fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null) {
                 data = linha.split(",");
-                if(gestaoProj.getAlunoPorNr(Long.parseLong(data[0])) &&
+                if(gestaoProj.VerificaAlunoExiste(Long.parseLong(data[0])) &&
                         !gestaoProj.getNrAlunoCandidatura(Long.parseLong(data[0])) &&
                         !gestaoProj.VerificaNumeroAssociado(data[0]) &&
                         data.length > 1)
@@ -181,13 +184,13 @@ public final class LerFicheiro {
                     for(int i = 1;i<data.length;i++){
                         if(gestaoProj.get_idProposta(data[i]) &&
                                 gestaoProj.verificaPropostaAssociado(data[i])){ //
-                            propostas.add(data[i]);
+                            propostas.add(gestaoProj.getPropostaPorId(data[i]));
                         }else {
                             gestaoProj.setErros("[Erro] no seguinte Proposta"+ data[i] +"do aluno" + data[0] +  "\n");
                         }
                     }//se tem pelo menos 1 proposta
                     if(!propostas.isEmpty()) {
-                        gestaoProj.adicionarCandidatura(new Candidatura(Long.parseLong(data[0]), propostas));
+                        gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[0])), propostas));
                         propostas.clear();
                     }
                 }else{

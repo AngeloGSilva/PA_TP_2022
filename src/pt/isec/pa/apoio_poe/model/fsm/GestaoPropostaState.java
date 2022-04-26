@@ -50,7 +50,7 @@ public class GestaoPropostaState extends IStateAdaptar {
 
     @Override
     public boolean adicionarProposta(Proposta proposta){
-        if(dados.adicinarProsta(proposta)){
+        if(dados.adicinarProposta(proposta)){
             alteraState(new GestaoPropostaState(dados,contexto));
         }else{
             alteraState(new GestaoPropostaState(dados,contexto));

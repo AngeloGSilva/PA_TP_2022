@@ -105,7 +105,7 @@ public class PoeUI {
                                 System.out.println(controladorDoPrograma.getPropostasDocentes());
                             }
                             case 3 ->{
-                                System.out.println(controladorDoPrograma.getPropostasCandidadatos());
+                                //System.out.println(controladorDoPrograma.getPropostasCandidadatos());
                             }
                             case 4 ->{
                                 System.out.println(controladorDoPrograma.getPropostasSemCandidatos());
