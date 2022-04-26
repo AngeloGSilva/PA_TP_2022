@@ -260,4 +260,22 @@ public class GestaoProj {
                 ", Docente: " + docentes +
                 ", Propostas: " + propostas;
     }
+
+    public Aluno getAlunosAutopropostos() {
+        for (Proposta x : propostas) {
+            if(x.getClass().getSimpleName().equals("T3")){
+                return getAlunoPorNumero(Long.parseLong(x.getCodigo_Aluno()));
+            }
+        }
+        return null;
+    }
+
+    public Aluno getAlunoPorNumero(long nr) {
+        for (Aluno d: alunos
+        ) {
+            if (d.getNr_Aluno() == nr)
+                return d;
+        }
+        return null;
+    }
 }

@@ -75,6 +75,17 @@ public class PoeUI {
             }
             case 2 ->{
                 System.out.println(controladorDoPrograma.getCandidaturas());
+                switch (PAInput.chooseOption("Escolher Filtro para alunos","Com autoproposto","Candidatura Registada", "Sem candidatura Registada")){
+                    case 1 ->{
+                        System.out.println(controladorDoPrograma.getAlunosAutopropostos());
+                    }
+                    case 2 ->{
+
+                    }
+                    case 3 ->{
+                        
+                    }
+                }
 
             }
             case 3 ->{

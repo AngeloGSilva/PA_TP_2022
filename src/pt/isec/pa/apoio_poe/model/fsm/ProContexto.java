@@ -96,4 +96,8 @@ public class ProContexto {
     public boolean getFase_Proposta(){
         return dados.isFase_Fechada_atriProposta();
     }
+
+    public String getAlunosAutopropostos(){
+        return dados.getAlunosAutopropostos();
+    }
 }
