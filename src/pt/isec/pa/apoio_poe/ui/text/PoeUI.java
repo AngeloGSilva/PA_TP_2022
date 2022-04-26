@@ -156,7 +156,7 @@ public class PoeUI {
                 }
             }
             case 6->{
-                controladorDoPrograma.lerFicheiro("a");
+                controladorDoPrograma.lerFicheiroDebug("a");
                 //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
                 //Retirar os [] do print
@@ -211,7 +211,7 @@ public class PoeUI {
                 }
             }
             case 6->{
-                controladorDoPrograma.lerFicheiro("a");
+                controladorDoPrograma.lerFicheiroDebug("a");
                 //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
                 //Retirar os [] do print
@@ -272,7 +272,7 @@ public class PoeUI {
                 }
             }
             case 6->{
-                controladorDoPrograma.lerFicheiro("a");
+                controladorDoPrograma.lerFicheiroDebug("a");
                 //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
                 //Retirar os [] do print

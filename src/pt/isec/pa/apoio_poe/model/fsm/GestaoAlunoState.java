@@ -21,6 +21,19 @@ public class GestaoAlunoState extends IStateAdaptar {
     }
 
     @Override
+    public boolean lerFicheiroDebug(String fileName){
+        dados.lerficheiroProposta(fileName);
+        dados.lerficheiroDocente(fileName);
+        if(dados.lerficheiroAluno(fileName)){
+            alteraState(new GestaoAlunoState(dados,contexto));
+            return true;
+        }else {
+            alteraState(new GestaoAlunoState(dados, contexto));
+            return false;
+        }
+    }
+
+    @Override
     public boolean adicionarAluno(long nr_Aluno,String nome_Aluno,String email_Aluno,String ramo_Aluno,double classificacao_Aluno,boolean aceder_a_Estagio){
         Aluno aluno = new Aluno(nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
         if(dados.adicinarAlunos(aluno)){

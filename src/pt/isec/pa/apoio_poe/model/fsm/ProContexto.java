@@ -40,6 +40,10 @@ public class ProContexto {
         return state.lerFicheiro(fileName);
     }
 
+    public boolean lerFicheiroDebug(String fileName){
+        return state.lerFicheiro(fileName);
+    }
+
     public boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente) {
         return state.adicionarDocente(nome_Docente, email_Docente, papel_Docente);
     }

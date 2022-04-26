@@ -14,6 +14,7 @@ public interface IState {
     boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente);
     boolean adicionarProposta(Proposta proposta);
     boolean lerFicheiro(String fileName);
+    boolean lerFicheiroDebug(String fileName);
 
 
     PoeState getState();
