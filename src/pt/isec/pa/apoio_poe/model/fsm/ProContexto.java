@@ -41,7 +41,7 @@ public class ProContexto {
     }
 
     public boolean lerFicheiroDebug(String fileName){
-        return state.lerFicheiro(fileName);
+        return state.lerFicheiroDebug(fileName);
     }
 
     public boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente) {
