@@ -1,15 +1,18 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Candidatura {
     private Aluno aluno;
-    private ArrayList<Proposta> propostas = new ArrayList<>();
+    private ArrayList<Proposta> propostas;
 
     public Candidatura(Aluno aluno, ArrayList<Proposta> propostas) {
         this.aluno = aluno;
-        this.propostas = propostas;
+        this.propostas = new ArrayList<>(propostas);
+        //this.propostas = (ArrayList<Proposta>) clone(propostas);
     }
 
     public Candidatura(Aluno aluno,Proposta proposta){
