@@ -2,6 +2,7 @@ package pt.isec.pa.apoio_poe.ui.text;
 
 import pt.isec.pa.apoio_poe.Utils.PAInput;
 import pt.isec.pa.apoio_poe.model.data.*;
+import pt.isec.pa.apoio_poe.model.fsm.ConfiguracaoState;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
 public class PoeUI {
@@ -104,10 +105,10 @@ public class PoeUI {
                                 System.out.println(controladorDoPrograma.getPropostasDocentes());
                             }
                             case 3 ->{
-
+                                System.out.println(controladorDoPrograma.getPropostasCandidadatos());
                             }
                             case 4 ->{
-
+                                System.out.println(controladorDoPrograma.getPropostasSemCandidatos());
                             }
                             case 5 ->{
                                 break;

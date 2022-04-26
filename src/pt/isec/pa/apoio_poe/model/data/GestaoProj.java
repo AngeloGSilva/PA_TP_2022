@@ -291,4 +291,26 @@ public class GestaoProj {
         }
         return list;
     }
+
+    public ArrayList<Proposta> getPropostasCandidatos() {
+        ArrayList<Proposta> list;
+        list = new ArrayList<>();
+        for (Proposta x : propostas) {
+            if(verificaPropostaAssociado(x.getCod_ID())){
+                list.add(x);
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Proposta> getPropostasSemCandidatos() {
+        ArrayList<Proposta> list;
+        list = new ArrayList<>();
+        for (Proposta x : propostas) {
+            if(!verificaPropostaAssociado(x.getCod_ID())){
+                list.add(x);
+            }
+        }
+        return list;
+    }
 }
