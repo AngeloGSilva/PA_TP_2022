@@ -182,6 +182,8 @@ public final class LerFicheiro {
                         if(gestaoProj.get_idProposta(data[i]) &&
                                 gestaoProj.verificaPropostaAssociado(data[i])){ //
                             propostas.add(data[i]);
+                        }else {
+                            gestaoProj.setErros("[Erro] no seguinte Proposta"+ data[i] +"do aluno" + data[0] +  "\n");
                         }
                     }//se tem pelo menos 1 proposta
                     if(!propostas.isEmpty()) {
@@ -190,7 +192,14 @@ public final class LerFicheiro {
                     }
                 }else{
                     //metodo para gravar o erro e enviar para UI e informar o utilizador
-                    gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
+                    //separar erro de aluno que nao existe / ou se é aluno com candidatura efetuada
+                    if(gestaoProj.get_codigoAluno(data[0])) {
+                        gestaoProj.setErros("[Erro] Aluno ja tem candidatura efetuada" + data[0] + "\n");
+                    }else if(gestaoProj.getNrAlunoCandidatura(Long.parseLong(data[0]))){
+                        gestaoProj.setErros("[Erro] Aluno ja proposto anteriormente!" + data[0] +"\n");
+                    }else{
+                        gestaoProj.setErros("[Erro] Aluno nao existe" + data[0] +"\n");
+                    }
                 }
             }
         } catch (FileNotFoundException e) {
