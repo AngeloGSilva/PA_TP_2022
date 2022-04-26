@@ -39,6 +39,12 @@ abstract class IStateAdaptar implements IState{
     }
 
     @Override
+    public boolean lerFicheiroDebug(String fileName){
+        return false;
+    }
+
+
+    @Override
     public boolean adicionarAluno(long nr_Aluno,String nome_Aluno,String email_Aluno,String ramo_Aluno,double classificacao_Aluno,boolean aceder_a_Estagio) {
         return false;
     }
