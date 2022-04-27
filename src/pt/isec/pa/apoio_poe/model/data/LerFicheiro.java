@@ -111,11 +111,13 @@ public final class LerFicheiro {
                                         !gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
                                         ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
-                                    gestaoProj.adicinarProposta(new T1(data[2], data[3], data[1]));
-                                } else if(!gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
-                                        (data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2]))) //ver se tem mais q um ramo associado
+                                    gestaoProj.adicionarProposta(new T1(data[2], data[3], data[1]));
+                                } else if(data.length == 6 &&
+                                        gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) &&
+                                        !gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
+                                        ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
-                                    gestaoProj.adicinarProposta(new T1(data[2], data[3], data[1] ,data[5]));
+                                    gestaoProj.adicionarProposta(new T1(data[2], data[3], data[1] ,Long.parseLong(data[5])));
                                 } else {
                                     //metodo para gravar o erro e enviar para UI e informar o utilizador
                                     gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
@@ -127,13 +129,13 @@ public final class LerFicheiro {
                                         gestaoProj.getDocentePorEmail(data[4]) && //email de um docente valido
                                         ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ramos associados
                                 {
-                                    gestaoProj.adicinarProposta(new T2(data[1], data[3], data[2], data[4]));
+                                    gestaoProj.adicionarProposta(new T2(data[1], data[3], data[2], data[4]));
                                 } else if (gestaoProj.getDocentePorEmail(data[4]) && //email de um docente valido
                                         !gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
                                         gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) && //numero de aluno valido
                                         ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ramos associado
                                 {
-                                    gestaoProj.adicinarProposta(new T2(data[1], data[3], data[2], data[4], data[5]));
+                                    gestaoProj.adicionarProposta(new T2(data[1], data[3], data[2], data[4], Long.parseLong(data[5])));
                                     //Adicionar durante  leitura das propostas
                                     gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[5])),gestaoProj.getPropostaPorId(data[1])));
                                 } else {
@@ -146,7 +148,7 @@ public final class LerFicheiro {
                                         !gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
                                         !gestaoProj.get_codigoAluno(data[3])) //se aluno ja nao esta associado a um T3
                                 {
-                                    gestaoProj.adicinarProposta(new T3(data[1], data[2], data[3]));
+                                    gestaoProj.adicionarProposta(new T3(data[1], data[2], Long.parseLong(data[3])));
                                     gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[3])),gestaoProj.getPropostaPorId(data[1])));
                                 } else {
                                     //metodo para gravar o erro e enviar para UI e informar o utilizador

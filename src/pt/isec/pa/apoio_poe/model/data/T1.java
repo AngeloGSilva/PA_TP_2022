@@ -5,7 +5,7 @@ public class T1 extends Proposta {
         super(cod_id,tit,null,null,ramo);
     }
 
-    public T1(String ramo,String tit, String cod_id,String codaluno){
+    public T1(String ramo,String tit, String cod_id,Long codaluno){
         super(cod_id,tit,codaluno,null,ramo);
     }
 

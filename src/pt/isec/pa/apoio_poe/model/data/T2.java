@@ -6,7 +6,7 @@ public class T2 extends Proposta {
         super(codid,tit,null,docente,ramo);
     }
     //Aluno opcional
-    public T2(String codid,String tit,String ramo,String docente,String codaluno) {
+    public T2(String codid,String tit,String ramo,String docente,Long codaluno) {
         super(codid,tit,codaluno,docente,ramo);
     }
 }

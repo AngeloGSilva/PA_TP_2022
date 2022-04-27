@@ -175,7 +175,7 @@ public class GestaoProj {
         return docentes.add(docente);
     }
 
-    public boolean adicinarProposta(Proposta proposta){
+    public boolean adicionarProposta(Proposta proposta){
         return propostas.add(proposta);
     }
 
@@ -266,7 +266,7 @@ public class GestaoProj {
         list = new ArrayList<>();
         for (Proposta x : propostas) {
             if(x.getClass().getSimpleName().equals("T3")){
-                list.add(getAlunoPorNumero(Long.parseLong(x.getCodigo_Aluno())));
+                list.add(getAlunoPorNumero(x.getCodigo_Aluno()));
             }
         }
         return list;

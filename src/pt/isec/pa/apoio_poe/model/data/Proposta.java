@@ -5,11 +5,11 @@ import java.util.Objects;
 public class Proposta {
     String cod_ID = null;
     String titulo = null;
-    String codigo_Aluno = null;
+    Long codigo_Aluno = null;
     String nomeDocente = null;
     String ramo = null;
 
-    public String getCodigo_Aluno() {
+    public Long getCodigo_Aluno() {
         return codigo_Aluno;
     }
 
@@ -18,7 +18,7 @@ public class Proposta {
     }
 
     //geral
-    public Proposta(String cod_ID, String titulo, String codigo_Aluno, String nomeDocente, String ramo) {
+    public Proposta(String cod_ID, String titulo, Long codigo_Aluno, String nomeDocente, String ramo) {
         this.cod_ID = cod_ID;
         this.titulo = titulo;
         this.codigo_Aluno = codigo_Aluno;

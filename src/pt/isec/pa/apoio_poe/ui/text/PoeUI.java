@@ -76,6 +76,7 @@ public class PoeUI {
             }
             case 2 ->{
                 System.out.println(controladorDoPrograma.getCandidaturas());
+                /*
                 switch (PAInput.chooseOption("Dados a consultar","Alunos","Propostas", "Voltar")){
                     case 1-> {
                         switch (PAInput.chooseOption("Escolher Filtro para alunos","Com autoproposto","Candidatura Registada", "Sem candidatura Registada","Voltar")){
@@ -118,7 +119,7 @@ public class PoeUI {
                     }
                 }
             break;
-            }
+            }*/}
             case 3 ->{
                 controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true));
 
@@ -153,6 +154,7 @@ public class PoeUI {
                         !(tipo = PAInput.readString("tipo de proposta",true)).equals("T3")){
                     System.out.println("Tipo invalido T[1-3]");
                 }
+                /*
                 if(tipo.equals("T1")) {
                     Proposta proposta = new T1("ramo", "ola", "1223", "ola");
                     controladorDoPrograma.adicionarProposta(proposta);
@@ -163,6 +165,8 @@ public class PoeUI {
                     Proposta proposta = new T3("cod_id","titulo","nr_aluno");
                     controladorDoPrograma.adicionarProposta(proposta);
                 }
+                */
+
             }
             case 2 -> System.out.println(controladorDoPrograma.getPropostas());
             case 3 -> {
