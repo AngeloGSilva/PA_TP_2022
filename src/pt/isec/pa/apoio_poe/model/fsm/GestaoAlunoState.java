@@ -59,11 +59,17 @@ public class GestaoAlunoState extends IStateAdaptar {
 
     @Override
     public boolean avancar(boolean guardado, int op) {
-        if(guardado && dados.getNrPropostas() >= dados.getNrAlunos()){
+        if(guardado && dados.CondicaoAvancar()){
             dados.setFase_Fechada_Config(true);
+            System.out.println("Fase fechada\n");
             alteraState(new opCandidaturaState(dados, contexto));
-        }else
+        }else if(!guardado) {
+            System.out.println("Nao fechou a fase\n");
             alteraState(new opCandidaturaState(dados, contexto));
+        }else {
+            System.out.println("Numero de propostas inferior ao numero de alunos,fase nao fechada\n");
+            alteraState(new GestaoAlunoState(dados, contexto));
+        }
         return false;
     }
 

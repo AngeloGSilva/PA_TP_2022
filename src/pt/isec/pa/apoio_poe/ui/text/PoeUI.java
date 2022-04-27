@@ -119,7 +119,8 @@ public class PoeUI {
                     }
                 }
             break;
-            }*/}
+            }*/
+            }
             case 3 ->{
                 controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true));
 

@@ -26,6 +26,18 @@ public class Proposta {
         this.ramo = ramo;
     }
 
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getNomeDocente() {
+        return nomeDocente;
+    }
+
+    public String getRamo() {
+        return ramo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -78,14 +78,36 @@ public class GestaoProj {
     }
 
     //tamanho dos arrays
-    public int getNrPropostas(){
-        return propostas.size();
+    public int getNrPropostas(String ramo){
+        int cont=0;
+        for(Proposta x: propostas) {
+                if(x.getRamo()!=null && x.getRamo().contains(ramo)){
+                   cont++;
+                }
+            }
+        return cont;
+        }
+
+    public int getNrAlunos(String ramo){
+        int cont=0;
+        for(Aluno x: alunos) {
+            if(x.getRamo_Aluno().equals(ramo)){
+                cont++;
+            }
+        }
+        return cont;
     }
 
-    public int getNrAlunos(){
-        return alunos.size();
+    public boolean CondicaoAvancar(){
+        boolean verificado=true;
+        String[] ramos = {"DA", "SI", "RAS"};
+        for(int i=0;i<ramos.length;i++) {
+            if (getNrPropostas(ramos[i]) < getNrAlunos(ramos[i]) && verificado == true || (getNrPropostas(ramos[i])==0 && getNrAlunos(ramos[i])==0 && verificado == true)){
+                  verificado=false;
+            }
+        }
+            return verificado;
     }
-
 
     //verifica se o numero passado ja esta vincolado a alguma candidatura
     public boolean getNrAlunoCandidatura(long nr_Aluno){
