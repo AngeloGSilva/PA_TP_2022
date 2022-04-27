@@ -146,7 +146,7 @@ public final class LerFicheiro {
                             case "T3" -> {
                                 if (gestaoProj.VerificaAlunoExiste(Long.parseLong(data[3])) && //numero de aluno valido
                                         !gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
-                                        !gestaoProj.get_codigoAluno(data[3])) //se aluno ja nao esta associado a um T3
+                                        !gestaoProj.get_codigoAluno(Long.parseLong(data[3]))) //se aluno ja nao esta associado a um T3
                                 {
                                     gestaoProj.adicionarProposta(new T3(data[1], data[2], Long.parseLong(data[3])));
                                     gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[3])),gestaoProj.getPropostaPorId(data[1])));
@@ -198,7 +198,7 @@ public final class LerFicheiro {
                 }else{
                     //metodo para gravar o erro e enviar para UI e informar o utilizador
                     //separar erro de aluno que nao existe / ou se é aluno com candidatura efetuada
-                    if(gestaoProj.get_codigoAluno(data[0])) {
+                    if(gestaoProj.get_codigoAluno(Long.parseLong(data[0]))) {
                         gestaoProj.setErros("[Erro] Aluno ja tem candidatura efetuada" + data[0] + "\n");
                     }else if(gestaoProj.getNrAlunoCandidatura(Long.parseLong(data[0]))){
                         gestaoProj.setErros("[Erro] Aluno ja proposto anteriormente!" + data[0] +"\n");

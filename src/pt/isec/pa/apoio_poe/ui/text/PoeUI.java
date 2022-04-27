@@ -146,7 +146,10 @@ public class PoeUI {
                 }
             }
             case 5 -> {
-                controladorDoPrograma.voltar(controladorDoPrograma.getFase_Candidatura());
+                controladorDoPrograma.avancar(true,0);
+            }
+            case 6->{
+                controladorDoPrograma.voltar(true);
             }
             //default -> acabou = true;
         }

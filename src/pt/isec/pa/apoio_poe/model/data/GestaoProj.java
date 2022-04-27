@@ -155,7 +155,7 @@ public class GestaoProj {
     }
 
     //verifica se o aluno passado esta associado a alguma proposta T3
-    public boolean get_codigoAluno(String nrAluno){
+    public boolean get_codigoAluno(Long nrAluno){
         for (Proposta x: propostas) {
             if(x.getClass().getSimpleName().equals("T3")){
                 if(x.getCodigo_Aluno().equals(nrAluno)){
