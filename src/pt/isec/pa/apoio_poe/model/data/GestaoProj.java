@@ -384,4 +384,38 @@ public class GestaoProj {
             }
         }
     }
+
+    public boolean verificaCandidaturaAtribuida(Aluno aluno){
+        for (Atribuicao a: atribuicoes) {
+            if (a.getAluno().equals(aluno)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<String> atribuiAutomaticamente() {
+        //base nas classificacoes...
+        //opcoes de candidatura
+        //true or false do estagio
+
+        ArrayList<String> conflito = new ArrayList<>();
+        for (Candidatura c1: candidaturas) {
+            if(!verificaCandidaturaAtribuida(c1.getAluno())) {
+                for (Proposta p1 : c1.getPropostas()) {
+                    for (Candidatura c2 : candidaturas) {
+                        if (!c1.equals(c2)) {
+                            if (p1.equals(c2.getPropostas().get(0))) {
+                                conflito.add(String.valueOf(c1.getAluno().getNr_Aluno()));
+                                conflito.add(String.valueOf(c2.getAluno().getNr_Aluno()));
+                                conflito.add(p1.getCod_ID());
+                                return conflito;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
 }

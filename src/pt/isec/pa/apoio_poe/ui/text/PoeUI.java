@@ -70,6 +70,9 @@ public class PoeUI {
                 controladorDoPrograma.atribuiPropostasDocentes();
             }
             case 4->{
+                System.out.println(controladorDoPrograma.atribuiAutomaticamente());
+            }
+            case 5->{
                 System.out.println(controladorDoPrograma.getAtribuicoesPropostas());
             }
         }
