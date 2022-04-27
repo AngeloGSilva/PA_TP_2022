@@ -404,12 +404,14 @@ public class GestaoProj {
             if(!verificaCandidaturaAtribuida(c1.getAluno())) {
                 for (Proposta p1 : c1.getPropostas()) {
                     for (Candidatura c2 : candidaturas) {
-                        if (!c1.equals(c2)) {
-                            if (p1.equals(c2.getPropostas().get(0))) {
-                                conflito.add(String.valueOf(c1.getAluno().getNr_Aluno()));
-                                conflito.add(String.valueOf(c2.getAluno().getNr_Aluno()));
-                                conflito.add(p1.getCod_ID());
-                                return conflito;
+                        if(!verificaCandidaturaAtribuida(c2.getAluno())) {
+                            if (!c1.equals(c2)) {
+                                if (p1.equals(c2.getPropostas().get(0))) {
+                                        conflito.add(String.valueOf(c1.getAluno().getNr_Aluno()));
+                                        conflito.add(String.valueOf(c2.getAluno().getNr_Aluno()));
+                                        conflito.add(p1.getCod_ID());
+                                        return conflito;
+                                }
                             }
                         }
                     }
