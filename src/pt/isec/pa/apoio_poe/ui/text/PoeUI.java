@@ -334,17 +334,25 @@ public class PoeUI {
                 }
             }
             case 6->{
-                controladorDoPrograma.lerFicheiroDebug("a");
-                //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
-                String errorDisplay = controladorDoPrograma.getErros().toString();
-                //Retirar os [] do print
-                errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
-                System.out.println(errorDisplay);
-                //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
-                controladorDoPrograma.limparErros();
+                switch(PAInput.chooseOption("Quem Utiliza?","Angelo","Rodrigo")) {
+                    case 1 ->{
+                        controladorDoPrograma.lerFicheiroDebug("a");
+                    }
+                    case 2 ->{
+                        controladorDoPrograma.lerFicheiroDebug("r");
+                    }
+                }
+                    //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
+                    String errorDisplay = controladorDoPrograma.getErros().toString();
+                    //Retirar os [] do print
+                    errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
+                    System.out.println(errorDisplay);
+                    //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
+                    controladorDoPrograma.limparErros();
 
-                System.out.println("A passar de fase");
-                controladorDoPrograma.avancar(true,0);
+                    System.out.println("A passar de fase");
+                    controladorDoPrograma.avancar(true, 0);
+
             }
         }
     }

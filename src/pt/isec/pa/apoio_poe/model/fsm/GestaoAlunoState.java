@@ -22,9 +22,16 @@ public class GestaoAlunoState extends IStateAdaptar {
 
     @Override
     public boolean lerFicheiroDebug(String fileName){
-        dados.lerficheiroAluno(fileName);
-        dados.lerficheiroDocente(fileName);
-        dados.lerficheiroProposta(fileName);
+        if(fileName.equals("a")){
+
+            dados.lerficheiroAluno("C:\\Users\\Angelo\\Desktop__\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\alunos.csv");
+            dados.lerficheiroDocente("C:\\Users\\Angelo\\Desktop__\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv");
+            dados.lerficheiroProposta("C:\\Users\\Angelo\\Desktop__\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\propostas.csv");
+        }else{
+            dados.lerficheiroAluno("C:\\\\Users\\\\Rodrigo\\\\Desktop\\\\Pa-tp\\\\PA_TP_2022\\\\Resources\\\\ficheiros\\\\alunos.csv");
+            dados.lerficheiroDocente("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv");
+            dados.lerficheiroProposta("C:\\\\Users\\\\Rodrigo\\\\Desktop\\\\Pa-tp\\\\PA_TP_2022\\\\Resources\\\\ficheiros\\\\propostas.csv");
+        }
         alteraState(new GestaoAlunoState(dados,contexto));
         return false;
     }
