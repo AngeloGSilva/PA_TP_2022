@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -123,6 +124,16 @@ public class GestaoProj {
             }
         }
         return false;
+    }
+
+    //verifica se o email pertence a algum docente e retorna o docente
+    public Docente getDocentePorEmailObjeto(String email) {
+        for (Docente d: docentes
+        ) {
+            if (d.getEmail_Docente().equals(email))
+                return d;
+        }
+        return null;
     }
 
     //verifica se o email pertence a algum docente
@@ -368,7 +379,7 @@ public class GestaoProj {
         for (Candidatura c: candidaturas) {
             for (Proposta p: c.getPropostas()) {
                 if(p.getClass().getSimpleName().equals("T2") && p.getCodigo_Aluno() != null && p.getNomeDocente() != null){
-                    atribuicoes.add(new Atribuicao(c.getAluno(),null,p));
+                    atribuicoes.add(new Atribuicao(c.getAluno(),getDocentePorEmailObjeto(p.getNomeDocente()),p));
                 }
             }
         }
