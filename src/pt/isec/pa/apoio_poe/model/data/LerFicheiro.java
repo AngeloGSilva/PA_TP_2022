@@ -174,7 +174,7 @@ public final class LerFicheiro {
     public static boolean lercandidaturas(String fileName, GestaoProj gestaoProj){
         switch(PAInput.chooseOption("Path dos ficheiros","Angelo","Rodrigo")){
             case 1 ->{
-                fileName = "C:\\Users\\Angelo\\Desktop__\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
+                fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
             }case 2 ->{
                 fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
             }
