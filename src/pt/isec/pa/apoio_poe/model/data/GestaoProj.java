@@ -18,12 +18,14 @@ public class GestaoProj {
     private HashSet<Docente> docentes;
     private HashSet<Proposta> propostas;
     private HashSet<Candidatura> candidaturas;
+    private HashSet<Atribuicao> atribuicoes;
 
     public GestaoProj() {
         alunos = new HashSet<>();
         docentes = new HashSet<>();
         propostas = new HashSet<>();
         candidaturas = new HashSet<>();
+        atribuicoes = new HashSet<>();
     }
 
     //gets e sets para as fecho das fases
@@ -75,6 +77,10 @@ public class GestaoProj {
 
     public String toStringCandidaturas() {
         return "Candidaturas" + candidaturas;
+    }
+
+    public String toStringAtribuicoes() {
+        return "Atribuicoes" + atribuicoes;
     }
 
     //tamanho dos arrays
@@ -278,9 +284,13 @@ public class GestaoProj {
 
     @Override
     public String toString() {
-        return "Alunos: " + alunos +
-                ", Docente: " + docentes +
-                ", Propostas: " + propostas;
+        return "GestaoProj{" +
+                "alunos=" + alunos +
+                ", docentes=" + docentes +
+                ", propostas=" + propostas +
+                ", candidaturas=" + candidaturas +
+                ", atribuicoes=" + atribuicoes +
+                '}';
     }
 
     public ArrayList<Aluno> getAlunosAutopropostos() {
@@ -342,5 +352,25 @@ public class GestaoProj {
             }
         }
         return list;
+    }
+
+    public void atribuiAutopropostos(){
+        for (Candidatura c: candidaturas) {
+            for (Proposta p: c.getPropostas()) {
+                if(p.getClass().getSimpleName().equals("T3")){
+                    atribuicoes.add(new Atribuicao(c.getAluno(),null,p));
+                }
+            }
+        }
+    }
+
+    public void atribuiPropostasDocentes(){
+        for (Candidatura c: candidaturas) {
+            for (Proposta p: c.getPropostas()) {
+                if(p.getClass().getSimpleName().equals("T2") && p.getCodigo_Aluno() != null && p.getNomeDocente() != null){
+                    atribuicoes.add(new Atribuicao(c.getAluno(),null,p));
+                }
+            }
+        }
     }
 }

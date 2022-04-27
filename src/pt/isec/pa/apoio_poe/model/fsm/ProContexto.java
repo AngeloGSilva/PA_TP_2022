@@ -118,4 +118,16 @@ public class ProContexto {
     public ArrayList<Proposta> getPropostasSemCandidatos() {
         return dados.getPropostasSemCandidatos();
     }
+
+    public void atribuiAutopropostos() {
+        dados.atribuiAutopropostos();
+    }
+
+    public void atribuiPropostasDocentes() {
+        dados.atribuiPropostasDocentes();
+    }
+
+    public String getAtribuicoesPropostas() {
+        return dados.toStringAtribuicoes();
+    }
 }

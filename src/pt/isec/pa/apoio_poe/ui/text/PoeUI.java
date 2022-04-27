@@ -55,7 +55,7 @@ public class PoeUI {
 
     private void atrPropostaUI() {
         System.out.println("Gestão de candidatura:\n");
-        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar")) {
+        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar","Atribuir automatico Autopropostos e docentes com aluno","atribuir automatico","consulta")) {
             case 1 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
                     case 1 -> controladorDoPrograma.avancar(true, 0);
@@ -64,6 +64,13 @@ public class PoeUI {
             }
             case 2 -> {
                 controladorDoPrograma.voltar(controladorDoPrograma.getFase_Proposta());
+            }
+            case 3->{
+                controladorDoPrograma.atribuiAutopropostos();
+                controladorDoPrograma.atribuiPropostasDocentes();
+            }
+            case 4->{
+                System.out.println(controladorDoPrograma.getAtribuicoesPropostas());
             }
         }
     }
