@@ -134,4 +134,8 @@ public class ProContexto {
     public ArrayList<String> atribuiAutomaticamente() {
         return dados.atribuiAutomaticamente();
     }
+
+    public String getAlunoPorNr(String nr) {
+        return dados.getAlunoPorNumero(Long.parseLong(nr)).toString();
+    }
 }

@@ -5,6 +5,8 @@ import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.fsm.ConfiguracaoState;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
+import java.util.ArrayList;
+
 public class PoeUI {
     ProContexto controladorDoPrograma;
     //colocar o caminhoDefaultFicheiros na classe LerFicheiro
@@ -70,7 +72,18 @@ public class PoeUI {
                 controladorDoPrograma.atribuiPropostasDocentes();
             }
             case 4->{
-                System.out.println(controladorDoPrograma.atribuiAutomaticamente());
+                ArrayList<String> conflito = new ArrayList<>();
+                conflito = controladorDoPrograma.atribuiAutomaticamente();
+                System.out.println(conflito);
+                switch (PAInput.chooseOption("Deseja ver informacoes de qual aluno",conflito.get(0),conflito.get(1))){
+                    case 1->{
+                        System.out.println(controladorDoPrograma.getAlunoPorNr(conflito.get(0)));
+                    }
+                    case 2->{
+                        System.out.println(controladorDoPrograma.getAlunoPorNr(conflito.get(1)));
+                    }
+                }
+
             }
             case 5->{
                 System.out.println(controladorDoPrograma.getAtribuicoesPropostas());
