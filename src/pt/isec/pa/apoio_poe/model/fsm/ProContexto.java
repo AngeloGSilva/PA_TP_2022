@@ -131,7 +131,7 @@ public class ProContexto {
         return dados.toStringAtribuicoes();
     }
 
-    public ArrayList<String> atribuiAutomaticamente() {
+    public ArrayList<Long> atribuiAutomaticamente() {
         return dados.atribuiAutomaticamente();
     }
 

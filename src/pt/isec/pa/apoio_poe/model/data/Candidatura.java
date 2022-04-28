@@ -21,6 +21,10 @@ public class Candidatura {
         this.propostas.add(proposta);
     }
 
+    public int getNrPropostas(){
+        return this.propostas.size();
+    }
+
     public Aluno getAluno() {
         return aluno;
     }

@@ -72,15 +72,17 @@ public class PoeUI {
                 controladorDoPrograma.atribuiPropostasDocentes();
             }
             case 4->{
-                ArrayList<String> conflito = new ArrayList<>();
+                ArrayList<Long> conflito = new ArrayList<>();
                 conflito = controladorDoPrograma.atribuiAutomaticamente();
                 System.out.println(conflito);
-                switch (PAInput.chooseOption("Deseja ver informacoes de qual aluno",conflito.get(0),conflito.get(1))){
+                switch (PAInput.chooseOption("Deseja ver informacoes de qual aluno",conflito.get(0).toString(),conflito.get(1).toString())){
                     case 1->{
-                        System.out.println(controladorDoPrograma.getAlunoPorNr(conflito.get(0)));
+                        System.out.println(controladorDoPrograma.getAlunoPorNr(conflito.get(0).toString()));
+                        //add
                     }
                     case 2->{
-                        System.out.println(controladorDoPrograma.getAlunoPorNr(conflito.get(1)));
+                        System.out.println(controladorDoPrograma.getAlunoPorNr(conflito.get(1).toString()));
+                        //add
                     }
                 }
 
