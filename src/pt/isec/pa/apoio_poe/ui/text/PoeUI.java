@@ -73,32 +73,40 @@ public class PoeUI {
                 controladorDoPrograma.atribuiPropostasDocentes();
             }
             case 4->{
-                ArrayList<Long> conflito = new ArrayList<>();
+                ArrayList<String> conflito = new ArrayList<>();
+                String escolhido;
                 do {
+                    conflito.clear();
                     conflito = controladorDoPrograma.atribuiAutomaticamente();
                     if (conflito != null) {
                         do {
-                            op = PAInput.readInt("Pretende ver as informações de que aluno?:(Introduza o numero de aluno)" + conflito);
+                            if(conflito.size()<2)
+                                System.out.println("Aluno unico para uma proposta: "+ conflito);
+                            else{
+                                for (String x: conflito) {
+                                    if (x.length() == 4){
+
+                                    }
+                                    else{
+                                        System.out.println("Aluno que esta em conflito: "+ x);
+                                    }
+                                }
+                            }
+                            op = PAInput.readInt("Pretende ver as informações de que aluno?:(Introduza o numero de aluno .. -1 para sair... -5 para decidir)" + conflito);
                             for(int i=0;i<conflito.size();i++){
-                                if(conflito.get(i) == op){
+                                if(conflito.get(i).equals(op)){
                                     System.out.println(controladorDoPrograma.getCandidaturaPorNRAluno(String.valueOf(op)));
                                 }
+                            }
+                            if(op == -5){
+                                escolhido = PAInput.readString("Qual deve ficar com o estagio?",true);
+                                controladorDoPrograma.atribuiAlunoAProposta(escolhido, conflito.get(1));
+                                op= -1;
                             }
                         }while(op!=-1);
                     }
                 }while(conflito != null);
                 System.out.println(conflito);
-                switch (PAInput.chooseOption("Deseja ver informacoes de qual aluno",conflito.get(0).toString(),conflito.get(1).toString())){
-                    case 1->{
-                        System.out.println(controladorDoPrograma.getAlunoPorNr(conflito.get(0).toString()));
-                        //add
-                    }
-                    case 2->{
-                        System.out.println(controladorDoPrograma.getAlunoPorNr(conflito.get(1).toString()));
-                        //add
-                    }
-                }
-
             }
             case 5->{
                 System.out.println(controladorDoPrograma.getAtribuicoesPropostas());

@@ -394,88 +394,47 @@ public class GestaoProj {
         return false;
     }
 
-    public ArrayList<Long> atribuiAutomaticamente2() {
-        //base nas classificacoes...
-        //opcoes de candidatura
-        //true or false do estagio
-
-        //ArrayList<String> conflito = new ArrayList<>();
-        /*
-        for (Candidatura c1: candidaturas) {
-            if(!verificaCandidaturaAtribuida(c1.getAluno())) {
-                for (Proposta p1 : c1.getPropostas()) {
-                    for (Candidatura c2 : candidaturas) {
-                        if(!verificaCandidaturaAtribuida(c2.getAluno())) {
-                            if (!c1.equals(c2)) {
-                                if (p1.equals(c2.getPropostas().get(0))) {
-                                        //conflito.add(String.valueOf(c1.getAluno().getNr_Aluno()));
-                                        //conflito.add(String.valueOf(c2.getAluno().getNr_Aluno()));
-                                        //conflito.add(p1.getCod_ID());
-                                        //return conflito;
-                                }
-                            }
-                        }
-                    }
-                }
+    public boolean verificaPropostaAtribuida(Proposta proposta){
+        for (Atribuicao a: atribuicoes) {
+            if (a.getProposta().equals(proposta)){
+                return true;
             }
-        }*/
-
-        int flag=0;
-        int NrConflitos=0;
-        ArrayList<Long> conflito = new ArrayList<>();
-        for(Candidatura c1 : candidaturas) {
-            if (!verificaCandidaturaAtribuida(c1.getAluno())) {
-                for (Proposta p1 : c1.getPropostas()) { // cada proposta em c1
-                    flag = 0; // Nao foi atribuido
-                    NrConflitos = 0;
-                    for (Candidatura c2 : candidaturas) {
-                        if(!verificaCandidaturaAtribuida(c2.getAluno())) {
-                            if(!c1.equals(c2)){
-                                for(int i = 0;i < c2.getNrPropostas();i++) {
-                                    if (p1.equals(c2.getPropostas().get(i))) {
-                                        NrConflitos++;
-                                        conflito.add(c2.getNraluno());
-                                    }
-                                }
-                            }
-                            flag=1;
-                        }
-                    }
-                    if(NrConflitos>=1){
-                        return conflito;
-                    }else if(flag == 0){
-                        atribuicoes.add(new Atribuicao(c1.getAluno(),null,p1));
-                        return atribuiAutomaticamente();
-                    }
-                    }
-                }
-            }
-        return null;
+        }
+        return false;
     }
 
 
-    public ArrayList<Long> atribuiAutomaticamente() {
+
+    public ArrayList<String> atribuiAutomaticamente() {
         boolean encontrou = false;
-        ArrayList<Long> conflito = new ArrayList<>();
+        ArrayList<String> conflito = new ArrayList<>();
+        conflito.clear();
         for (Candidatura c1 : candidaturas) {
+            conflito.clear();
             if (!verificaCandidaturaAtribuida(c1.getAluno())) {
-                conflito.add(c1.getAluno().getNr_Aluno());
-                System.out.println("Aluno:" + c1.getAluno().getNr_Aluno());
+                conflito.add(String.valueOf(c1.getAluno().getNr_Aluno()));
+                //System.out.println("Aluno:" + c1.getAluno().getNr_Aluno());
                 for (Proposta p1 : c1.getPropostas()) {
+                    if (!verificaPropostaAtribuida(p1)){
                     for (Candidatura c2 : candidaturas) {
                         if (c1.getAluno().getNr_Aluno() != c2.getAluno().getNr_Aluno()) {
                             if (!verificaCandidaturaAtribuida(c2.getAluno())) {
                                 if (p1.equals(c2.getPropostas().get(0))) {
-                                    conflito.add(c2.getAluno().getNr_Aluno());
-                                    System.out.println("Tem conflito com:" + c2.getAluno().getNr_Aluno() + "na proposta" + p1 + "\n");
+                                    if (conflito.size() == 1)
+                                        conflito.add(p1.getCod_ID());
+                                    conflito.add(String.valueOf(c2.getAluno().getNr_Aluno()));
+                                    //System.out.println("Tem conflito com:" + c2.getAluno().getNr_Aluno() + "na proposta" + p1 + "\n");
                                     encontrou = true;
                                 }
                             }
+                        }
                     }
+                    if (encontrou) {
+                        return conflito;
+                    }else
+                        atribuicoes.add(new Atribuicao(c1.getAluno(),null,p1));
                 }
-                if (encontrou) {
-                    return conflito;
-                }
+
             }
         }
     }
@@ -488,5 +447,9 @@ public class GestaoProj {
                 return x.toString();
         }
         return null;
+    }
+
+    public void atribuiPropostaAluno(String escolhido, String id_proposta) {
+        atribuicoes.add(new Atribuicao(getAlunoPorNumero(Long.parseLong(escolhido)),null,getPropostaPorId(id_proposta)));
     }
 }

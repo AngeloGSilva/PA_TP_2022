@@ -131,7 +131,7 @@ public class ProContexto {
         return dados.toStringAtribuicoes();
     }
 
-    public ArrayList<Long> atribuiAutomaticamente() {
+    public ArrayList<String> atribuiAutomaticamente() {
         return dados.atribuiAutomaticamente();
     }
 
@@ -141,5 +141,9 @@ public class ProContexto {
 
     public String getCandidaturaPorNRAluno(String nraluno){
         return dados.getCandidaturaPorNrAluno(Long.parseLong(nraluno));
+    }
+
+    public void atribuiAlunoAProposta(String escolhido, String Id_Proposta) {
+        dados.atribuiPropostaAluno(escolhido,Id_Proposta);
     }
 }
