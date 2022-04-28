@@ -394,7 +394,7 @@ public class GestaoProj {
         return false;
     }
 
-    public ArrayList<Long> atribuiAutomaticamente() {
+    public ArrayList<Long> atribuiAutomaticamente2() {
         //base nas classificacoes...
         //opcoes de candidatura
         //true or false do estagio
@@ -432,7 +432,7 @@ public class GestaoProj {
                         if(!verificaCandidaturaAtribuida(c2.getAluno())) {
                             if(!c1.equals(c2)){
                                 for(int i = 0;i < c2.getNrPropostas();i++) {
-                                    if (c1.equals(c2.getPropostas().get(i))) {
+                                    if (p1.equals(c2.getPropostas().get(i))) {
                                         NrConflitos++;
                                         conflito.add(c2.getNraluno());
                                     }
@@ -450,6 +450,32 @@ public class GestaoProj {
                     }
                 }
             }
+        return null;
+    }
+
+
+    public ArrayList<Long> atribuiAutomaticamente() {
+        boolean encontrou = false;
+        ArrayList<Long> conflito = new ArrayList<>();
+        for(Candidatura c1 : candidaturas){
+            if(!verificaCandidaturaAtribuida(c1.getAluno())) {
+                if (!encontrou) {
+                    conflito.add(c1.getAluno().getNr_Aluno());
+                    for (Proposta p1 : propostas) {
+                        for (Candidatura c2 : candidaturas) {
+                            if(!verificaCandidaturaAtribuida(c2.getAluno())) {
+                                if (p1.equals(c2.getPropostas().get(0))) {
+                                    conflito.add(c2.getAluno().getNr_Aluno());
+                                    encontrou = true;
+                                }
+                            }
+                        }
+                    }
+                } else if (encontrou) {
+                    return conflito;
+                }
+            }
+        }
         return null;
     }
 }
