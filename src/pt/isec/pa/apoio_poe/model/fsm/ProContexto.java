@@ -138,4 +138,8 @@ public class ProContexto {
     public String getAlunoPorNr(String nr) {
         return dados.getAlunoPorNumero(Long.parseLong(nr)).toString();
     }
+
+    public String getCandidaturaPorNRAluno(String nraluno){
+        return dados.getCandidaturaPorNrAluno(Long.parseLong(nraluno));
+    }
 }

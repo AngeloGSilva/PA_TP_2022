@@ -56,6 +56,7 @@ public class PoeUI {
     }
 
     private void atrPropostaUI() {
+        int op;
         System.out.println("Gestão de candidatura:\n");
         switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar","Atribuir automatico Autopropostos e docentes com aluno","atribuir automatico","consulta")) {
             case 1 -> {
@@ -73,7 +74,19 @@ public class PoeUI {
             }
             case 4->{
                 ArrayList<Long> conflito = new ArrayList<>();
-                conflito = controladorDoPrograma.atribuiAutomaticamente();
+                do {
+                    conflito = controladorDoPrograma.atribuiAutomaticamente();
+                    if (conflito != null) {
+                        do {
+                            op = PAInput.readInt("Pretende ver as informações de que aluno?:(Introduza o numero de aluno)" + conflito);
+                            for(int i=0;i<conflito.size();i++){
+                                if(conflito.get(i) == op){
+                                    System.out.println(controladorDoPrograma.getCandidaturaPorNRAluno(String.valueOf(op)));
+                                }
+                            }
+                        }while(op!=-1);
+                    }
+                }while(conflito != null);
                 System.out.println(conflito);
                 switch (PAInput.chooseOption("Deseja ver informacoes de qual aluno",conflito.get(0).toString(),conflito.get(1).toString())){
                     case 1->{

@@ -457,24 +457,35 @@ public class GestaoProj {
     public ArrayList<Long> atribuiAutomaticamente() {
         boolean encontrou = false;
         ArrayList<Long> conflito = new ArrayList<>();
-        for(Candidatura c1 : candidaturas){
-            if(!verificaCandidaturaAtribuida(c1.getAluno())) {
-                if (!encontrou) {
-                    conflito.add(c1.getAluno().getNr_Aluno());
-                    for (Proposta p1 : propostas) {
-                        for (Candidatura c2 : candidaturas) {
-                            if(!verificaCandidaturaAtribuida(c2.getAluno())) {
+        for (Candidatura c1 : candidaturas) {
+            if (!verificaCandidaturaAtribuida(c1.getAluno())) {
+                conflito.add(c1.getAluno().getNr_Aluno());
+                System.out.println("Aluno:" + c1.getAluno().getNr_Aluno());
+                for (Proposta p1 : c1.getPropostas()) {
+                    for (Candidatura c2 : candidaturas) {
+                        if (c1.getAluno().getNr_Aluno() != c2.getAluno().getNr_Aluno()) {
+                            if (!verificaCandidaturaAtribuida(c2.getAluno())) {
                                 if (p1.equals(c2.getPropostas().get(0))) {
                                     conflito.add(c2.getAluno().getNr_Aluno());
+                                    System.out.println("Tem conflito com:" + c2.getAluno().getNr_Aluno() + "na proposta" + p1 + "\n");
                                     encontrou = true;
                                 }
                             }
-                        }
                     }
-                } else if (encontrou) {
+                }
+                if (encontrou) {
                     return conflito;
                 }
             }
+        }
+    }
+        return null;
+    }
+
+    public String getCandidaturaPorNrAluno(Long nraluno) {
+        for(Candidatura x : candidaturas){
+            if(x.getAluno().getNr_Aluno() == nraluno)
+                return x.toString();
         }
         return null;
     }
