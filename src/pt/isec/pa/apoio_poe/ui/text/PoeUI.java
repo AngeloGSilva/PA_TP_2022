@@ -93,7 +93,12 @@ public class PoeUI {
                             }
                             if(op == -5){
                                 escolhido = PAInput.readString("Qual deve ficar com o estagio?",true);
-                                controladorDoPrograma.atribuiAlunoAProposta(escolhido, conflito.get(1));
+                                for(int i=0;i<conflito.size();i++){
+                                    if(conflito.get(i).equals(escolhido)){
+                                        controladorDoPrograma.atribuiAlunoAProposta(escolhido, conflito.get(1));
+                                        break;
+                                    }
+                                }
                                 op= -1;
                             }
                         }while(op!=-1);
