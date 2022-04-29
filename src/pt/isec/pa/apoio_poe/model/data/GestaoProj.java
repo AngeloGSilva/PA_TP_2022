@@ -507,4 +507,6 @@ public class GestaoProj {
                 }
             }
     }
+
+    public void atribuirManualmente
 }
