@@ -417,16 +417,15 @@ public class GestaoProj {
                 for (Proposta p1 : c1.getPropostas()) {
                     if (!verificaPropostaAtribuida(p1)){
                     for (Candidatura c2 : candidaturas) {
-                        if (c1.getAluno().getNr_Aluno() != c2.getAluno().getNr_Aluno()) {
-                            if (!verificaCandidaturaAtribuida(c2.getAluno())) {
-                                if (p1.equals(c2.getPropostas().get(0))) {
-                                    if (conflito.size() == 1)
-                                        conflito.add(p1.getCod_ID());
-                                    conflito.add(String.valueOf(c2.getAluno().getNr_Aluno()));
-                                    //System.out.println("Tem conflito com:" + c2.getAluno().getNr_Aluno() + "na proposta" + p1 + "\n");
-                                    encontrou = true;
-                                }
-                            }
+                        if (c1.getAluno().getNr_Aluno() != c2.getAluno().getNr_Aluno() &&
+                                !verificaCandidaturaAtribuida(c2.getAluno()) &&
+                                p1.equals(c2.getPropostas().get(0)))
+                        {
+                            if (conflito.size() == 1)
+                                conflito.add(p1.getCod_ID());
+                            conflito.add(String.valueOf(c2.getAluno().getNr_Aluno()));
+                            //System.out.println("Tem conflito com:" + c2.getAluno().getNr_Aluno() + "na proposta" + p1 + "\n");
+                            encontrou = true;
                         }
                     }
                     if (encontrou) {
