@@ -150,7 +150,7 @@ public final class LerFicheiro {
                                         !gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
                                         !gestaoProj.get_codigoAluno(Long.parseLong(data[3]))) //se aluno ja nao esta associado a um T3
                                 {
-                                    gestaoProj.adicionarProposta(new T3(data[1], data[2], Long.parseLong(data[3])));
+                                    gestaoProj.adicionarProposta(new T3(data[1], data[2], Long.parseLong(data[3]),gestaoProj.getAlunoPorNumero(Long.parseLong(data[3])).getRamo_Aluno()));
                                     gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[3])),gestaoProj.getPropostaPorId(data[1])));
                                 } else {
                                     //metodo para gravar o erro e enviar para UI e informar o utilizador

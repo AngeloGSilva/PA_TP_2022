@@ -11,6 +11,10 @@ public class Atribuicao {
         this.proposta = proposta;
     }
 
+    public void setDocente(Docente docente) {
+        this.docente = docente;
+    }
+
     public Aluno getAluno() {
         return aluno;
     }
@@ -29,6 +33,6 @@ public class Atribuicao {
                 "aluno=" + aluno +
                 ", docente=" + docente +
                 ", proposta=" + proposta +
-                '}';
+                "}\n";
     }
 }

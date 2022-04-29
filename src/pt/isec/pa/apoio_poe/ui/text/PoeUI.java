@@ -42,15 +42,21 @@ public class PoeUI {
 
     private void atrOrientadorUI() {
         System.out.println("Gestão de candidatura:\n");
-        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar")) {
+        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar","Atribuir docentes automaticos","Consulta")) {
             case 1 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
                     case 1 -> controladorDoPrograma.avancar(true, 0);
                     case 2 -> controladorDoPrograma.avancar(false, 0);
                 }
             }
-            case 2 -> {
+            case 2 ->{
                 controladorDoPrograma.voltar(controladorDoPrograma.getFase_Orientador());
+            }
+            case 3 ->{
+                controladorDoPrograma.atribuirDocentesauto();
+            }
+            case 4->{
+                System.out.println(controladorDoPrograma.getAtribuicoesPropostas());
             }
         }
     }
@@ -105,6 +111,7 @@ public class PoeUI {
                     }
                 }
                 System.out.println(conflito);
+                controladorDoPrograma.atribuirSemCandidatura();
             }
             case 5->{
                 System.out.println(controladorDoPrograma.getAtribuicoesPropostas());

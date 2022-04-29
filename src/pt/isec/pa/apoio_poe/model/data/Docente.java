@@ -3,6 +3,7 @@ package pt.isec.pa.apoio_poe.model.data;
 import java.util.Objects;
 
 public class Docente {
+    int contador = 0;
     String nome_Docente;
     String email_Docente;
     boolean papel_Docente; //orientador - true, proponente de projeto - false
@@ -23,6 +24,14 @@ public class Docente {
 
     public boolean isPapel_Docente() {
         return papel_Docente;
+    }
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador() {
+        contador++;
     }
 
     @Override

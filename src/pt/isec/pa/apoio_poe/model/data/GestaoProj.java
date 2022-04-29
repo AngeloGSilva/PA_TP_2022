@@ -404,6 +404,37 @@ public class GestaoProj {
     }
 
 
+    public void atribuirSemCandidatura(){
+        boolean encontrou = false;
+        boolean propostaTaken = false;
+        for (Aluno aluno: alunos) {
+            encontrou = false;
+            for (Atribuicao atribuicao: atribuicoes) {
+                if(aluno.getNr_Aluno() == atribuicao.getAluno().getNr_Aluno()){
+                    encontrou = true;
+                }
+            }
+            if (!encontrou){
+                for (Proposta proposta: propostas) {
+                    propostaTaken = false;
+                    if (proposta.getRamo().contains(aluno.getRamo_Aluno())){
+                        for (Atribuicao atribuicao : atribuicoes) {
+                            if (proposta.getCod_ID().equals(atribuicao.getProposta().getCod_ID())) {
+                                propostaTaken = true;
+                            }
+                        }
+                    if (!propostaTaken) {
+                        atribuicoes.add(new Atribuicao(aluno,getDocentePorEmailObjeto(proposta.getNomeDocente()),proposta));
+                        System.out.println(aluno);
+                        System.out.println(proposta);
+                        System.out.println(atribuicoes.toString());
+                        break;
+                    }
+                }
+                }
+            }
+        }
+    }
 
     public ArrayList<String> atribuiAutomaticamente() {
         boolean encontrou = false;
@@ -449,5 +480,31 @@ public class GestaoProj {
 
     public void atribuiPropostaAluno(String escolhido, String id_proposta) {
         atribuicoes.add(new Atribuicao(getAlunoPorNumero(Long.parseLong(escolhido)),getDocentePorEmailObjeto(getPropostaPorId(id_proposta).getNomeDocente()),getPropostaPorId(id_proposta)));
+    }
+
+    public Docente getDocenteContadorMenor(){
+        Docente docenteMinimo = null;
+        int docenteMenor = 0;
+        for (Docente docente: docentes) {
+            if (docente.getContador() < 5) {
+                if (docenteMenor <= docente.getContador()) {
+                    docenteMenor = docente.getContador();
+                    docenteMinimo = docente;
+                }
+            }
+        }
+        return docenteMinimo;
+    }
+
+
+    public void atribuirDocentesauto() {
+        Docente docente = null;
+            for (Atribuicao atribuicao : atribuicoes) {
+                docente = getDocenteContadorMenor();
+                if (atribuicao.getDocente() == null) {
+                    atribuicao.setDocente(docente);
+                    docente.setContador();
+                }
+            }
     }
 }

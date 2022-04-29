@@ -146,4 +146,12 @@ public class ProContexto {
     public void atribuiAlunoAProposta(String escolhido, String Id_Proposta) {
         dados.atribuiPropostaAluno(escolhido,Id_Proposta);
     }
+
+    public void atribuirSemCandidatura(){
+        dados.atribuirSemCandidatura();
+    }
+
+    public void atribuirDocentesauto() {
+        dados.atribuirDocentesauto();
+    }
 }
