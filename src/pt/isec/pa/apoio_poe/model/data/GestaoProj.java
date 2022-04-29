@@ -433,7 +433,6 @@ public class GestaoProj {
                     }else
                         atribuicoes.add(new Atribuicao(c1.getAluno(),getDocentePorEmailObjeto(p1.getNomeDocente()),p1));
                 }
-
             }
         }
     }
@@ -449,6 +448,6 @@ public class GestaoProj {
     }
 
     public void atribuiPropostaAluno(String escolhido, String id_proposta) {
-        atribuicoes.add(new Atribuicao(getAlunoPorNumero(Long.parseLong(escolhido)),null,getPropostaPorId(id_proposta)));
+        atribuicoes.add(new Atribuicao(getAlunoPorNumero(Long.parseLong(escolhido)),getDocentePorEmailObjeto(getPropostaPorId(id_proposta).getNomeDocente()),getPropostaPorId(id_proposta)));
     }
 }
