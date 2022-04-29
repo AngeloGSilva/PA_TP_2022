@@ -432,7 +432,7 @@ public class GestaoProj {
                     if (encontrou) {
                         return conflito;
                     }else
-                        atribuicoes.add(new Atribuicao(c1.getAluno(),null,p1));
+                        atribuicoes.add(new Atribuicao(c1.getAluno(),getDocentePorEmailObjeto(p1.getNomeDocente()),p1));
                 }
 
             }

@@ -75,21 +75,14 @@ public class PoeUI {
             case 4->{
                 ArrayList<String> conflito = new ArrayList<>();
                 String escolhido;
-                do {
+                while(conflito != null){
                     conflito.clear();
                     conflito = controladorDoPrograma.atribuiAutomaticamente();
                     if (conflito != null) {
                         do {
-                            if(conflito.size()<2)
-                                System.out.println("Aluno unico para uma proposta: "+ conflito);
-                            else{
-                                for (String x: conflito) {
-                                    if (x.length() == 4){
-
-                                    }
-                                    else{
-                                        System.out.println("Aluno que esta em conflito: "+ x);
-                                    }
+                            for (String x: conflito) {
+                                if (x.length() != 4){
+                                    System.out.println("Aluno que esta em conflito: " + x);
                                 }
                             }
                             op = PAInput.readInt("Pretende ver as informações de que aluno?:(Introduza o numero de aluno .. -1 para sair... -5 para decidir)" + conflito);
@@ -105,7 +98,7 @@ public class PoeUI {
                             }
                         }while(op!=-1);
                     }
-                }while(conflito != null);
+                }
                 System.out.println(conflito);
             }
             case 5->{
