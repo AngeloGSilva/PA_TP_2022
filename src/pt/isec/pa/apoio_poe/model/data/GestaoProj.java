@@ -21,12 +21,17 @@ public class GestaoProj {
     private HashSet<Candidatura> candidaturas;
     private HashSet<Atribuicao> atribuicoes;
 
+    private HashSet<Aluno> alunosDisponiveis;
+    private HashSet<Proposta> propostaDisponiveis;
+
     public GestaoProj() {
         alunos = new HashSet<>();
         docentes = new HashSet<>();
         propostas = new HashSet<>();
         candidaturas = new HashSet<>();
         atribuicoes = new HashSet<>();
+        propostaDisponiveis = new HashSet<>();
+        alunosDisponiveis =  new HashSet<>();
     }
 
     //gets e sets para as fecho das fases
@@ -103,6 +108,27 @@ public class GestaoProj {
             }
         }
         return cont;
+    }
+    
+    //Facilita a utilização dos alunos e das propostas ao associar
+    public HashSet<Aluno> PreencheAlunosDisponiveis(){
+        HashSet<Aluno> alunosD= new HashSet<>();
+        for(Aluno a:alunos) {
+            for (Atribuicao at : atribuicoes)
+                if (a.getNr_Aluno() == at.getAluno().getNr_Aluno())
+                    alunosD.add(a);
+        }
+        return alunosD;
+    }
+
+    public HashSet<Proposta> PreenchePropostasDisponiveis(){
+        HashSet<Proposta> PropostasD= new HashSet<>();
+        for(Proposta p:propostas) {
+            for (Atribuicao at : atribuicoes)
+                if (p.getCod_ID() == at.getProposta().getCod_ID())
+                    PropostasD.add(p);
+        }
+        return PropostasD;
     }
 
     public boolean CondicaoAvancar(){
