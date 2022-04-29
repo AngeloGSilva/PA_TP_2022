@@ -508,5 +508,17 @@ public class GestaoProj {
             }
     }
 
-    public void atribuirManualmente
+    public boolean atribuirManualmenteDocente(String docente, int id_atribuicao){
+        if (getDocentePorEmail(docente)) {
+            for (Atribuicao atribuicao : atribuicoes) {
+                if (atribuicao.getId() == id_atribuicao) {
+                    if (atribuicao.getDocente().equals(null)) {
+                        atribuicao.setDocente(getDocentePorEmailObjeto(docente));
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }

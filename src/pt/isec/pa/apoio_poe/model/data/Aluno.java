@@ -55,19 +55,6 @@ public class Aluno {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Aluno aluno = (Aluno) o;
-        return nr_Aluno == aluno.nr_Aluno;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nr_Aluno);
-    }
-
-    @Override
     public String toString() {
         return "Numero de aluno:" + nr_Aluno +
                 ", Nome do aluno:'" + nome_Aluno + '\'' +

@@ -1,6 +1,15 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import java.util.Objects;
+
 public class Atribuicao {
+    private static int counter_global = 0;
+
+    private static int getNewID() {
+        return ++counter_global;
+    }
+
+    private final int id;
     Aluno aluno;
     Docente docente;
     Proposta proposta;
@@ -9,10 +18,28 @@ public class Atribuicao {
         this.aluno = aluno;
         this.docente = docente;
         this.proposta = proposta;
+        this.id = getNewID();
     }
 
     public void setDocente(Docente docente) {
         this.docente = docente;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Atribuicao that = (Atribuicao) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     public Aluno getAluno() {
@@ -30,9 +57,10 @@ public class Atribuicao {
     @Override
     public String toString() {
         return "Atribuicao{" +
-                "aluno=" + aluno +
+                "id=" + id +
+                ", aluno=" + aluno +
                 ", docente=" + docente +
                 ", proposta=" + proposta +
-                "}\n";
+                '}';
     }
 }
