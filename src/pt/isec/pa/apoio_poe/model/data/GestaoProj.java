@@ -21,8 +21,8 @@ public class GestaoProj {
     private HashSet<Candidatura> candidaturas;
     private HashSet<Atribuicao> atribuicoes;
 
-    private HashSet<Aluno> alunosDisponiveis;
-    private HashSet<Proposta> propostaDisponiveis;
+    //private HashSet<Aluno> alunosDisponiveis;
+    //private HashSet<Proposta> propostaDisponiveis;
 
     public GestaoProj() {
         alunos = new HashSet<>();
@@ -30,8 +30,8 @@ public class GestaoProj {
         propostas = new HashSet<>();
         candidaturas = new HashSet<>();
         atribuicoes = new HashSet<>();
-        propostaDisponiveis = new HashSet<>();
-        alunosDisponiveis =  new HashSet<>();
+        //propostaDisponiveis = new HashSet<>();
+        //alunosDisponiveis =  new HashSet<>();
     }
 
     //gets e sets para as fecho das fases
@@ -109,7 +109,7 @@ public class GestaoProj {
         }
         return cont;
     }
-    
+
     //Facilita a utilização dos alunos e das propostas ao associar
     public HashSet<Aluno> PreencheAlunosDisponiveis(){
         HashSet<Aluno> alunosD= new HashSet<>();
