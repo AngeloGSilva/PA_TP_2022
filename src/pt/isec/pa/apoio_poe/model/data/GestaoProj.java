@@ -1,6 +1,5 @@
 package pt.isec.pa.apoio_poe.model.data;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,8 +20,8 @@ public class GestaoProj {
     private HashSet<Candidatura> candidaturas;
     private HashSet<Atribuicao> atribuicoes;
 
-    private HashSet<Aluno> alunosDisponiveis;
-    private HashSet<Proposta> propostaDisponiveis;
+    //private HashSet<Aluno> alunosDisponiveis;
+    //private HashSet<Proposta> propostaDisponiveis;
 
     public GestaoProj() {
         alunos = new HashSet<>();
@@ -30,8 +29,8 @@ public class GestaoProj {
         propostas = new HashSet<>();
         candidaturas = new HashSet<>();
         atribuicoes = new HashSet<>();
-        propostaDisponiveis = new HashSet<>();
-        alunosDisponiveis =  new HashSet<>();
+        //propostaDisponiveis = new HashSet<>();
+        //alunosDisponiveis =  new HashSet<>();
     }
 
     //gets e sets para as fecho das fases
@@ -204,7 +203,7 @@ public class GestaoProj {
     }
 
     //verifica se o Id da proposta ja pertence a alguma proposta
-    public boolean get_idProposta(String IDPro){
+    public boolean VerificaIdProposta(String IDPro){
         for (Proposta x: propostas) {
             if(x.getCod_ID().equals(IDPro)){
                 return true;
@@ -297,7 +296,7 @@ public class GestaoProj {
     }
 
     //verifica se o aluno passado esta associado a alguma proposta
-    public boolean VerificaNumeroAssociado(String codaluno){
+    public boolean VerificaNumeroAssociadoAProposta(String codaluno){
         for (Proposta x : propostas) {
             if (codaluno.equals(x.getCodigo_Aluno())){
                 return true;
@@ -544,6 +543,16 @@ public class GestaoProj {
                     }
                 }
             }
+        }
+        return false;
+    }
+
+    public boolean atribuirManualmenteAluno(long id_aluno, String proposta){
+        if (VerificaAlunoExiste(id_aluno) &&
+                VerificaIdProposta(proposta) &&
+                !verificaPropostaAtribuida(getPropostaPorId(proposta)) &&
+                !verificaCandidaturaAtribuida(getAlunoPorNumero(id_aluno))){
+            atribuicoes.add(new Atribuicao(getAlunoPorNumero(id_aluno),getDocentePorEmailObjeto(getPropostaPorId(proposta).getNomeDocente()),getPropostaPorId(proposta)));
         }
         return false;
     }

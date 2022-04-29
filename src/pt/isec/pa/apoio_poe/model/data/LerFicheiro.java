@@ -110,13 +110,13 @@ public final class LerFicheiro {
                         switch (data[0]) {
                             case "T1" -> {
                                 if (data.length == 5 && //proposta tem 5 campos
-                                        !gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
+                                        !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
                                         ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
                                     gestaoProj.adicionarProposta(new T1(data[2], data[3], data[1]));
                                 } else if(data.length == 6 &&
                                         gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) &&
-                                        !gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
+                                        !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
                                         ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
                                     gestaoProj.adicionarProposta(new T1(data[2], data[3], data[1] ,Long.parseLong(data[5])));
@@ -127,13 +127,13 @@ public final class LerFicheiro {
                             }
                             case "T2" -> {
                                 if (data.length == 5 &&
-                                        !gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
+                                        !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
                                         gestaoProj.getDocentePorEmail(data[4]) && //email de um docente valido
                                         ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ramos associados
                                 {
                                     gestaoProj.adicionarProposta(new T2(data[1], data[3], data[2], data[4]));
                                 } else if (gestaoProj.getDocentePorEmail(data[4]) && //email de um docente valido
-                                        !gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
+                                        !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
                                         gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) && //numero de aluno valido
                                         ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ramos associado
                                 {
@@ -147,7 +147,7 @@ public final class LerFicheiro {
                             }
                             case "T3" -> {
                                 if (gestaoProj.VerificaAlunoExiste(Long.parseLong(data[3])) && //numero de aluno valido
-                                        !gestaoProj.get_idProposta(data[1]) && //id da proposta repetido
+                                        !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
                                         !gestaoProj.get_codigoAluno(Long.parseLong(data[3]))) //se aluno ja nao esta associado a um T3
                                 {
                                     gestaoProj.adicionarProposta(new T3(data[1], data[2], Long.parseLong(data[3]),gestaoProj.getAlunoPorNumero(Long.parseLong(data[3])).getRamo_Aluno()));
@@ -188,11 +188,11 @@ public final class LerFicheiro {
                 data = linha.split(",");
                 if(gestaoProj.VerificaAlunoExiste(Long.parseLong(data[0])) &&
                         !gestaoProj.getNrAlunoCandidatura(Long.parseLong(data[0])) &&
-                        !gestaoProj.VerificaNumeroAssociado(data[0]) &&
+                        !gestaoProj.VerificaNumeroAssociadoAProposta(data[0]) &&
                         data.length > 1)
                 { //data[1].contains("P[0-9]{3}")
                     for(int i = 1;i<data.length;i++){
-                        if(gestaoProj.get_idProposta(data[i]) &&
+                        if(gestaoProj.VerificaIdProposta(data[i]) &&
                                 gestaoProj.verificaPropostaAssociado(data[i])){ //
                             propostas.add(gestaoProj.getPropostaPorId(data[i]));
                         }else {
