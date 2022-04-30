@@ -20,8 +20,6 @@ public final class LerFicheiro{
     private static FileWriter fw;
     private static BufferedWriter bw;
     private static PrintWriter pw;
-    private static Writer writer;
-    csvwriter
 
     //arrays para verificacoes que vao permitir usar o contains
     private static String[] ramos = {"DA", "SI", "RAS"};
@@ -85,7 +83,7 @@ public final class LerFicheiro{
                         ("true".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT)) ||
                         "false".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT)))
                 ) {
-                    gestaoProj.adicinarAlunos(new Aluno(Long.parseLong(data[0]), data[1], data[2], data[4], Double.parseDouble(data[5]), Boolean.parseBoolean(data[6])));
+                    gestaoProj.adicinarAlunos(new Aluno(Long.parseLong(data[0]), data[1], data[2], data[4], Double.parseDouble(data[5]), Boolean.parseBoolean(data[6]),data[3]));
                 } else {
                     //metodo para gravar o erro e enviar para UI e informar o utilizador
                     gestaoProj.setErros("[Erro] no seguinte Aluno" + Arrays.toString(data) + "\n");
@@ -231,13 +229,30 @@ public final class LerFicheiro{
         return true;
     }
 
-    public static boolean ExportarAlunos(String fileName,GestaoProj gestaoProj){
-        f = new File(fileName+".csv");
-        fw = new FileWriter(f);
+    public static void ExportarAlunos(String fileName,GestaoProj gestaoProj){
+        f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
+        try {
+            fw = new FileWriter(f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         bw = new BufferedWriter(fw);
         pw = new PrintWriter(bw);
         for (Aluno aluno:gestaoProj.getAlunos()) {
-            pw.println(aluno.toString());
+            pw.print(aluno.getNr_Aluno());
+            pw.print(',');
+            pw.print(aluno.getNome_Aluno());
+            pw.print(',');
+            pw.print(aluno.getEmail_Aluno());
+            pw.print(',');
+            pw.print(aluno.getCurso());
+            pw.print(',');
+            pw.print(aluno.getRamo_Aluno());
+            pw.print(',');
+            pw.print(aluno.getClassificacao_Aluno());
+            pw.print(',');
+            pw.print(aluno.isAceder_a_Estagio());
+            pw.println();
         }
     }
 }

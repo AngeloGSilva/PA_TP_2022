@@ -190,4 +190,8 @@ public class ProContexto {
     public String getAlunosSemCandidaturaString(){
         return String.valueOf(dados.AlunosSemCandidaturaRegistada());
     }
+
+    public void exportarAlunos(String fileName){
+        dados.exportarAlunos(fileName);
+    }
 }

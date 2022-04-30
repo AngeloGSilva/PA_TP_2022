@@ -682,4 +682,8 @@ public class GestaoProj {
         }
         return false;
     }
+
+    public void exportarAlunos(String fileName){
+        LerFicheiro.ExportarAlunos(fileName,this);
+    }
 }

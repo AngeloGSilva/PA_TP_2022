@@ -6,14 +6,16 @@ public class Aluno {
     private long nr_Aluno;
     private String nome_Aluno;
     private String email_Aluno;
+    private String curso;
     private String ramo_Aluno;
     private double classificacao_Aluno;
     private boolean aceder_a_Estagio; //true -- acesso a estagio e projetos ... false -- acesso a projeto
 
-    public Aluno(long nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio) {
+    public Aluno(long nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio, String curso) {
         this.nr_Aluno = nr_Aluno;
         this.nome_Aluno = nome_Aluno;
         this.email_Aluno = email_Aluno;
+        this.curso = curso;
         this.ramo_Aluno = ramo_Aluno;
         this.classificacao_Aluno = classificacao_Aluno;
         this.aceder_a_Estagio = aceder_a_Estagio;
@@ -24,6 +26,7 @@ public class Aluno {
         this.nome_Aluno = null;
         this.email_Aluno = null;
         this.ramo_Aluno = null;
+        this.curso = null;
     }
 
     public static Aluno getDummyAluno(long nr_Aluno){
@@ -36,6 +39,10 @@ public class Aluno {
 
     public String getNome_Aluno() {
         return nome_Aluno;
+    }
+
+    public String getCurso() {
+        return curso;
     }
 
     public String getEmail_Aluno() {

@@ -363,7 +363,8 @@ public class PoeUI {
         System.out.println("Gestão de alunos:\n");
         switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","ler de ficheiro","voltar","Avancar","debug")) {
             case 1 -> {
-                String nome_Aluno = PAInput.readString("Nome do aluno",false);
+                controladorDoPrograma.exportarAlunos(PAInput.readString("Nome do ficheiro para exportar",true));
+/*                String nome_Aluno = PAInput.readString("Nome do aluno",false);
                 long nr_Aluno = PAInput.readInt("Numero do aluno");
                 String email_Aluno = PAInput.readString("Email do aluno",false);
                 String ramo_Aluno = PAInput.readString("Ramo do aluno",true);
@@ -376,7 +377,7 @@ public class PoeUI {
                 if(controladorDoPrograma.adicionarAluno(nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio)){
                     System.out.println("Aluno adicionado\n");
                 }else
-                    System.out.println("Aluno ja existe\n");
+                    System.out.println("Aluno ja existe\n");*/
             }
             case 2 -> {
                 System.out.println(controladorDoPrograma.getAlunos());
