@@ -230,7 +230,8 @@ public final class LerFicheiro{
     }
 
     public static void ExportarAlunos(String fileName,GestaoProj gestaoProj){
-        f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
+        //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
+        f = new File("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\ "+ fileName + ".csv");
         try {
             fw = new FileWriter(f);
         } catch (IOException e) {
@@ -254,5 +255,7 @@ public final class LerFicheiro{
             pw.print(aluno.isAceder_a_Estagio());
             pw.println();
         }
+        pw.flush();
+        pw.close();
     }
 }
