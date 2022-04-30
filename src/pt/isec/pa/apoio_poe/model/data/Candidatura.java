@@ -60,9 +60,9 @@ public class Candidatura {
 
     @Override
     public String toString() {
-        return "Candidatura{" +
-                "aluno=" + aluno +
-                ", propostas=" + propostas +
-                '}' + "\n";
+        return "Candidatura: " +
+                "aluno: " + aluno +
+                ", propostas: " + propostas +
+                "\n";
     }
 }

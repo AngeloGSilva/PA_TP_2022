@@ -56,11 +56,10 @@ public class Atribuicao {
 
     @Override
     public String toString() {
-        return "Atribuicao{" +
-                "id=" + id +
-                ", aluno=" + aluno +
-                ", docente=" + docente +
-                ", proposta=" + proposta +
-                '}';
+        return "id: " + id +
+                ", aluno: " + aluno +
+                ", docente: " + docente +
+                ", proposta: " + proposta +
+                "\n";
     }
 }

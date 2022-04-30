@@ -86,23 +86,23 @@ public class GestaoProj {
 
     //toStrings dos varios arrays.... (nao sei se é necessario)
     public String toStringAlunos() {
-        return "Alunos: " + alunos;
+        return "Alunos:\n " + alunos;
     }
 
     public String toStringDocentes() {
-        return "Docentes: " + docentes;
+        return "Docentes:\n " + docentes;
     }
 
     public String toStringPropostas(){
-        return "Propostas: " + propostas;
+        return "Propostas:\n " + propostas;
     }
 
     public String toStringCandidaturas() {
-        return "Candidaturas" + candidaturas;
+        return "Candidaturas:\n" + candidaturas;
     }
 
     public String toStringAtribuicoes() {
-        return "Atribuicoes" + atribuicoes;
+        return "Atribuicoes:\n" + atribuicoes;
     }
 
     public String toStringAtribuicoesSemDocente() {
