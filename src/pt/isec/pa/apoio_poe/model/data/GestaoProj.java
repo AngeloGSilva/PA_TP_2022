@@ -88,6 +88,10 @@ public class GestaoProj {
         return "Atribuicoes" + atribuicoes;
     }
 
+    public String toStringAtribuicoesSemDocente() {
+        return PreencheAtribuicoesSemDocente().toString();
+    }
+
     //tamanho dos arrays
     public int getNrPropostas(String ramo){
         int cont=0;
@@ -108,7 +112,18 @@ public class GestaoProj {
         }
         return cont;
     }
-    
+
+    //Facilita a utilização dos Atribuicoes sem docentes
+    public HashSet<Atribuicao> PreencheAtribuicoesSemDocente(){
+        HashSet<Atribuicao> atribuicaoSemDocente= new HashSet<>();
+        for(Atribuicao a : atribuicoes) {
+            if (a.getDocente() == null){
+                atribuicaoSemDocente.add(a);
+            }
+        }
+        return atribuicaoSemDocente;
+    }
+
     //Facilita a utilização dos alunos e das propostas ao associar
     public HashSet<Aluno> PreencheAlunosDisponiveis(){
         HashSet<Aluno> alunosD= new HashSet<>();
@@ -537,7 +552,7 @@ public class GestaoProj {
         if (getDocentePorEmail(docente)) {
             for (Atribuicao atribuicao : atribuicoes) {
                 if (atribuicao.getId() == id_atribuicao) {
-                    if (atribuicao.getDocente().equals(null)) {
+                    if (atribuicao.getDocente() == null) {
                         atribuicao.setDocente(getDocentePorEmailObjeto(docente));
                         return true;
                     }
@@ -555,5 +570,14 @@ public class GestaoProj {
             atribuicoes.add(new Atribuicao(getAlunoPorNumero(id_aluno),getDocentePorEmailObjeto(getPropostaPorId(proposta).getNomeDocente()),getPropostaPorId(proposta)));
         }
         return false;
+    }
+
+    public String getAtribuicaoPorId(int id) {
+        for (Atribuicao a:atribuicoes) {
+            if (a.getId() == id){
+                return a.toString();
+            }
+        }
+        return null;
     }
 }

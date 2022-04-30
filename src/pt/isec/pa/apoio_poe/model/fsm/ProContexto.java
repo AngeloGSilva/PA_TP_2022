@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Atribuicao;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
@@ -153,5 +154,21 @@ public class ProContexto {
 
     public void atribuirDocentesauto() {
         dados.atribuirDocentesauto();
+    }
+
+    public boolean atribuirManualmenteDocente(String docente, int id_atribuicao){
+        return dados.atribuirManualmenteDocente(docente,id_atribuicao);
+    }
+
+    public boolean atribuirManualmenteAluno(long id_aluno, String proposta){
+        return dados.atribuirManualmenteAluno(id_aluno,proposta);
+    }
+
+    public String getAtribuicoesPropostasSemDocente() {
+        return dados.toStringAtribuicoesSemDocente();
+    }
+
+    public String getAtribuicaoPorId(int id){
+        return dados.getAtribuicaoPorId(id);
     }
 }

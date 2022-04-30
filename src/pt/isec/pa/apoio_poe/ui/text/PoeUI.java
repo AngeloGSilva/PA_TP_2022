@@ -42,7 +42,7 @@ public class PoeUI {
 
     private void atrOrientadorUI() {
         System.out.println("Gestão de candidatura:\n");
-        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar","Atribuir docentes automaticos","Consulta")) {
+        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar","Atribuir docentes automaticos","Consulta", "Atribuir docentes Manualmente")) {
             case 1 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
                     case 1 -> controladorDoPrograma.avancar(true, 0);
@@ -57,6 +57,15 @@ public class PoeUI {
             }
             case 4->{
                 System.out.println(controladorDoPrograma.getAtribuicoesPropostas());
+            }
+            case 5->{
+                System.out.println(controladorDoPrograma.getAtribuicoesPropostasSemDocente());
+                System.out.println(controladorDoPrograma.getDocentes());
+                int id_atribuicao = PAInput.readInt("Escolha uma Atribuicao com o docente disponivel para por um docente (Use o Id da atribuicao):");
+                String id_docente = PAInput.readString("Escolha um Docente para por numa atribuicao (Use o Email do docente):",true);
+                if (controladorDoPrograma.atribuirManualmenteDocente(id_docente,id_atribuicao)){
+                    System.out.println(controladorDoPrograma.getAtribuicaoPorId(id_atribuicao));
+                }
             }
         }
     }
