@@ -49,9 +49,10 @@ public class Docente {
 
     @Override
     public String toString() {
-        return  "Nome do Docente='" + nome_Docente + '\'' +
-                ", Email do Docente='" + email_Docente + '\'' +
-                ", Papel do Docente=" + papel_Docente +
+        return  " Docente: " +
+                " Nome do Docente: " + nome_Docente +
+                " Email do Docente: " + email_Docente +
+                " Papel do Docente: " + papel_Docente +
                 "\n";
     }
 }

@@ -218,7 +218,7 @@ public final class LerFicheiro {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Ficheiro nao existe!");
+            gestaoProj.setErros("[Erro] Ficheiro nao existe!!" + fileName +"\n");
         }catch (IOException e){
             e.printStackTrace();
         }

@@ -38,8 +38,8 @@ public class ProContexto {
         return state.avancar(guardado);
     }
 
-    public boolean lerFicheiro(String fileName){
-        return state.lerFicheiro(fileName);
+    public void lerFicheiro(String fileName){
+        state.lerFicheiro(fileName);
     }
 
     public boolean lerFicheiroDebug(String fileName){

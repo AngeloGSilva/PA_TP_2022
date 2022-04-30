@@ -3,10 +3,10 @@ package pt.isec.pa.apoio_poe.model.data;
 import java.util.Objects;
 
 public class Atribuicao {
-    private static int counter_global = 0;
+    private static int counter_globalAtribuicao = 0;
 
     private static int getNewID() {
-        return ++counter_global;
+        return ++counter_globalAtribuicao;
     }
 
     private final int id;

@@ -9,12 +9,7 @@ public class opCandidaturaState extends IStateAdaptar {
 
     @Override
     public boolean voltar(boolean guardado) {
-        if(!dados.isFase_Fechada_Config()){
-            alteraState(new ConfiguracaoState(dados,contexto));
-        }else {
-            System.out.println("Fase fechada");
-            alteraState(new ConfiguracaoState(dados,contexto));
-        }
+        alteraState(new ConfiguracaoState(dados,contexto));
         return false;
     }
 
@@ -29,14 +24,9 @@ public class opCandidaturaState extends IStateAdaptar {
     }
 
     @Override
-    public boolean lerFicheiro(String fileName){
-        if(dados.lerficheiroCandidaturas(fileName)){
-            alteraState(new opCandidaturaState(dados,contexto));
-            return true;
-        }else {
-            alteraState(new opCandidaturaState(dados, contexto));
-            return false;
-        }
+    public void lerFicheiro(String fileName){
+        dados.lerficheiroCandidaturas(fileName);
+        alteraState(new opCandidaturaState(dados,contexto));
     }
 
     @Override

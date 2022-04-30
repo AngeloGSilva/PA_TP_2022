@@ -48,7 +48,7 @@ public class PoeUI {
                 controladorDoPrograma.avancar(true);
             }
             case 2 ->{
-                controladorDoPrograma.voltar(controladorDoPrograma.getFase_Orientador());
+                controladorDoPrograma.voltar(true);
             }
             case 3 ->{
                 controladorDoPrograma.atribuirDocentesauto();
@@ -63,6 +63,8 @@ public class PoeUI {
                 String id_docente = PAInput.readString("Escolha um Docente para por numa atribuicao (Use o Email do docente):",true);
                 if (controladorDoPrograma.atribuirManualmenteDocente(id_docente,id_atribuicao)){
                     System.out.println(controladorDoPrograma.getAtribuicaoPorId(id_atribuicao));
+                }else{
+                    System.out.println("Algo correu mal");
                 }
             }
         }
@@ -136,13 +138,14 @@ public class PoeUI {
                 }
             }
         }else{
-            switch (PAInput.chooseOption("Consulta","Todos","avancar")){
+            switch (PAInput.chooseOption("Consulta","Todos","avancar","voltar")){
                 case 1 -> {
                     System.out.println(controladorDoPrograma.getAlunos());
                     System.out.println(controladorDoPrograma.getPropostas());
                     System.out.println(controladorDoPrograma.getDocentes());
                 }
                 case 2 -> controladorDoPrograma.avancar(controladorDoPrograma.getFase_gestao());
+                case 3 -> controladorDoPrograma.voltar(true);
             }
         }
     }
@@ -150,13 +153,14 @@ public class PoeUI {
     private void opCandidaturaUI() {
         System.out.println("Gestão de Candidatura:\n");
         if (controladorDoPrograma.getFase_Candidatura()){
-            switch (PAInput.chooseOption("Consulta","Todos","avancar")){
+            switch (PAInput.chooseOption("Consulta","Todos","avancar","voltar")){
                 case 1 -> {
                     System.out.println(controladorDoPrograma.getAlunos());
                     System.out.println(controladorDoPrograma.getPropostas());
                     System.out.println(controladorDoPrograma.getDocentes());
                 }
                 case 2 -> controladorDoPrograma.avancar(controladorDoPrograma.getFase_gestao());
+                case 3 -> controladorDoPrograma.voltar(true);
             }
         }else {
             switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta", "Ler Ficheiro", "avançar", "Voltar")) {

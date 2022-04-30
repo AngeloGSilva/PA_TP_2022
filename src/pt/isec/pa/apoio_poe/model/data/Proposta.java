@@ -53,11 +53,12 @@ public class Proposta {
 
     @Override
     public String toString() {
-        return "Codigo Id :'" + cod_ID + '\'' +
-                ", Titulo :'" + titulo + '\'' +
-                ", Codigo Aluno :'" + codigo_Aluno + '\'' +
-                ", Codigo Docente :'" + email_Docente + '\'' +
-                ", Ramo :'" + ramo + '\'' +
+        return " Proposta: " +
+                " Codigo Id : " + cod_ID +
+                " Titulo : " + titulo +
+                " Codigo Aluno : " + codigo_Aluno +
+                " Codigo Docente: " + email_Docente +
+                " Ramo: " + ramo +
                 "\n";
     }
 }

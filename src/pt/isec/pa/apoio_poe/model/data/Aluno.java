@@ -56,11 +56,13 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return "Numero de aluno:" + nr_Aluno +
-                ", Nome do aluno:'" + nome_Aluno + '\'' +
-                ", Email do aluno:'" + email_Aluno + '\'' +
-                ", Ramo do aluno:'" + ramo_Aluno + '\'' +
-                ", Classificação do aluno:" + classificacao_Aluno +
-                ", Acesso a estagio:" + aceder_a_Estagio + "\n";
+        return "Aluno: " +
+                " Numero de aluno: " + nr_Aluno +
+                " Nome do aluno: " + nome_Aluno +
+                " Email do aluno: " + email_Aluno +
+                " Ramo do aluno: " + ramo_Aluno +
+                " Classificação do aluno: " + classificacao_Aluno +
+                " Acesso a estagio: " + aceder_a_Estagio +
+                "\n";
     }
 }
