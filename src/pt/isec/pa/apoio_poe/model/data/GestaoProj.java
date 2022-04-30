@@ -651,6 +651,7 @@ public class GestaoProj {
                 !verificaPropostaAtribuida(getPropostaPorId(proposta)) &&
                 !verificaCandidaturaAtribuida(getAlunoPorNumero(id_aluno))){
             atribuicoes.add(new Atribuicao(getAlunoPorNumero(id_aluno),getDocentePorEmailObjeto(getPropostaPorId(proposta).getEmail_Docente()),getPropostaPorId(proposta)));
+            return true;
         }
         return false;
     }
