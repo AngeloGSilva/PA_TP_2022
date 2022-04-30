@@ -178,10 +178,16 @@ public class GestaoProj {
     //Facilita a utilização dos alunos e das propostas ao associar
     public HashSet<Aluno> PreencheAlunosDisponiveis(){
         HashSet<Aluno> alunosD= new HashSet<>();
+        boolean existe = false;
         for(Aluno a:alunos) {
-            for (Atribuicao at : atribuicoes)
+            existe = false;
+            for (Atribuicao at : atribuicoes) {
                 if (a.getNr_Aluno() == at.getAluno().getNr_Aluno())
+                    existe = true;
+                }
+                 if (!existe) {
                     alunosD.add(a);
+            }
         }
         return alunosD;
     }
@@ -189,10 +195,15 @@ public class GestaoProj {
     //nao é != em vez de ==
     public HashSet<Proposta> PreenchePropostasDisponiveis(){
         HashSet<Proposta> PropostasD= new HashSet<>();
+        boolean existe =  false;
         for(Proposta p:propostas) {
-            for (Atribuicao at : atribuicoes)
+            existe = false;
+            for (Atribuicao at : atribuicoes) {
                 if (p.getCod_ID() == at.getProposta().getCod_ID())
-                    PropostasD.add(p);
+                    existe=true;
+                }
+            if(!existe)
+                PropostasD.add(p);
         }
         return PropostasD;
     }
@@ -295,8 +306,7 @@ public class GestaoProj {
     public HashSet<Proposta> getPropostas() {
         return propostas;
     }
-
-
+    
     //adicionar aos arrays
     public boolean adicinarAlunos(Aluno aluno){
         return alunos.add(aluno);
