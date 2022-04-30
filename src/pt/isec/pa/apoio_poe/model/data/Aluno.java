@@ -56,7 +56,7 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return "Aluno: " +
+        return "\nAluno: " +
                 " Numero de aluno: " + nr_Aluno +
                 " Nome do aluno: " + nome_Aluno +
                 " Email do aluno: " + email_Aluno +

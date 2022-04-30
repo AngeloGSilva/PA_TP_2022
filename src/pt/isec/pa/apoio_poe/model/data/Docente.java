@@ -49,7 +49,7 @@ public class Docente {
 
     @Override
     public String toString() {
-        return  " Docente: " +
+        return  "\nDocente: " +
                 " Nome do Docente: " + nome_Docente +
                 " Email do Docente: " + email_Docente +
                 " Papel do Docente: " + papel_Docente +

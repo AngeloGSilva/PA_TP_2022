@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public final class LerFicheiro {
+public final class LerFicheiro{
 
     //para leitura dos ficheiros
     private static String[] data;
@@ -16,6 +16,12 @@ public final class LerFicheiro {
     private static FileReader fileReader = null;
     private static BufferedReader bufferedReader = null;
     private static String linha;
+
+    private static FileWriter fw;
+    private static BufferedWriter bw;
+    private static PrintWriter pw;
+    private static Writer writer;
+    csvwriter
 
     //arrays para verificacoes que vao permitir usar o contains
     private static String[] ramos = {"DA", "SI", "RAS"};
@@ -223,5 +229,15 @@ public final class LerFicheiro {
             e.printStackTrace();
         }
         return true;
+    }
+
+    public static boolean ExportarAlunos(String fileName,GestaoProj gestaoProj){
+        f = new File(fileName+".csv");
+        fw = new FileWriter(f);
+        bw = new BufferedWriter(fw);
+        pw = new PrintWriter(bw);
+        for (Aluno aluno:gestaoProj.getAlunos()) {
+            pw.println(aluno.toString());
+        }
     }
 }

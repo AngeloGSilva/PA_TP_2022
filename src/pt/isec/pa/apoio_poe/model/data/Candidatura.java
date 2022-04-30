@@ -60,7 +60,7 @@ public class Candidatura {
 
     @Override
     public String toString() {
-        return " Candidatura: " +
+        return "\nCandidatura: " +
                 " Id: " + id +
                 " Aluno: " + aluno +
                 " Propostas: " + propostas +
