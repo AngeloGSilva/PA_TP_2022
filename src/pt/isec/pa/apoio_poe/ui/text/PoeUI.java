@@ -272,10 +272,8 @@ public class PoeUI {
             }
             case 2 -> System.out.println(controladorDoPrograma.getPropostas());
             case 3 -> {
-                if(controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true))){
-                    System.out.println("Leu tudo bem");
-                }else
-                    System.out.println("Nao leu bem");
+                controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true));
+
 
                 //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
@@ -325,10 +323,8 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getDocentes());
             }
             case 3 -> {
-                if(controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true))){
-                    System.out.println("Leu tudo bem");
-                }else
-                    System.out.println("Nao leu td");
+                controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true));
+
 
                 //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
@@ -386,10 +382,8 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getAlunos());
             }
             case 3 -> {
-                if(controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true))){
-                    System.out.println("Leu tudo bem");
-                }else
-                    System.out.println("Nao leu td");
+                controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true));
+
 
                 //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();

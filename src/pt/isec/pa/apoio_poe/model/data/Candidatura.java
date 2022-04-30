@@ -61,7 +61,7 @@ public class Candidatura {
     @Override
     public String toString() {
         return " Candidatura: " +
-                " Id: " +
+                " Id: " + id +
                 " Aluno: " + aluno +
                 " Propostas: " + propostas +
                 "\n";
