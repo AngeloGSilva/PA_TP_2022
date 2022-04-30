@@ -73,7 +73,7 @@ public class PoeUI {
     private void atrPropostaUI() {
         int op;
         System.out.println("Gestão de candidatura:\n");
-        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar","Atribuir automatico Autopropostos e docentes com aluno","atribuir automatico","consulta")) {
+        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar","Atribuir automatico Autopropostos e docentes com aluno","atribuir automatico","consulta", "atribuir alunos manualmente")) {
             case 1 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
                     case 1 -> controladorDoPrograma.avancar(true, 0);
@@ -124,6 +124,15 @@ public class PoeUI {
             }
             case 5->{
                 System.out.println(controladorDoPrograma.getAtribuicoesPropostas());
+            }
+            case 6->{
+                System.out.println(controladorDoPrograma.getAlunosSemAtribuicao());
+                System.out.println(controladorDoPrograma.getPropostasNaoAtribuidas());
+                String nr_Aluno = PAInput.readString("Escolha um aluno pelo numero",true);
+                String id_Proposta = PAInput.readString("Escolha uma proposta pelo id",true);
+                if (controladorDoPrograma.atribuirManualmenteAluno(Long.parseLong(nr_Aluno),id_Proposta)){
+                    System.out.println("Funcionou!!!!!!!!!!!!!!"); //trocar pela ultima atribuicao feita para mostrar operacao realizada
+                }
             }
         }
     }

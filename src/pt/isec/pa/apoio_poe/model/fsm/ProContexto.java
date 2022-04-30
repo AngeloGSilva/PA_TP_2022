@@ -171,4 +171,12 @@ public class ProContexto {
     public String getAtribuicaoPorId(int id){
         return dados.getAtribuicaoPorId(id);
     }
+
+    public String getAlunosSemAtribuicao(){
+        return dados.toStringAlunosSemAtribuicao();
+    }
+
+    public String getPropostasNaoAtribuidas() {
+        return dados.toStringPropostasSemAtribuicao();
+    }
 }

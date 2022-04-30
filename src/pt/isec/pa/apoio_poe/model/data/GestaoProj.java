@@ -92,6 +92,14 @@ public class GestaoProj {
         return PreencheAtribuicoesSemDocente().toString();
     }
 
+    public String toStringAlunosSemAtribuicao() {
+        return PreencheAlunosDisponiveis().toString();
+    }
+
+    public String toStringPropostasSemAtribuicao() {
+        return PreenchePropostasDisponiveis().toString();
+    }
+
     //tamanho dos arrays
     public int getNrPropostas(String ramo){
         int cont=0;
@@ -124,6 +132,7 @@ public class GestaoProj {
         return atribuicaoSemDocente;
     }
 
+    //isto nao esta a fazer muito sentido ... e nao esta a funcionar
     //Facilita a utilização dos alunos e das propostas ao associar
     public HashSet<Aluno> PreencheAlunosDisponiveis(){
         HashSet<Aluno> alunosD= new HashSet<>();
@@ -135,6 +144,7 @@ public class GestaoProj {
         return alunosD;
     }
 
+    //nao é != em vez de ==
     public HashSet<Proposta> PreenchePropostasDisponiveis(){
         HashSet<Proposta> PropostasD= new HashSet<>();
         for(Proposta p:propostas) {
