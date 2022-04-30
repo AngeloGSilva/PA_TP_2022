@@ -250,12 +250,16 @@ public class PoeUI {
         System.out.println("Gestão de Propostas:\n");
         switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Ler ficheiro","voltar","Avancar","debug")) {
             case 1 -> {
+                controladorDoPrograma.exportarPropostas(PAInput.readString("Nome do ficheiro para exportar",true));
+                /*
                 String tipo;
                 while (!(tipo = PAInput.readString("tipo de proposta",true)).equals("T1") &&
                         !(tipo = PAInput.readString("tipo de proposta",true)).equals("T2") &&
                         !(tipo = PAInput.readString("tipo de proposta",true)).equals("T3")){
                     System.out.println("Tipo invalido T[1-3]");
                 }
+                */
+
                 /*
                 if(tipo.equals("T1")) {
                     Proposta proposta = new T1("ramo", "ola", "1223", "ola");
@@ -310,6 +314,8 @@ public class PoeUI {
         System.out.println("Gestão de Docentes:\n");
         switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Ler ficheiro","voltar", "Avancar","debug")) {
             case 1 -> {
+                controladorDoPrograma.exportarDocentes(PAInput.readString("Nome do Ficheiro csv", true));
+                /*
                 String nome_Docente = PAInput.readString("Nome do aluno",false);
                 String email_Docente = PAInput.readString("Email do aluno",false);
                 boolean papel_Docente = true;
@@ -318,6 +324,7 @@ public class PoeUI {
                     case 2: papel_Docente = false;
                 }
                 controladorDoPrograma.adicionarDocente(nome_Docente,email_Docente,papel_Docente);
+                */
             }
             case 2 -> {
                 System.out.println(controladorDoPrograma.getDocentes());

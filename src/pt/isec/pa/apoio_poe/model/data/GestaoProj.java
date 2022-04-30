@@ -686,4 +686,12 @@ public class GestaoProj {
     public void exportarAlunos(String fileName){
         Ficheiro.ExportarAlunos(fileName,this);
     }
+
+    public void exportarPropostas(String fileName){
+        Ficheiro.ExportarPropostas(fileName,this);
+    }
+
+    public void exportarDocentes(String fileName){
+        Ficheiro.ExportarDocentes(fileName,this);
+    }
 }

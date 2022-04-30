@@ -117,14 +117,14 @@ public final class Ficheiro {
                                         !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
                                         ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
-                                    gestaoProj.adicionarProposta(new T1(data[2], data[3], data[1]));
+                                    gestaoProj.adicionarProposta(new T1(data[2], data[3], data[1],data[4]));
                                 } else if(data.length == 6 &&
                                         gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) &&
                                         !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
                                         gestaoProj.VerificaAlunoAcederPropostaLeitura(Long.parseLong(data[5]),data[0]) && //Verifica proposta durante a leitura
                                         ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
-                                    gestaoProj.adicionarProposta(new T1(data[2], data[3], data[1] ,Long.parseLong(data[5])));
+                                    gestaoProj.adicionarProposta(new T1(data[2], data[3], data[1] ,Long.parseLong(data[5]),data[4]));
                                 } else {
                                     //metodo para gravar o erro e enviar para UI e informar o utilizador
                                     gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
@@ -253,6 +253,86 @@ public final class Ficheiro {
             pw.print(aluno.getClassificacao_Aluno());
             pw.print(',');
             pw.print(aluno.isAceder_a_Estagio());
+            pw.println();
+        }
+        pw.flush();
+        pw.close();
+    }
+
+    public static void ExportarPropostas(String fileName,GestaoProj gestaoProj){
+        //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
+        f = new File("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\"+ fileName + ".csv");
+        try {
+            fw = new FileWriter(f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        bw = new BufferedWriter(fw);
+        pw = new PrintWriter(bw);
+        for (Proposta p : gestaoProj.getPropostas()) {
+            switch(p.getClass().getSimpleName()){
+                case "T1" ->{
+                    pw.print("T1");
+                    pw.print(',');
+                    pw.print(p.getCod_ID());
+                    pw.print(',');
+                    pw.print(p.getRamo());
+                    pw.print(',');
+                    pw.print(p.getTitulo());
+                    pw.print(',');
+                    pw.print(p.getEmpresa());
+                    if(p.getCodigo_Aluno() != null) {
+                        pw.print(',');
+                        pw.print(p.getCodigo_Aluno());
+                    }
+                }
+                case "T2" ->{
+                    pw.print("T2");
+                    pw.print(',');
+                    pw.print(p.getCod_ID());
+                    pw.print(',');
+                    pw.print(p.getRamo());
+                    pw.print(',');
+                    pw.print(p.getTitulo());
+                    pw.print(',');
+                    pw.print(p.getEmail_Docente());
+
+                    if(p.getCodigo_Aluno() != null) {
+                        pw.print(',');
+                        pw.print(p.getCodigo_Aluno());
+                    }
+                }
+                case "T3" ->{
+                    pw.print("T3");
+                    pw.print(',');
+                    pw.print(p.getCod_ID());
+                    pw.print(',');
+                    pw.print(p.getTitulo());
+                    pw.print(',');
+                    pw.print(p.getCodigo_Aluno());
+                }
+            }
+            pw.println();
+        }
+        pw.flush();
+        pw.close();
+    }
+
+    public static void ExportarDocentes(String fileName,GestaoProj gestaoProj){
+        //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
+        f = new File("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\"+ fileName + ".csv");
+        try {
+            fw = new FileWriter(f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        bw = new BufferedWriter(fw);
+        pw = new PrintWriter(bw);
+
+        for (Docente docente:gestaoProj.getDocentes()) {
+            pw.print(docente.getNome_Docente());
+            pw.print(',');
+            pw.print(docente.getEmail_Docente());
             pw.println();
         }
         pw.flush();

@@ -7,6 +7,7 @@ public class Proposta {
     String titulo = null;
     Long codigo_Aluno = null;
     String email_Docente = null;
+    String empresa = null;
     String ramo = null;
 
     public Long getCodigo_Aluno() {
@@ -18,12 +19,17 @@ public class Proposta {
     }
 
     //geral
-    public Proposta(String cod_ID, String titulo, Long codigo_Aluno, String email_Docente, String ramo) {
+    public Proposta(String cod_ID, String titulo, Long codigo_Aluno, String email_Docente, String ramo,String empresa) {
         this.cod_ID = cod_ID;
         this.titulo = titulo;
         this.codigo_Aluno = codigo_Aluno;
         this.email_Docente = email_Docente;
         this.ramo = ramo;
+        this.empresa = empresa;
+    }
+
+    public String getEmpresa() {
+        return empresa;
     }
 
     public String getTitulo() {

@@ -194,4 +194,10 @@ public class ProContexto {
     public void exportarAlunos(String fileName){
         dados.exportarAlunos(fileName);
     }
+    public void exportarPropostas(String FileName){
+        dados.exportarPropostas(FileName);
+    }
+    public void exportarDocentes(String Filename){
+        dados.exportarDocentes(Filename);
+    }
 }
