@@ -362,19 +362,19 @@ public class GestaoProj {
 
     //funcoes que recebem o nome do ficheiro do state e chama o metodo da class estatica correspondente
     public boolean lerficheiroAluno(String fileName) {
-        return LerFicheiro.lerAlunos(fileName,this);
+        return Ficheiro.lerAlunos(fileName,this);
     }
 
     public boolean lerficheiroDocente(String fileName) {
-        return LerFicheiro.lerDoncentes(fileName,this);
+        return Ficheiro.lerDoncentes(fileName,this);
     }
 
     public boolean lerficheiroProposta(String fileName) {
-        return LerFicheiro.lerPropostas(fileName,this);
+        return Ficheiro.lerPropostas(fileName,this);
     }
 
     public boolean lerficheiroCandidaturas(String filename){
-        return LerFicheiro.lercandidaturas(filename,this);
+        return Ficheiro.lercandidaturas(filename,this);
     }
 
     //verifica se a proposta passada tem algum aluno
@@ -684,6 +684,6 @@ public class GestaoProj {
     }
 
     public void exportarAlunos(String fileName){
-        LerFicheiro.ExportarAlunos(fileName,this);
+        Ficheiro.ExportarAlunos(fileName,this);
     }
 }

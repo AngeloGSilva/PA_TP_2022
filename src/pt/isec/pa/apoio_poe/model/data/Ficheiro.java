@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public final class LerFicheiro{
+public final class Ficheiro {
 
     //para leitura dos ficheiros
     private static String[] data;
@@ -30,7 +30,7 @@ public final class LerFicheiro{
     private static List<String> Tipos = Arrays.asList(tipos);
 
 
-    private LerFicheiro() {
+    private Ficheiro() {
     }
 
     public static boolean lerDoncentes(String fileName, GestaoProj gestaoProj) {
@@ -63,7 +63,7 @@ public final class LerFicheiro{
 
     public static boolean lerAlunos(String fileName, GestaoProj gestaoProj) {
         try {
-           // fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\alunos.csv";
+            fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\ alunosteste.csv";
             f = new File(fileName);
             //if(!f.exists())
                // System.out.println();
@@ -231,7 +231,7 @@ public final class LerFicheiro{
 
     public static void ExportarAlunos(String fileName,GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
-        f = new File("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\ "+ fileName + ".csv");
+        f = new File("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\"+ fileName + ".csv");
         try {
             fw = new FileWriter(f);
         } catch (IOException e) {
