@@ -165,6 +165,7 @@ public class PoeUI {
         }else {
             switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta", "Ler Ficheiro", "avançar", "Voltar")) {
                 case 1 -> {
+                    controladorDoPrograma.exportarCandidaturas(PAInput.readString("Nome do Ficheiro csv", true));
 
                 }
                 case 2 -> {

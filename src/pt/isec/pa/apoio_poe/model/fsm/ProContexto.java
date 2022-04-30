@@ -5,6 +5,7 @@ import pt.isec.pa.apoio_poe.model.data.Atribuicao;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -194,10 +195,16 @@ public class ProContexto {
     public void exportarAlunos(String fileName){
         dados.exportarAlunos(fileName);
     }
+
     public void exportarPropostas(String FileName){
         dados.exportarPropostas(FileName);
     }
+
     public void exportarDocentes(String Filename){
         dados.exportarDocentes(Filename);
+    }
+
+    public void exportarCandidaturas(String FileName){
+        dados.exportarCandidaturas(FileName);
     }
 }

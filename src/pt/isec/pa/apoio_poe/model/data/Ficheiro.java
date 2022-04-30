@@ -338,4 +338,28 @@ public final class Ficheiro {
         pw.flush();
         pw.close();
     }
+
+    public static void ExportarCandidaturas(String filename,GestaoProj gestaoProj){
+        f = new File("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\"+ filename + ".csv");
+
+        try {
+            fw = new FileWriter(f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        bw = new BufferedWriter(fw);
+        pw = new PrintWriter(bw);
+
+        for (Candidatura candidatura:gestaoProj.getCandidaturas()) {
+            pw.print(candidatura.getAluno().getNr_Aluno());
+            for(Proposta p:candidatura.getPropostas()) {
+                pw.print(',');
+                pw.print(p.getCod_ID());
+            }
+            pw.println();
+        }
+        pw.flush();
+        pw.close();
+    }
+
 }
