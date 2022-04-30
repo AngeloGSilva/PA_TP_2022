@@ -673,4 +673,13 @@ public class GestaoProj {
         }
         return false;
     }
+
+    public boolean VerificaAlunoAcederPropostaLeitura(long nr_aluno, String id_proposta) {
+        if (getAlunoPorNumero(nr_aluno).isAceder_a_Estagio()) {
+            return true;
+        }else if (id_proposta.equals("T2")){
+            return true;
+        }
+        return false;
+    }
 }

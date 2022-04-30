@@ -117,7 +117,7 @@ public final class LerFicheiro {
                                 } else if(data.length == 6 &&
                                         gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) &&
                                         !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
-                                        gestaoProj.VerificaAlunoAcederProposta(Long.parseLong(data[5]),data[1]) &&
+                                        gestaoProj.VerificaAlunoAcederPropostaLeitura(Long.parseLong(data[5]),data[0]) && //Verifica proposta durante a leitura
                                         ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
                                     gestaoProj.adicionarProposta(new T1(data[2], data[3], data[1] ,Long.parseLong(data[5])));
