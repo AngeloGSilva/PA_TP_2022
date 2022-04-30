@@ -144,6 +144,13 @@ public class PoeUI {
 
             }
             case 2 ->{
+                System.out.println("AUTOPROPOSTOS T3 e T2 com aluno");
+                System.out.println(controladorDoPrograma.getAlunosAutopropostosString());
+                System.out.println("COM CANDIDATURA");
+                System.out.println(controladorDoPrograma.getAlunosComCandidaturaString());
+                System.out.println("SEM CANDIDATURA");
+                System.out.println(controladorDoPrograma.getAlunosSemCandidaturaString());
+                System.out.println("TODAS AS CANDIDATURAS");
                 System.out.println(controladorDoPrograma.getCandidaturas());
                 /*
                 switch (PAInput.chooseOption("Dados a consultar","Alunos","Propostas", "Voltar")){

@@ -179,4 +179,15 @@ public class ProContexto {
     public String getPropostasNaoAtribuidas() {
         return dados.toStringPropostasSemAtribuicao();
     }
+
+    public String getAlunosAutopropostosString(){
+        return String.valueOf(dados.AlunosComAutoproposta());
+    }
+    public String getAlunosComCandidaturaString(){
+        return String.valueOf(dados.AlunosCandidaturaRegistada());
+    }
+
+    public String getAlunosSemCandidaturaString(){
+        return String.valueOf(dados.AlunosSemCandidaturaRegistada());
+    }
 }

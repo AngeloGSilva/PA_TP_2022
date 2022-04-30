@@ -100,6 +100,48 @@ public class GestaoProj {
         return PreenchePropostasDisponiveis().toString();
     }
 
+    //Devolver um to.string()
+    //Alunos com autoproposta e Alunos com proposta de docente associada
+    public HashSet<Aluno> AlunosComAutoproposta(){
+        HashSet<Aluno> alunosCA= new HashSet<>();
+        for(Aluno a:alunos) {
+            if(get_codigoAluno(a.getNr_Aluno())){
+                alunosCA.add(a);
+            }
+        }
+        return alunosCA;
+    }
+
+
+    //Alunos com candidatura registada
+    public HashSet<Aluno> AlunosCandidaturaRegistada(){
+        HashSet<Aluno> alunosD= new HashSet<>();
+        for(Aluno a:alunos) {
+            for (Candidatura ca : candidaturas)
+                if (a.getNr_Aluno() == ca.getAluno().getNr_Aluno())
+                    alunosD.add(a);
+        }
+        return alunosD;
+    }
+
+    //Alunos sem candidatura registada
+    public HashSet<Aluno> AlunosSemCandidaturaRegistada(){
+        boolean existe = true;
+        HashSet<Aluno> alunosSR= new HashSet<>();
+        for(Aluno a:alunos) {
+            existe = true;
+            for (Candidatura ca : candidaturas) {
+                if (a.getNr_Aluno() == ca.getAluno().getNr_Aluno()){
+                    existe=false;
+                }
+            }
+            if(existe) {
+                alunosSR.add(a);
+            }
+        }
+        return alunosSR;
+    }
+
     //tamanho dos arrays
     public int getNrPropostas(String ramo){
         int cont=0;
