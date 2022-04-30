@@ -497,8 +497,11 @@ public class GestaoProj {
     public void atribuiPropostasDocentes(){
         for (Candidatura c: candidaturas) {
             for (Proposta p: c.getPropostas()) {
-                if(p.getClass().getSimpleName().equals("T2") && p.getCodigo_Aluno() != null && p.getNomeDocente() != null){
-                    atribuicoes.add(new Atribuicao(c.getAluno(),getDocentePorEmailObjeto(p.getNomeDocente()),p));
+                if(p.getClass().getSimpleName().equals("T2") &&
+                        p.getCodigo_Aluno() != null &&
+                        VerificaAlunoAcederProposta(p.getCodigo_Aluno(),p.getCod_ID()) &&
+                        p.getEmail_Docente() != null){
+                    atribuicoes.add(new Atribuicao(c.getAluno(),getDocentePorEmailObjeto(p.getEmail_Docente()),p));
                 }
             }
         }
@@ -543,7 +546,7 @@ public class GestaoProj {
                             }
                         }
                     if (!propostaTaken) {
-                        atribuicoes.add(new Atribuicao(aluno,getDocentePorEmailObjeto(proposta.getNomeDocente()),proposta));
+                        atribuicoes.add(new Atribuicao(aluno,getDocentePorEmailObjeto(proposta.getEmail_Docente()),proposta));
                         System.out.println(aluno);
                         System.out.println(proposta);
                         System.out.println(atribuicoes.toString());
@@ -581,7 +584,7 @@ public class GestaoProj {
                     if (encontrou) {
                         return conflito;
                     }else
-                        atribuicoes.add(new Atribuicao(c1.getAluno(),getDocentePorEmailObjeto(p1.getNomeDocente()),p1));
+                        atribuicoes.add(new Atribuicao(c1.getAluno(),getDocentePorEmailObjeto(p1.getEmail_Docente()),p1));
                 }
             }
         }
@@ -598,7 +601,7 @@ public class GestaoProj {
     }
 
     public void atribuiPropostaAluno(String escolhido, String id_proposta) {
-        atribuicoes.add(new Atribuicao(getAlunoPorNumero(Long.parseLong(escolhido)),getDocentePorEmailObjeto(getPropostaPorId(id_proposta).getNomeDocente()),getPropostaPorId(id_proposta)));
+        atribuicoes.add(new Atribuicao(getAlunoPorNumero(Long.parseLong(escolhido)),getDocentePorEmailObjeto(getPropostaPorId(id_proposta).getEmail_Docente()),getPropostaPorId(id_proposta)));
     }
 
     public Docente getDocenteContadorMenor(){
@@ -644,9 +647,10 @@ public class GestaoProj {
     public boolean atribuirManualmenteAluno(long id_aluno, String proposta){
         if (VerificaAlunoExiste(id_aluno) &&
                 VerificaIdProposta(proposta) &&
+                VerificaAlunoAcederProposta(id_aluno,proposta) &&
                 !verificaPropostaAtribuida(getPropostaPorId(proposta)) &&
                 !verificaCandidaturaAtribuida(getAlunoPorNumero(id_aluno))){
-            atribuicoes.add(new Atribuicao(getAlunoPorNumero(id_aluno),getDocentePorEmailObjeto(getPropostaPorId(proposta).getNomeDocente()),getPropostaPorId(proposta)));
+            atribuicoes.add(new Atribuicao(getAlunoPorNumero(id_aluno),getDocentePorEmailObjeto(getPropostaPorId(proposta).getEmail_Docente()),getPropostaPorId(proposta)));
         }
         return false;
     }
@@ -658,5 +662,14 @@ public class GestaoProj {
             }
         }
         return null;
+    }
+
+    public boolean VerificaAlunoAcederProposta(long nr_aluno, String id_proposta) {
+        if (getAlunoPorNumero(nr_aluno).isAceder_a_Estagio()) {
+            return true;
+        }else if (getPropostaPorId(id_proposta).getClass().getSimpleName().equals("T2")){
+            return true;
+        }
+        return false;
     }
 }

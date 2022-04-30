@@ -131,7 +131,8 @@ public class PoeUI {
                     String id_Proposta = PAInput.readString("Escolha uma proposta pelo id", true);
                     if (controladorDoPrograma.atribuirManualmenteAluno(Long.parseLong(nr_Aluno), id_Proposta)) {
                         System.out.println("Funcionou!!!!!!!!!!!!!!"); //trocar pela ultima atribuicao feita para mostrar operacao realizada
-                    }
+                    }else
+                        System.out.println("Algo Correu mal.. verifica se aluno pode acerder a estagios ou a projetos");
                 }
             }
         }else{

@@ -117,6 +117,7 @@ public final class LerFicheiro {
                                 } else if(data.length == 6 &&
                                         gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) &&
                                         !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
+                                        gestaoProj.VerificaAlunoAcederProposta(Long.parseLong(data[5]),data[1]) &&
                                         ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
                                     gestaoProj.adicionarProposta(new T1(data[2], data[3], data[1] ,Long.parseLong(data[5])));
@@ -179,7 +180,7 @@ public final class LerFicheiro {
                 fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
             }
         }
-        ArrayList<Proposta> propostas = new ArrayList<>();
+        ArrayList<Proposta> propostasPorAluno = new ArrayList<>();
         try {
             f = new File(fileName);
             fileReader = new FileReader(f);
@@ -193,15 +194,16 @@ public final class LerFicheiro {
                 { //data[1].contains("P[0-9]{3}")
                     for(int i = 1;i<data.length;i++){
                         if(gestaoProj.VerificaIdProposta(data[i]) &&
+                                gestaoProj.VerificaAlunoAcederProposta(Long.parseLong(data[0]),data[i]) &&
                                 gestaoProj.verificaPropostaAssociado(data[i])){ //
-                            propostas.add(gestaoProj.getPropostaPorId(data[i]));
+                            propostasPorAluno.add(gestaoProj.getPropostaPorId(data[i]));
                         }else {
                             gestaoProj.setErros("[Erro] no seguinte Proposta"+ data[i] +"do aluno" + data[0] +  "\n");
                         }
                     }//se tem pelo menos 1 proposta
-                    if(!propostas.isEmpty()) {
-                        gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[0])), propostas));
-                        propostas.clear();
+                    if(!propostasPorAluno.isEmpty()) {
+                        gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[0])), propostasPorAluno));
+                        propostasPorAluno.clear();
                     }
                 }else{
                     //metodo para gravar o erro e enviar para UI e informar o utilizador
@@ -222,5 +224,4 @@ public final class LerFicheiro {
         }
         return true;
     }
-
 }
