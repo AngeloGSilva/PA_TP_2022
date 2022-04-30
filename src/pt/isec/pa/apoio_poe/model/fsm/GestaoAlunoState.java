@@ -65,7 +65,7 @@ public class GestaoAlunoState extends IStateAdaptar {
     }
 
     @Override
-    public boolean avancar(boolean guardado, int op) {
+    public boolean avancar(boolean guardado) {
         if(guardado && dados.CondicaoAvancar()){
             dados.setFase_Fechada_Config(true);
             System.out.println("Fase fechada\n");

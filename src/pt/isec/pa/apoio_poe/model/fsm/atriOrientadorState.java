@@ -16,7 +16,7 @@ public class atriOrientadorState extends IStateAdaptar {
     }
 
     @Override
-    public boolean avancar(boolean guardado, int op) {
+    public boolean avancar(boolean guardado) {
         if(guardado){
             dados.setFase_Fechada_atriOrientador(guardado);
             alteraState(new ConsultaState(dados, contexto));

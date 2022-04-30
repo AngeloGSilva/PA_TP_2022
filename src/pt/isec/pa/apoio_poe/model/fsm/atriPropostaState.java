@@ -15,12 +15,16 @@ public class atriPropostaState extends IStateAdaptar {
     }
 
     @Override
-    public boolean avancar(boolean guardado, int op) {
-        if(guardado){
-            dados.setFase_Fechada_atriProposta(guardado);
-            alteraState(new atriOrientadorState(dados, contexto));
-        }else
-            alteraState(new atriOrientadorState(dados, contexto));
+    public boolean avancar(boolean guardado) {
+        if (dados.AlunoCandidaturaFoiAtribuido()){
+            if(guardado){
+                dados.setFase_Fechada_atriProposta(guardado);
+                alteraState(new atriOrientadorState(dados, contexto));
+            }else
+                alteraState(new atriOrientadorState(dados, contexto));
+            return false;
+        }
+        alteraState(new atriOrientadorState(dados,contexto));
         return false;
     }
 

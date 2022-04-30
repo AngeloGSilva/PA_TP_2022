@@ -41,13 +41,11 @@ public class PoeUI {
     }
 
     private void atrOrientadorUI() {
-        System.out.println("Gestão de candidatura:\n");
-        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar","Atribuir docentes automaticos","Consulta", "Atribuir docentes Manualmente")) {
+        System.out.println("Atribuir Orientador:\n");
+        switch (PAInput.chooseOption("Opções:", "Avancar(Apos avancar nao sera possivel voltar atras!!!!)", "Voltar","Atribuir docentes automaticos","Consulta", "Atribuir docentes Manualmente")) {
             case 1 -> {
-                switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
-                    case 1 -> controladorDoPrograma.avancar(true, 0);
-                    case 2 -> controladorDoPrograma.avancar(false, 0);
-                }
+                System.out.println("Apos avancar nao sera possivel voltar atras!!!!");
+                controladorDoPrograma.avancar(true);
             }
             case 2 ->{
                 controladorDoPrograma.voltar(controladorDoPrograma.getFase_Orientador());
@@ -72,86 +70,107 @@ public class PoeUI {
 
     private void atrPropostaUI() {
         int op;
-        System.out.println("Gestão de candidatura:\n");
-        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar","Atribuir automatico Autopropostos e docentes com aluno","atribuir automatico","consulta", "atribuir alunos manualmente")) {
-            case 1 -> {
-                switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
-                    case 1 -> controladorDoPrograma.avancar(true, 0);
-                    case 2 -> controladorDoPrograma.avancar(false, 0);
-                }
-            }
-            case 2 -> {
-                controladorDoPrograma.voltar(controladorDoPrograma.getFase_Proposta());
-            }
-            case 3->{
-                controladorDoPrograma.atribuiAutopropostos();
-                controladorDoPrograma.atribuiPropostasDocentes();
-            }
-            case 4->{
-                ArrayList<String> conflito = new ArrayList<>();
-                String escolhido;
-                while(conflito != null){
-                    conflito.clear();
-                    conflito = controladorDoPrograma.atribuiAutomaticamente();
-                    if (conflito != null) {
-                        do {
-                            for (String x: conflito) {
-                                if (x.length() != 4){
-                                    System.out.println("Aluno que esta em conflito: " + x);
-                                }
-                            }
-                            op = PAInput.readInt("Pretende ver as informações de que aluno?:(Introduza o numero de aluno .. -1 para sair... -5 para decidir)" + conflito);
-                            for(int i=0;i<conflito.size();i++){
-                                if(conflito.get(i).equals(op)){
-                                    System.out.println(controladorDoPrograma.getCandidaturaPorNRAluno(String.valueOf(op)));
-                                }
-                            }
-                            if(op == -5){
-                                escolhido = PAInput.readString("Qual deve ficar com o estagio?",true);
-                                for(int i=0;i<conflito.size();i++){
-                                    if(conflito.get(i).equals(escolhido)){
-                                        controladorDoPrograma.atribuiAlunoAProposta(escolhido, conflito.get(1));
-                                        break;
-                                    }
-                                }
-                                op= -1;
-                            }
-                        }while(op!=-1);
+        System.out.println("Atribuicao de Propostas:\n");
+        if (!controladorDoPrograma.getFase_Proposta()) {
+            switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar", "Atribuir automatico Autopropostos e docentes com aluno", "atribuir automatico", "consulta", "atribuir alunos manualmente")) {
+                case 1 -> {
+                    switch (PAInput.chooseOption("Pretende Fechar a fase?", "Sim", "Nao")) {
+                        case 1 -> controladorDoPrograma.avancar(true);
+                        case 2 -> controladorDoPrograma.avancar(false);
                     }
                 }
-                System.out.println(conflito);
-                controladorDoPrograma.atribuirSemCandidatura();
-            }
-            case 5->{
-                System.out.println(controladorDoPrograma.getAtribuicoesPropostas());
-            }
-            case 6->{
-                System.out.println(controladorDoPrograma.getAlunosSemAtribuicao());
-                System.out.println(controladorDoPrograma.getPropostasNaoAtribuidas());
-                String nr_Aluno = PAInput.readString("Escolha um aluno pelo numero",true);
-                String id_Proposta = PAInput.readString("Escolha uma proposta pelo id",true);
-                if (controladorDoPrograma.atribuirManualmenteAluno(Long.parseLong(nr_Aluno),id_Proposta)){
-                    System.out.println("Funcionou!!!!!!!!!!!!!!"); //trocar pela ultima atribuicao feita para mostrar operacao realizada
+                case 2 -> {
+                    controladorDoPrograma.voltar(controladorDoPrograma.getFase_Proposta());
                 }
+                case 3 -> {
+                    controladorDoPrograma.atribuiAutopropostos();
+                    controladorDoPrograma.atribuiPropostasDocentes();
+                }
+                case 4 -> {
+                    ArrayList<String> conflito = new ArrayList<>();
+                    String escolhido;
+                    while (conflito != null) {
+                        conflito.clear();
+                        conflito = controladorDoPrograma.atribuiAutomaticamente();
+                        if (conflito != null) {
+                            do {
+                                for (String x : conflito) {
+                                    if (x.length() != 4) {
+                                        System.out.println("Aluno que esta em conflito: " + x);
+                                    }
+                                }
+                                op = PAInput.readInt("Pretende ver as informações de que aluno?:(Introduza o numero de aluno .. -1 para sair... -5 para decidir)" + conflito);
+                                for (int i = 0; i < conflito.size(); i++) {
+                                    if (conflito.get(i).equals(op)) {
+                                        System.out.println(controladorDoPrograma.getCandidaturaPorNRAluno(String.valueOf(op)));
+                                    }
+                                }
+                                if (op == -5) {
+                                    escolhido = PAInput.readString("Qual deve ficar com o estagio?", true);
+                                    for (int i = 0; i < conflito.size(); i++) {
+                                        if (conflito.get(i).equals(escolhido)) {
+                                            controladorDoPrograma.atribuiAlunoAProposta(escolhido, conflito.get(1));
+                                            break;
+                                        }
+                                    }
+                                    op = -1;
+                                }
+                            } while (op != -1);
+                        }
+                    }
+                    System.out.println(conflito);
+                    controladorDoPrograma.atribuirSemCandidatura();
+                }
+                case 5 -> {
+                    System.out.println(controladorDoPrograma.getAtribuicoesPropostas());
+                }
+                case 6 -> {
+                    System.out.println(controladorDoPrograma.getAlunosSemAtribuicao());
+                    System.out.println(controladorDoPrograma.getPropostasNaoAtribuidas());
+                    String nr_Aluno = PAInput.readString("Escolha um aluno pelo numero", true);
+                    String id_Proposta = PAInput.readString("Escolha uma proposta pelo id", true);
+                    if (controladorDoPrograma.atribuirManualmenteAluno(Long.parseLong(nr_Aluno), id_Proposta)) {
+                        System.out.println("Funcionou!!!!!!!!!!!!!!"); //trocar pela ultima atribuicao feita para mostrar operacao realizada
+                    }
+                }
+            }
+        }else{
+            switch (PAInput.chooseOption("Consulta","Todos","avancar")){
+                case 1 -> {
+                    System.out.println(controladorDoPrograma.getAlunos());
+                    System.out.println(controladorDoPrograma.getPropostas());
+                    System.out.println(controladorDoPrograma.getDocentes());
+                }
+                case 2 -> controladorDoPrograma.avancar(controladorDoPrograma.getFase_gestao());
             }
         }
     }
 
     private void opCandidaturaUI() {
-        System.out.println("Gestão de candidatura:\n");
-        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta", "Ler Ficheiro" , "Eliminação","avançar","Voltar")) {
-            case 1 ->{
-
+        System.out.println("Gestão de Candidatura:\n");
+        if (controladorDoPrograma.getFase_Candidatura()){
+            switch (PAInput.chooseOption("Consulta","Todos","avancar")){
+                case 1 -> {
+                    System.out.println(controladorDoPrograma.getAlunos());
+                    System.out.println(controladorDoPrograma.getPropostas());
+                    System.out.println(controladorDoPrograma.getDocentes());
+                }
+                case 2 -> controladorDoPrograma.avancar(controladorDoPrograma.getFase_gestao());
             }
-            case 2 ->{
-                System.out.println("AUTOPROPOSTOS T3 e T2 com aluno");
-                System.out.println(controladorDoPrograma.getAlunosAutopropostosString());
-                System.out.println("COM CANDIDATURA");
-                System.out.println(controladorDoPrograma.getAlunosComCandidaturaString());
-                System.out.println("SEM CANDIDATURA");
-                System.out.println(controladorDoPrograma.getAlunosSemCandidaturaString());
-                System.out.println("TODAS AS CANDIDATURAS");
-                System.out.println(controladorDoPrograma.getCandidaturas());
+        }else {
+            switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta", "Ler Ficheiro", "avançar", "Voltar")) {
+                case 1 -> {
+
+                }
+                case 2 -> {
+                    System.out.println("AUTOPROPOSTOS T3 e T2 com aluno");
+                    System.out.println(controladorDoPrograma.getAlunosAutopropostosString());
+                    System.out.println("COM CANDIDATURA");
+                    System.out.println(controladorDoPrograma.getAlunosComCandidaturaString());
+                    System.out.println("SEM CANDIDATURA");
+                    System.out.println(controladorDoPrograma.getAlunosSemCandidaturaString());
+                    System.out.println("TODAS AS CANDIDATURAS");
+                    System.out.println(controladorDoPrograma.getCandidaturas());
                 /*
                 switch (PAInput.chooseOption("Dados a consultar","Alunos","Propostas", "Voltar")){
                     case 1-> {
@@ -196,31 +215,29 @@ public class PoeUI {
                 }
             break;
             }*/
-            }
-            case 3 ->{
-                controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true));
-
-                //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
-                String errorDisplay = controladorDoPrograma.getErros().toString();
-                //Retirar os [] do print
-                errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
-                System.out.println(errorDisplay);
-                //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
-                controladorDoPrograma.limparErros();
-            }
-            case 4 -> {
-                switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
-                    case 1 -> controladorDoPrograma.avancar(true, 0);
-                    case 2 -> controladorDoPrograma.avancar(false, 0);
                 }
+                case 3 -> {
+                    controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true));
+
+                    //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
+                    String errorDisplay = controladorDoPrograma.getErros().toString();
+                    //Retirar os [] do print
+                    errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
+                    System.out.println(errorDisplay);
+                    //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
+                    controladorDoPrograma.limparErros();
+                }
+                case 4 -> {
+                    switch (PAInput.chooseOption("Pretende Fechar a fase?", "Sim", "Nao")) {
+                        case 1 -> controladorDoPrograma.avancar(true);
+                        case 2 -> controladorDoPrograma.avancar(false);
+                    }
+                }
+                case 5 -> {
+                    controladorDoPrograma.voltar(true);
+                }
+                //default -> acabou = true;
             }
-            case 5 -> {
-                controladorDoPrograma.avancar(true,0);
-            }
-            case 6->{
-                controladorDoPrograma.voltar(true);
-            }
-            //default -> acabou = true;
         }
     }
 
@@ -266,8 +283,8 @@ public class PoeUI {
             case 4 -> controladorDoPrograma.voltar(false);
             case 5 ->{
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
-                    case 1 -> controladorDoPrograma.avancar(true, 0);
-                    case 2 -> controladorDoPrograma.avancar(false, 0);
+                    case 1 -> controladorDoPrograma.avancar(true);
+                    case 2 -> controladorDoPrograma.avancar(false);
                 }
             }
             case 6->{
@@ -281,7 +298,7 @@ public class PoeUI {
                 controladorDoPrograma.limparErros();
 
                 System.out.println("A passar de fase");
-                controladorDoPrograma.avancar(true,0);
+                controladorDoPrograma.avancar(true);
             }
         }
     }
@@ -321,8 +338,8 @@ public class PoeUI {
             }
             case 5 ->{
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
-                    case 1 -> controladorDoPrograma.avancar(true, 0);
-                    case 2 -> controladorDoPrograma.avancar(false, 0);
+                    case 1 -> controladorDoPrograma.avancar(true);
+                    case 2 -> controladorDoPrograma.avancar(false);
                 }
             }
             case 6->{
@@ -336,7 +353,7 @@ public class PoeUI {
                 controladorDoPrograma.limparErros();
 
                 System.out.println("A passar de fase");
-                controladorDoPrograma.avancar(true,0);
+                controladorDoPrograma.avancar(true);
             }
         }
     }
@@ -382,8 +399,8 @@ public class PoeUI {
             }
             case 5 ->{
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
-                    case 1 -> controladorDoPrograma.avancar(true, 0);
-                    case 2 -> controladorDoPrograma.avancar(false, 0);
+                    case 1 -> controladorDoPrograma.avancar(true);
+                    case 2 -> controladorDoPrograma.avancar(false);
                 }
             }
             case 6->{
@@ -404,7 +421,7 @@ public class PoeUI {
                     controladorDoPrograma.limparErros();
 
                     System.out.println("A passar de fase");
-                    controladorDoPrograma.avancar(true, 0);
+                    controladorDoPrograma.avancar(true);
 
             }
         }
@@ -422,7 +439,7 @@ public class PoeUI {
                     System.out.println(controladorDoPrograma.getPropostas());
                     System.out.println(controladorDoPrograma.getDocentes());
                 }
-                case 2 -> controladorDoPrograma.avancar(controladorDoPrograma.getFase_gestao(),0);
+                case 2 -> controladorDoPrograma.avancar(controladorDoPrograma.getFase_gestao());
             }
     }
 

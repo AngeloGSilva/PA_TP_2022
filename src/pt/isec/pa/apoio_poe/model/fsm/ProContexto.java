@@ -34,8 +34,8 @@ public class ProContexto {
         return state.voltar(guardado);
     }
 
-    public boolean avancar(boolean guardado, int op) {
-        return state.avancar(guardado,op);
+    public boolean avancar(boolean guardado) {
+        return state.avancar(guardado);
     }
 
     public boolean lerFicheiro(String fileName){

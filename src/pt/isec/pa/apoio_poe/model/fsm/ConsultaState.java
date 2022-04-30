@@ -9,22 +9,6 @@ public class ConsultaState extends IStateAdaptar {
     }
 
     @Override
-    public boolean voltar(boolean guardado) {
-        alteraState(new atriOrientadorState(dados,contexto));
-        return false;
-    }
-
-    @Override
-    public boolean avancar(boolean guardado, int op) {
-        return false;
-    }
-
-    @Override
-    public boolean selecionar(int escolha) {
-        return false;
-    }
-
-    @Override
     public PoeState getState() {
         return PoeState.CONSULTA;
     }

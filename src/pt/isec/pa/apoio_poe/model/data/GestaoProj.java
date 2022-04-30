@@ -66,6 +66,23 @@ public class GestaoProj {
         this.fase_Fechada_Config = fase_Fechada_Config;
     }
 
+    public boolean AlunoCandidaturaFoiAtribuido(){
+        int contador = 0;
+        for (Candidatura candidatura: candidaturas) {
+            for (Atribuicao atribuicao: atribuicoes) {
+                if (candidatura.getAluno().getNr_Aluno() == atribuicao.getAluno().getNr_Aluno()){
+                    contador++;
+                }
+            }
+        }
+        if (candidaturas.size() == contador){
+            return true;
+        }
+        return false;
+    }
+
+
+
 
     //toStrings dos varios arrays.... (nao sei se é necessario)
     public String toStringAlunos() {

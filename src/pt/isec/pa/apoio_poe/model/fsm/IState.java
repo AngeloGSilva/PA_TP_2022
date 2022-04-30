@@ -7,7 +7,7 @@ import pt.isec.pa.apoio_poe.model.data.Proposta;
 public interface IState {
     //redo e undo?
     boolean voltar(boolean guardado);
-    boolean avancar(boolean guardado,int op);
+    boolean avancar(boolean guardado);
     boolean selecionar(int escolha);
     boolean adicionarAluno(long nr_Aluno,String nome_Aluno,String email_Aluno,String ramo_Aluno,double classificacao_Aluno,boolean aceder_a_Estagio);
     boolean removerAluno(long nr_aluno);

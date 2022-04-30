@@ -19,13 +19,13 @@ public class opCandidaturaState extends IStateAdaptar {
     }
 
     @Override
-    public boolean avancar(boolean guardado, int op) {
-        if(guardado){
-            dados.setFase_Fechada_Candidatura(guardado);
-            alteraState(new atriPropostaState(dados, contexto));
-        }else
-            alteraState(new atriPropostaState(dados, contexto));
-        return false;
+    public boolean avancar(boolean guardado) {
+            if(guardado){
+                dados.setFase_Fechada_Candidatura(guardado);
+                alteraState(new atriPropostaState(dados, contexto));
+            }else
+                alteraState(new atriPropostaState(dados, contexto));
+            return false;
     }
 
     @Override

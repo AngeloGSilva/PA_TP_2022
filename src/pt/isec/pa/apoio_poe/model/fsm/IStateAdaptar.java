@@ -24,7 +24,7 @@ abstract class IStateAdaptar implements IState{
     }
 
     @Override
-    public boolean avancar(boolean guardado, int op) {
+    public boolean avancar(boolean guardado) {
         return false;
     }
 
