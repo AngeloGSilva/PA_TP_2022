@@ -571,50 +571,59 @@ public class GestaoProj {
         }
     }
 
-    public ArrayList<Aluno> ComparaClassificacoes(ArrayList<Aluno> alunosconflito){
-        Long Alunomaisalto = alunosconflito.get(0).getNr_Aluno();
-        ArrayList<Aluno> conflitosnew = new ArrayList<>();
-        for(int i=1;i<alunosconflito.size();i++){
-            if(alunosconflito.get(i).getClassificacao_Aluno() > alunosconflito.get(i-1).getClassificacao_Aluno()){
-                Alunomaisalto = alunosconflito.get(i).getNr_Aluno();
+    public boolean ComparaClassificacoes(ArrayList<String> alunosconflito, Proposta proposta){
+        double maiorClassificacao = 0;
+        long nrAluno=0;
+        int contador=0;
+        for (String aluno: alunosconflito) {
+            if (maiorClassificacao <= getAlunoPorNumero(Long.parseLong(aluno)).getClassificacao_Aluno()){
+                maiorClassificacao = getAlunoPorNumero(Long.parseLong(aluno)).getClassificacao_Aluno();
+                nrAluno = Long.parseLong(aluno);
             }
         }
-        conflitosnew.add(getAlunoPorNumero(Alunomaisalto));
-        //verificar se alguem tem nota superior igual
-        for(int i=0;i<alunosconflito.size();i++){
-                if(getAlunoPorNumero(Alunomaisalto).getClassificacao_Aluno() == alunosconflito.get(i).getClassificacao_Aluno() &&
-                        !Alunomaisalto.equals(alunosconflito.get(i).getNr_Aluno())){
-                    conflitosnew.add(alunosconflito.get(i));
-                }
+        for (String aluno: alunosconflito) {
+            if (maiorClassificacao == getAlunoPorNumero(Long.parseLong(aluno)).getClassificacao_Aluno()){
+                contador++;
+            }
         }
-        return conflitosnew;
-    }
-
-    public boolean VerificaConflitos(ArrayList<Aluno> alunosconflito,String idProposta){
-        if(alunosconflito.size() == 1){
-            return true;
+        if (contador>1){
+            //perguntar ao gajo
+            System.out.println("Repetidos seu crlh");
+        }else{
+            atribuicoes.add(new Atribuicao(getAlunoPorNumero(nrAluno),getDocentePorEmailObjeto(proposta.getEmail_Docente()),proposta));
+            System.out.println("Atribuiu a este cabecudo"+ nrAluno);
         }
-
+        return false;
     }
 
     public ArrayList<String> atribuiAutomaticamente() {
-        ArrayList<Aluno> alunosconflito = new ArrayList<>();
-        for(Candidatura c:candidaturas) {
-            alunosconflito.clear();
-            alunosconflito.add(c.getAluno());
-            for (Proposta p : c.getPropostas()) {
-                if (!verificaCandidaturaAtribuida(c.getAluno()) &&
-                        !verificaPropostaAtribuida(p)){
-                    for(Candidatura c2 : candidaturas){
-                        if (!verificaCandidaturaAtribuida(c2.getAluno()) && p.equals(c2.getPropostas().get(0)) && !c.getAluno().equals(c2.getAluno())){
-                            alunosconflito.add(c2.getAluno());
+        ArrayList<String> conflitos = new ArrayList<>();
+        boolean repetido = false;
+        for (Candidatura c: candidaturas) {
+            if (!verificaCandidaturaAtribuida(c.getAluno())) {
+                conflitos.add(String.valueOf(c.getAluno().getNr_Aluno()));
+                for (Proposta p : c.getPropostas()) {
+                    if (!verificaPropostaAtribuida(p) && !verificaCandidaturaAtribuida(c.getAluno())) {
+                        for (Candidatura c2 : candidaturas) {
+                            if (!verificaCandidaturaAtribuida(c2.getAluno()) && !c.getAluno().equals(c2.getAluno()) && p.equals(c2.getPropostas().get(0)) && c2.getAluno().getClassificacao_Aluno() >= c.getAluno().getClassificacao_Aluno()) {
+                                repetido = true;
+                                conflitos.add(String.valueOf(c2.getAluno().getNr_Aluno()));
+                            }
+                        }
+                        if (!repetido) {
+                            atribuicoes.add(new Atribuicao(c.getAluno(), getDocentePorEmailObjeto(p.getEmail_Docente()), p));
+                            System.out.println("Atribuiu a este cabecudo "+ c.getAluno().getNr_Aluno());
+                            conflitos.clear();
+                        } else {
+                            ComparaClassificacoes(conflitos, p);
+                            conflitos.clear();
+                            repetido = false;
                         }
                     }
                 }
             }
-            ComparaClassificacoes(alunosconflito);
         }
-
+        return null;
     }
 
     public String getCandidaturaPorNrAluno(Long nraluno) {
