@@ -604,8 +604,8 @@ public class GestaoProj {
                 conflitos.add(String.valueOf(c.getAluno().getNr_Aluno()));
                 for (Proposta p : c.getPropostas()) {
                     if (!verificaPropostaAtribuida(p) && !verificaCandidaturaAtribuida(c.getAluno())) {
-                        for (Candidatura c2 : candidaturas) {
-                            if (!verificaCandidaturaAtribuida(c2.getAluno()) && !c.getAluno().equals(c2.getAluno()) && p.equals(c2.getPropostas().get(0)) && c2.getAluno().getClassificacao_Aluno() >= c.getAluno().getClassificacao_Aluno()) {
+                        for (Candidatura c2 : candidaturas) { //comparar com a segunda dos outros se perder
+                            if (!verificaCandidaturaAtribuida(c2.getAluno()) && !(c.getAluno().getNr_Aluno() == c2.getAluno().getNr_Aluno()) && p.equals(c2.getPropostas().get(0)) && c2.getAluno().getClassificacao_Aluno() >= c.getAluno().getClassificacao_Aluno()) {
                                 repetido = true;
                                 conflitos.add(String.valueOf(c2.getAluno().getNr_Aluno()));
                             }

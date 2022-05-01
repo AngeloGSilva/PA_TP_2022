@@ -74,7 +74,7 @@ public class PoeUI {
         int op;
         System.out.println("Atribuicao de Propostas:\n");
         if (!controladorDoPrograma.getFase_Proposta()) {
-            switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar", "Atribuir automatico Autopropostos e docentes com aluno", "atribuir automatico", "consulta", "atribuir alunos manualmente")) {
+            switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar", "Atribuir automatico Autopropostos e docentes com aluno", "atribuir automatico", "consulta", "atribuir alunos manualmente","Candidaturas")) {
                 case 1 -> {
                     switch (PAInput.chooseOption("Pretende Fechar a fase?", "Sim", "Nao")) {
                         case 1 -> controladorDoPrograma.avancar(true);
@@ -104,6 +104,10 @@ public class PoeUI {
                         System.out.println("Funcionou!!!!!!!!!!!!!!"); //trocar pela ultima atribuicao feita para mostrar operacao realizada
                     }else
                         System.out.println("Algo Correu mal.. verifica se aluno pode acerder a estagios ou a projetos");
+                }
+                case 7 ->{
+                    System.out.println("Candidaturas");
+                    System.out.println(controladorDoPrograma.getCandidaturas());
                 }
             }
         }else{
