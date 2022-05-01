@@ -136,7 +136,7 @@ public class PoeUI {
                 case 3 -> controladorDoPrograma.voltar(true);
             }
         }else {
-            switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta", "Ler Ficheiro", "avançar", "Voltar")) {
+            switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta", "Ler Ficheiro", "avançar","Load","Save", "Voltar")) {
                 case 1 -> {
                     controladorDoPrograma.exportarCandidaturas(PAInput.readString("Nome do Ficheiro csv", true));
 
@@ -332,7 +332,7 @@ public class PoeUI {
 
     private void gestaoAlunosUI() {
         System.out.println("Gestão de alunos:\n");
-        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","ler de ficheiro","voltar","Avancar","debug")) {
+        switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta","Ler de ficheiro","voltar","Avancar","debug")) {
             case 1 -> {
                 controladorDoPrograma.exportarAlunos(PAInput.readString("Nome do ficheiro para exportar",true));
 /*                String nome_Aluno = PAInput.readString("Nome do aluno",false);
@@ -401,22 +401,32 @@ public class PoeUI {
     private void configuracaoUI() {
         System.out.println("---Inicial---\n");
         System.out.println("Bem Vindo\n");
-        if(!controladorDoPrograma.getFase_gestao()) {
-            controladorDoPrograma.selecionar(PAInput.chooseOption("Gerir:", "Gestao de Alunos", "Gestao de Docentes", "Gestao de Projetos", "Load","Save","Sair"));
-        }else
-            switch (PAInput.chooseOption("Consulta","Todos","avancar")){
+        if (!controladorDoPrograma.getFase_gestao()) {
+           switch(PAInput.chooseOption("Gerir:", "Gestao de Alunos", "Gestao de Docentes", "Gestao de Projetos","Load","Save", "Sair")){
+               case 1->{
+                   controladorDoPrograma.selecionar(1);
+               }
+               case 2->{
+                   controladorDoPrograma.selecionar(2);
+               }
+               case 3->{
+                   controladorDoPrograma.selecionar(3);
+               }
+               case 4->{
+                   controladorDoPrograma.load();
+               }
+               case 5->{
+                   controladorDoPrograma.save();
+               }
+           }
+        } else
+            switch (PAInput.chooseOption("Consulta", "Todos", "avancar")) {
                 case 1 -> {
                     System.out.println(controladorDoPrograma.getAlunos());
                     System.out.println(controladorDoPrograma.getPropostas());
                     System.out.println(controladorDoPrograma.getDocentes());
                 }
                 case 2 -> controladorDoPrograma.avancar(controladorDoPrograma.getFase_gestao());
-                case 3 ->{
-                    controladorDoPrograma.load();
-                }
-                case 4 ->{
-                    controladorDoPrograma.save();
-                }
             }
     }
 

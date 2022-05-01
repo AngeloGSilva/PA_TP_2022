@@ -1,8 +1,9 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Docente {
+public class Docente implements Serializable {
     int contador = 0;
     String nome_Docente;
     String email_Docente;

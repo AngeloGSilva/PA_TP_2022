@@ -1,8 +1,9 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Atribuicao {
+public class Atribuicao implements Serializable {
     private static int counter_globalAtribuicao = 0;
 
     private static int getNewID() {

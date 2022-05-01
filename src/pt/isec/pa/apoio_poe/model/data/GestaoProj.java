@@ -4,11 +4,12 @@ import pt.isec.pa.apoio_poe.Utils.PAInput;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class GestaoProj {
+public class GestaoProj implements Serializable {
     //array de erros para utilizar no UI
     ArrayList<String> erros = new ArrayList<>();
 

@@ -1,8 +1,9 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Aluno {
+public class Aluno implements Serializable {
     private long nr_Aluno;
     private String nome_Aluno;
     private String email_Aluno;

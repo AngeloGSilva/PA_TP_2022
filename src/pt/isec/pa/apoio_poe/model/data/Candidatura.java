@@ -1,11 +1,12 @@
 package pt.isec.pa.apoio_poe.model.data;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Candidatura {
+public class Candidatura implements Serializable {
     private static int counter_globalCandidatura = 0;
 
     private static int getNewID() {

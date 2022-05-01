@@ -1,8 +1,9 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Proposta {
+public class Proposta implements Serializable {
     String cod_ID = null;
     String titulo = null;
     Long codigo_Aluno = null;

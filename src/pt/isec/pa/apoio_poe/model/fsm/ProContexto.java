@@ -44,10 +44,10 @@ public class ProContexto {
     public void lerFicheiro(String fileName){
         state.lerFicheiro(fileName);
     }
-
+//State
     public void load() {
         try (ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream("Loadsave.bin"))) {
+                new FileInputStream("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\Loadsave.bin"))) {
             GestaoProj newapp = (GestaoProj) ois.readObject();
             dados = newapp;
         }
@@ -58,13 +58,14 @@ public class ProContexto {
 
     public void save() {
         try (ObjectOutputStream ous = new ObjectOutputStream(
-                new FileOutputStream("Loadsave.bin"))) {
+                new FileOutputStream("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\Loadsave.bin"))) {
             ous.writeObject(dados);
         }
         catch (Exception e){
             System.out.println("Erro!");
         }
     }
+
 
     public boolean lerFicheiroDebug(String fileName){
         return state.lerFicheiroDebug(fileName);

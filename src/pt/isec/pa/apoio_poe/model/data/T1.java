@@ -1,6 +1,8 @@
 package pt.isec.pa.apoio_poe.model.data;
 
-public class T1 extends Proposta {
+import java.io.Serializable;
+
+public class T1 extends Proposta implements Serializable {
     public T1(String ramo,String tit, String cod_id,String empresa) {
         super(cod_id,tit,null,null,ramo,empresa);
     }
