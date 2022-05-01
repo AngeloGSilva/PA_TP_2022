@@ -26,6 +26,10 @@ public class Docente {
         return papel_Docente;
     }
 
+    public void setPapel_Docente(boolean papel){ //true para orientador
+        this.papel_Docente = papel;
+    }
+
     public int getContador() {
         return contador;
     }
@@ -49,10 +53,18 @@ public class Docente {
 
     @Override
     public String toString() {
+        if(papel_Docente) {
+            return "\nDocente: " +
+                    " Nome do Docente: " + nome_Docente +
+                    " Email do Docente: " + email_Docente +
+                    " Papel do Docente: " + papel_Docente + "[Proponente de 1 projeto]" +
+                    "\n";
+        }else{
         return  "\nDocente: " +
                 " Nome do Docente: " + nome_Docente +
                 " Email do Docente: " + email_Docente +
-                " Papel do Docente: " + papel_Docente +
+                " Papel do Docente: " + papel_Docente + "[Não é Proponente de nenhum projeto]" +
                 "\n";
+    }
     }
 }

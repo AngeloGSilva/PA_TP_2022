@@ -169,27 +169,18 @@ public class PoeUI {
 
                 }
                 case 2 -> {
-                    System.out.println("AUTOPROPOSTOS T3 e T2 com aluno");
-                    System.out.println(controladorDoPrograma.getAlunosAutopropostosString());
-                    System.out.println("COM CANDIDATURA");
-                    System.out.println(controladorDoPrograma.getAlunosComCandidaturaString());
-                    System.out.println("SEM CANDIDATURA");
-                    System.out.println(controladorDoPrograma.getAlunosSemCandidaturaString());
-                    System.out.println("TODAS AS CANDIDATURAS");
-                    System.out.println(controladorDoPrograma.getCandidaturas());
-                /*
+
                 switch (PAInput.chooseOption("Dados a consultar","Alunos","Propostas", "Voltar")){
                     case 1-> {
-                        switch (PAInput.chooseOption("Escolher Filtro para alunos","Com autoproposto","Candidatura Registada", "Sem candidatura Registada","Voltar")){
+                        switch (PAInput.chooseOption("Escolher Filtro para alunos","Com autoproposta","Candidatura Registada", "Sem candidatura Registada","Voltar")){
                         case 1 ->{
-                            System.out.println(controladorDoPrograma.getAlunosAutopropostos());
-                            break;
+                            System.out.println(controladorDoPrograma.getAlunosAutopropostosString());
                         }
                         case 2 ->{
-
+                            System.out.println(controladorDoPrograma.getAlunosComCandidaturaString());
                         }
                         case 3 ->{
-
+                            System.out.println(controladorDoPrograma.getAlunosSemCandidaturaString());
                         }
                         case 4 ->{
                             break;
@@ -220,8 +211,7 @@ public class PoeUI {
                     }
                 }
             break;
-            }*/
-                }
+            }
                 case 3 -> {
                     controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true));
 

@@ -9,4 +9,25 @@ public class T1 extends Proposta {
         super(cod_id,tit,codaluno,null,ramo,empresa);
     }
 
+    @Override
+    public String toString() {
+        if(codigo_Aluno != null){
+            return "T1" +
+                    " Codigo Id : " + cod_ID +
+                    " Titulo : " + titulo +
+                    " Empresa : " + empresa +
+                    " Ramo: " + ramo +
+                    " |Aluno associado| : " + codigo_Aluno +
+                    "\n";
+        }else{
+            return "T1" +
+                    " Codigo Id : " + cod_ID +
+                    " Titulo : " + titulo +
+                    " Empresa : " + empresa +
+                    " Ramo: " + ramo +
+                    " |Sem aluno associado| " +
+                    "\n";
+
+        }
+    }
 }

@@ -97,6 +97,19 @@ public class GestaoProj {
         return "Propostas:\n " + propostas;
     }
 
+    public String toStringAutopropostas(){
+        ArrayList<String> Autopropostos = new ArrayList<>();
+        String buffer;
+        Autopropostos.add("\n");
+        for(Proposta p : propostas){
+            if(p.getClass().getSimpleName().equals("T3")){
+                buffer = ("Proposta [" + p.getCod_ID() + "] apresentada pelo aluno " + p.getCodigo_Aluno() +"\n");
+                Autopropostos.add(buffer);
+            }
+        }
+        return String.valueOf(Autopropostos);
+    }
+
     public String toStringCandidaturas() {
         return "Candidaturas:\n" + candidaturas;
     }
@@ -257,7 +270,7 @@ public class GestaoProj {
     }
 
     //verifica se o email pertence a algum docente
-    public boolean getDocentePorEmail(String email) {
+    public boolean verificaEmailDocente(String email) {
         for (Docente d: docentes
         ) {
             if (d.getEmail_Docente().equals(email))
@@ -340,6 +353,7 @@ public class GestaoProj {
     public boolean adicionarCandidatura(Candidatura candidatura) {
         return candidaturas.add(candidatura);
     }
+
 
 
     //remover dos arrays
@@ -494,7 +508,7 @@ public class GestaoProj {
         }
     }
 
-    public void atribuiPropostasDocentes(){
+    public void atribuiPropostasDocentesCompletas(){
         for (Candidatura c: candidaturas) {
             for (Proposta p: c.getPropostas()) {
                 if(p.getClass().getSimpleName().equals("T2") &&
@@ -524,7 +538,6 @@ public class GestaoProj {
         }
         return false;
     }
-
 
     public void atribuirSemCandidatura(){
         boolean encontrou = false;
@@ -618,7 +631,6 @@ public class GestaoProj {
         return docenteMinimo;
     }
 
-
     public void atribuirDocentesauto() {
         Docente docente = null;
             for (Atribuicao atribuicao : atribuicoes) {
@@ -631,7 +643,7 @@ public class GestaoProj {
     }
 
     public boolean atribuirManualmenteDocente(String docente, int id_atribuicao){
-        if (getDocentePorEmail(docente)) {
+        if (verificaEmailDocente(docente)) {
             for (Atribuicao atribuicao : atribuicoes) {
                 if (atribuicao.getId() == id_atribuicao) {
                     if (atribuicao.getDocente() == null) {
@@ -698,4 +710,7 @@ public class GestaoProj {
     public void exportarCandidaturas(String filename){
         Ficheiro.ExportarCandidaturas(filename,this);
     }
+
+    //Dados Nas opcoes de Candidatura
+
 }

@@ -63,13 +63,25 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return "\nAluno: " +
+        if(aceder_a_Estagio){
+        return
                 " Numero de aluno: " + nr_Aluno +
                 " Nome do aluno: " + nome_Aluno +
                 " Email do aluno: " + email_Aluno +
                 " Ramo do aluno: " + ramo_Aluno +
-                " Classificação do aluno: " + classificacao_Aluno +
-                " Acesso a estagio: " + aceder_a_Estagio +
+                " Classificação do aluno[ 0.0 a 1.0]: " + classificacao_Aluno +
+                " Acesso a estagio: " + aceder_a_Estagio + "[Pode aceder a estagios e projetos]" +
                 "\n";
+    }else {
+        }
+        return
+                " Numero de aluno: " + nr_Aluno +
+                        " Nome do aluno: " + nome_Aluno +
+                        " Email do aluno: " + email_Aluno +
+                        " Ramo do aluno: " + ramo_Aluno +
+                        " Classificação do aluno[ 0.0 a 1.0]: " + classificacao_Aluno +
+                        " Acesso a estagio: " + aceder_a_Estagio + " [Apenas pode aceder a projetos] " +
+                        "\n";
     }
+
 }

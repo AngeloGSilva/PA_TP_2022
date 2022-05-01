@@ -1,11 +1,9 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
-import pt.isec.pa.apoio_poe.model.data.Atribuicao;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,7 +124,7 @@ public class ProContexto {
     }
 
     public void atribuiPropostasDocentes() {
-        dados.atribuiPropostasDocentes();
+        dados.atribuiPropostasDocentesCompletas();
     }
 
     public String getAtribuicoesPropostas() {
@@ -181,9 +179,14 @@ public class ProContexto {
         return dados.toStringPropostasSemAtribuicao();
     }
 
+    //public String getAlunosAutopropostosString(){
+        //return String.valueOf(dados.AlunosComAutoproposta());
+    //}
+
     public String getAlunosAutopropostosString(){
-        return String.valueOf(dados.AlunosComAutoproposta());
+        return dados.toStringAutopropostas();
     }
+
     public String getAlunosComCandidaturaString(){
         return String.valueOf(dados.AlunosCandidaturaRegistada());
     }
@@ -191,6 +194,7 @@ public class ProContexto {
     public String getAlunosSemCandidaturaString(){
         return String.valueOf(dados.AlunosSemCandidaturaRegistada());
     }
+
 
     public void exportarAlunos(String fileName){
         dados.exportarAlunos(fileName);
