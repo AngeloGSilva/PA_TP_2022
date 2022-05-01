@@ -402,7 +402,7 @@ public class PoeUI {
         System.out.println("---Inicial---\n");
         System.out.println("Bem Vindo\n");
         if(!controladorDoPrograma.getFase_gestao()) {
-            controladorDoPrograma.selecionar(PAInput.chooseOption("Gerir:", "Gestao de Alunos", "Gestao de Docentes", "Gestao de Projetos", "Sair"));
+            controladorDoPrograma.selecionar(PAInput.chooseOption("Gerir:", "Gestao de Alunos", "Gestao de Docentes", "Gestao de Projetos", "Load","Save","Sair"));
         }else
             switch (PAInput.chooseOption("Consulta","Todos","avancar")){
                 case 1 -> {
@@ -411,6 +411,12 @@ public class PoeUI {
                     System.out.println(controladorDoPrograma.getDocentes());
                 }
                 case 2 -> controladorDoPrograma.avancar(controladorDoPrograma.getFase_gestao());
+                case 3 ->{
+                    controladorDoPrograma.load();
+                }
+                case 4 ->{
+                    controladorDoPrograma.save();
+                }
             }
     }
 

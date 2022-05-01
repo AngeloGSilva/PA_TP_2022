@@ -4,6 +4,10 @@ import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +43,27 @@ public class ProContexto {
 
     public void lerFicheiro(String fileName){
         state.lerFicheiro(fileName);
+    }
+
+    public void load() {
+        try (ObjectInputStream ois = new ObjectInputStream(
+                new FileInputStream("Loadsave.bin"))) {
+            GestaoProj newapp = (GestaoProj) ois.readObject();
+            dados = newapp;
+        }
+        catch (Exception e){
+            System.out.println("Erro!");
+        }
+    }
+
+    public void save() {
+        try (ObjectOutputStream ous = new ObjectOutputStream(
+                new FileOutputStream("Loadsave.bin"))) {
+            ous.writeObject(dados);
+        }
+        catch (Exception e){
+            System.out.println("Erro!");
+        }
     }
 
     public boolean lerFicheiroDebug(String fileName){
@@ -211,4 +236,5 @@ public class ProContexto {
     public void exportarCandidaturas(String FileName){
         dados.exportarCandidaturas(FileName);
     }
+
 }

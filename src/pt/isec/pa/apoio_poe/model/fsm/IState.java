@@ -15,7 +15,6 @@ public interface IState {
     boolean adicionarProposta(Proposta proposta);
     void lerFicheiro(String fileName);
     boolean lerFicheiroDebug(String fileName);
-
-
     PoeState getState();
+
 }
