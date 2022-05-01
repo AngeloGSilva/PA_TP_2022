@@ -63,7 +63,7 @@ public final class Ficheiro {
 
     public static boolean lerAlunos(String fileName, GestaoProj gestaoProj) {
         try {
-            fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\ alunosteste.csv";
+            //fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\ alunosteste.csv";
             f = new File(fileName);
             //if(!f.exists())
                // System.out.println();
