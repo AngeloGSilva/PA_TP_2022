@@ -89,7 +89,19 @@ public class PoeUI {
                     controladorDoPrograma.atribuiPropostasDocentes();
                 }
                 case 4 -> {
-                    controladorDoPrograma.atribuiAutomaticamente();
+                    int op = 0;
+                    do {
+                        ArrayList<String> conflito = controladorDoPrograma.atribuiAutomaticamente();
+                        if (conflito != null) {
+                            for (int i = 0; i < conflito.size() - 1; i++) {
+                                System.out.println(controladorDoPrograma.getAlunoPorNr(conflito.get(i)));
+                            }
+                            System.out.println(controladorDoPrograma.getPropostaPorID(conflito.get(conflito.size() - 1)));
+                            controladorDoPrograma.atribuiAlunoAProposta(PAInput.readString("Escolhe o aluno para a proposta", true), conflito.get(conflito.size() - 1));
+                        }else{
+                            op = 1;
+                        }
+                    }while (op==0);
                     controladorDoPrograma.atribuirSemCandidatura();
                 }
                 case 5 -> {

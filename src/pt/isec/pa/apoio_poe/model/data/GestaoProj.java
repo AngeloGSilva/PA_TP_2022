@@ -565,9 +565,9 @@ public class GestaoProj implements Serializable {
                         }
                     if (!propostaTaken) {
                         atribuicoes.add(new Atribuicao(aluno,getDocentePorEmailObjeto(proposta.getEmail_Docente()),proposta));
-                        System.out.println(aluno);
-                        System.out.println(proposta);
-                        System.out.println(atribuicoes.toString());
+                        //System.out.println(aluno);
+                        //System.out.println(proposta);
+                        //System.out.println(atribuicoes.toString());
                         break;
                     }
                 }
@@ -576,7 +576,8 @@ public class GestaoProj implements Serializable {
         }
     }
 
-    public boolean ComparaClassificacoes(ArrayList<String> alunosconflito, Proposta proposta){
+    public ArrayList<String> ComparaClassificacoes(ArrayList<String> alunosconflito, Proposta proposta){
+        ArrayList<String> propostaAlunos = new ArrayList<>();
         double maiorClassificacao = 0;
         long nrAluno=0;
         int contador=0;
@@ -595,18 +596,22 @@ public class GestaoProj implements Serializable {
             for (String aluno : alunosconflito) {
                 if (getAlunoPorNumero(Long.parseLong(aluno)).getClassificacao_Aluno() == maiorClassificacao){
                     System.out.println(getAlunoPorNumero(Long.parseLong(aluno)).toString());
+                    propostaAlunos.add(aluno);
+
                 }
-                System.out.println("Proposta: " + proposta.getCod_ID());
+                //System.out.println("Proposta: " + proposta.getCod_ID());
             }
-            String alunoEscolhido = PAInput.readString("Aluno:", true);
+            propostaAlunos.add(proposta.getCod_ID());
+            return propostaAlunos;
+            /*String alunoEscolhido = PAInput.readString("Aluno:", true);
             atribuiPropostaAluno(alunoEscolhido,proposta.getCod_ID());
             //perguntar ao gajo
-            System.out.println("Repetidos seu crlh");
+            System.out.println("Repetidos seu crlh");*/
         }else{
             atribuicoes.add(new Atribuicao(getAlunoPorNumero(nrAluno),getDocentePorEmailObjeto(proposta.getEmail_Docente()),proposta));
-            System.out.println("Atribuiu a este cabecudo"+ nrAluno);
+            //System.out.println("Atribuiu a este cabecudo"+ nrAluno);
         }
-        return false;
+        return null;
     }
 
     public ArrayList<String> atribuiAutomaticamente() {
@@ -628,10 +633,13 @@ public class GestaoProj implements Serializable {
                         }
                         if (!repetido) {
                             atribuicoes.add(new Atribuicao(c.getAluno(), getDocentePorEmailObjeto(p.getEmail_Docente()), p));
-                            System.out.println("Atribuiu a este cabecudo "+ c.getAluno().getNr_Aluno());
+                            //System.out.println("Atribuiu a este cabecudo "+ c.getAluno().getNr_Aluno());
                             conflitos.clear();
                         } else {
-                            ComparaClassificacoes(conflitos, p);
+                            ArrayList<String> resultado = ComparaClassificacoes(conflitos, p);
+                            if (resultado != null){
+                                return resultado;
+                            }
                             conflitos.clear();
                             repetido = false;
                         }

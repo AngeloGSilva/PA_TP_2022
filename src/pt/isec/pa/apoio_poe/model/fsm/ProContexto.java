@@ -113,6 +113,10 @@ public class ProContexto {
         return dados.toStringCandidaturas();
     }
 
+    public String getPropostaPorID(String id){
+        return dados.getPropostaPorId(id).toString();
+    }
+
     public boolean getFase_gestao(){
         return dados.isFase_Fechada_Config();
     }
