@@ -24,7 +24,7 @@ public final class Ficheiro {
     //arrays para verificacoes que vao permitir usar o contains
     private static String[] ramos = {"DA", "SI", "RAS"};
     private static List<String> Ramos = Arrays.asList(ramos);
-    private static String[] curso = {"LEI", "LEI_PL"};
+    private static String[] curso = {"LEI", "LEI-PL"};
     private static List<String> Curso = Arrays.asList(curso);
     private static String[] tipos = {"T1", "T2", "T3"};
     private static List<String> Tipos = Arrays.asList(tipos);
@@ -78,8 +78,9 @@ public final class Ficheiro {
                         data[2].contains("@isec.pt") && //email valido
                         !gestaoProj.getAlunoPorEmail(data[2]) && //Verifica se email existe
                         !data[3].isEmpty() && //se nao esta vazio
+                        Curso.contains(data[3]) && //ver se o Lei esta correto
                         Ramos.contains(data[4]) && //ramo valido
-                        Double.parseDouble(data[5]) < 1 && //classificao menor q 1
+                        Double.parseDouble(data[5]) <= 1 && //classificao menor q 1
                         ("true".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT)) ||
                         "false".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT)))
                 ) {
