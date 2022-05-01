@@ -89,38 +89,7 @@ public class PoeUI {
                     controladorDoPrograma.atribuiPropostasDocentes();
                 }
                 case 4 -> {
-                    ArrayList<String> conflito = new ArrayList<>();
-                    String escolhido;
-                    while (conflito != null) {
-                        conflito.clear();
-                        conflito = controladorDoPrograma.atribuiAutomaticamente();
-                        if (conflito != null) {
-                            do {
-                                for (String x : conflito) {
-                                    if (x.length() != 4) {
-                                        System.out.println("Aluno que esta em conflito: " + x);
-                                    }
-                                }
-                                op = PAInput.readInt("Pretende ver as informações de que aluno?:(Introduza o numero de aluno .. -1 para sair... -5 para decidir)" + conflito);
-                                for (int i = 0; i < conflito.size(); i++) {
-                                    if (conflito.get(i).equals(op)) {
-                                        System.out.println(controladorDoPrograma.getCandidaturaPorNRAluno(String.valueOf(op)));
-                                    }
-                                }
-                                if (op == -5) {
-                                    escolhido = PAInput.readString("Qual deve ficar com o estagio?", true);
-                                    for (int i = 0; i < conflito.size(); i++) {
-                                        if (conflito.get(i).equals(escolhido)) {
-                                            controladorDoPrograma.atribuiAlunoAProposta(escolhido, conflito.get(1));
-                                            break;
-                                        }
-                                    }
-                                    op = -1;
-                                }
-                            } while (op != -1);
-                        }
-                    }
-                    System.out.println(conflito);
+                    controladorDoPrograma.atribuiAutomaticamente();
                     controladorDoPrograma.atribuirSemCandidatura();
                 }
                 case 5 -> {
