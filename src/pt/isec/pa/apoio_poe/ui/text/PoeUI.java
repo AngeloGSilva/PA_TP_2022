@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class PoeUI {
     ProContexto controladorDoPrograma;
-    //colocar o caminhoDefaultFicheiros na classe LerFicheiro
     private String caminhoDefaultFicheiros = "PA_TP_2022\\\\Resources\\\\ficheiros\\\\";
     public PoeUI(ProContexto controladorDoPrograma) {
         this.controladorDoPrograma = controladorDoPrograma;
@@ -42,7 +41,7 @@ public class PoeUI {
 
     private void atrOrientadorUI() {
         System.out.println("Atribuir Orientador:\n");
-        switch (PAInput.chooseOption("Opções:", "Avancar(Apos avancar nao sera possivel voltar atras!!!!)", "Voltar","Atribuir docentes automaticos","Consulta", "Atribuir docentes Manualmente")) {
+        switch (PAInput.chooseOption("Opções:", "Avancar(Apos avancar nao sera possivel voltar atras!!!!)", "Voltar","Atribuir docentes automaticos","Consulta", "Atribuir docentes Manualmente", "Load","Save")) {
             case 1 -> {
                 System.out.println("Apos avancar nao sera possivel voltar atras!!!!");
                 controladorDoPrograma.avancar(true);
@@ -67,14 +66,15 @@ public class PoeUI {
                     System.out.println("Algo correu mal");
                 }
             }
+            case 6 -> controladorDoPrograma.load();
+            case 7 -> controladorDoPrograma.save();
         }
     }
 
     private void atrPropostaUI() {
-        int op;
         System.out.println("Atribuicao de Propostas:\n");
         if (!controladorDoPrograma.getFase_Proposta()) {
-            switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar", "Atribuir automatico Autopropostos e docentes com aluno", "atribuir automatico", "consulta", "atribuir alunos manualmente","Candidaturas")) {
+            switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar", "Atribuir automatico Autopropostos e docentes com aluno", "atribuir automatico", "consulta", "atribuir alunos manualmente","Candidaturas", "Load", "Save")) {
                 case 1 -> {
                     switch (PAInput.chooseOption("Pretende Fechar a fase?", "Sim", "Nao")) {
                         case 1 -> controladorDoPrograma.avancar(true);
@@ -109,9 +109,11 @@ public class PoeUI {
                     System.out.println("Candidaturas");
                     System.out.println(controladorDoPrograma.getCandidaturas());
                 }
+                case 8 -> controladorDoPrograma.load();
+                case 9 -> controladorDoPrograma.save();
             }
         }else{
-            switch (PAInput.chooseOption("Consulta","Todos","avancar","voltar")){
+            switch (PAInput.chooseOption("Consulta","Todos","avancar","voltar", "Load", "Save")){
                 case 1 -> {
                     System.out.println(controladorDoPrograma.getAlunos());
                     System.out.println(controladorDoPrograma.getPropostas());
@@ -119,6 +121,8 @@ public class PoeUI {
                 }
                 case 2 -> controladorDoPrograma.avancar(controladorDoPrograma.getFase_gestao());
                 case 3 -> controladorDoPrograma.voltar(true);
+                case 4 -> controladorDoPrograma.load();
+                case 5 -> controladorDoPrograma.save();
             }
         }
     }
@@ -126,7 +130,7 @@ public class PoeUI {
     private void opCandidaturaUI() {
         System.out.println("Gestão de Candidatura:\n");
         if (controladorDoPrograma.getFase_Candidatura()){
-            switch (PAInput.chooseOption("Consulta","Todos","avancar","voltar")){
+            switch (PAInput.chooseOption("Consulta","Todos","avancar","voltar", "Load","Save")){
                 case 1 -> {
                     System.out.println(controladorDoPrograma.getAlunos());
                     System.out.println(controladorDoPrograma.getPropostas());
@@ -134,6 +138,8 @@ public class PoeUI {
                 }
                 case 2 -> controladorDoPrograma.avancar(controladorDoPrograma.getFase_gestao());
                 case 3 -> controladorDoPrograma.voltar(true);
+                case 4 -> controladorDoPrograma.load();
+                case 5 -> controladorDoPrograma.save();
             }
         }else {
             switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta", "Ler Ficheiro", "avançar","Load","Save", "Voltar")) {
@@ -202,7 +208,9 @@ public class PoeUI {
                         case 2 -> controladorDoPrograma.avancar(false);
                     }
                 }
-                case 5 -> {
+                case 5 -> controladorDoPrograma.load();
+                case 6 -> controladorDoPrograma.save();
+                case 7 -> {
                     controladorDoPrograma.voltar(true);
                 }
                 //default -> acabou = true;
@@ -420,13 +428,15 @@ public class PoeUI {
                }
            }
         } else
-            switch (PAInput.chooseOption("Consulta", "Todos", "avancar")) {
+            switch (PAInput.chooseOption("Consulta", "Todos", "avancar","Load","Save")) {
                 case 1 -> {
                     System.out.println(controladorDoPrograma.getAlunos());
                     System.out.println(controladorDoPrograma.getPropostas());
                     System.out.println(controladorDoPrograma.getDocentes());
                 }
                 case 2 -> controladorDoPrograma.avancar(controladorDoPrograma.getFase_gestao());
+                case 3 -> controladorDoPrograma.load();
+                case 4 -> controladorDoPrograma.save();
             }
     }
 
