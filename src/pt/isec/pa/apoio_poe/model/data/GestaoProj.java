@@ -1,5 +1,7 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import pt.isec.pa.apoio_poe.Utils.PAInput;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -587,6 +589,14 @@ public class GestaoProj {
             }
         }
         if (contador>1){
+            for (String aluno : alunosconflito) {
+                if (getAlunoPorNumero(Long.parseLong(aluno)).getClassificacao_Aluno() == maiorClassificacao){
+                    System.out.println(getAlunoPorNumero(Long.parseLong(aluno)).toString());
+                }
+                System.out.println("Proposta: " + proposta.getCod_ID());
+            }
+            String alunoEscolhido = PAInput.readString("Aluno:", true);
+            atribuiPropostaAluno(alunoEscolhido,proposta.getCod_ID());
             //perguntar ao gajo
             System.out.println("Repetidos seu crlh");
         }else{
@@ -601,11 +611,14 @@ public class GestaoProj {
         boolean repetido = false;
         for (Candidatura c: candidaturas) {
             if (!verificaCandidaturaAtribuida(c.getAluno())) {
-                conflitos.add(String.valueOf(c.getAluno().getNr_Aluno()));
                 for (Proposta p : c.getPropostas()) {
+                    conflitos.add(String.valueOf(c.getAluno().getNr_Aluno()));
                     if (!verificaPropostaAtribuida(p) && !verificaCandidaturaAtribuida(c.getAluno())) {
                         for (Candidatura c2 : candidaturas) { //comparar com a segunda dos outros se perder
-                            if (!verificaCandidaturaAtribuida(c2.getAluno()) && !(c.getAluno().getNr_Aluno() == c2.getAluno().getNr_Aluno()) && p.equals(c2.getPropostas().get(0)) && c2.getAluno().getClassificacao_Aluno() >= c.getAluno().getClassificacao_Aluno()) {
+                            if (!verificaCandidaturaAtribuida(c2.getAluno()) &&
+                                    !(c.getAluno().getNr_Aluno() == c2.getAluno().getNr_Aluno()) &&
+                                    p.equals(c2.getPropostas().get(0)) &&
+                                    c2.getAluno().getClassificacao_Aluno() >= c.getAluno().getClassificacao_Aluno()) {
                                 repetido = true;
                                 conflitos.add(String.valueOf(c2.getAluno().getNr_Aluno()));
                             }
