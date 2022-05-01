@@ -554,7 +554,7 @@ public class GestaoProj {
             if (!encontrou){
                 for (Proposta proposta: propostas) {
                     propostaTaken = false;
-                    if (proposta.getRamo().contains(aluno.getRamo_Aluno())){
+                    if (proposta.getRamo().contains(aluno.getRamo_Aluno()) && VerificaAlunoAcederProposta(aluno.getNr_Aluno(),proposta.getCod_ID())){
                         for (Atribuicao atribuicao : atribuicoes) {
                             if (proposta.getCod_ID().equals(atribuicao.getProposta().getCod_ID())) {
                                 propostaTaken = true;
@@ -612,8 +612,8 @@ public class GestaoProj {
         for (Candidatura c: candidaturas) {
             if (!verificaCandidaturaAtribuida(c.getAluno())) {
                 for (Proposta p : c.getPropostas()) {
-                    conflitos.add(String.valueOf(c.getAluno().getNr_Aluno()));
                     if (!verificaPropostaAtribuida(p) && !verificaCandidaturaAtribuida(c.getAluno())) {
+                        conflitos.add(String.valueOf(c.getAluno().getNr_Aluno()));
                         for (Candidatura c2 : candidaturas) { //comparar com a segunda dos outros se perder
                             if (!verificaCandidaturaAtribuida(c2.getAluno()) &&
                                     !(c.getAluno().getNr_Aluno() == c2.getAluno().getNr_Aluno()) &&
