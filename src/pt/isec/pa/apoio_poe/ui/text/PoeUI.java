@@ -4,6 +4,7 @@ import pt.isec.pa.apoio_poe.Utils.PAInput;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class PoeUI {
     ProContexto controladorDoPrograma;
@@ -48,7 +49,7 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getDocentes());
                 int id_atribuicao = PAInput.readInt("Escolha uma Atribuicao com o docente disponivel para por um docente (Use o Id da atribuicao): ");
                 String id_docente = PAInput.readString("Escolha um Docente para por numa atribuicao (Use o Email do docente): ",true);
-                if (controladorDoPrograma.atribuirManualmenteDocente(id_docente,id_atribuicao)){
+                if (controladorDoPrograma.atribuirManualmenteDocente(id_docente.toLowerCase(Locale.ROOT),id_atribuicao)){
                     System.out.println(controladorDoPrograma.getAtribuicaoPorId(id_atribuicao));
                 }else{
                     System.out.println("Algo correu mal!! Verificar ids e email");
@@ -110,7 +111,7 @@ public class PoeUI {
                         System.out.println(controladorDoPrograma.getPropostasNaoAtribuidas());
                         String nr_Aluno = PAInput.readString("Escolha um aluno pelo numero: ", true);
                         String id_Proposta = PAInput.readString("Escolha uma proposta pelo id: ", true);
-                        if (controladorDoPrograma.atribuirManualmenteAluno(Long.parseLong(nr_Aluno), id_Proposta)) {
+                        if (controladorDoPrograma.atribuirManualmenteAluno(Long.parseLong(nr_Aluno), id_Proposta.toUpperCase(Locale.ROOT))) {
                             System.out.println("Correu bem a Atribuicao"); //trocar pela ultima atribuicao feita para mostrar operacao realizada
                         } else
                             System.out.println("Algo Correu mal.. verifica se aluno pode acerder a estagios ou a projetos");

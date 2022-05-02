@@ -10,8 +10,8 @@ import java.util.Locale;
 
 public final class Ficheiro {
 
-    private static String caminho = "\\Resources\\ficheiros\\";
-    private static String CaminhoFile;
+    //private static String caminho = "\\Resources\\ficheiros\\";
+    //private static String CaminhoFile;
     //para leitura dos ficheiros
     private static String[] data;
     private static File f = null;
@@ -37,9 +37,9 @@ public final class Ficheiro {
 
     public static boolean lerDoncentes(String fileName, GestaoProj gestaoProj) {
         try {
-            CaminhoFile = caminho + fileName;
+            //CaminhoFile = caminho + fileName;
             //fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv";
-            f = new File(CaminhoFile);
+            f = new File(fileName);
             fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null) {
@@ -67,8 +67,8 @@ public final class Ficheiro {
     public static boolean lerAlunos(String fileName, GestaoProj gestaoProj) {
         try {
             //fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\ alunosteste.csv";
-            CaminhoFile = caminho + fileName;
-            f = new File(CaminhoFile);
+            //CaminhoFile = caminho + fileName;
+            f = new File(fileName);
             //if(!f.exists())
                // System.out.println();
             fileReader = new FileReader(f);
@@ -108,9 +108,9 @@ public final class Ficheiro {
 
     public static boolean lerPropostas(String fileName, GestaoProj gestaoProj) {
         try {
-            CaminhoFile = caminho + fileName;
+            //CaminhoFile = caminho + fileName;
             //fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\propostas.csv";
-            f = new File(CaminhoFile);
+            f = new File(fileName);
             fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
 
@@ -193,17 +193,17 @@ public final class Ficheiro {
     }
 
     public static boolean lercandidaturas(String fileName, GestaoProj gestaoProj){
-        switch(PAInput.chooseOption("Path dos ficheiros","Angelo","Rodrigo")){
+/*        switch(PAInput.chooseOption("Path dos ficheiros","Angelo","Rodrigo")){
             case 1 ->{
                 fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
             }case 2 ->{
                 fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
             }
-        }
+        }*/
         ArrayList<Proposta> propostasPorAluno = new ArrayList<>();
         try {
-            CaminhoFile = caminho + fileName;
-            f = new File(CaminhoFile);
+            //CaminhoFile = caminho + fileName;
+            f = new File(fileName);
             fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null) {
@@ -248,7 +248,7 @@ public final class Ficheiro {
 
     public static void ExportarAlunos(String fileName,GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
-        f = new File(caminho + fileName + ".csv");
+        f = new File(fileName);
         try {
             fw = new FileWriter(f);
         } catch (IOException e) {
@@ -278,7 +278,7 @@ public final class Ficheiro {
 
     public static void ExportarPropostas(String fileName,GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
-        f = new File(caminho + fileName + ".csv");
+        f = new File(fileName);
         try {
             fw = new FileWriter(f);
         } catch (IOException e) {
@@ -337,7 +337,7 @@ public final class Ficheiro {
 
     public static void ExportarDocentes(String fileName,GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
-        f = new File(caminho + fileName + ".csv");
+        f = new File(fileName);
         try {
             fw = new FileWriter(f);
         } catch (IOException e) {
@@ -357,7 +357,7 @@ public final class Ficheiro {
     }
 
     public static void ExportarCandidaturas(String filename,GestaoProj gestaoProj){
-        f = new File(caminho + filename + ".csv");
+        f = new File(filename);
 
         try {
             fw = new FileWriter(f);
