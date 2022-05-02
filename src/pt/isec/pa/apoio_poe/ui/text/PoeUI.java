@@ -172,7 +172,7 @@ public class PoeUI {
 
                     }
 
-                    case 8 -> controladorDoPrograma.load();
+                    case 8 -> controladorDoPrograma.voltar(true);
                 }
             }else{
                 switch (PAInput.chooseOption("Opções:", "Atribuir automatico Autopropostos e docentes com aluno" ,"Consulta", "Load", "Save", "avancar", "voltar")) {
@@ -340,7 +340,19 @@ public class PoeUI {
                 }
                 case 2 -> controladorDoPrograma.load();
                 case 3 -> controladorDoPrograma.save();
-                case 4 -> controladorDoPrograma.avancar(controladorDoPrograma.getFase_gestao());
+                case 4 -> {
+                    switch (PAInput.chooseOption("Pretende Fechar a fase?", "Sim", "Nao")) {
+                        case 1 -> {
+                            if (!controladorDoPrograma.avancar(true)) {
+                                    System.out.println("Nao fechou a  fase anterior!");
+                            }else{
+                                System.out.println("Fase fechada!");
+                            }
+
+                        }
+                        case 2 -> controladorDoPrograma.avancar(false);
+                    }
+                }
                 case 5 -> controladorDoPrograma.voltar(true);
             }
         }else {
