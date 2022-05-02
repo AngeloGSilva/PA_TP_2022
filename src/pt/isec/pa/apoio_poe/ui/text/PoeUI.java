@@ -340,19 +340,7 @@ public class PoeUI {
                 }
                 case 2 -> controladorDoPrograma.load();
                 case 3 -> controladorDoPrograma.save();
-                case 4 -> {
-                    switch (PAInput.chooseOption("Pretende Fechar a fase?", "Sim", "Nao")) {
-                        case 1 -> {
-                            if (!controladorDoPrograma.avancar(true)) {
-                                    System.out.println("Nao fechou a  fase anterior!");
-                            }else{
-                                System.out.println("Fase fechada!");
-                            }
-
-                        }
-                        case 2 -> controladorDoPrograma.avancar(false);
-                    }
-                }
+                case 4 -> controladorDoPrograma.avancar(true);
                 case 5 -> controladorDoPrograma.voltar(true);
             }
         }else {
@@ -420,7 +408,14 @@ public class PoeUI {
                 case 5 -> controladorDoPrograma.save();
                 case 6 -> {
                     switch (PAInput.chooseOption("Pretende Fechar a fase?", "Sim", "Nao")) {
-                        case 1 -> controladorDoPrograma.avancar(true);
+                        case 1 -> {
+                            if (!controladorDoPrograma.avancar(true)) {
+                                System.out.println("Nao fechou a  fase anterior!");
+                            }else{
+                                System.out.println("Fase fechada!");
+                            }
+
+                        }
                         case 2 -> controladorDoPrograma.avancar(false);
                     }
                 }
