@@ -10,6 +10,8 @@ import java.util.Locale;
 
 public final class Ficheiro {
 
+    private static String caminho = "Resources\\ficheiros\\";
+    private static String CaminhoFile;
     //para leitura dos ficheiros
     private static String[] data;
     private static File f = null;
@@ -35,8 +37,9 @@ public final class Ficheiro {
 
     public static boolean lerDoncentes(String fileName, GestaoProj gestaoProj) {
         try {
+            CaminhoFile = caminho + fileName;
             //fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv";
-            f = new File(fileName);
+            f = new File(CaminhoFile);
             fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null) {
@@ -64,7 +67,8 @@ public final class Ficheiro {
     public static boolean lerAlunos(String fileName, GestaoProj gestaoProj) {
         try {
             //fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\ alunosteste.csv";
-            f = new File(fileName);
+            CaminhoFile = caminho + fileName;
+            f = new File(CaminhoFile);
             //if(!f.exists())
                // System.out.println();
             fileReader = new FileReader(f);
@@ -104,8 +108,9 @@ public final class Ficheiro {
 
     public static boolean lerPropostas(String fileName, GestaoProj gestaoProj) {
         try {
+            CaminhoFile = caminho + fileName;
             //fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\propostas.csv";
-            f = new File(fileName);
+            f = new File(CaminhoFile);
             fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
 
@@ -197,7 +202,8 @@ public final class Ficheiro {
         }
         ArrayList<Proposta> propostasPorAluno = new ArrayList<>();
         try {
-            f = new File(fileName);
+            CaminhoFile = caminho + fileName;
+            f = new File(CaminhoFile);
             fileReader = new FileReader(f);
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null) {
@@ -242,7 +248,7 @@ public final class Ficheiro {
 
     public static void ExportarAlunos(String fileName,GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
-        f = new File("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\"+ fileName + ".csv");
+        f = new File(caminho + fileName + ".csv");
         try {
             fw = new FileWriter(f);
         } catch (IOException e) {
@@ -272,7 +278,7 @@ public final class Ficheiro {
 
     public static void ExportarPropostas(String fileName,GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
-        f = new File("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\"+ fileName + ".csv");
+        f = new File(caminho + fileName + ".csv");
         try {
             fw = new FileWriter(f);
         } catch (IOException e) {
@@ -331,7 +337,7 @@ public final class Ficheiro {
 
     public static void ExportarDocentes(String fileName,GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
-        f = new File("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\"+ fileName + ".csv");
+        f = new File(caminho + fileName + ".csv");
         try {
             fw = new FileWriter(f);
         } catch (IOException e) {
@@ -351,7 +357,7 @@ public final class Ficheiro {
     }
 
     public static void ExportarCandidaturas(String filename,GestaoProj gestaoProj){
-        f = new File("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\"+ filename + ".csv");
+        f = new File(caminho + filename + ".csv");
 
         try {
             fw = new FileWriter(f);
