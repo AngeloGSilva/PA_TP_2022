@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Atribuicao;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
@@ -52,7 +53,7 @@ public class ProContexto {
             dados = newapp;
         }
         catch (Exception e){
-            System.out.println("Erro!");
+
         }
     }
 
@@ -62,7 +63,7 @@ public class ProContexto {
             ous.writeObject(dados);
         }
         catch (Exception e){
-            System.out.println("Erro!");
+
         }
     }
 
@@ -265,5 +266,17 @@ public class ProContexto {
 
     public ArrayList<Proposta> getPropostasAtribuidas() {
         return dados.getPropostasAtribuidas();
+    }
+
+    public ArrayList<Atribuicao> getAlunosComOrientador() {
+        return dados.getAlunosComOrientador();
+    }
+
+    public ArrayList<Atribuicao> getAlunosSemOrientador() {
+        return dados.getAlunosSemOrientador();
+    }
+
+    public String getNumerodeOrientacoes() {
+        return dados.getNumeroDeOrientacoes();
     }
 }

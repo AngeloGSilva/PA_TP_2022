@@ -51,8 +51,16 @@ public class PoeUI {
                 controladorDoPrograma.atribuirDocentesauto();
             }
             case 4->{
-                switch (PAInput.chooseOption("Dados a consultar","lista de estudantes com proposta atribuída e com orientador associado","lista de estudantes com proposta atribuída mas sem orientador associado","número de orientações por docente, em média, mínimo, máximo, e por docente\n" + "especificado", "Voltar")){
-                    
+                switch (PAInput.chooseOption("Dados a consultar","Lista de estudantes com proposta atribuída e com orientador associado","Lista de estudantes com proposta atribuída mas sem orientador associado","Número de orientações por docente, em média, mínimo, máximo, e por docente especificado" , "Voltar")){
+                    case 1->{
+                            System.out.println(controladorDoPrograma.getAlunosComOrientador());
+                    }
+                    case 2->{
+                            System.out.println(controladorDoPrograma.getAlunosSemOrientador());
+                    }
+                    case 3->{
+                            System.out.println(controladorDoPrograma.getNumerodeOrientacoes());
+                    }
                 }
             }
             case 5->{

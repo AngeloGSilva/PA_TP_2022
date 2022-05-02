@@ -642,7 +642,7 @@ public class GestaoProj implements Serializable {
         if (contador>1){
             for (String aluno : alunosconflito) {
                 if (getAlunoPorNumero(Long.parseLong(aluno)).getClassificacao_Aluno() == maiorClassificacao){
-                    System.out.println(getAlunoPorNumero(Long.parseLong(aluno)).toString());
+                    //System.out.println(getAlunoPorNumero(Long.parseLong(aluno)).toString());
                     propostaAlunos.add(aluno);
 
                 }
@@ -865,6 +865,53 @@ public class GestaoProj implements Serializable {
             }
         }
         return PropostasAtribuidas;
+    }
+
+    public ArrayList<Atribuicao> getAlunosComOrientador() {
+        ArrayList<Atribuicao> ComOrientador = new ArrayList<>();
+            for(Atribuicao at:atribuicoes){
+                if(at.getDocente() != null){
+                    ComOrientador.add(at);
+                }
+            }
+        return ComOrientador;
+        }
+
+
+    public ArrayList<Atribuicao> getAlunosSemOrientador() {
+        ArrayList<Atribuicao> SemOrientador = new ArrayList<>();
+        for(Atribuicao at:atribuicoes){
+            if(at.getDocente() == null){
+                SemOrientador.add(at);
+            }
+        }
+        return SemOrientador;
+    }
+
+    public String getNumeroDeOrientacoes() {
+        ArrayList<String> Orientadores = new ArrayList<>();
+        String buffer;
+        int flag=0;
+        int minimo=0,maximo=0,media=0;
+            for(Docente doc:docentes){
+                media+=doc.getContador();
+                if(flag==0){
+                    minimo=doc.getContador();
+                    maximo:doc.getContador();
+                    flag++;
+                }
+
+                 if(doc.getContador() <= minimo)
+                     minimo=doc.getContador();
+                 if(doc.getContador() >= maximo)
+                     maximo=doc.getContador();
+                 buffer ="Docente " + doc.getNome_Docente() + " rege [" + doc.getContador() + "] Projetos/Estagios" + "\n";
+                Orientadores.add(buffer);
+            }
+            media=(media/docentes.size());
+            buffer = "Minimo de atribuiçoes [" + minimo + "]\n" + "Maximo de atribuiçoes [" + maximo + "]\n" + "Media de atribuições [" + media + "]";
+            Orientadores.add(buffer);
+        return String.valueOf(Orientadores);
     }
 
 
