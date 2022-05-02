@@ -457,7 +457,12 @@ public class PoeUI {
             }
             case 4 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
-                    case 1 -> controladorDoPrograma.avancar(true);
+                    case 1 -> {
+                        if (!controladorDoPrograma.avancar(true)) {
+                            System.out.println("Numero de propostas inferior ao numero de alunos,fase nao fechada\n");
+                        }else
+                            System.out.println("Fase Fechada\n");
+                    }
                     case 2 -> controladorDoPrograma.avancar(false);
                 }
 
@@ -497,7 +502,12 @@ public class PoeUI {
             }
             case 4 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
-                    case 1 -> controladorDoPrograma.avancar(true);
+                    case 1 -> {
+                        if (!controladorDoPrograma.avancar(true)) {
+                            System.out.println("Numero de propostas inferior ao numero de alunos,fase nao fechada\n");
+                        }else
+                            System.out.println("Fase Fechada\n");
+                    }
                     case 2 -> controladorDoPrograma.avancar(false);
                 }
             }
@@ -542,7 +552,12 @@ public class PoeUI {
             }
             case 4 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
-                    case 1 -> controladorDoPrograma.avancar(true);
+                    case 1 -> {
+                        if (!controladorDoPrograma.avancar(true)) {
+                            System.out.println("Numero de propostas inferior ao numero de alunos,fase nao fechada\n");
+                        }else
+                            System.out.println("Fase Fechada\n");
+                    }
                     case 2 -> controladorDoPrograma.avancar(false);
                 }
             }
