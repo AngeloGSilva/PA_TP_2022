@@ -48,7 +48,7 @@ public class ProContexto {
 //State
     public void load() {
         try (ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\Loadsave.bin"))) {
+                new FileInputStream("Loadsave.bin"))) {
             GestaoProj newapp = (GestaoProj) ois.readObject();
             dados = newapp;
         }
@@ -59,7 +59,7 @@ public class ProContexto {
 
     public void save() {
         try (ObjectOutputStream ous = new ObjectOutputStream(
-                new FileOutputStream("C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\Loadsave.bin"))) {
+                new FileOutputStream("Loadsave.bin"))) {
             ous.writeObject(dados);
         }
         catch (Exception e){
