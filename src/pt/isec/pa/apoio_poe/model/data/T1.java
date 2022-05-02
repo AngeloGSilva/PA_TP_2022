@@ -13,20 +13,20 @@ public class T1 extends Proposta implements Serializable {
 
     @Override
     public String toString() {
-        if(codigo_Aluno != null){
+        if(getCodigo_Aluno() != null){
             return "T1" +
-                    " Codigo Id : " + cod_ID +
-                    " Titulo : " + titulo +
-                    " Empresa : " + empresa +
-                    " Ramo: " + ramo +
-                    " |Aluno associado| : " + codigo_Aluno +
+                    " Codigo Id : " + getCod_ID() +
+                    " Titulo : " + getTitulo() +
+                    " Empresa : " + getEmpresa() +
+                    " Ramo: " + getRamo() +
+                    " |Aluno associado| : " + getCodigo_Aluno() +
                     "\n";
         }else{
             return "T1" +
-                    " Codigo Id : " + cod_ID +
-                    " Titulo : " + titulo +
-                    " Empresa : " + empresa +
-                    " Ramo: " + ramo +
+                    " Codigo Id : " + getCod_ID() +
+                    " Titulo : " + getTitulo() +
+                    " Empresa : " + getEmpresa() +
+                    " Ramo: " + getRamo() +
                     " |Sem aluno associado| " +
                     "\n";
 

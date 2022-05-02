@@ -611,6 +611,7 @@ public class GestaoProj implements Serializable {
                             }
                         }
                     if (!propostaTaken) {
+                        proposta.setCodigo_Aluno(aluno.getNr_Aluno());
                         atribuicoes.add(new Atribuicao(aluno,getDocentePorEmailObjeto(proposta.getEmail_Docente()),proposta));
                         //System.out.println(aluno);
                         //System.out.println(proposta);
@@ -656,6 +657,7 @@ public class GestaoProj implements Serializable {
             System.out.println("Repetidos seu crlh");*/
         }else{
             atribuicoes.add(new Atribuicao(getAlunoPorNumero(nrAluno),getDocentePorEmailObjeto(proposta.getEmail_Docente()),proposta));
+            proposta.setCodigo_Aluno(getAlunoPorNumero(nrAluno).getNr_Aluno());
             //System.out.println("Atribuiu a este cabecudo"+ nrAluno);
         }
         return null;
@@ -680,6 +682,7 @@ public class GestaoProj implements Serializable {
                         }
                         if (!repetido) {
                             atribuicoes.add(new Atribuicao(c.getAluno(), getDocentePorEmailObjeto(p.getEmail_Docente()), p));
+                            p.setCodigo_Aluno(c.getAluno().getNr_Aluno());
                             //System.out.println("Atribuiu a este cabecudo "+ c.getAluno().getNr_Aluno());
                             conflitos.clear();
                         } else {
@@ -754,6 +757,7 @@ public class GestaoProj implements Serializable {
                 VerificaAlunoAcederProposta(id_aluno,proposta) &&
                 !verificaPropostaAtribuida(getPropostaPorId(proposta)) &&
                 !verificaCandidaturaAtribuida(getAlunoPorNumero(id_aluno))){
+            getPropostaPorId(proposta).setCodigo_Aluno(getAlunoPorNumero(id_aluno).getNr_Aluno());
             atribuicoes.add(new Atribuicao(getAlunoPorNumero(id_aluno),getDocentePorEmailObjeto(getPropostaPorId(proposta).getEmail_Docente()),getPropostaPorId(proposta)));
             return true;
         }

@@ -92,7 +92,8 @@ public final class Ficheiro {
             }
 
         }catch (FileNotFoundException e) {
-            System.out.println("Ficheiro nao existe!");
+            gestaoProj.setErros("[Erro] Ficheiro nao existe!!" + fileName +"\n");
+            //System.out.println("Ficheiro nao existe!");
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -178,7 +179,8 @@ public final class Ficheiro {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Ficheiro nao existe!");
+            gestaoProj.setErros("[Erro] Ficheiro nao existe!!" + fileName +"\n");
+            //System.out.println("Ficheiro nao existe!");
         }catch (IOException e) {
             e.printStackTrace();
         }

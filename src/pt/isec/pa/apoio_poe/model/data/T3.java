@@ -11,10 +11,10 @@ public class T3 extends Proposta implements Serializable {
     @Override
     public String toString() {
         return "T3" +
-                " Codigo Id : " + cod_ID +
-                " Titulo : " + titulo +
-                " |Aluno associado| : " + codigo_Aluno +
-                " Ramo: " + ramo +
+                " Codigo Id : " + getCod_ID() +
+                " Titulo : " + getTitulo() +
+                " |Aluno associado| : " + getCodigo_Aluno() +
+                " Ramo: " + getRamo() +
                 "\n";
     }
 }

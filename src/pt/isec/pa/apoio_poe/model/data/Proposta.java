@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Proposta implements Serializable {
-    String cod_ID = null;
-    String titulo = null;
-    Long codigo_Aluno = null;
-    String email_Docente = null;
-    String empresa = null;
-    String ramo = null;
+    private String cod_ID = null;
+    private String titulo = null;
+    private Long codigo_Aluno = null;
+    private String email_Docente = null;
+    private String empresa = null;
+    private String ramo = null;
 
     public Long getCodigo_Aluno() {
         return codigo_Aluno;
@@ -27,6 +27,10 @@ public class Proposta implements Serializable {
         this.email_Docente = email_Docente;
         this.ramo = ramo;
         this.empresa = empresa;
+    }
+
+    public void setCodigo_Aluno(Long codigo_Aluno) {
+        this.codigo_Aluno = codigo_Aluno;
     }
 
     public String getEmpresa() {

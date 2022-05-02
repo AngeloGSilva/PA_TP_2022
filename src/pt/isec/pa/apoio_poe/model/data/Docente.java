@@ -5,9 +5,9 @@ import java.util.Objects;
 
 public class Docente implements Serializable {
     int contador = 0;
-    String nome_Docente;
-    String email_Docente;
-    boolean papel_Docente; //orientador - true, proponente de projeto - false
+    private String nome_Docente;
+    private String email_Docente;
+    private boolean papel_Docente; //orientador - true, proponente de projeto - false
 
     public Docente(String nome_Docente, String email_Docente, boolean papel_Docente) {
         this.nome_Docente = nome_Docente;
