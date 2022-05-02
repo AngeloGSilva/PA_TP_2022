@@ -1,8 +1,6 @@
 package pt.isec.pa.apoio_poe.ui.text;
 
 import pt.isec.pa.apoio_poe.Utils.PAInput;
-import pt.isec.pa.apoio_poe.model.data.*;
-import pt.isec.pa.apoio_poe.model.fsm.ConfiguracaoState;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
 import java.util.ArrayList;
@@ -82,8 +80,53 @@ public class PoeUI {
                     }
                 }
                 case 2 -> {
-                    controladorDoPrograma.voltar(controladorDoPrograma.getFase_Proposta());
+
+                    switch (PAInput.chooseOption("Dados a consultar","Alunos","Propostas", "Voltar")){
+                        case 1-> {
+                            switch (PAInput.chooseOption("Escolher Filtro para alunos","Auroproposta Associada","Candidatura Registada", "Proposta Atribuida","Sem Prosposta Associada","Voltar")){
+                                case 1 ->{
+                                    System.out.println(controladorDoPrograma.getAlunosAutopropostosString());
+                                }
+                                case 2 ->{
+                                    System.out.println(controladorDoPrograma.getAlunosComCandidaturaString());
+                                }
+                                case 3 ->{
+                                    System.out.println(controladorDoPrograma.getAlunosPropostaAtribuida());
+                                }
+                                case 4 ->{
+                                    //System.out.print(controladorDoPrograma.getAlunosSemProposta);
+                                }case 5 ->{
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                        case 2 ->{
+                            switch (PAInput.chooseOption("Escolher Filtro para Propostas    ","AutoPropostas de alunos","Propostas de Docentes","Propostas com candidaturas", "Propostas sem candidaturas","Voltar")){
+                                case 1 ->{
+                                    System.out.println(controladorDoPrograma.getAutopropostasAlunos());
+                                    break;
+                                }
+                                case 2 ->{
+                                    System.out.println(controladorDoPrograma.getPropostasDocentes());
+                                }
+                                case 3 ->{
+                                    System.out.println(controladorDoPrograma.getPropostasComCandidaturas());
+                                }
+                                case 4 ->{
+                                    System.out.println(controladorDoPrograma.getPropostasSemCandidaturas());
+                                }
+                                case 5 ->{
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    break;
                 }
+
+
                 case 3 -> {
                     controladorDoPrograma.atribuiAutopropostos();
                     controladorDoPrograma.atribuiPropostasDocentes();
@@ -142,7 +185,7 @@ public class PoeUI {
     private void opCandidaturaUI() {
         System.out.println("Gestão de Candidatura:\n");
         if (controladorDoPrograma.getFase_Candidatura()){
-            switch (PAInput.chooseOption("Consulta","Todos","avancar","voltar", "Load","Save")){
+            switch (PAInput.chooseOption("Consulta","Consultar Todos Dados","Avancar","Voltar", "Load","Save")){
                 case 1 -> {
                     System.out.println(controladorDoPrograma.getAlunos());
                     System.out.println(controladorDoPrograma.getPropostas());
@@ -154,7 +197,7 @@ public class PoeUI {
                 case 5 -> controladorDoPrograma.save();
             }
         }else {
-            switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta", "Ler Ficheiro", "avançar","Load","Save", "Voltar")) {
+            switch (PAInput.chooseOption("Opções:", "Inserção", "Consulta", "Ler Ficheiro", "Avançar","Load","Save", "Voltar")) {
                 case 1 -> {
                     controladorDoPrograma.exportarCandidaturas(PAInput.readString("Nome do Ficheiro csv", true));
 
@@ -182,17 +225,17 @@ public class PoeUI {
                     case 2 ->{
                         switch (PAInput.chooseOption("Escolher Filtro para Propostas    ","AutoPropostas de alunos","Propostas de Docentes","Propostas com candidaturas", "Propostas sem candidaturas","Voltar")){
                             case 1 ->{
-                                System.out.println(controladorDoPrograma.getAlunosAutopropostos());
+                                System.out.println(controladorDoPrograma.getAutopropostasAlunos());
                                 break;
                             }
                             case 2 ->{
                                 System.out.println(controladorDoPrograma.getPropostasDocentes());
                             }
                             case 3 ->{
-                                //System.out.println(controladorDoPrograma.getPropostasCandidadatos());
+                                System.out.println(controladorDoPrograma.getPropostasComCandidaturas());
                             }
                             case 4 ->{
-                                System.out.println(controladorDoPrograma.getPropostasSemCandidatos());
+                                System.out.println(controladorDoPrograma.getPropostasSemCandidaturas());
                             }
                             case 5 ->{
                                 break;

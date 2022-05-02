@@ -1,9 +1,5 @@
 package pt.isec.pa.apoio_poe.model.data;
 
-import pt.isec.pa.apoio_poe.Utils.PAInput;
-
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -397,7 +393,7 @@ public class GestaoProj implements Serializable {
     }
 
     //verifica se a proposta passada tem algum aluno
-    public boolean verificaPropostaAssociado(String id_Proposta){
+    public boolean VerificaPropostaComAluno(String id_Proposta){
         for (Proposta x : propostas) {
             if (x.getCod_ID().equals(id_Proposta)){
                 if(x.getCodigo_Aluno() == null){
@@ -492,11 +488,62 @@ public class GestaoProj implements Serializable {
         return list;
     }*/
 
+    public ArrayList<Proposta> getPropostasSemCandidaturas() {
+        ArrayList<Proposta> list = new ArrayList<>();
+        boolean existe = false;
+        for (Proposta x : propostas) {
+            existe = false;
+            for (Candidatura c : candidaturas) {
+                for (int i = 0; i < c.getNrPropostas(); i++) {
+                    if (x.getCod_ID().equals(c.getPropostas().get(i).getCod_ID())) {
+                        existe = true;
+                    }
+                }
+            }
+            if(!existe)
+                list.add(x);
+        }
+        return list;
+    }
+
+    public ArrayList<Proposta> getPropostasComCandidaturas(){
+        ArrayList<Proposta> list = new ArrayList<>();
+        boolean existelist=false;
+        for (Proposta x : propostas) {
+            for(Candidatura c:candidaturas){
+                for(int i=0;i<c.getNrPropostas();i++){
+                    if(x.getCod_ID().equals(c.getPropostas().get(i).getCod_ID())){
+                        existelist=false;
+                        for(int j=0;j<list.size();j++) {
+                            if(list.get(j).getCod_ID() == x.getCod_ID()){
+                                existelist=true;
+                            }
+                        }
+                        if(!existelist)
+                            list.add(x);
+                    }
+                }
+            }
+        }
+        return list;
+    }
+
     public ArrayList<Proposta> getPropostasSemCandidatos() {
         ArrayList<Proposta> list;
         list = new ArrayList<>();
         for (Proposta x : propostas) {
-            if(!verificaPropostaAssociado(x.getCod_ID())){
+            if(!VerificaPropostaComAluno(x.getCod_ID())){
+                list.add(x);
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Proposta> getPropostasCandidatos() {
+        ArrayList<Proposta> list;
+        list = new ArrayList<>();
+        for (Proposta x : propostas) {
+            if(VerificaPropostaComAluno(x.getCod_ID())){
                 list.add(x);
             }
         }
@@ -755,6 +802,20 @@ public class GestaoProj implements Serializable {
     public void exportarCandidaturas(String filename){
         Ficheiro.ExportarCandidaturas(filename,this);
     }
+
+    public ArrayList<Proposta> getPropostasAutopropostos() {
+        ArrayList<Proposta> props = new ArrayList<>();
+        for(Proposta p:propostas){
+                if(p.getClass().getSimpleName().equals("T3"))
+                    props.add(p);
+            }
+        return props;
+    }
+
+    public ArrayList<Aluno> getAlunosComPropostas() {
+        ArrayList<Aluno> a = new ArrayList<>();
+    }
+
 
     //Dados Nas opcoes de Candidatura
 

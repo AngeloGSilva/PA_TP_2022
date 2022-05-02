@@ -15,7 +15,7 @@ public class T2 extends Proposta implements Serializable {
     @Override
     public String toString() {
         if(codigo_Aluno != null){
-            return "T1" +
+            return "T2" +
                     " Codigo Id : " + cod_ID +
                     " Titulo : " + titulo +
                     " Docente : " + email_Docente +
@@ -23,7 +23,7 @@ public class T2 extends Proposta implements Serializable {
                     " |Aluno associado| : " + codigo_Aluno +
                     "\n";
         }else{
-            return "T1" +
+            return "T2" +
                     " Codigo Id : " + cod_ID +
                     " Titulo : " + titulo +
                     " Docente : " + email_Docente +

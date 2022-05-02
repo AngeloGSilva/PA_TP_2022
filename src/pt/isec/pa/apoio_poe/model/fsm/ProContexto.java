@@ -145,8 +145,12 @@ public class ProContexto {
         //return dados.getPropostasCandidatos();
     //}
 
-    public ArrayList<Proposta> getPropostasSemCandidatos() {
-        return dados.getPropostasSemCandidatos();
+    public ArrayList<Proposta> getPropostasSemCandidaturas() {
+        return dados.getPropostasSemCandidaturas();
+    }
+
+    public ArrayList<Proposta> getPropostasComCandidaturas() {
+        return dados.getPropostasComCandidaturas();
     }
 
     public void atribuiAutopropostos() {
@@ -242,4 +246,12 @@ public class ProContexto {
         dados.exportarCandidaturas(FileName);
     }
 
+
+    public ArrayList<Proposta> getAutopropostasAlunos() {
+        return dados.getPropostasAutopropostos();
+    }
+
+    public ArrayList<Aluno> getAlunosPropostaAtribuida() {
+        return dados.getAlunosComPropostas();
+    }
 }
