@@ -37,11 +37,9 @@ public class PoeUI {
         System.out.println(controladorDoPrograma.getPropostasAtribuidas());
         System.out.println(controladorDoPrograma.getNumerodeOrientacoes());
 
-        //System.out.println(controladorDoPrograma.getAlunos());
-        //System.out.println(controladorDoPrograma.getPropostas());
-        //System.out.println(controladorDoPrograma.getDocentes());
-        controladorDoPrograma.voltar(controladorDoPrograma.getFase_Orientador());
-        PAInput.readString(" ",true);
+        //controladorDoPrograma.voltar(controladorDoPrograma.getFase_Orientador());
+        if(PAInput.readString("[Sair para sair]:",true).equals("sair"))
+            System.exit(0);
         //PAInput.readNumber("poe numero qualquer .... so para parar o programa e dar debug");
     }
 
