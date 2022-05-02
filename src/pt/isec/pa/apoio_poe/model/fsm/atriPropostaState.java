@@ -20,9 +20,10 @@ public class atriPropostaState extends IStateAdaptar {
             if(guardado){
                 dados.setFase_Fechada_atriProposta(guardado);
                 alteraState(new atriOrientadorState(dados, contexto));
+                return true;
             }else
                 alteraState(new atriOrientadorState(dados, contexto));
-            return false;
+            return true;
         }
         alteraState(new atriOrientadorState(dados,contexto));
         return false;

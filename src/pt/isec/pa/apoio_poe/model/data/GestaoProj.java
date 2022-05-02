@@ -76,7 +76,7 @@ public class GestaoProj implements Serializable {
                 }
             }
         }
-        if (candidaturas.size() == contador){
+        if (candidaturas.size() == contador && candidaturas.size() != 0){
             return true;
         }
         return false;
