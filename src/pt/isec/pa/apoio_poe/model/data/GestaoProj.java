@@ -729,7 +729,7 @@ public class GestaoProj implements Serializable {
                 docente = getDocenteContadorMenor();
                 if (atribuicao.getDocente() == null) {
                     atribuicao.setDocente(docente);
-                    docente.setContador();
+                    docente.incContador();
                 }
             }
     }
@@ -894,7 +894,7 @@ public class GestaoProj implements Serializable {
         int flag=0;
         int minimo=0,maximo=0,media=0;
             for(Docente doc:docentes){
-                media+=doc.getContador();
+                media=media+doc.getContador();
                 if(flag==0){
                     minimo=doc.getContador();
                     maximo:doc.getContador();
@@ -908,7 +908,7 @@ public class GestaoProj implements Serializable {
                  buffer ="Docente " + doc.getNome_Docente() + " rege [" + doc.getContador() + "] Projetos/Estagios" + "\n";
                 Orientadores.add(buffer);
             }
-            media=(media/docentes.size());
+            media = (media/docentes.size());
             buffer = "Minimo de atribuiçoes [" + minimo + "]\n" + "Maximo de atribuiçoes [" + maximo + "]\n" + "Media de atribuições [" + media + "]";
             Orientadores.add(buffer);
         return String.valueOf(Orientadores);

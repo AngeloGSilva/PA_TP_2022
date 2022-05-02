@@ -60,7 +60,7 @@ public class Proposta implements Serializable {
 
     @Override
     public String toString() {
-        return "\nProposta: " +
+        return "Proposta: " +
                 " Codigo Id : " + cod_ID +
                 " Titulo : " + titulo +
                 " Codigo Aluno : " + codigo_Aluno +

@@ -34,12 +34,12 @@ public class PoeUI {
         System.out.println(controladorDoPrograma.getPropostas());
         System.out.println(controladorDoPrograma.getDocentes());
         controladorDoPrograma.voltar(controladorDoPrograma.getFase_Orientador());
-        PAInput.readNumber("poe numero qualquer .... so para parar o programa e dar debug");
+        //PAInput.readNumber("poe numero qualquer .... so para parar o programa e dar debug");
     }
 
     private void atrOrientadorUI() {
         System.out.println("Atribuir Orientador:\n");
-        switch (PAInput.chooseOption("Opções:", "Avancar(Apos avancar nao sera possivel voltar atras!!!!)", "Voltar","Atribuir Docentes Automaticos","Consulta", "Atribuir Docentes Manualmente", "Load","Save")) {
+        switch (PAInput.chooseOption("Opções:", "Avancar", "Voltar","Atribuir Docentes Automaticos","Consulta", "Atribuir Docentes Manualmente", "Load","Save")) {
             case 1 -> {
                 System.out.println("Apos avancar nao sera possivel voltar atras!!!!");
                 controladorDoPrograma.avancar(true);

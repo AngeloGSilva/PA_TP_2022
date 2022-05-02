@@ -35,7 +35,7 @@ public class Docente implements Serializable {
         return contador;
     }
 
-    public void setContador() {
+    public void incContador() {
         contador++;
     }
 
@@ -55,13 +55,13 @@ public class Docente implements Serializable {
     @Override
     public String toString() {
         if(papel_Docente) {
-            return "\nDocente: " +
+            return "Docente: " +
                     " Nome do Docente: " + nome_Docente +
                     " Email do Docente: " + email_Docente +
                     " Papel do Docente: " + papel_Docente + "[Proponente de 1 projeto]" +
                     "\n";
         }else{
-        return  "\nDocente: " +
+        return  "Docente: " +
                 " Nome do Docente: " + nome_Docente +
                 " Email do Docente: " + email_Docente +
                 " Papel do Docente: " + papel_Docente + "[Não é Proponente de nenhum projeto]" +

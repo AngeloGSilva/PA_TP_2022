@@ -76,7 +76,7 @@ public class Aluno implements Serializable {
     }else {
         }
         return
-                " Numero de aluno: " + nr_Aluno +
+                "Aluno: " + " Numero de aluno: " + nr_Aluno +
                         " Nome do aluno: " + nome_Aluno +
                         " Email do aluno: " + email_Aluno +
                         " Ramo do aluno: " + ramo_Aluno +

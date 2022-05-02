@@ -57,11 +57,20 @@ public class Atribuicao implements Serializable {
 
     @Override
     public String toString() {
-        return "\nAtribuicao: " +
-                "id: " + id +
-                ", aluno: " + aluno +
-                ", docente: " + docente +
-                ", proposta: " + proposta +
-                "\n";
+        if(docente==null){
+            return "\nAtribuicao: " +
+                    "Id: " + id + "\n"+
+                    aluno +
+                    " Proposta: " + proposta +
+                    "\n";
+        }else{
+            return "\nAtribuicao: " +
+                    "Id: " + id + "\n"+
+                    aluno +
+                    docente +
+                    " Proposta: " + proposta +
+                    "\n";
+        }
+
     }
 }

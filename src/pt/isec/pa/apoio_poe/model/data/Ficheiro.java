@@ -140,6 +140,8 @@ public final class Ficheiro {
                                     gestaoProj.adicionarProposta(new T2(data[1], data[3], data[2], data[4]));
                                     //Definir o docente como proponente do projeto
                                     gestaoProj.getDocentePorEmailObjeto(data[4]).setPapel_Docente(true);
+                                    //Subir contador
+                                    gestaoProj.getDocentePorEmailObjeto(data[4]).incContador();
                                 } else if (gestaoProj.verificaEmailDocente(data[4]) && //email de um docente valido
                                         !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
                                         gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) && //numero de aluno valido
@@ -148,6 +150,8 @@ public final class Ficheiro {
                                     gestaoProj.adicionarProposta(new T2(data[1], data[3], data[2], data[4], Long.parseLong(data[5])));
                                     //Definir o docente como proponente do projeto
                                     gestaoProj.getDocentePorEmailObjeto(data[4]).setPapel_Docente(true);
+                                    //Subir contador
+                                    gestaoProj.getDocentePorEmailObjeto(data[4]).incContador();
                                     //Adicionar durante  leitura das propostas
                                     gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[5])),gestaoProj.getPropostaPorId(data[1])));
                                 } else {
