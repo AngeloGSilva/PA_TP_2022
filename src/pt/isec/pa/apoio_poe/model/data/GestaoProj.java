@@ -912,11 +912,13 @@ public class GestaoProj implements Serializable {
                  buffer ="Docente " + doc.getNome_Docente() + " rege [" + doc.getContador() + "] Projetos/Estagios" + "\n";
                 Orientadores.add(buffer);
             }
-            media = (media/docentes.size());
+            if (docentes.size() != 0)
+                media = (media/docentes.size());
             buffer = "Minimo de atribuiçoes [" + minimo + "]\n" + "Maximo de atribuiçoes [" + maximo + "]\n" + "Media de atribuições [" + media + "]";
             Orientadores.add(buffer);
         return String.valueOf(Orientadores);
     }
+
 
 
     //Dados Nas opcoes de Candidatura

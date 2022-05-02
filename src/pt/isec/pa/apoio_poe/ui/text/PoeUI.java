@@ -31,10 +31,17 @@ public class PoeUI {
     }
 
     private void consultaUI() {
-        System.out.println(controladorDoPrograma.getAlunos());
-        System.out.println(controladorDoPrograma.getPropostas());
-        System.out.println(controladorDoPrograma.getDocentes());
+        System.out.println(controladorDoPrograma.getAlunosPropostaAtribuida());
+        System.out.println(controladorDoPrograma.getAlunosSemPropostasComCadidaturaNaoAtribuida());
+        System.out.println(controladorDoPrograma.getPropostasDisponiveis());
+        System.out.println(controladorDoPrograma.getPropostasAtribuidas());
+        System.out.println(controladorDoPrograma.getNumerodeOrientacoes());
+
+        //System.out.println(controladorDoPrograma.getAlunos());
+        //System.out.println(controladorDoPrograma.getPropostas());
+        //System.out.println(controladorDoPrograma.getDocentes());
         controladorDoPrograma.voltar(controladorDoPrograma.getFase_Orientador());
+        PAInput.readString(" ",true);
         //PAInput.readNumber("poe numero qualquer .... so para parar o programa e dar debug");
     }
 
@@ -606,7 +613,7 @@ public class PoeUI {
         System.out.println("---Inicial---\n");
         System.out.println("Bem Vindo\n");
         if (!controladorDoPrograma.getFase_gestao()) {
-           switch(PAInput.chooseOption("Gerir:", "Gestao de Alunos", "Gestao de Docentes", "Gestao de Projetos","Load","Save", "Sair")){
+           switch(PAInput.chooseOption("Gerir:", "Gestao de Alunos", "Gestao de Docentes", "Gestao de Projetos","Load","Save")){
                case 1->{
                    controladorDoPrograma.selecionar(1);
                }

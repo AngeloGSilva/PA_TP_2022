@@ -67,7 +67,6 @@ public class ProContexto {
         }
     }
 
-
     public boolean lerFicheiroDebug(String fileName){
         return state.lerFicheiroDebug(fileName);
     }
@@ -278,5 +277,10 @@ public class ProContexto {
 
     public String getNumerodeOrientacoes() {
         return dados.getNumeroDeOrientacoes();
+    }
+
+
+    public ArrayList<Aluno> getAlunosSemPropostasComCadidaturaNaoAtribuida() {
+        return dados.getAlunosSemPropostas();
     }
 }
