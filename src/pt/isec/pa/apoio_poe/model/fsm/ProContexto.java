@@ -254,4 +254,16 @@ public class ProContexto {
     public ArrayList<Aluno> getAlunosPropostaAtribuida() {
         return dados.getAlunosComPropostas();
     }
+
+    public ArrayList<Aluno> getAlunosSemProposta() {
+        return dados.getAlunosSemPropostas();
+    }
+
+    public ArrayList<Proposta> getPropostasDisponiveis() {
+        return dados.getPropostasDisponiveis();
+    }
+
+    public ArrayList<Proposta> getPropostasAtribuidas() {
+        return dados.getPropostasAtribuidas();
+    }
 }

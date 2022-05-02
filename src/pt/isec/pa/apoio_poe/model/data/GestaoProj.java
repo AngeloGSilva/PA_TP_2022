@@ -813,7 +813,58 @@ public class GestaoProj implements Serializable {
     }
 
     public ArrayList<Aluno> getAlunosComPropostas() {
-        ArrayList<Aluno> a = new ArrayList<>();
+        ArrayList<Aluno> alunosProposta = new ArrayList<>();
+            for(Aluno a:alunos){
+                for(Atribuicao at:atribuicoes){
+                    if(a.getNr_Aluno() == at.getAluno().getNr_Aluno()){
+                            alunosProposta.add(a);
+                            }
+                        }
+                    }
+            return alunosProposta;
+    }
+
+    public ArrayList<Aluno> getAlunosSemPropostas(){
+        ArrayList<Aluno> alunosSemProposta = new ArrayList<>();
+        boolean existe=false;
+        for(Aluno a:alunos){
+            existe=false;
+            for(Atribuicao at:atribuicoes){
+                if(a.getNr_Aluno() == at.getAluno().getNr_Aluno()){
+                    existe=true;
+                }
+                if(!existe)
+                    alunosSemProposta.add(a);
+            }
+        }
+        return alunosSemProposta;
+    }
+
+    public ArrayList<Proposta> getPropostasDisponiveis() {
+        ArrayList<Proposta> PropostasDisponiveis = new ArrayList<>();
+        boolean existe=false;
+        for(Proposta p:propostas){
+            existe=false;
+            for(Atribuicao at:atribuicoes){
+                if(p.getCod_ID() == at.getProposta().getCod_ID()){
+                    existe=true;
+                }
+                if(!existe)
+                    PropostasDisponiveis.add(p);
+            }
+        }
+        return PropostasDisponiveis;
+    }
+
+    public ArrayList<Proposta> getPropostasAtribuidas() {
+        ArrayList<Proposta> PropostasAtribuidas = new ArrayList<>();
+        for(Proposta p:propostas){
+            for(Atribuicao at:atribuicoes){
+                if(p.getCod_ID() == at.getProposta().getCod_ID())
+                    PropostasAtribuidas.add(p);
+            }
+        }
+        return PropostasAtribuidas;
     }
 
 

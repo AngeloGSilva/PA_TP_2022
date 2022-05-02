@@ -51,7 +51,9 @@ public class PoeUI {
                 controladorDoPrograma.atribuirDocentesauto();
             }
             case 4->{
-                System.out.println(controladorDoPrograma.getAtribuicoesPropostas());
+                switch (PAInput.chooseOption("Dados a consultar","lista de estudantes com proposta atribuída e com orientador associado","lista de estudantes com proposta atribuída mas sem orientador associado","número de orientações por docente, em média, mínimo, máximo, e por docente\n" + "especificado", "Voltar")){
+                    
+                }
             }
             case 5->{
                 System.out.println(controladorDoPrograma.getAtribuicoesPropostasSemDocente());
@@ -94,7 +96,7 @@ public class PoeUI {
                                     System.out.println(controladorDoPrograma.getAlunosPropostaAtribuida());
                                 }
                                 case 4 ->{
-                                    //System.out.print(controladorDoPrograma.getAlunosSemProposta);
+                                    System.out.print(controladorDoPrograma.getAlunosSemProposta());
                                 }case 5 ->{
                                     break;
                                 }
@@ -102,19 +104,18 @@ public class PoeUI {
                             break;
                         }
                         case 2 ->{
-                            switch (PAInput.chooseOption("Escolher Filtro para Propostas","AutoPropostas de alunos","Propostas de Docentes","Propostas com candidaturas", "Propostas sem candidaturas","Voltar")){
+                            switch (PAInput.chooseOption("Escolher Filtro para Propostas","AutoPropostas de alunos","Propostas de Docentes","Propostas Disponiveis", "Propostas Atribuidas","Voltar")){
                                 case 1 ->{
                                     System.out.println(controladorDoPrograma.getAutopropostasAlunos());
-                                    break;
                                 }
                                 case 2 ->{
                                     System.out.println(controladorDoPrograma.getPropostasDocentes());
                                 }
                                 case 3 ->{
-                                    System.out.println(controladorDoPrograma.getPropostasComCandidaturas());
+                                    System.out.println(controladorDoPrograma.getPropostasDisponiveis());
                                 }
                                 case 4 ->{
-                                    System.out.println(controladorDoPrograma.getPropostasSemCandidaturas());
+                                    System.out.println(controladorDoPrograma.getPropostasAtribuidas());
                                 }
                                 case 5 ->{
                                     break;
