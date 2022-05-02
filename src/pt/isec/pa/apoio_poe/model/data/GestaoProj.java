@@ -709,6 +709,7 @@ public class GestaoProj implements Serializable {
     }
 
     public void atribuiPropostaAluno(String escolhido, String id_proposta) {
+        getPropostaPorId(id_proposta).setCodigo_Aluno(Long.parseLong(escolhido));
         atribuicoes.add(new Atribuicao(getAlunoPorNumero(Long.parseLong(escolhido)),getDocentePorEmailObjeto(getPropostaPorId(id_proposta).getEmail_Docente()),getPropostaPorId(id_proposta)));
     }
 
@@ -757,7 +758,7 @@ public class GestaoProj implements Serializable {
                 VerificaAlunoAcederProposta(id_aluno,proposta) &&
                 !verificaPropostaAtribuida(getPropostaPorId(proposta)) &&
                 !verificaCandidaturaAtribuida(getAlunoPorNumero(id_aluno))){
-            getPropostaPorId(proposta).setCodigo_Aluno(getAlunoPorNumero(id_aluno).getNr_Aluno());
+            getPropostaPorId(proposta).setCodigo_Aluno(id_aluno);
             atribuicoes.add(new Atribuicao(getAlunoPorNumero(id_aluno),getDocentePorEmailObjeto(getPropostaPorId(proposta).getEmail_Docente()),getPropostaPorId(proposta)));
             return true;
         }
