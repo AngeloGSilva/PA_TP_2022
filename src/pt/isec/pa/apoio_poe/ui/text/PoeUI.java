@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class PoeUI {
     ProContexto controladorDoPrograma;
-    private String caminhoDefaultFicheiros = "PA_TP_2022\\\\Resources\\\\ficheiros\\\\";
+    //private String caminhoDefaultFicheiros = "\\\\Resources\\\\ficheiros\\\\";
     public PoeUI(ProContexto controladorDoPrograma) {
         this.controladorDoPrograma = controladorDoPrograma;
     }
@@ -392,7 +392,7 @@ public class PoeUI {
 
             }
                 case 3 -> {
-                    controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv ", true));
+                    controladorDoPrograma.lerFicheiro(PAInput.readString("Nome do Ficheiro csv", true));
 
                     //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                     String errorDisplay = controladorDoPrograma.getErros().toString();
@@ -446,7 +446,7 @@ public class PoeUI {
             }
             case 2 -> System.out.println(controladorDoPrograma.getPropostas());
             case 3 -> {
-                controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv", true));
+                controladorDoPrograma.lerFicheiro(PAInput.readString("Nome do Ficheiro csv", true));
                 //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
                 //Retirar os [] do print
@@ -491,7 +491,7 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getDocentes());
             }
             case 3 -> {
-                controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv ", true));
+                controladorDoPrograma.lerFicheiro(PAInput.readString("Nome do Ficheiro csv ", true));
                 //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
                 //Retirar os [] do print
@@ -541,7 +541,7 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getAlunos());
             }
             case 3 -> {
-                controladorDoPrograma.lerFicheiro(caminhoDefaultFicheiros + PAInput.readString("Nome do Ficheiro csv ", true));
+                controladorDoPrograma.lerFicheiro(PAInput.readString("Nome do Ficheiro csv ", true));
                 //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
                 //Retirar os [] do print

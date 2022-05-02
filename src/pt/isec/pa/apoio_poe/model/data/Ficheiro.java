@@ -10,7 +10,7 @@ import java.util.Locale;
 
 public final class Ficheiro {
 
-    private static String caminho = "Resources\\ficheiros\\";
+    private static String caminho = "\\Resources\\ficheiros\\";
     private static String CaminhoFile;
     //para leitura dos ficheiros
     private static String[] data;
