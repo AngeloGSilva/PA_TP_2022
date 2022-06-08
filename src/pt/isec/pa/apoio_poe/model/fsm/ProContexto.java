@@ -34,6 +34,8 @@ public class ProContexto {
         return state.selecionar(escolha);
     }
 
+    public void AtribuirAutomaticamente(){ state.AtribuirAutomaticamente();}
+
     public boolean voltar(boolean guardado) {
         return state.voltar(guardado);
     }

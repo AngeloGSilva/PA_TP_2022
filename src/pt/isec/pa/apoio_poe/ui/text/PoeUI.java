@@ -24,11 +24,17 @@ public class PoeUI {
                 case GESTAO_PROPOSTA -> gestaoPropostaUI();
                 case OPCAO_CANDIDATURA -> opCandidaturaUI();
                 case ATRIBUIR_PROPOSTA -> atrPropostaUI();
+                case CONFLITO -> conflitoUI();
                 case ATRIBUIR_ORIENTADOR -> atrOrientadorUI();
                 case CONSULTA -> consultaUI();
             }
         }
     }
+
+    private void conflitoUI() {
+
+    }
+
 
     private void consultaUI() {
         System.out.println(controladorDoPrograma.getAlunosPropostaAtribuida());
@@ -92,8 +98,10 @@ public class PoeUI {
                     //(PAInput.chooseOption("Opções:", "Atribuir automatico Autopropostos e docentes com aluno","Atribuir automatico Autopropostos e docentes com aluno", "Atribuir Automatico(Pode existir conflitos)","Atribuir Alunos Manualmente", "Consulta","Candidaturas","Load","Save" ,"avancar","voltar")
 
                     case 1 -> {
-                        controladorDoPrograma.atribuiAutopropostos();
-                        controladorDoPrograma.atribuiPropostasDocentes();
+                        //controladorDoPrograma.atribuiAutopropostos();
+                        //controladorDoPrograma.atribuiPropostasDocentes();
+                        controladorDoPrograma.AtribuirAutomaticamente();
+
                     }
                     case 2 -> {
                         int op = 0;

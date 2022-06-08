@@ -31,11 +31,14 @@ public class atriPropostaState extends IStateAdaptar {
         alteraState(new atriOrientadorState(dados,contexto));
         return false;
     }
-
-    public boolean AtribuirAutomaticamente(){
-        dados.atribuiAutomaticamente();
+    
+    @Override
+    public void AtribuirAutomaticamente(){
+    if(dados.atribuiAutomaticamente() == null){
         dados.atribuirSemCandidatura();
-        return false;
+        alteraState(new atriPropostaState(dados,contexto));
+    }else
+        alteraState(new ConflitoState(dados,contexto));
     }
 
     @Override
