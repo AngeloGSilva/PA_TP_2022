@@ -32,7 +32,8 @@ public class PoeUI {
     }
 
     private void conflitoUI() {
-
+        System.out.println(controladorDoPrograma.getConflitos());
+        System.out.println(controladorDoPrograma.getPropostaConflito());
     }
 
 
@@ -94,17 +95,21 @@ public class PoeUI {
     private void atrPropostaUI() {
         System.out.println("Atribuicao de Propostas:\n");
         if (!controladorDoPrograma.getFase_Proposta() && controladorDoPrograma.getFase_Candidatura()) {
-                switch (PAInput.chooseOption("Opções:", "Atribuir automatico Autopropostos e docentes com aluno", "Atribuir Automatico(Pode existir conflitos)", "Atribuir Alunos Manualmente", "Consulta", "Load", "Save", "avancar", "voltar")) {
+            if (controladorDoPrograma.isConflitoON()){
+                controladorDoPrograma.atribuiAutomaticamente();
+            }else{
+            switch (PAInput.chooseOption("Opções:", "Atribuir automatico Autopropostos e docentes com aluno", "Atribuir Automatico(Pode existir conflitos)", "Atribuir Alunos Manualmente", "Consulta", "Load", "Save", "avancar", "voltar")) {
                     //(PAInput.chooseOption("Opções:", "Atribuir automatico Autopropostos e docentes com aluno","Atribuir automatico Autopropostos e docentes com aluno", "Atribuir Automatico(Pode existir conflitos)","Atribuir Alunos Manualmente", "Consulta","Candidaturas","Load","Save" ,"avancar","voltar")
 
                     case 1 -> {
-                        //controladorDoPrograma.atribuiAutopropostos();
-                        //controladorDoPrograma.atribuiPropostasDocentes();
-                        controladorDoPrograma.AtribuirAutomaticamente();
+                        controladorDoPrograma.atribuiAutopropostos();
+                        controladorDoPrograma.atribuiPropostasDocentes();
+                        //controladorDoPrograma.AtribuirAutomaticamente();
 
                     }
                     case 2 -> {
-                        int op = 0;
+                        controladorDoPrograma.atribuiAutomaticamente();
+                        /*int op = 0;
                         do {
                             ArrayList<String> conflito = controladorDoPrograma.atribuiAutomaticamente();
                             if (conflito != null) {
@@ -117,7 +122,7 @@ public class PoeUI {
                                 op = 1;
                             }
                         } while (op == 0);
-                        controladorDoPrograma.atribuirSemCandidatura();
+                        controladorDoPrograma.atribuirSemCandidatura();*/
                     }
                     case 3 -> {
                         System.out.println(controladorDoPrograma.getAlunosSemAtribuicao());
@@ -190,7 +195,7 @@ public class PoeUI {
                     }
 
                     case 8 -> controladorDoPrograma.voltar(true);
-                }
+                }}
             } else if (controladorDoPrograma.getFase_Proposta()){
                 switch (PAInput.chooseOption("Consulta", "Consultar Todos Dados", "Avancar", "Voltar", "Load", "Save")) {
                     case 1 -> {

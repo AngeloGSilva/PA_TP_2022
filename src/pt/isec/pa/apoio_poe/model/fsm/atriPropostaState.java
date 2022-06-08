@@ -34,7 +34,7 @@ public class atriPropostaState extends IStateAdaptar {
 
     @Override
     public void AtribuirAutomaticamente(){
-    if(dados.atribuiAutomaticamente() == null){
+    if(dados.atribuiAutomaticamente() == false){
         dados.atribuirSemCandidatura();
         alteraState(new atriPropostaState(dados,contexto));
     }else

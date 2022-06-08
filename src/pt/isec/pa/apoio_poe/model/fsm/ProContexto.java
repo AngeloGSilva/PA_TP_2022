@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class ProContexto {
@@ -172,7 +173,7 @@ public class ProContexto {
         return dados.toStringAtribuicoes();
     }
 
-    public ArrayList<String> atribuiAutomaticamente() {
+    public boolean atribuiAutomaticamente() {
         return dados.atribuiAutomaticamente();
     }
 
@@ -290,4 +291,19 @@ public class ProContexto {
     public ArrayList<Aluno> getAlunosSemPropostasComCadidaturaNaoAtribuida() {
         return dados.getAlunosSemPropostas();
     }
+
+
+    public HashSet<Aluno> getConflitos() {
+        return dados.getConflitos();
+    }
+
+    public Proposta getPropostaConflito() {
+        return dados.getPropostaConflito();
+    }
+
+    public boolean isConflitoON() {
+        return dados.isConflitoON();
+    }
+
+
 }

@@ -9,6 +9,23 @@ public class GestaoProj implements Serializable {
     //array de erros para utilizar no UI
     ArrayList<String> erros = new ArrayList<>();
 
+
+    HashSet<Aluno> conflitos = new HashSet<>();
+    Proposta propostaConflito;
+    boolean conflitoON = false;
+
+    public HashSet<Aluno> getConflitos() {
+        return conflitos;
+    }
+
+    public Proposta getPropostaConflito() {
+        return propostaConflito;
+    }
+
+    public boolean isConflitoON() {
+        return conflitoON;
+    }
+
     public Enum getStatekeep() {
         return statekeep;
     }
@@ -673,14 +690,59 @@ public class GestaoProj implements Serializable {
         return null;
     }
 
-    public ArrayList<String> atribuiAutomaticamente() {
-        ArrayList<String> conflitos = new ArrayList<>();
+    public boolean atribuiAutomaticamente() {
+        //ArrayList<String> conflitos = new ArrayList<>();
+        //conflitos.clear();
         boolean repetido = false;
         for (Candidatura c: candidaturas) {
             if (!verificaCandidaturaAtribuida(c.getAluno())) {
                 for (Proposta p : c.getPropostas()) {
                     if (!verificaPropostaAtribuida(p) && !verificaCandidaturaAtribuida(c.getAluno())) {
-                        conflitos.add(String.valueOf(c.getAluno().getNr_Aluno()));
+                        conflitos.add(c.getAluno());
+                        for (Candidatura c2 : candidaturas) { //comparar com a segunda dos outros se perder
+                            if (!verificaCandidaturaAtribuida(c2.getAluno()) &&
+                                    !(c.getAluno().getNr_Aluno() == c2.getAluno().getNr_Aluno()) &&
+                                    p.equals(c2.getPropostas().get(0)) &&
+                                    c2.getAluno().getClassificacao_Aluno() >= c.getAluno().getClassificacao_Aluno()) {
+                                repetido = true;
+                                conflitos.add(c2.getAluno());
+                            }
+                        }
+                        if (!repetido) {
+                            atribuicoes.add(new Atribuicao(c.getAluno(), getDocentePorEmailObjeto(p.getEmail_Docente()), p));
+                            p.setCodigo_Aluno(c.getAluno().getNr_Aluno());
+                            //System.out.println("Atribuiu a este cabecudo "+ c.getAluno().getNr_Aluno());
+                            conflitos.clear();
+                        } else {
+                            propostaConflito = p;
+                            //ArrayList<String> resultado = ComparaClassificacoes(conflitos, p);
+                            if (conflitos != null){
+                                conflitoON = true;
+                                return true;
+                            }
+                            propostaConflito = null;
+                            conflitos.clear();
+                            repetido = false;
+                        }
+                    }
+                }
+            }
+        }
+        conflitos.clear();
+        propostaConflito = null;
+        conflitoON = false;
+        return false;
+    }
+
+    //caso de asneira voltar a esta versao
+/*    public ArrayList<String> atribuiAutomaticamente() {
+        //ArrayList<String> conflitos = new ArrayList<>();
+        boolean repetido = false;
+        for (Candidatura c: candidaturas) {
+            if (!verificaCandidaturaAtribuida(c.getAluno())) {
+                for (Proposta p : c.getPropostas()) {
+                    if (!verificaPropostaAtribuida(p) && !verificaCandidaturaAtribuida(c.getAluno())) {
+                        conflitos.add(c.getAluno());
                         for (Candidatura c2 : candidaturas) { //comparar com a segunda dos outros se perder
                             if (!verificaCandidaturaAtribuida(c2.getAluno()) &&
                                     !(c.getAluno().getNr_Aluno() == c2.getAluno().getNr_Aluno()) &&
@@ -708,7 +770,7 @@ public class GestaoProj implements Serializable {
             }
         }
         return null;
-    }
+    }*/
 
     public String getCandidaturaPorNrAluno(Long nraluno) {
         for(Candidatura x : candidaturas){
