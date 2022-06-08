@@ -8,6 +8,12 @@ public class ConflitoState extends IStateAdaptar {
         super(dados, contexto);
     }
 
+
+    @Override
+    public void resolverConflito(int selecionado){
+        dados.atribuirManualmenteAluno(selecionado,dados.getPropostaConflito().getCod_ID());
+        alteraState(new atriPropostaState(dados,contexto));
+    }
     @Override
     public PoeState getState() {
         return PoeState.CONFLITO;

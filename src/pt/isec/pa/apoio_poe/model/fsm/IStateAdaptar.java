@@ -24,6 +24,8 @@ abstract class IStateAdaptar implements IState{
     }
 
     @Override
+    public void resolverConflito(int selecionado){}
+    @Override
     public boolean avancar(boolean guardado) {
         return false;
     }

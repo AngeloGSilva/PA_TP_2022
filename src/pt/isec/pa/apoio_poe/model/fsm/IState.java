@@ -16,6 +16,8 @@ public interface IState {
     void AtribuirAutomaticamente();
     void lerFicheiro(String fileName);
     boolean lerFicheiroDebug(String fileName);
+
+    void resolverConflito(int selecionado);
     PoeState getState();
 
 }
