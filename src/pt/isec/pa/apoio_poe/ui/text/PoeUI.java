@@ -90,6 +90,7 @@ public class PoeUI {
         if (!controladorDoPrograma.getFase_Proposta() && controladorDoPrograma.getFase_Candidatura()) {
                 switch (PAInput.chooseOption("Opções:", "Atribuir automatico Autopropostos e docentes com aluno", "Atribuir Automatico(Pode existir conflitos)", "Atribuir Alunos Manualmente", "Consulta", "Load", "Save", "avancar", "voltar")) {
                     //(PAInput.chooseOption("Opções:", "Atribuir automatico Autopropostos e docentes com aluno","Atribuir automatico Autopropostos e docentes com aluno", "Atribuir Automatico(Pode existir conflitos)","Atribuir Alunos Manualmente", "Consulta","Candidaturas","Load","Save" ,"avancar","voltar")
+
                     case 1 -> {
                         controladorDoPrograma.atribuiAutopropostos();
                         controladorDoPrograma.atribuiPropostasDocentes();
