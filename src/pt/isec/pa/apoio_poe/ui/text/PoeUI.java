@@ -35,7 +35,7 @@ public class PoeUI {
         System.out.println(controladorDoPrograma.getConflitos());
         System.out.println(controladorDoPrograma.getPropostaConflito());
         System.out.println();
-        controladorDoPrograma.resolverConflito(Integer.parseInt(PAInput.readString("Escolhe o aluno para a proposta"+controladorDoPrograma.getPropostaConflito().getCod_ID()+": ", true)));
+        controladorDoPrograma.resolverConflito(Integer.parseInt(PAInput.readString("Escolhe o aluno para a proposta de ID "+controladorDoPrograma.getPropostaConflito().getCod_ID()+": ", true)));
     }
 
 
