@@ -5,6 +5,7 @@ import pt.isec.pa.apoio_poe.model.data.Atribuicao;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
+import javax.swing.plaf.nimbus.State;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -49,17 +50,21 @@ public class ProContexto {
     }
 //State
     public void load() {
+        StateFactory name = new StateFactory();
         try (ObjectInputStream ois = new ObjectInputStream(
                 new FileInputStream("Loadsave.bin"))) {
             GestaoProj newapp = (GestaoProj) ois.readObject();
             dados = newapp;
+            this.alterarState(name.createState(PoeState.valueOf(dados.getStatekeep().toString()),this,dados));
         }
         catch (Exception e){
 
         }
     }
 
+
     public void save() {
+        dados.setStatekeep(state.getState());
         try (ObjectOutputStream ous = new ObjectOutputStream(
                 new FileOutputStream("Loadsave.bin"))) {
             ous.writeObject(dados);

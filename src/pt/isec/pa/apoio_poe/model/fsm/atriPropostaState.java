@@ -31,7 +31,7 @@ public class atriPropostaState extends IStateAdaptar {
         alteraState(new atriOrientadorState(dados,contexto));
         return false;
     }
-    
+
     @Override
     public void AtribuirAutomaticamente(){
     if(dados.atribuiAutomaticamente() == null){

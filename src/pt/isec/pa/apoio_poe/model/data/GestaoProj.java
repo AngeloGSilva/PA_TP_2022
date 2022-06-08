@@ -9,6 +9,16 @@ public class GestaoProj implements Serializable {
     //array de erros para utilizar no UI
     ArrayList<String> erros = new ArrayList<>();
 
+    public Enum getStatekeep() {
+        return statekeep;
+    }
+
+    public void setStatekeep(Enum statekeep) {
+        this.statekeep = statekeep;
+    }
+
+    Enum statekeep;
+
     //para o fecho das fases
     private boolean fase_Fechada_Config = false;
     private boolean fase_Fechada_Candidatura = false;
