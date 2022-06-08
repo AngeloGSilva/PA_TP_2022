@@ -98,7 +98,7 @@ public class PoeUI {
         System.out.println("Atribuicao de Propostas:\n");
         if (!controladorDoPrograma.getFase_Proposta() && controladorDoPrograma.getFase_Candidatura()) {
             if (controladorDoPrograma.isConflitoON()){
-                controladorDoPrograma.atribuiAutomaticamente();
+                controladorDoPrograma.AtribuirAutomaticamente();
             }else{
             switch (PAInput.chooseOption("Opções:", "Atribuir automatico Autopropostos e docentes com aluno", "Atribuir Automatico(Pode existir conflitos)", "Atribuir Alunos Manualmente", "Consulta", "Load", "Save", "avancar", "voltar")) {
                     //(PAInput.chooseOption("Opções:", "Atribuir automatico Autopropostos e docentes com aluno","Atribuir automatico Autopropostos e docentes com aluno", "Atribuir Automatico(Pode existir conflitos)","Atribuir Alunos Manualmente", "Consulta","Candidaturas","Load","Save" ,"avancar","voltar")
@@ -110,7 +110,7 @@ public class PoeUI {
 
                     }
                     case 2 -> {
-                        controladorDoPrograma.atribuiAutomaticamente();
+                        controladorDoPrograma.AtribuirAutomaticamente();
                         /*int op = 0;
                         do {
                             ArrayList<String> conflito = controladorDoPrograma.atribuiAutomaticamente();
@@ -139,7 +139,7 @@ public class PoeUI {
                     case 4 -> {
                         switch (PAInput.chooseOption("Dados a consultar", "Alunos", "Propostas", "Voltar")) {
                             case 1 -> {
-                                switch (PAInput.chooseOption("Escolher Filtro para alunos", "Auroproposta Associada", "Candidatura Registada", "Proposta Atribuida", "Sem Prosposta Associada", "Voltar")) {
+                                switch (PAInput.chooseOption("Escolher Filtro para alunos", "Autoproposta Associada", "Candidatura Registada", "Proposta Atribuida", "Sem Prosposta Associada", "Voltar")) {
                                     case 1 -> {
                                         System.out.println(controladorDoPrograma.getAlunosAutopropostosString());
                                     }

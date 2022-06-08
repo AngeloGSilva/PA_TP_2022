@@ -692,7 +692,7 @@ public class GestaoProj implements Serializable {
 
     public boolean atribuiAutomaticamente() {
         //ArrayList<String> conflitos = new ArrayList<>();
-        //conflitos.clear();
+        conflitos.clear();
         boolean repetido = false;
         for (Candidatura c: candidaturas) {
             if (!verificaCandidaturaAtribuida(c.getAluno())) {
@@ -920,18 +920,21 @@ public class GestaoProj implements Serializable {
     public ArrayList<Proposta> getPropostasDisponiveis() {
         ArrayList<Proposta> PropostasDisponiveis = new ArrayList<>();
         boolean existe=false;
+        PropostasDisponiveis.clear();
         for(Proposta p:propostas){
             existe=false;
             for(Atribuicao at:atribuicoes){
                 if(p.getCod_ID() == at.getProposta().getCod_ID()){
                     existe=true;
                 }
-                if(!existe)
-                    PropostasDisponiveis.add(p);
             }
+            if(!existe)
+                PropostasDisponiveis.add(p);
         }
         return PropostasDisponiveis;
     }
+
+
 
     public ArrayList<Proposta> getPropostasAtribuidas() {
         ArrayList<Proposta> PropostasAtribuidas = new ArrayList<>();
