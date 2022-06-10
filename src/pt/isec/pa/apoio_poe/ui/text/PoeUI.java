@@ -464,7 +464,6 @@ public class PoeUI {
                     System.out.println("Tipo invalido T[1-3]");
                 }
                 */
-
                 /*
                 if(tipo.equals("T1")) {
                     Proposta proposta = new T1("ramo", "ola", "1223", "ola");
