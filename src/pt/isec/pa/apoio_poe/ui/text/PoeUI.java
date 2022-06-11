@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.ui.text;
 
 import pt.isec.pa.apoio_poe.Utils.PAInput;
+import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
 import java.util.ArrayList;
@@ -628,13 +629,13 @@ public class PoeUI {
         if (!controladorDoPrograma.getFase_gestao()) {
            switch(PAInput.chooseOption("Gerir:", "Gestao de Alunos", "Gestao de Docentes", "Gestao de Projetos","Load","Save")){
                case 1->{
-                   controladorDoPrograma.selecionar(1);
+                   controladorDoPrograma.selecionar(PoeState.GESTAO_ALUNO);
                }
                case 2->{
-                   controladorDoPrograma.selecionar(2);
+                   controladorDoPrograma.selecionar(PoeState.GESTAO_DOCENTE);
                }
                case 3->{
-                   controladorDoPrograma.selecionar(3);
+                   controladorDoPrograma.selecionar(PoeState.GESTAO_PROPOSTA);
                }
                case 4->{
                    controladorDoPrograma.load();

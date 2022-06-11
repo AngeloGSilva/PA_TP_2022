@@ -42,7 +42,7 @@ public class atriOrientadorState extends IStateAdaptar {
         return false;
     }
     @Override
-    public boolean selecionar(int escolha) {
+    public boolean selecionar(PoeState escolha) {
         return false;
     }
 

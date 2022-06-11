@@ -32,7 +32,7 @@ public class ProContexto {
     }
 
     //conjunto de metodos correspondentes as transiçoes de estados ... IState
-    public boolean selecionar(int escolha){
+    public boolean selecionar(PoeState escolha){
         return state.selecionar(escolha);
     }
 

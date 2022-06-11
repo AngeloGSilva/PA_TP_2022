@@ -8,7 +8,7 @@ public interface IState {
     //redo e undo?
     boolean voltar(boolean guardado);
     boolean avancar(boolean guardado);
-    boolean selecionar(int escolha);
+    boolean selecionar(PoeState escolha);
     boolean adicionarAluno(long nr_Aluno,String nome_Aluno,String email_Aluno,String ramo_Aluno,double classificacao_Aluno,boolean aceder_a_Estagio);
     boolean removerAluno(long nr_aluno);
     boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente);

@@ -71,11 +71,6 @@ public class GestaoDocenteState extends IStateAdaptar {
     }
 
 
-    @Override
-    public boolean selecionar(int escolha) {
-        return false;
-    }
-
 
     @Override
     public PoeState getState() {

@@ -35,12 +35,6 @@ public class opCandidaturaState extends IStateAdaptar {
     }
 
     @Override
-    public boolean selecionar(int escolha) {
-        return false;
-    }
-
-
-    @Override
     public PoeState getState() {
         return PoeState.OPCAO_CANDIDATURA;
     }

@@ -22,11 +22,11 @@ public class ConfiguracaoState extends IStateAdaptar {
     }
 
     @Override
-    public boolean selecionar(int escolha) {
+    public boolean selecionar(PoeState escolha) {
         switch (escolha) {
-            case 1 -> alteraState(new GestaoAlunoState(dados, contexto));
-            case 2 -> alteraState(new GestaoDocenteState(dados, contexto));
-            case 3 -> alteraState(new GestaoPropostaState(dados, contexto));
+            case GESTAO_ALUNO -> alteraState(new GestaoAlunoState(dados, contexto));
+            case GESTAO_DOCENTE -> alteraState(new GestaoDocenteState(dados, contexto));
+            case GESTAO_PROPOSTA -> alteraState(new GestaoPropostaState(dados, contexto));
         }
         return false;
     }
