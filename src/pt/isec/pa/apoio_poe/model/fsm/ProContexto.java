@@ -181,20 +181,8 @@ public class ProContexto {
         return dados.getPropostasComCandidaturas();
     }
 
-/*    public void atribuiAutopropostos() {
-        dados.atribuiAutopropostos();
-    }*/
-
-/*    public void atribuiPropostasDocentes() {
-        dados.atribuiPropostasDocentesCompletas();
-    }*/
-
     public String getAtribuicoesPropostas() {
         return dados.toStringAtribuicoes();
-    }
-
-    public boolean atribuiAutomaticamente() {
-        return dados.atribuiAutomaticamente();
     }
 
     public String getAlunoPorNr(String nr) {
@@ -204,15 +192,6 @@ public class ProContexto {
     public String getCandidaturaPorNRAluno(String nraluno){
         return dados.getCandidaturaPorNrAluno(Long.parseLong(nraluno));
     }
-
-    public void atribuiAlunoAProposta(String escolhido, String Id_Proposta) {
-        dados.atribuiPropostaAluno(escolhido,Id_Proposta);
-    }
-
-    public void atribuirSemCandidatura(){
-        dados.atribuirSemCandidatura();
-    }
-
 
     public String getAtribuicoesPropostasSemDocente() {
         return dados.toStringAtribuicoesSemDocente();
