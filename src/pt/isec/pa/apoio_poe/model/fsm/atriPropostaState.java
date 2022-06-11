@@ -45,6 +45,7 @@ public class atriPropostaState extends IStateAdaptar {
     public void AtribuirAutomaticoAutopropostosDocentesAluno() {
         dados.atribuiAutopropostos();
         dados.atribuiPropostasDocentesCompletas();
+        dados.atribuiEstagiosSugeridos();
         alteraState(new atriPropostaState(dados,contexto));
         //return false;
     }

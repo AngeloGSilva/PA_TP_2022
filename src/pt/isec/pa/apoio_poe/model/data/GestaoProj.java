@@ -578,6 +578,17 @@ public class GestaoProj implements Serializable {
         }
     }
 
+    public void atribuiEstagiosSugeridos(){
+        for (Candidatura c: candidaturas) {
+            for (Proposta p: c.getPropostas()) {
+                if(p.getClass().getSimpleName().equals("T1") && p.getCodigo_Aluno() != null){
+                    atribuicoes.add(new Atribuicao(c.getAluno(),null,p));
+                }
+            }
+        }
+    }
+
+
     public void atribuiPropostasDocentesCompletas(){
         for (Candidatura c: candidaturas) {
             for (Proposta p: c.getPropostas()) {

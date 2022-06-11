@@ -132,6 +132,7 @@ public final class Ficheiro {
                                         ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
                                     gestaoProj.adicionarProposta(new T1(data[2], data[3], data[1] ,Long.parseLong(data[5]),data[4]));
+                                    gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[5])),gestaoProj.getPropostaPorId(data[1])));
                                 } else {
                                     //metodo para gravar o erro e enviar para UI e informar o utilizador
                                     gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
