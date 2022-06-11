@@ -84,8 +84,8 @@ public class ProContexto {
         return state.adicionarDocente(nome_Docente, email_Docente, papel_Docente);
     }
 
-    public boolean adicionarProposta(Proposta proposta) {
-        return state.adicionarProposta(proposta);
+    public boolean adicionarProposta(String tipo,String cod_ID, String titulo, Long codigo_Aluno, String email_Docente, String ramo,String empresa){
+        return state.adicionarProposta( tipo, cod_ID,  titulo,  codigo_Aluno,  email_Docente,  ramo, empresa);
     }
 
     public boolean adicionarAluno(String nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio, String curso){

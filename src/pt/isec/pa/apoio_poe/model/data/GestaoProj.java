@@ -1041,14 +1041,14 @@ public class GestaoProj implements Serializable {
                         !VerificaIdProposta(cod_ID) && //id da proposta repetido
                         ((ramo.length() > 3 && ramo.contains("|")) || (ramo.length() <= 3 && Ramos.contains(ramo)))) //ver se tem mais q um ramo associado
                 {
-                    return new T1(data[2], data[3], data[1],data[4]);
+                    return new T1(cod_ID, titulo, ramo,empresa);
                 } else if(codigo_Aluno != null &&
                         VerificaAlunoExiste(codigo_Aluno) &&
                         !VerificaIdProposta(cod_ID) && //id da proposta repetido
                         VerificaAlunoAcederPropostaLeitura(codigo_Aluno,cod_ID) && //Verifica proposta durante a leitura
                         ((ramo.length() > 3 && ramo.contains("|")) || (ramo.length() <= 3 && Ramos.contains(ramo)))) //ver se tem mais q um ramo associado
                 {
-                    return new T1(data[2], data[3], data[1] ,Long.parseLong(data[5]),data[4]);
+                    return new T1(ramo, titulo, cod_ID ,codigo_Aluno,empresa);
                 } else {
                     //metodo para gravar o erro e enviar para UI e informar o utilizador
                     //gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
@@ -1064,7 +1064,7 @@ public class GestaoProj implements Serializable {
                     getDocentePorEmailObjeto(email_Docente).setPapel_Docente(true);
                     //Subir contador
                     getDocentePorEmailObjeto(email_Docente).incContador();
-                    return new T2(data[1], data[3], data[2], data[4]);
+                    return new T2(cod_ID, titulo, ramo, email_Docente);
                 } else if (verificaEmailDocente(email_Docente) && //email de um docente valido
                         !VerificaIdProposta(cod_ID) && //id da proposta repetido
                         VerificaAlunoExiste(codigo_Aluno) && //numero de aluno valido
@@ -1076,7 +1076,7 @@ public class GestaoProj implements Serializable {
                     getDocentePorEmailObjeto(email_Docente).incContador();
                     //Adicionar durante  leitura das propostas
                     adicionarCandidatura(new Candidatura(getAlunoPorNumero(codigo_Aluno),getPropostaPorId(cod_ID)));
-                    return new T2(data[1], data[3], data[2], data[4], Long.parseLong(data[5]));
+                    return new T2(cod_ID,titulo,ramo,email_Docente,codigo_Aluno);
                 } else {
                     //metodo para gravar o erro e enviar para UI e informar o utilizador
                     //gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
@@ -1087,8 +1087,8 @@ public class GestaoProj implements Serializable {
                         !VerificaIdProposta(cod_ID) && //id da proposta repetido
                         !get_codigoAluno(codigo_Aluno)) //se aluno ja nao esta associado a um T3
                 {
-                    gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[3])),gestaoProj.getPropostaPorId(data[1])));
-                    return new T3(data[1], data[2], Long.parseLong(data[3]),gestaoProj.getAlunoPorNumero(Long.parseLong(data[3])).getRamo_Aluno());
+                    adicionarCandidatura(new Candidatura(getAlunoPorNumero(codigo_Aluno),getPropostaPorId(cod_ID)));
+                    return new T3(cod_ID, titulo, codigo_Aluno,getAlunoPorNumero(codigo_Aluno).getRamo_Aluno());
                 } else {
                     //metodo para gravar o erro e enviar para UI e informar o utilizador
                     //gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
