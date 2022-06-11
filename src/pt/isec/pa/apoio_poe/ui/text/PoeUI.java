@@ -643,6 +643,7 @@ public class PoeUI {
                    controladorDoPrograma.save();
                }
            }
+           
         } else
             switch (PAInput.chooseOption("Consulta", "Consulta","Load","Save","Avancar")) {
                 case 1 -> {
