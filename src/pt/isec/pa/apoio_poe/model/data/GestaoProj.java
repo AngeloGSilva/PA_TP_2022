@@ -384,25 +384,13 @@ public class GestaoProj implements Serializable {
 
     //remover dos arrays
     public boolean removerAlunos(long nr_aluno){
-        return alunos.remove(Aluno.getDummyAluno(nr_aluno));
+        return alunos.remove(getAlunoPorNumero(nr_aluno));
     }
 
     public boolean removerDocente(String email){
-        return docentes.remove(Docente.getDummyDocente(email));
+        return docentes.remove(getDocentePorEmailObjeto(email));
     }
-
-
-    public void removeAluno(Aluno aluno){
-        alunos.remove(aluno);
-    }
-
-    public void removeDocente(Docente docente){
-        docentes.remove(docente);
-    }
-
-    public void removeProposta(Proposta proposta){
-        propostas.remove(proposta);
-    }
+    
 
 
     //funcoes que recebem o nome do ficheiro do state e chama o metodo da class estatica correspondente

@@ -21,9 +21,6 @@ public class Docente implements Serializable {
         this.papel_Docente = false;
     }
 
-    public static Docente getDummyDocente(String email){
-        return new Docente(email);
-    }
 
     public String getNome_Docente() {
         return nome_Docente;

@@ -30,10 +30,6 @@ public class Aluno implements Serializable {
         this.curso = null;
     }
 
-    public static Aluno getDummyAluno(long nr_Aluno){
-        return new Aluno(nr_Aluno);
-    }
-
     public long getNr_Aluno() {
         return nr_Aluno;
     }
