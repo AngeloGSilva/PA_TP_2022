@@ -1107,6 +1107,13 @@ public class GestaoProj implements Serializable {
         Proposta aux = getPropostaPorId(cod_ID);
         switch (tipo){
             case "T1"->{
+                if (aux.getCodigo_Aluno() != null){
+                    for (Candidatura c : candidaturas){
+                        if (c.getNraluno().equals(aux.getCodigo_Aluno())){
+                            c.getPropostas().remove(aux);
+                        }
+                    }
+                }
                 propostas.remove(aux);
                 return true;
             }
