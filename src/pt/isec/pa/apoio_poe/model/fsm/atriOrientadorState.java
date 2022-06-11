@@ -38,6 +38,7 @@ public class atriOrientadorState extends IStateAdaptar {
             alteraState(new atriOrientadorState(dados, contexto));
             return true;
         }
+        alteraState(new atriOrientadorState(dados, contexto));
         return false;
     }
     @Override

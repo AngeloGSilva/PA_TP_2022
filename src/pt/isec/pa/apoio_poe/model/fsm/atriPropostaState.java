@@ -55,6 +55,7 @@ public class atriPropostaState extends IStateAdaptar {
             alteraState(new atriPropostaState(dados,contexto));
             return true;
         }
+        alteraState(new atriPropostaState(dados,contexto));
         return false;
     }
 
