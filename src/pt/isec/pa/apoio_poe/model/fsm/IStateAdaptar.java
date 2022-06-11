@@ -64,4 +64,16 @@ abstract class IStateAdaptar implements IState{
     @Override
     public boolean adicionarProposta(Proposta proposta){return false;}
 
+    @Override
+    public void atribuirDocentesauto() {}
+
+    @Override
+    public boolean atribuirManualmenteDocente(String docente, int id_atribuicao){return false;}
+
+    @Override
+    public void AtribuirAutomaticoAutopropostosDocentesAluno(){}
+
+    @Override
+    public boolean atribuirManualmenteAluno(long id_aluno, String proposta){return false;}
+
 }

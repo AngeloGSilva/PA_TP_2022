@@ -42,6 +42,23 @@ public class atriPropostaState extends IStateAdaptar {
     }
 
     @Override
+    public void AtribuirAutomaticoAutopropostosDocentesAluno() {
+        dados.atribuiAutopropostos();
+        dados.atribuiPropostasDocentesCompletas();
+        alteraState(new atriPropostaState(dados,contexto));
+        //return false;
+    }
+
+    @Override
+    public boolean atribuirManualmenteAluno(long id_aluno, String proposta) {
+        if(dados.atribuirManualmenteAluno(id_aluno,proposta)){
+            alteraState(new atriPropostaState(dados,contexto));
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public boolean selecionar(int escolha) {
         return false;
     }

@@ -20,4 +20,11 @@ public interface IState {
     void resolverConflito(int selecionado);
     PoeState getState();
 
+    void atribuirDocentesauto();
+
+    boolean atribuirManualmenteDocente(String docente, int id_atribuicao);
+
+    void AtribuirAutomaticoAutopropostosDocentesAluno();
+
+    boolean atribuirManualmenteAluno(long id_aluno, String proposta);
 }

@@ -96,7 +96,25 @@ public class ProContexto {
     public boolean removerAluno(long nr_aluno){
         return state.removerAluno(nr_aluno);
     }
-    
+
+
+    public void atribuirDocentesauto() {
+        state.atribuirDocentesauto();
+    }
+
+    public boolean atribuirManualmenteDocente(String docente, int id_atribuicao){
+        return state.atribuirManualmenteDocente(docente,id_atribuicao);
+    }
+
+    public void AtribuirAutomaticoAutopropostosDocentesAluno(){
+        state.AtribuirAutomaticoAutopropostosDocentesAluno();
+    }
+
+    public boolean atribuirManualmenteAluno(long id_aluno, String proposta){
+        return state.atribuirManualmenteAluno(id_aluno,proposta);
+    }
+
+
 
     //metodos para aceder a dados... para o UI
     public List<String> getErros(){
@@ -163,13 +181,13 @@ public class ProContexto {
         return dados.getPropostasComCandidaturas();
     }
 
-    public void atribuiAutopropostos() {
+/*    public void atribuiAutopropostos() {
         dados.atribuiAutopropostos();
-    }
+    }*/
 
-    public void atribuiPropostasDocentes() {
+/*    public void atribuiPropostasDocentes() {
         dados.atribuiPropostasDocentesCompletas();
-    }
+    }*/
 
     public String getAtribuicoesPropostas() {
         return dados.toStringAtribuicoes();
@@ -195,17 +213,6 @@ public class ProContexto {
         dados.atribuirSemCandidatura();
     }
 
-    public void atribuirDocentesauto() {
-        dados.atribuirDocentesauto();
-    }
-
-    public boolean atribuirManualmenteDocente(String docente, int id_atribuicao){
-        return dados.atribuirManualmenteDocente(docente,id_atribuicao);
-    }
-
-    public boolean atribuirManualmenteAluno(long id_aluno, String proposta){
-        return dados.atribuirManualmenteAluno(id_aluno,proposta);
-    }
 
     public String getAtribuicoesPropostasSemDocente() {
         return dados.toStringAtribuicoesSemDocente();

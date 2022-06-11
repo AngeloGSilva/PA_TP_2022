@@ -25,6 +25,21 @@ public class atriOrientadorState extends IStateAdaptar {
         return false;
     }
 
+
+    @Override
+    public void atribuirDocentesauto() {
+        dados.atribuirDocentesauto();
+        alteraState(new atriOrientadorState(dados, contexto));
+    }
+
+    @Override
+    public boolean atribuirManualmenteDocente(String docente, int id_atribuicao){
+        if (dados.atribuirManualmenteDocente(docente,id_atribuicao)){
+            alteraState(new atriOrientadorState(dados, contexto));
+            return true;
+        }
+        return false;
+    }
     @Override
     public boolean selecionar(int escolha) {
         return false;
@@ -35,4 +50,6 @@ public class atriOrientadorState extends IStateAdaptar {
     public PoeState getState() {
         return PoeState.ATRIBUIR_ORIENTADOR;
     }
+
+
 }
