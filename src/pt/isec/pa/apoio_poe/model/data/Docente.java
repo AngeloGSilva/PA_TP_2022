@@ -46,6 +46,10 @@ public class Docente implements Serializable {
         contador++;
     }
 
+    public void decContador() {
+        contador--;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
