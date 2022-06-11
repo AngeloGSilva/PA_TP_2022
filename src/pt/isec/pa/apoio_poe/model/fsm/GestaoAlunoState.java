@@ -31,17 +31,15 @@ public class GestaoAlunoState extends IStateAdaptar {
         return false;
     }
 
-/*    @Override
-    public boolean adicionarAluno(long nr_Aluno,String nome_Aluno,String email_Aluno,String ramo_Aluno,double classificacao_Aluno,boolean aceder_a_Estagio){
-        Aluno aluno = new Aluno(nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
-        if(dados.adicinarAlunos(aluno)){
+   @Override
+    public boolean adicionarAluno(String nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio, String curso){
+        if(dados.adicinarAlunos(dados.validarAluno( nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio,curso))){
            alteraState(new GestaoAlunoState(dados,contexto));
-        }else{
-            alteraState(new GestaoAlunoState(dados,contexto));
-            return false;
+           return true;
         }
-        return true;
-    }*/
+        alteraState(new GestaoAlunoState(dados,contexto));
+        return false;
+    }
 
     @Override
     public boolean removerAluno(long nr_aluno){

@@ -48,14 +48,12 @@ public class GestaoDocenteState extends IStateAdaptar {
 
     @Override
     public boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente){
-        Docente docente = new Docente(nome_Docente,email_Docente,papel_Docente);
-        if(dados.adicinarDocentes(docente)){
+        if(dados.adicinarDocentes(dados.validarDocente(nome_Docente,email_Docente,papel_Docente))){
             alteraState(new GestaoDocenteState(dados,contexto));
-        }else{
-            alteraState(new GestaoDocenteState(dados,contexto));
-            return false;
+            return true;
         }
-        return true;
+        alteraState(new GestaoDocenteState(dados,contexto));
+        return false;
     }
 /*
 

@@ -1,9 +1,7 @@
 package pt.isec.pa.apoio_poe.model.data;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class GestaoProj implements Serializable {
     //array de erros para utilizar no UI
@@ -995,6 +993,109 @@ public class GestaoProj implements Serializable {
         return String.valueOf(Orientadores);
     }
 
+    //Validar entradas
+    //arrays para verificacoes que vao permitir usar o contains
+    private static String[] ramos = {"DA", "SI", "RAS"};
+    private static List<String> Ramos = Arrays.asList(ramos);
+    private static String[] curso = {"LEI", "LEI-PL"};
+    private static List<String> Curso = Arrays.asList(curso);
+    private static String[] tipos = {"T1", "T2", "T3"};
+    private static List<String> Tipos = Arrays.asList(tipos);
+
+
+
+
+    public Aluno validarAluno(String nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio, String curso){
+        if (nr_Aluno.length() == 10 && //se o numero tem 10 digitos
+                !VerificaAlunoExiste(Long.parseLong(nr_Aluno)) && //se o numero ja nao se encontra noutro aluno
+                nome_Aluno.contains(" ") &&  //se tem um espaco entre os dois nomes (lg tem 2 nomes)
+                //email deve ter a + numero de aluno, seguido de @isec.pt
+                email_Aluno.contains("@isec.pt") && //email valido
+                !getAlunoPorEmail(email_Aluno) && //Verifica se email existe
+                !curso.isEmpty() && //se nao esta vazio
+                Curso.contains(curso) && //ver se o Lei esta correto
+                Ramos.contains(ramo_Aluno) && //ramo valido
+                classificacao_Aluno <= 1 && //classificao menor q 1
+                (aceder_a_Estagio == true ||
+                aceder_a_Estagio == false)
+        ) {
+            return new Aluno(Long.parseLong(nr_Aluno), nome_Aluno, email_Aluno, ramo_Aluno,classificacao_Aluno,aceder_a_Estagio,curso);
+    }
+        return null;
+    }
+
+    public Docente validarDocente(String nome_Docente, String email_Docente, boolean papel_Docente){
+        if (nome_Docente.contains(" ") &&  //sem nome
+                email_Docente.contains("@isec.pt") && //email valido
+                !getDocentes().contains(email_Docente)//email existe
+        ) {
+            return new Docente(nome_Docente,email_Docente,papel_Docente);
+        }
+        return null;
+    }
+
+    public Proposta validarProposta(String tipo,String cod_ID, String titulo, Long codigo_Aluno, String email_Docente, String ramo,String empresa){
+        switch (tipo) {
+            case "T1" -> {
+                if (codigo_Aluno == null && //nao tem aluno
+                        !VerificaIdProposta(cod_ID) && //id da proposta repetido
+                        ((ramo.length() > 3 && ramo.contains("|")) || (ramo.length() <= 3 && Ramos.contains(ramo)))) //ver se tem mais q um ramo associado
+                {
+                    return new T1(data[2], data[3], data[1],data[4]);
+                } else if(codigo_Aluno != null &&
+                        VerificaAlunoExiste(codigo_Aluno) &&
+                        !VerificaIdProposta(cod_ID) && //id da proposta repetido
+                        VerificaAlunoAcederPropostaLeitura(codigo_Aluno,cod_ID) && //Verifica proposta durante a leitura
+                        ((ramo.length() > 3 && ramo.contains("|")) || (ramo.length() <= 3 && Ramos.contains(ramo)))) //ver se tem mais q um ramo associado
+                {
+                    return new T1(data[2], data[3], data[1] ,Long.parseLong(data[5]),data[4]);
+                } else {
+                    //metodo para gravar o erro e enviar para UI e informar o utilizador
+                    //gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
+                }
+            }
+            case "T2" -> {
+                if (codigo_Aluno == null &&
+                        !VerificaIdProposta(cod_ID) && //id da proposta repetido
+                        verificaEmailDocente(email_Docente) && //email de um docente valido
+                        ((ramo.length() > 3 && ramo.contains("|"))  || (ramo.length() <= 3 && Ramos.contains(ramo)))) //ramos associados
+                {
+                    //Definir o docente como proponente do projeto
+                    getDocentePorEmailObjeto(email_Docente).setPapel_Docente(true);
+                    //Subir contador
+                    getDocentePorEmailObjeto(email_Docente).incContador();
+                    return new T2(data[1], data[3], data[2], data[4]);
+                } else if (verificaEmailDocente(email_Docente) && //email de um docente valido
+                        !VerificaIdProposta(cod_ID) && //id da proposta repetido
+                        VerificaAlunoExiste(codigo_Aluno) && //numero de aluno valido
+                        ((ramo.length() > 3 && ramo.contains("|"))  || (ramo.length() <= 3 && Ramos.contains(ramo)))) //ramos associado
+                {
+                    //Definir o docente como proponente do projeto
+                    getDocentePorEmailObjeto(email_Docente).setPapel_Docente(true);
+                    //Subir contador
+                    getDocentePorEmailObjeto(email_Docente).incContador();
+                    //Adicionar durante  leitura das propostas
+                    adicionarCandidatura(new Candidatura(getAlunoPorNumero(codigo_Aluno),getPropostaPorId(cod_ID)));
+                    return new T2(data[1], data[3], data[2], data[4], Long.parseLong(data[5]));
+                } else {
+                    //metodo para gravar o erro e enviar para UI e informar o utilizador
+                    //gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
+                }
+            }
+            case "T3" -> {
+                if (VerificaAlunoExiste(codigo_Aluno) && //numero de aluno valido
+                        !VerificaIdProposta(cod_ID) && //id da proposta repetido
+                        !get_codigoAluno(codigo_Aluno)) //se aluno ja nao esta associado a um T3
+                {
+                    gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[3])),gestaoProj.getPropostaPorId(data[1])));
+                    return new T3(data[1], data[2], Long.parseLong(data[3]),gestaoProj.getAlunoPorNumero(Long.parseLong(data[3])).getRamo_Aluno());
+                } else {
+                    //metodo para gravar o erro e enviar para UI e informar o utilizador
+                    //gestaoProj.setErros("[Erro] no seguinte Proposta" + Arrays.toString(data) + "\n");
+                }
+            }
+        }
+    }
 
 
     //Dados Nas opcoes de Candidatura

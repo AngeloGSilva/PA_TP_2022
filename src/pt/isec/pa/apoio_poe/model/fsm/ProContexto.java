@@ -5,7 +5,6 @@ import pt.isec.pa.apoio_poe.model.data.Atribuicao;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
-import javax.swing.plaf.nimbus.State;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -89,8 +88,8 @@ public class ProContexto {
         return state.adicionarProposta(proposta);
     }
 
-    public boolean adicionarAluno(long nr_Aluno,String nome_Aluno,String email_Aluno,String ramo_Aluno,double classificacao_Aluno,boolean aceder_a_Estagio){
-        return state.adicionarAluno(nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
+    public boolean adicionarAluno(String nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio, String curso){
+        return state.adicionarAluno( nr_Aluno,  nome_Aluno,  email_Aluno,  ramo_Aluno,  classificacao_Aluno,  aceder_a_Estagio,  curso);
     }
 
     public boolean removerAluno(long nr_aluno){

@@ -4,7 +4,6 @@ import pt.isec.pa.apoio_poe.Utils.PAInput;
 import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 public class PoeUI {
@@ -555,7 +554,10 @@ public class PoeUI {
         System.out.println("Gestão de alunos:\n");
         switch (PAInput.chooseOption("Opções:", "Exportar para um ficheiro", "Consulta","Ler de ficheiro","Avancar","Voltar","[Nao usar][debug]")) {
             case 1 -> {
-                controladorDoPrograma.exportarAlunos(PAInput.readString("Nome do ficheiro para exportar ",true));
+
+                controladorDoPrograma.adicionarAluno(PAInput.readString("Numero:",true),PAInput.readString("Nome Aluno(Primeiro e Ultimo Obrigatorios):",false),PAInput.readString("email:",true),PAInput.readString("Ramo:",true),PAInput.readNumber("classificacao: "),true,PAInput.readString("curso:",true));
+
+                //controladorDoPrograma.exportarAlunos(PAInput.readString("Nome do ficheiro para exportar ",true));
 /*                String nome_Aluno = PAInput.readString("Nome do aluno",false);
                 long nr_Aluno = PAInput.readInt("Numero do aluno");
                 String email_Aluno = PAInput.readString("Email do aluno",false);
@@ -643,7 +645,7 @@ public class PoeUI {
                    controladorDoPrograma.save();
                }
            }
-           
+
         } else
             switch (PAInput.chooseOption("Consulta", "Consulta","Load","Save","Avancar")) {
                 case 1 -> {

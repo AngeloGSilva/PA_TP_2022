@@ -52,14 +52,13 @@ public class GestaoPropostaState extends IStateAdaptar {
     }
 
     @Override
-    public boolean adicionarProposta(Proposta proposta){
-        if(dados.adicionarProposta(proposta)){
+    public boolean adicionarProposta(String cod_ID, String titulo, Long codigo_Aluno, String email_Docente, String ramo,String empresa){
+        if(dados.adicionarProposta( dados.validarProposta(cod_ID,  titulo,  codigo_Aluno,  email_Docente,  ramo, empresa)){
             alteraState(new GestaoPropostaState(dados,contexto));
-        }else{
+            return true;
+        }
             alteraState(new GestaoPropostaState(dados,contexto));
             return false;
-        }
-        return true;
     }
 
 
