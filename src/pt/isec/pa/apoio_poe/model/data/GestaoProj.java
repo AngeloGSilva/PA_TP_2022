@@ -390,7 +390,7 @@ public class GestaoProj implements Serializable {
     public boolean removerDocente(String email){
         return docentes.remove(getDocentePorEmailObjeto(email));
     }
-    
+
 
 
     //funcoes que recebem o nome do ficheiro do state e chama o metodo da class estatica correspondente
@@ -1089,6 +1089,40 @@ public class GestaoProj implements Serializable {
             }
         }
         return null;
+    }
+
+    public boolean removerProposta(String cod_ID){
+        String tipo = getPropostaPorId(cod_ID).getClass().getSimpleName();
+        Proposta aux = getPropostaPorId(cod_ID);
+        switch (tipo){
+            case "T1"->{
+                propostas.remove(aux);
+                return true;
+            }
+            case "T2"->{
+                getDocentePorEmailObjeto(aux.getEmail_Docente()).setPapel_Docente(false);
+                getDocentePorEmailObjeto(aux.getEmail_Docente()).decContador();
+                if (aux.getCodigo_Aluno() !=null){
+                    for (Candidatura c : candidaturas){
+                        if (c.getNraluno().equals(aux.getCodigo_Aluno())){
+                            c.getPropostas().remove(aux);
+                        }
+                    }
+                }
+                propostas.remove(aux);
+                return true;
+            }
+            case "T3"->{
+                for (Candidatura c : candidaturas){
+                    if (c.getNraluno().equals(aux.getCodigo_Aluno())){
+                        c.getPropostas().remove(aux);
+                    }
+                }
+                propostas.remove(aux);
+                return true;
+            }
+        }
+        return false;
     }
 
 
