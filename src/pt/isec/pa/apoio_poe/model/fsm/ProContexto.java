@@ -96,6 +96,10 @@ public class ProContexto {
         return state.removerAluno(nr_aluno);
     }
 
+    public boolean removerDocente(String emaildoc){
+        return state.removerDocente(emaildoc);
+    }
+
 
     public void atribuirDocentesauto() {
         state.atribuirDocentesauto();

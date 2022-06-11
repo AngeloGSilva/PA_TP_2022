@@ -1,9 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import pt.isec.pa.apoio_poe.model.data.Aluno;
-import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
-import pt.isec.pa.apoio_poe.model.data.Proposta;
 
 abstract class IStateAdaptar implements IState{
     protected GestaoProj dados;
@@ -57,6 +54,8 @@ abstract class IStateAdaptar implements IState{
     public boolean removerAluno(long nr_aluno){
         return false;
     }
+    @Override
+    public boolean removerDocente(String emaildoc){ return false;}
 
     @Override
     public boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente){return false;}

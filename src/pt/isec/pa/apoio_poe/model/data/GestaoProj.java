@@ -387,6 +387,11 @@ public class GestaoProj implements Serializable {
         return alunos.remove(Aluno.getDummyAluno(nr_aluno));
     }
 
+    public boolean removerDocente(String email){
+        return docentes.remove(Docente.getDummyDocente(email));
+    }
+
+
     public void removeAluno(Aluno aluno){
         alunos.remove(aluno);
     }
@@ -1095,6 +1100,7 @@ public class GestaoProj implements Serializable {
                 }
             }
         }
+        return null;
     }
 
 

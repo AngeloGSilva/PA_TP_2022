@@ -15,6 +15,16 @@ public class Docente implements Serializable {
         this.papel_Docente = papel_Docente;
     }
 
+    public Docente(String email){
+        this.email_Docente=email;
+        this.nome_Docente = null;
+        this.papel_Docente = false;
+    }
+
+    public static Docente getDummyDocente(String email){
+        return new Docente(email);
+    }
+
     public String getNome_Docente() {
         return nome_Docente;
     }
