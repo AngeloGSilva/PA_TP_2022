@@ -1000,12 +1000,12 @@ public class GestaoProj implements Serializable {
 
     //Validar entradas
     //arrays para verificacoes que vao permitir usar o contains
-    private static String[] ramos = {"DA", "SI", "RAS"};
-    private static List<String> Ramos = Arrays.asList(ramos);
-    private static String[] curso = {"LEI", "LEI-PL"};
-    private static List<String> Curso = Arrays.asList(curso);
-    private static String[] tipos = {"T1", "T2", "T3"};
-    private static List<String> Tipos = Arrays.asList(tipos);
+    private  String[] ramos = {"DA", "SI", "RAS"};
+    private  List<String> Ramos = Arrays.asList(ramos);
+    private  String[] curso = {"LEI", "LEI-PL"};
+    private  List<String> Curso = Arrays.asList(curso);
+    private  String[] tipos = {"T1", "T2", "T3"};
+    private  List<String> Tipos = Arrays.asList(tipos);
 
 
 
@@ -1018,11 +1018,11 @@ public class GestaoProj implements Serializable {
                 email_Aluno.contains("@isec.pt") && //email valido
                 !getAlunoPorEmail(email_Aluno) && //Verifica se email existe
                 !curso.isEmpty() && //se nao esta vazio
-                Curso.contains(curso) && //ver se o Lei esta correto
-                Ramos.contains(ramo_Aluno) && //ramo valido
+                (curso.toUpperCase(Locale.ROOT).equals("LEI-PL") || curso.toUpperCase(Locale.ROOT).equals("LEI")) && //ver se o Lei esta correto
                 classificacao_Aluno <= 1 && //classificao menor q 1
                 (aceder_a_Estagio == true ||
-                aceder_a_Estagio == false)
+                aceder_a_Estagio == false) &&
+                (ramo_Aluno.toUpperCase(Locale.ROOT).equals("DA") || ramo_Aluno.toUpperCase(Locale.ROOT).equals("SI") || ramo_Aluno.toUpperCase(Locale.ROOT).equals("RAS"))//ramo valido
         ) {
             return new Aluno(Long.parseLong(nr_Aluno), nome_Aluno, email_Aluno, ramo_Aluno,classificacao_Aluno,aceder_a_Estagio,curso);
     }

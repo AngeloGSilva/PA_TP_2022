@@ -43,6 +43,7 @@ public class GestaoAlunoState extends IStateAdaptar {
 
     @Override
     public boolean removerAluno(long nr_aluno){
+        alteraState(new GestaoAlunoState(dados,contexto));
         return dados.removerAlunos(nr_aluno);
     }
 
