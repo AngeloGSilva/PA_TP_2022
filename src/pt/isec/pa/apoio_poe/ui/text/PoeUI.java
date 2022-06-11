@@ -554,7 +554,7 @@ public class PoeUI {
         System.out.println("Gestão de alunos:\n");
         switch (PAInput.chooseOption("Opções:", "[APAGAR ALUNO]Exportar para um ficheiro", "Consulta","Ler de ficheiro","Avancar","Voltar","[Nao usar][debug]")) {
             case 1 -> {
-                controladorDoPrograma.adicionarAluno(PAInput.readString("Numero:",true),PAInput.readString("Nome Aluno(Primeiro e Ultimo Obrigatorios):",false),PAInput.readString("email:",true),PAInput.readString("Ramo:",true),PAInput.readNumber("classificacao: "),true,PAInput.readString("curso:",true));
+                //controladorDoPrograma.adicionarAluno(PAInput.readString("Numero:",true),PAInput.readString("Nome Aluno(Primeiro e Ultimo Obrigatorios):",false),PAInput.readString("email:",true),PAInput.readString("Ramo:",true),PAInput.readNumber("classificacao: "),true,PAInput.readString("curso:",true));
                 //controladorDoPrograma.exportarAlunos(PAInput.readString("Nome do ficheiro para exportar ",true));
 /*                String nome_Aluno = PAInput.readString("Nome do aluno",false);
                 long nr_Aluno = PAInput.readInt("Numero do aluno");
@@ -575,8 +575,8 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getAlunos());
             }
             case 3 -> {
-                controladorDoPrograma.removerAluno(Long.parseLong(PAInput.readString("Numero:",true)));
-                /*
+                //controladorDoPrograma.removerAluno(Long.parseLong(PAInput.readString("Numero:",true)));
+
                 controladorDoPrograma.lerFicheiro(PAInput.readString("Nome do Ficheiro csv ", true));
                 //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
@@ -585,7 +585,7 @@ public class PoeUI {
                 System.out.println(errorDisplay);
                 //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
                 controladorDoPrograma.limparErros();
-                */
+
                  
             }
             case 4 -> {
