@@ -39,7 +39,6 @@ public class PoeUI {
         controladorDoPrograma.resolverConflito(Integer.parseInt(PAInput.readString("Escolhe o aluno para a proposta de ID "+controladorDoPrograma.getPropostaConflito().getCod_ID()+": ", true)));
     }
 
-
     private void consultaUI() {
         System.out.println(controladorDoPrograma.getAlunosPropostaAtribuida());
         System.out.println(controladorDoPrograma.getAlunosSemPropostasComCadidaturaNaoAtribuida());
