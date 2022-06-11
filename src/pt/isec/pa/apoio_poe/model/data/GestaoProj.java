@@ -1095,7 +1095,6 @@ public class GestaoProj implements Serializable {
                 }
             }
         }
-        return null;
     }
 
 
