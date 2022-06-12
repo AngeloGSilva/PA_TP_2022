@@ -39,6 +39,13 @@
   -fx-border-width: 2;
   -fx-border-style: solid inside;
   -fx-border-radius: 24;
-  }
+}
+
+#popup{
+    -fx-background-color: #B0E0E6;
+    -fx-font-size: 18;
+    -fx-text-fill: #404040;
+    -fx-font-style: italic;
+}
 
 

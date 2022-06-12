@@ -22,6 +22,9 @@ public class Popup extends VBox{
         layout.getChildren().addAll(lb, btn);
         layout.setAlignment(Pos.CENTER);
         Scene nscene= new Scene(layout, 300, 250);
+        popupwindow.setMinHeight(600);
+        popupwindow.setMinWidth(600);
+        //popupwindow.initStyle(StageStyle.TRANSPARENT);
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
 
