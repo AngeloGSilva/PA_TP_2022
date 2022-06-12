@@ -4,6 +4,8 @@ import javafx.scene.layout.*;
 import pt.isec.pa.apoio_poe.model.ProgManager;
 import pt.isec.pa.apoio_poe.ui.gui.resources.CSSManager;
 
+import java.awt.*;
+
 public class RootPane extends BorderPane {
     ProgManager manager;
 
@@ -19,7 +21,10 @@ public class RootPane extends BorderPane {
         CSSManager.applyCSS(this,"styles.css");
         StackPane stackPane;
         stackPane = new StackPane(
-                new configuracaoUI(manager));
+                new configuracaoUI(manager),
+                new gestaoAlunosUI(manager)
+        );
+        //stackPane.setBackground(Color.BLACK);
         this.setCenter(stackPane);
     }
 
