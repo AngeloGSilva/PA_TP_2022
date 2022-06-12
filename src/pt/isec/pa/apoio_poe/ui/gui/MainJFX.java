@@ -17,11 +17,12 @@ public class MainJFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         RootPane root = new RootPane(manager);
-        Scene scene = new Scene(root,700,400);
+        Scene scene = new Scene(root,900,600);
         stage.setScene(scene);
         stage.setTitle("Estagios/Projetos");
-        stage.setMinWidth(700);
-        stage.setMinHeight(400);
+        stage.setWidth(900);
+        stage.setHeight(600);
+        //stage.setResizable(false);
         stage.show();
     }
 }

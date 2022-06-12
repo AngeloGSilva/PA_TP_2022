@@ -128,7 +128,7 @@ public class ProContexto {
         dados.limparErros();
     }
 
-    public HashSet<Aluno> getAlunos(){
+    public ArrayList<Aluno> getAlunos(){
         return dados.javafx();
     }
 

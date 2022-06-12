@@ -8,13 +8,13 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import pt.isec.pa.apoio_poe.model.ProgManager;
 import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 
-import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -25,6 +25,10 @@ public class gestaoAlunosUI extends BorderPane {
     Label info;
 
     HBox hbox;
+    BorderPane plane;
+
+    TextField textField;
+    HBox textotry;
 
 
     public gestaoAlunosUI(ProgManager manager) {
@@ -36,11 +40,14 @@ public class gestaoAlunosUI extends BorderPane {
     }
 
     private void createViews() {
+
+        textField = new TextField();
+        textotry = new HBox();
         info = new Label();
         btnExportar = new Button("Exportar");
         btnExportar.setMinWidth(100);
-        /*btnConsulta = new Button("Consulta");
-        btnConsulta.setMinWidth(100);*/
+        btnConsulta = new Button("Eliminar");
+        btnConsulta.setMinWidth(100);
         btnLerFich = new Button("Ler Ficheiro");
         btnLerFich.setMinWidth(100);
         btnAvancar  = new Button("Avancar");
@@ -58,7 +65,15 @@ public class gestaoAlunosUI extends BorderPane {
         //this.getChildren().addAll(vbox);
         info.setVisible(false);
         this.setTop(hbox);
-        this.setCenter(new consultaUI(manager));
+        plane = new BorderPane(new consultaUI(manager));
+        this.setCenter(plane);
+        this.setBottom(textotry);
+        textField.setPromptText("Numero do Aluno");
+        textotry.getChildren().addAll(textField,btnConsulta);
+        textotry.setAlignment(Pos.BOTTOM_CENTER);
+        //HBox text = new HBox();
+        //text.getChildren().add(tfield);
+        //plane.setVisible(false);
         //this.setCenter(info);
         //this.setRight(info);
     }
@@ -76,8 +91,11 @@ public class gestaoAlunosUI extends BorderPane {
             File file = fileChooser.showOpenDialog(this.getScene().getWindow());
             System.out.println(file.getAbsolutePath());
             manager.lerFicheiro(file.getAbsolutePath());
-            info.setVisible(true);
-            //Popup.display(manager.getAlunos());
+        });
+        btnConsulta.setOnAction(event ->{
+            System.out.println(textField.getText());
+            manager.removerAluno(Long.parseLong(textField.getText()));
+            System.out.println(manager.getAlunos());
         });
     }
 
@@ -87,6 +105,8 @@ public class gestaoAlunosUI extends BorderPane {
             return;
         }
         this.setVisible(true);
+        //this.setCenter(plane);
+        //this.setCenter(new consultaUI(manager));
         //list.getItems().add(manager.getAlunos());
 
     }

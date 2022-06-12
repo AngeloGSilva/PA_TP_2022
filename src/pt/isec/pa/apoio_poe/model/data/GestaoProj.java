@@ -115,8 +115,8 @@ public class GestaoProj implements Serializable {
         return "Alunos:\n " + alunos;
     }
 
-    public HashSet<Aluno> javafx(){
-        return alunos;
+    public ArrayList<Aluno> javafx(){
+        return new ArrayList<Aluno>(alunos);
     }
 
     public String toStringDocentes() {

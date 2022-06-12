@@ -30,18 +30,15 @@ public class ProgManager {
 
     public void lerFicheiro(String fileName){
         controladorDoPrograma.lerFicheiro(fileName);
-        System.out.println(controladorDoPrograma.getAlunos());
+        //System.out.println(controladorDoPrograma.getAlunos());
         //System.out.println(controladorDoPrograma.getDocentes());
         pcs.firePropertyChange(null,null,null);
     }
 
     public ObservableList<Aluno> getAlunos() {
-        ObservableList<Aluno> ob = null;
-        for (Aluno a : controladorDoPrograma.getAlunos()) {
-            ob = FXCollections.observableArrayList(
-                    new Aluno(a.getNr_Aluno(), a.getNome_Aluno(), a.getEmail_Aluno(), a.getRamo_Aluno(), a.getClassificacao_Aluno(), a.isAceder_a_Estagio(), a.getCurso())
-            );
-        }
+        ObservableList<Aluno> ob = FXCollections.observableArrayList(controladorDoPrograma.getAlunos());
+        System.out.println("Criar a lista de obs");
+        System.out.println(ob);
         return ob;
     }
 
@@ -73,7 +70,9 @@ public class ProgManager {
 
 
     public boolean removerAluno(long nr_aluno){
-        return false;
+        boolean resultado = controladorDoPrograma.removerAluno(nr_aluno);
+        pcs.firePropertyChange(null,null,null);
+        return resultado;
     }
 
     public boolean removerDocente(String emaildoc){ return false;}
