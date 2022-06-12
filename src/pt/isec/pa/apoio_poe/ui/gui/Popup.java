@@ -8,15 +8,24 @@ import javafx.stage.*;
 
 
 public class Popup extends VBox{
-    public static void display(String s)
+    public static void display(PopupSupport s)
     {
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL); //evita a aplicaçao continuar antes de fechar a janela
-        popupwindow.setTitle("Janela de informação");
-        Label lb = new Label("Popup LerFicheiro");
         Button btn = new Button("Ok");
+        Label lb = new Label();
+        switch(s){
+            case POPUP_EXPORT->{
+                popupwindow.setTitle("Janela de informação");
+                lb.setText("Popup Export");
+
+            }
+            case POPUP_LERFICH->{
+                popupwindow.setTitle("Janela de informação");
+                lb.setText("Popup LerFicheiro");
+            }
+        }
         btn.setOnAction(e -> popupwindow.close());
-        lb.setText(s);
         VBox layout = new VBox(10);
 
         layout.getChildren().addAll(lb, btn);
@@ -27,6 +36,7 @@ public class Popup extends VBox{
         //popupwindow.initStyle(StageStyle.TRANSPARENT);
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
+
 
     }
 
