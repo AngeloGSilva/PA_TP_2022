@@ -1,11 +1,13 @@
 package pt.isec.pa.apoio_poe.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.List;
 
 public class ProgManager {
     private ProContexto controladorDoPrograma;
@@ -33,8 +35,14 @@ public class ProgManager {
         pcs.firePropertyChange(null,null,null);
     }
 
-    public String getAlunos(){
-        return controladorDoPrograma.getAlunos();
+    public ObservableList<Aluno> getAlunos() {
+        ObservableList<Aluno> ob = null;
+        for (Aluno a : controladorDoPrograma.getAlunos()) {
+            ob = FXCollections.observableArrayList(
+                    new Aluno(a.getNr_Aluno(), a.getNome_Aluno(), a.getEmail_Aluno(), a.getRamo_Aluno(), a.getClassificacao_Aluno(), a.isAceder_a_Estagio(), a.getCurso())
+            );
+        }
+        return ob;
     }
 
     public boolean voltar(boolean guardado) {

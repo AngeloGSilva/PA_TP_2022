@@ -128,8 +128,8 @@ public class ProContexto {
         dados.limparErros();
     }
 
-    public String getAlunos(){
-        return dados.toStringAlunos();
+    public HashSet<Aluno> getAlunos(){
+        return dados.javafx();
     }
 
     public String getDocentes(){
