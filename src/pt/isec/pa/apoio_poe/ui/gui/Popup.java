@@ -8,7 +8,7 @@ import javafx.stage.*;
 
 
 public class Popup extends VBox{
-    public static void display()
+    public static void display(String s)
     {
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL); //evita a aplicaçao continuar antes de fechar a janela
@@ -16,7 +16,7 @@ public class Popup extends VBox{
         Label lb = new Label("Popup LerFicheiro");
         Button btn = new Button("Ok");
         btn.setOnAction(e -> popupwindow.close());
-
+        lb.setText(s);
         VBox layout = new VBox(10);
 
         layout.getChildren().addAll(lb, btn);

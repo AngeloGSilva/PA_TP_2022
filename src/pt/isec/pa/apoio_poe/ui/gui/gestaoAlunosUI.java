@@ -70,6 +70,7 @@ public class gestaoAlunosUI extends BorderPane {
             System.out.println(file.getAbsolutePath());
             manager.lerFicheiro(file.getAbsolutePath());
             info.setVisible(true);
+            Popup.display(manager.getAlunos());
         });
 
         btnConsulta.setOnAction(event ->{
@@ -84,7 +85,6 @@ public class gestaoAlunosUI extends BorderPane {
             return;
         }
         this.setVisible(true);
-
     }
 
 }
