@@ -1,7 +1,5 @@
 package pt.isec.pa.apoio_poe.model.data;
 
-import pt.isec.pa.apoio_poe.Utils.PAInput;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +47,7 @@ public final class Ficheiro {
                         !gestaoProj.getDocentes().contains(data[1]) && //email existe
                          data.length == 2 //2 parametros
                 ) {
-                    gestaoProj.adicinarDocentes(new Docente(data[0], data[1], false));
+                    gestaoProj.adicionarDocentes(new Docente(data[0], data[1], false));
                 } else {
                     //metodo para gravar o erro e enviar para UI e informar o utilizador
                     gestaoProj.setErros("[Erro] no seguinte Docente" + Arrays.toString(data) + "\n");
@@ -88,7 +86,7 @@ public final class Ficheiro {
                         ("true".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT)) ||
                         "false".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT)))
                 ) {
-                    gestaoProj.adicinarAlunos(new Aluno(Long.parseLong(data[0]), data[1], data[2], data[4], Double.parseDouble(data[5]), Boolean.parseBoolean(data[6]),data[3]));
+                    gestaoProj.adicionarAlunos(new Aluno(Long.parseLong(data[0]), data[1], data[2], data[4], Double.parseDouble(data[5]), Boolean.parseBoolean(data[6]),data[3]));
                 } else {
                     //metodo para gravar o erro e enviar para UI e informar o utilizador
                     gestaoProj.setErros("[Erro] no seguinte Aluno" + Arrays.toString(data) + "\n");

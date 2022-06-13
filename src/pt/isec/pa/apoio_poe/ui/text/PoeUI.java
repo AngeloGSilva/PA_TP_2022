@@ -452,9 +452,10 @@ public class PoeUI {
 
     private void gestaoPropostaUI() {
         System.out.println("Gestão de Propostas:\n");
-        switch (PAInput.chooseOption("Opções:", "Exportar para um ficheiro", "Consulta","Ler ficheiro","Avancar","Voltar")) {
+        switch (PAInput.chooseOption("Opções:", "Exportar para um ficheiro", "Consulta","Ler ficheiro","Adicionar","Editar","Eliminar","Avancar","Voltar")) {
             case 1 -> {
                 controladorDoPrograma.exportarPropostas(PAInput.readString("Nome do ficheiro para exportar ",true));
+
                 /*
                 String tipo;
                 while (!(tipo = PAInput.readString("tipo de proposta",true)).equals("T1") &&
@@ -488,7 +489,16 @@ public class PoeUI {
                 //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
                 controladorDoPrograma.limparErros();
             }
-            case 4 -> {
+            case 4 ->{
+                controladorDoPrograma.adicionarProposta(PAInput.readString("Tipo[T1][T2][T3]:",true),);
+            }
+            case 5 ->{
+
+            }
+            case 6 ->{
+                controladorDoPrograma.remover(PAInput.readString("Id da proposta:",true));
+            }
+            case 7 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
                     case 1 -> {
                         if (!controladorDoPrograma.avancar(true)) {
@@ -500,26 +510,16 @@ public class PoeUI {
                 }
 
             }
-            case 5 ->   controladorDoPrograma.voltar(false);
+            case 8 ->   controladorDoPrograma.voltar(false);
         }
     }
 
     private void gestaoDocentesUI() {
         System.out.println("Gestão de Docentes:\n");
-        switch (PAInput.chooseOption("Opções:", "Eliminar", "Consulta","Ler ficheiro","Avancar", "Voltar")) {
+        switch (PAInput.chooseOption("Opções:", "Exportar para ficheiro", "Consulta","Ler ficheiro","Adicionar","Editar","Eliminar","Avancar", "Voltar")) {
             case 1 -> {
-                //controladorDoPrograma.removerDocente("jduraes@isec.pt");
-                //controladorDoPrograma.exportarDocentes(PAInput.readString("Nome do Ficheiro csv ", true));
-                /*
-                String nome_Docente = PAInput.readString("Nome do aluno",false);
-                String email_Docente = PAInput.readString("Email do aluno",false);
-                boolean papel_Docente = true;
-                switch (PAInput.chooseOption("Papel", "orientador","proponente")){
-                    case 1: papel_Docente = true;
-                    case 2: papel_Docente = false;
-                }
-                controladorDoPrograma.adicionarDocente(nome_Docente,email_Docente,papel_Docente);
-                */
+                controladorDoPrograma.exportarDocentes(PAInput.readString("Nome do Ficheiro csv ", true));
+
             }
             case 2 -> {
                 System.out.println(controladorDoPrograma.getDocentes());
@@ -534,7 +534,16 @@ public class PoeUI {
                 //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
                 controladorDoPrograma.limparErros();
             }
-            case 4 -> {
+            case 4 ->{
+                controladorDoPrograma.adicionarDocente(PAInput.readString("Nome:",false),PAInput.readString("Email:",true),false);
+            }
+            case 5 ->{
+                controladorDoPrograma.editar();
+            }
+            case 6 ->{
+                controladorDoPrograma.remover(PAInput.readString("Email do Docente:",true));
+            }
+            case 7 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
                     case 1 -> {
                         if (!controladorDoPrograma.avancar(true)) {
@@ -545,7 +554,7 @@ public class PoeUI {
                     case 2 -> controladorDoPrograma.avancar(false);
                 }
             }
-            case 5 ->{
+            case 8 ->{
                 controladorDoPrograma.voltar(false);
             }
         }
@@ -553,24 +562,9 @@ public class PoeUI {
 
     private void gestaoAlunosUI() {
         System.out.println("Gestão de alunos:\n");
-        switch (PAInput.chooseOption("Opções:", "[APAGAR ALUNO]Exportar para um ficheiro", "Consulta","Ler de ficheiro","Avancar","Voltar","[Nao usar][debug]")) {
+        switch (PAInput.chooseOption("Opções:", "Exportar para um ficheiro", "Consulta","Ler de ficheiro","Adicionar","Editar","Eliminar","Avancar","Voltar","[Nao usar][debug]")) {
             case 1 -> {
-                //controladorDoPrograma.adicionarAluno(PAInput.readString("Numero:",true),PAInput.readString("Nome Aluno(Primeiro e Ultimo Obrigatorios):",false),PAInput.readString("email:",true),PAInput.readString("Ramo:",true),PAInput.readNumber("classificacao: "),true,PAInput.readString("curso:",true));
-                //controladorDoPrograma.exportarAlunos(PAInput.readString("Nome do ficheiro para exportar ",true));
-/*                String nome_Aluno = PAInput.readString("Nome do aluno",false);
-                long nr_Aluno = PAInput.readInt("Numero do aluno");
-                String email_Aluno = PAInput.readString("Email do aluno",false);
-                String ramo_Aluno = PAInput.readString("Ramo do aluno",true);
-                double classificacao_Aluno = PAInput.readInt("Classificao do aluno");
-                boolean aceder_a_Estagio = true;
-                switch (PAInput.chooseOption("Aceder ao Estagio", "PODE","NAO PODE")){
-                    case 1: aceder_a_Estagio = true;
-                    case 2: aceder_a_Estagio = false;
-                }
-                if(controladorDoPrograma.adicionarAluno(nr_Aluno,nome_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio)){
-                    System.out.println("Aluno adicionado\n");
-                }else
-                    System.out.println("Aluno ja existe\n");*/
+                controladorDoPrograma.exportarAlunos(PAInput.readString("Nome do ficheiro para exportar ",true));
             }
             case 2 -> {
                 System.out.println(controladorDoPrograma.getAlunos());
@@ -589,7 +583,16 @@ public class PoeUI {
 
                  
             }
-            case 4 -> {
+            case 4 ->{
+                controladorDoPrograma.adicionarAluno(PAInput.readString("Numero:",true),PAInput.readString("Nome Aluno(Primeiro e Ultimo Obrigatorios):",false),PAInput.readString("email:",true),PAInput.readString("Ramo:",true),PAInput.readNumber("classificacao: "),true,PAInput.readString("curso:",true));
+            }
+            case 5 ->{
+                controladorDoPrograma.editar();
+            }
+            case 6 ->{
+                controladorDoPrograma.remover(PAInput.readString("Numero de aluno:",true));
+            }
+            case 7 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
                     case 1 -> {
                         if (!controladorDoPrograma.avancar(true)) {
@@ -600,10 +603,10 @@ public class PoeUI {
                     case 2 -> controladorDoPrograma.avancar(false);
                 }
             }
-            case 5 ->{
+            case 8 ->{
                 controladorDoPrograma.voltar(false);
             }
-            case 6->{
+            case 9->{
                 switch(PAInput.chooseOption("Quem Utiliza?","Angelo","Rodrigo")) {
                     case 1 ->{
                         controladorDoPrograma.lerFicheiroDebug("a");

@@ -380,11 +380,11 @@ public class GestaoProj implements Serializable {
     }
     
     //adicionar aos arrays
-    public boolean adicinarAlunos(Aluno aluno){
+    public boolean adicionarAlunos(Aluno aluno){
         return alunos.add(aluno);
     }
 
-    public boolean adicinarDocentes(Docente docente) {
+    public boolean adicionarDocentes(Docente docente) {
         return docentes.add(docente);
     }
 

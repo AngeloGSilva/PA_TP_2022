@@ -1,7 +1,5 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import pt.isec.pa.apoio_poe.model.data.Aluno;
-import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
 public class GestaoDocenteState extends IStateAdaptar {
@@ -48,7 +46,7 @@ public class GestaoDocenteState extends IStateAdaptar {
 
     @Override
     public boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente){
-        if(dados.adicinarDocentes(dados.validarDocente(nome_Docente,email_Docente,papel_Docente))){
+        if(dados.adicionarDocentes(dados.validarDocente(nome_Docente,email_Docente,papel_Docente))){
             alteraState(new GestaoDocenteState(dados,contexto));
             return true;
         }
