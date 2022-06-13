@@ -506,9 +506,10 @@ public class PoeUI {
 
     private void gestaoDocentesUI() {
         System.out.println("Gestão de Docentes:\n");
-        switch (PAInput.chooseOption("Opções:", "Exportar para um ficheiro", "Consulta","Ler ficheiro","Avancar", "Voltar")) {
+        switch (PAInput.chooseOption("Opções:", "Eliminar", "Consulta","Ler ficheiro","Avancar", "Voltar")) {
             case 1 -> {
-                controladorDoPrograma.exportarDocentes(PAInput.readString("Nome do Ficheiro csv ", true));
+                controladorDoPrograma.removerDocente("jduraes@isec.pt");
+                //controladorDoPrograma.exportarDocentes(PAInput.readString("Nome do Ficheiro csv ", true));
                 /*
                 String nome_Docente = PAInput.readString("Nome do aluno",false);
                 String email_Docente = PAInput.readString("Email do aluno",false);

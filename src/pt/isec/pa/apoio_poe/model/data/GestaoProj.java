@@ -412,12 +412,18 @@ public class GestaoProj implements Serializable {
                 }
             }
         }while (flag==0);*/
-
-        for (Proposta proposta: propostas) {
-            if (email.equals(proposta.getEmail_Docente())){
-                removerProposta(proposta.getCod_ID());
+        ArrayList<String> Eliminadas = new ArrayList<>();
+        //Eliminadas.clear();
+        for(Proposta p:propostas){
+            if (email.equals(p.getEmail_Docente()) && p.getClass().getSimpleName().equals("T2")){
+                Eliminadas.add(p.getCod_ID());
             }
         }
+
+            for(String s:Eliminadas){
+                    System.out.println("Entrei aqui");
+                    removerProposta(s);
+            }
 
         //nao funciona direito ... pq ao apagar a proposta altera o size das propostas e o ciclo for para de correr lg nao chega a remover o docente
 

@@ -8,7 +8,7 @@ import pt.isec.pa.apoio_poe.ui.text.PoeUI;
 public class App {
 
     public static void main(String[] args) {
-/*        ProContexto controladorDoPrograma = new ProContexto();
+        /*ProContexto controladorDoPrograma = new ProContexto();
         PoeUI ui = new PoeUI(controladorDoPrograma);
         ui.start();*/
         Application.launch(MainJFX.class,args);

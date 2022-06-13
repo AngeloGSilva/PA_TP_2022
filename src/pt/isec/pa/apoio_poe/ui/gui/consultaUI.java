@@ -28,7 +28,7 @@ public class consultaUI extends BorderPane {
     }
 
     private void createViews() {
-        btnDelete = new Button("eleminar");
+        btnDelete = new Button("eliminar");
         switch (manager.getState()){
             case GESTAO_ALUNO -> {
                 tableAlunos = new TableView<Aluno>();
