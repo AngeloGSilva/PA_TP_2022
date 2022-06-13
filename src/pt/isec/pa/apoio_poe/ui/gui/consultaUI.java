@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -12,6 +13,7 @@ import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class consultaUI extends BorderPane {
     ProgManager manager;
@@ -143,11 +145,22 @@ public class consultaUI extends BorderPane {
             }
             case OPCAO_CANDIDATURA -> {
                 tableCandidatura = new TableView<Candidatura>();
-                TableColumn cod_ID = new TableColumn("Nome");
-                cod_ID.setCellValueFactory(new PropertyValueFactory<Candidatura, ArrayList>("propostas"));
-                cod_ID.setMinWidth(100);
+                TableColumn<Candidatura, String> numeroAluno = new TableColumn<Candidatura, String>("Numero");
+                numeroAluno.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getNomeAluno()));
+                numeroAluno.setMinWidth(100);
 
-                tableCandidatura.getColumns().addAll(cod_ID);
+                TableColumn<Candidatura, String> nomeAluno = new TableColumn<Candidatura, String>("Nome");
+                nomeAluno.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getNomeAluno()));
+                nomeAluno.setMinWidth(100);
+
+                TableColumn<Candidatura, String> cod_ID = new TableColumn<Candidatura, String>("Codigo da Proposta");
+                cod_ID.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getIdPropostas()));
+                cod_ID.setMinWidth(200);
+
+                tableCandidatura.getColumns().addAll(numeroAluno,nomeAluno,cod_ID);
 
                 tableCandidatura.setMaxWidth(650);
                 tableCandidatura.setMaxHeight(300);
@@ -199,7 +212,11 @@ public class consultaUI extends BorderPane {
                 case OPCAO_CANDIDATURA -> {
                     if (tableCandidatura !=null) {
                         Candidatura selectedItem = tableCandidatura.getSelectionModel().getSelectedItem();
-                        tableCandidatura.getItems().remove(selectedItem);
+                        TextInputDialog td = new TextInputDialog("Codigo Proposta");
+                        td.setHeaderText("Qual Proposta do Aluno " + selectedItem.getNomeAluno() + " deseja apagar?\n" + selectedItem.getIdPropostas());
+                        td.showAndWait();
+                        //tableCandidatura.getItems().remove(selectedItem);
+                        System.out.println(td.getResult().toUpperCase(Locale.ROOT));
                         /*manager.removerProposta(selectedItem.g);
                         System.out.println(selectedItem.getCod_ID());*/
                     }
