@@ -3,6 +3,7 @@ package pt.isec.pa.apoio_poe.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Candidatura;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.fsm.PoeState;
@@ -60,6 +61,15 @@ public class ProgManager {
         System.out.println("Criar a lista de obs");
         System.out.println(ob);
         return ob;
+    }
+
+    public ObservableList<Candidatura> getCandidaturas() {
+        System.out.println(controladorDoPrograma.getCandidaturaTV());
+        ObservableList<Candidatura> ob = FXCollections.observableArrayList(controladorDoPrograma.getCandidaturaTV());
+        System.out.println("Criar a lista de obs");
+        System.out.println(ob);
+        return ob;
+        //return dados.toStringCandidaturas();
     }
 
     public boolean voltar(boolean guardado) {

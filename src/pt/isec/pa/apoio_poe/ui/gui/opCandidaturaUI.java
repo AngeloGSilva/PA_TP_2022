@@ -2,12 +2,13 @@ package pt.isec.pa.apoio_poe.ui.gui;
 
 
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import pt.isec.pa.apoio_poe.model.ProgManager;
+
+import java.io.File;
 
 
 public class opCandidaturaUI extends BorderPane {
@@ -57,19 +58,43 @@ public class opCandidaturaUI extends BorderPane {
         this.setTop(hbox);
         plane = new BorderPane(new consultaUI(manager));
         this.setCenter(plane);
-/*        this.setBottom(textotry);
-        textField.setPromptText("Numero do Aluno");
-        textotry.getChildren().addAll(textField,btnConsulta);
-        textotry.setAlignment(Pos.BOTTOM_CENTER);*/
-        //HBox text = new HBox();
-        //text.getChildren().add(tfield);
-        //plane.setVisible(false);
-        //this.setCenter(info);
-        //this.setRight(info);
     }
 
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
+        btnExportar.setOnAction(event ->{
+            Popup.display(PopupSupport.POPUP_EXPORT);
+        });
+        btnLerFich.setOnAction(event ->{
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("File open...");
+            fileChooser.setInitialDirectory(new File("..."));
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("CSV (*.csv)","*.csv"),
+                    new FileChooser.ExtensionFilter("All files","*.*")
+            );
+            File file = fileChooser.showOpenDialog(this.getScene().getWindow());
+            System.out.println(file.getAbsolutePath());
+            manager.lerFicheiro(file.getAbsolutePath());
+            Popup.display(PopupSupport.POPUP_LERFICH);
+        });
+
+        btnAvancar.setOnAction(event ->{
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Fechar Fase");
+            alert.setHeaderText("Ao Fechar a fase nao tera mais a possibilidade de alterar as informacoes");
+            alert.setContentText("Fechar?");
+            ButtonType okButton = new ButtonType("Sim", ButtonBar.ButtonData.YES);
+            ButtonType noButton = new ButtonType("Nao", ButtonBar.ButtonData.NO);
+            alert.getButtonTypes().setAll(okButton, noButton);
+            alert.showAndWait().ifPresent(type -> {
+                if (type == okButton) {
+                    manager.avancar(true);
+                } else if (type == noButton) {
+                    manager.avancar(false);
+                }
+            });
+        });
         btnVoltar.setOnAction(event ->{
             manager.voltar(false);
         });

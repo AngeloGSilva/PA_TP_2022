@@ -144,6 +144,10 @@ public class ProContexto {
         return dados.getPropostaTV();
     }
 
+    public ArrayList<Candidatura> getCandidaturaTV(){
+        return dados.getCandidaturaTV();
+    }
+
     public String getDocentes(){
         return dados.toStringDocentes();
     }

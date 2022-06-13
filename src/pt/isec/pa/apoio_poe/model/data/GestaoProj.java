@@ -127,6 +127,10 @@ public class GestaoProj implements Serializable {
         return new ArrayList<Proposta>(propostas);
     }
 
+    public ArrayList<Candidatura> getCandidaturaTV(){
+        return new ArrayList<Candidatura>(candidaturas);
+    }
+
     public String toStringDocentes() {
         return "Docentes:\n " + docentes;
     }

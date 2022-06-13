@@ -7,8 +7,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import pt.isec.pa.apoio_poe.model.ProgManager;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Candidatura;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
+
+import java.util.ArrayList;
 
 public class consultaUI extends BorderPane {
     ProgManager manager;
@@ -18,6 +21,7 @@ public class consultaUI extends BorderPane {
     TableView<Aluno> tableAlunos;
     TableView<Docente> tableDocente;
     TableView<Proposta> tableProposta;
+    TableView<Candidatura> tableCandidatura;
 
     public consultaUI(ProgManager manager) {
         this.manager = manager;
@@ -137,6 +141,24 @@ public class consultaUI extends BorderPane {
                 this.setBottom(vBox);
                 tableProposta.setItems(manager.getPropostas());
             }
+            case OPCAO_CANDIDATURA -> {
+                tableCandidatura = new TableView<Candidatura>();
+                TableColumn cod_ID = new TableColumn("Nome");
+                cod_ID.setCellValueFactory(new PropertyValueFactory<Candidatura, ArrayList>("propostas"));
+                cod_ID.setMinWidth(100);
+
+                tableCandidatura.getColumns().addAll(cod_ID);
+
+                tableCandidatura.setMaxWidth(650);
+                tableCandidatura.setMaxHeight(300);
+
+                this.setCenter(tableCandidatura);
+                vBox = new VBox();
+                vBox.getChildren().add(btnDelete);
+                vBox.setAlignment(Pos.CENTER);
+                this.setBottom(vBox);
+                tableCandidatura.setItems(manager.getCandidaturas());
+            }
         }
 
 
@@ -172,6 +194,14 @@ public class consultaUI extends BorderPane {
                         tableProposta.getItems().remove(selectedItem);
                         manager.removerProposta(selectedItem.getCod_ID());
                         System.out.println(selectedItem.getCod_ID());
+                    }
+                }
+                case OPCAO_CANDIDATURA -> {
+                    if (tableCandidatura !=null) {
+                        Candidatura selectedItem = tableCandidatura.getSelectionModel().getSelectedItem();
+                        tableCandidatura.getItems().remove(selectedItem);
+                        /*manager.removerProposta(selectedItem.g);
+                        System.out.println(selectedItem.getCod_ID());*/
                     }
                 }
                 //table.refresh();
