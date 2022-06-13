@@ -220,6 +220,8 @@ public class consultaUI extends BorderPane {
                         for (String s: selectedItem.getIdPropostas()) {
                             if (td.getResult().toUpperCase(Locale.ROOT).equals(s)){
                                 System.out.println("é um camelo");
+                                System.out.println(selectedItem.getNralunoString());
+                                manager.removerCandidatura(selectedItem.getNralunoString(),td.getResult().toUpperCase(Locale.ROOT));
                             }else {
                                 System.out.println("nao é nenhum deles");
                             }

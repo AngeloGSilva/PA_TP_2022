@@ -93,6 +93,10 @@ public class ProContexto {
         return state.remover(eliminar);
     }
 
+    public boolean removerCandidatura(String nr_Aluno,String eliminar){
+        return state.removerCandidatura(nr_Aluno,eliminar);
+    }
+
 /*
     public boolean removerAluno(long nr_aluno){
         return state.removerAluno(nr_aluno);

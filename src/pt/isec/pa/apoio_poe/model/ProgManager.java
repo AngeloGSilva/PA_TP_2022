@@ -108,6 +108,12 @@ public class ProgManager {
         return resultado;
     }
 
+    public boolean removerCandidatura(String nr_Aluno,String id_Proposta){
+        boolean resultado = controladorDoPrograma.removerCandidatura(nr_Aluno,id_Proposta);
+        pcs.firePropertyChange(null,null,null);
+        return resultado;
+    }
+
 /*
     public boolean removerAluno(long nr_aluno){
         boolean resultado = controladorDoPrograma.removerAluno(nr_aluno);

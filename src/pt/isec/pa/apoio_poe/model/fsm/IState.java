@@ -9,6 +9,8 @@ public interface IState {
     boolean selecionar(PoeState escolha);
     boolean adicionarAluno(String nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio, String curso);
     boolean remover(String eliminar);
+
+    boolean removerCandidatura(String nr_Aluno,String eliminar);
 /*    boolean removerAluno(long nr_aluno);
     boolean removerDocente(String emaildoc);*//*
     public boolean removerProposta(String cod_ID);*/

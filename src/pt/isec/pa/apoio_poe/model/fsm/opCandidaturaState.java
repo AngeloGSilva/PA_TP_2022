@@ -2,6 +2,8 @@ package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
+import java.util.SplittableRandom;
+
 public class opCandidaturaState extends IStateAdaptar {
     public opCandidaturaState(GestaoProj dados, ProContexto contexto) {
         super(dados, contexto);
@@ -14,9 +16,9 @@ public class opCandidaturaState extends IStateAdaptar {
     }
 
     @Override
-    public boolean remover(String id_Candidatura){
+    public boolean removerCandidatura(String nr_Aluno, String id_Candidatura){
         alteraState(new opCandidaturaState(dados,contexto));
-        return dados.removerCandidatura(id_Candidatura);
+        return dados.removerCandidatura(nr_Aluno,id_Candidatura);
     }
 
     @Override

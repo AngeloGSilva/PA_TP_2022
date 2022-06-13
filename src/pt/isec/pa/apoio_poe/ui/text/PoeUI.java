@@ -508,7 +508,7 @@ public class PoeUI {
         System.out.println("Gestão de Docentes:\n");
         switch (PAInput.chooseOption("Opções:", "Eliminar", "Consulta","Ler ficheiro","Avancar", "Voltar")) {
             case 1 -> {
-                controladorDoPrograma.removerDocente("jduraes@isec.pt");
+                //controladorDoPrograma.removerDocente("jduraes@isec.pt");
                 //controladorDoPrograma.exportarDocentes(PAInput.readString("Nome do Ficheiro csv ", true));
                 /*
                 String nome_Docente = PAInput.readString("Nome do aluno",false);

@@ -55,8 +55,20 @@ public class Candidatura implements Serializable {
         this.propostas.add(proposta);
     }
 
+    public void removeProposta(String id_proposta) {
+        for (Proposta proposta : propostas) {
+            if (proposta.getCod_ID().equals(id_proposta)){
+                propostas.remove(proposta);
+            }
+        }
+    }
+
     public Long getNraluno() {
         return aluno.getNr_Aluno();
+    }
+
+    public String getNralunoString() {
+        return String.valueOf(aluno.getNr_Aluno());
     }
 
     public String getNomeAluno() {
