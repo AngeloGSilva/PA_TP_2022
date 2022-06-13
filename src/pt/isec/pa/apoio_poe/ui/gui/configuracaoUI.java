@@ -13,7 +13,7 @@ import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 
 public class configuracaoUI extends BorderPane{
     ProgManager manager;
-    Button btnAlunos,btnDocentes,btnProjetos,btnExit;
+    Button btnAlunos,btnDocentes,btnProjetos,btnExit,btnConsulta;
 
     public configuracaoUI(ProgManager manager) {
         this.manager = manager;
@@ -24,46 +24,70 @@ public class configuracaoUI extends BorderPane{
     }
 
     private void createViews() {
-        btnAlunos = new Button("Alunos");
-        btnAlunos.setMinWidth(100);
-        btnDocentes = new Button("Docentes");
-        btnDocentes.setMinWidth(100);
-        btnProjetos = new Button("Projetos");
-        btnProjetos.setMinWidth(100);
-        btnExit  = new Button("Exit");
-        btnExit.setMinWidth(100);
-        btnAlunos.setId("allbtn");
-        btnDocentes.setId("allbtn");
-        btnProjetos.setId("allbtn");
-        VBox hBox = new VBox();
-        hBox.setAlignment(Pos.CENTER);
-        hBox.setSpacing(10);
-        //hBox.getChildren().addAll();
-        hBox.getChildren().addAll(btnAlunos,btnDocentes,btnProjetos,btnExit);
-        //hBox.getChildren().add(btnAlunos);
-        //hBox.getChildren().add(btnDocentes);
-        //hBox.getChildren().add(btnProjetos);
-        //this.getChildren().addAll(hBox);
-        this.setCenter(hBox);
-
+        if (!manager.getFase_gestao()) {
+            btnAlunos = new Button("Alunos");
+            btnAlunos.setMinWidth(100);
+            btnDocentes = new Button("Docentes");
+            btnDocentes.setMinWidth(100);
+            btnProjetos = new Button("Projetos");
+            btnProjetos.setMinWidth(100);
+            btnExit = new Button("Exit");
+            btnExit.setMinWidth(100);
+            btnAlunos.setId("allbtn");
+            btnDocentes.setId("allbtn");
+            btnProjetos.setId("allbtn");
+            VBox hBox = new VBox();
+            hBox.setAlignment(Pos.CENTER);
+            hBox.setSpacing(10);
+            //hBox.getChildren().addAll();
+            hBox.getChildren().addAll(btnAlunos, btnDocentes, btnProjetos, btnExit);
+            //hBox.getChildren().add(btnAlunos);
+            //hBox.getChildren().add(btnDocentes);
+            //hBox.getChildren().add(btnProjetos);
+            //this.getChildren().addAll(hBox);
+            this.setCenter(hBox);
+        }else {
+            btnExit = new Button("Exit");
+            btnExit.setMinWidth(100);
+            btnConsulta = new Button("Consulta");
+            VBox hBox = new VBox();
+            hBox.setAlignment(Pos.CENTER);
+            hBox.setSpacing(10);
+            //hBox.getChildren().addAll();
+            hBox.getChildren().addAll(btnConsulta, btnExit);
+            //hBox.getChildren().add(btnAlunos);
+            //hBox.getChildren().add(btnDocentes);
+            //hBox.getChildren().add(btnProjetos);
+            //this.getChildren().addAll(hBox);
+            this.setCenter(hBox);
+        }
         //hBox.getChildren().addAll(btnAlunos,btnDocentes,btnProjetos,btnExit);
     }
 
     private void registerHandlers() {
-        manager.addPropertyChangeListener(evt -> { update(); });
-        btnAlunos.setOnAction(event -> {
-            manager.selecionar(PoeState.GESTAO_ALUNO);
-        });
+        if (!manager.getFase_gestao()) {
+            manager.addPropertyChangeListener(evt -> {
+                update();
+            });
+            btnAlunos.setOnAction(event -> {
+                manager.selecionar(PoeState.GESTAO_ALUNO);
+            });
 
-        btnDocentes.setOnAction(event -> {
-            manager.selecionar(PoeState.GESTAO_DOCENTE);
-        });
+            btnDocentes.setOnAction(event -> {
+                manager.selecionar(PoeState.GESTAO_DOCENTE);
+            });
 
-        btnProjetos.setOnAction(event -> {
-            manager.selecionar(PoeState.GESTAO_PROPOSTA);
-        });
+            btnProjetos.setOnAction(event -> {
+                manager.selecionar(PoeState.GESTAO_PROPOSTA);
+            });
 
-        btnExit.setOnAction( event -> {
+
+        }else {
+            btnConsulta.setOnAction(event -> {
+                Platform.exit();
+            });
+        }
+        btnExit.setOnAction(event -> {
             Platform.exit();
         });
     }

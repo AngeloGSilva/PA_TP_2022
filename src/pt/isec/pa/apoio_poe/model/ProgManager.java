@@ -30,6 +30,9 @@ public class ProgManager {
     }
 
 
+    public boolean getFase_gestao(){
+        return controladorDoPrograma.getFase_gestao();
+    }
     public void lerFicheiro(String fileName){
         controladorDoPrograma.lerFicheiro(fileName);
         //System.out.println(controladorDoPrograma.getAlunos());
@@ -68,7 +71,9 @@ public class ProgManager {
     public void resolverConflito(int selecionado){}
 
     public boolean avancar(boolean guardado) {
-        return false;
+        boolean resultado = controladorDoPrograma.avancar(guardado);
+        pcs.firePropertyChange(null,null,null);
+        return resultado;
     }
 
 

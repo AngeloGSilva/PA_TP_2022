@@ -21,7 +21,6 @@ public class RootPane extends BorderPane {
     }
 
     private void createViews() {
-        manager.addPropertyChangeListener(evt -> { update(); });
         CSSManager.applyCSS(this,"styles.css");
 /*        StackPane stackPane;
         stackPane = new StackPane(
@@ -32,6 +31,7 @@ public class RootPane extends BorderPane {
     }
 
     private void registerHandlers() {
+        manager.addPropertyChangeListener(evt -> { update(); });
     }
 
     private void update() {
@@ -40,6 +40,7 @@ public class RootPane extends BorderPane {
             case GESTAO_ALUNO -> this.setCenter(new gestaoAlunosUI(manager));
             case GESTAO_DOCENTE -> this.setCenter(new gestaoDocenteUI(manager));
             case GESTAO_PROPOSTA -> this.setCenter(new gestaoPropostaUI(manager));
+            case OPCAO_CANDIDATURA -> this.setCenter(new opCandidaturaUI(manager));
 
         /*if (estado == a waitBet)
              new WaitBetUI(gameBWManager) para nao ser tao pesado para nao carregar td lg no inicio

@@ -1,9 +1,7 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
@@ -95,6 +93,22 @@ public class gestaoDocenteUI extends BorderPane{
             System.out.println(textField.getText());
             manager.removerAluno(Long.parseLong(textField.getText()));
             System.out.println(manager.getAlunos());
+        });
+        btnAvancar.setOnAction(event ->{
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Fechar Fase");
+            alert.setHeaderText("Ao Fechar a fase nao tera mais a possibilidade de alterar as informacoes");
+            alert.setContentText("Fechar?");
+            ButtonType okButton = new ButtonType("Sim", ButtonBar.ButtonData.YES);
+            ButtonType noButton = new ButtonType("Nao", ButtonBar.ButtonData.NO);
+            alert.getButtonTypes().setAll(okButton, noButton);
+            alert.showAndWait().ifPresent(type -> {
+                if (type == okButton) {
+                    manager.avancar(true);
+                } else if (type == noButton) {
+                    manager.avancar(false);
+                }
+            });
         });
         btnVoltar.setOnAction(event ->{
             manager.voltar(false);
