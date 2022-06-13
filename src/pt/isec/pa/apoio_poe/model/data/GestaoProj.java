@@ -1204,8 +1204,11 @@ public class GestaoProj implements Serializable {
 
     public boolean removerCandidatura(String nr_Aluno,String id_Candidatura){
         for (Candidatura candidatura: candidaturas){
-            if (candidatura.getNraluno().equals(nr_Aluno)){
+            if (candidatura.getNralunoString().equals(nr_Aluno)){
                 candidatura.removeProposta(id_Candidatura);
+                if(candidatura.getPropostas().size() == 0){
+                    candidaturas.remove(candidatura);
+                }
                 return true;
             }
         }

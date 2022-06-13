@@ -59,6 +59,7 @@ public class Candidatura implements Serializable {
         for (Proposta proposta : propostas) {
             if (proposta.getCod_ID().equals(id_proposta)){
                 propostas.remove(proposta);
+                return;
             }
         }
     }
