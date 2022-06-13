@@ -323,8 +323,10 @@ public class GestaoProj implements Serializable {
 
     //verifica se o numero pertence a algum aluno
     public boolean VerificaAlunoExiste(long nr) {
-        for (Aluno d: alunos
-        ) {
+        if(alunos.size()==0){
+            return false;
+        }
+        for (Aluno d: alunos) {
             if (d.getNr_Aluno() == nr)
                 return true;
         }

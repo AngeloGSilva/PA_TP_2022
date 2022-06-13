@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.ui.text;
 
 import pt.isec.pa.apoio_poe.Utils.PAInput;
+import pt.isec.pa.apoio_poe.model.data.T1;
 import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
@@ -456,27 +457,6 @@ public class PoeUI {
             case 1 -> {
                 controladorDoPrograma.exportarPropostas(PAInput.readString("Nome do ficheiro para exportar ",true));
 
-                /*
-                String tipo;
-                while (!(tipo = PAInput.readString("tipo de proposta",true)).equals("T1") &&
-                        !(tipo = PAInput.readString("tipo de proposta",true)).equals("T2") &&
-                        !(tipo = PAInput.readString("tipo de proposta",true)).equals("T3")){
-                    System.out.println("Tipo invalido T[1-3]");
-                }
-                */
-                /*
-                if(tipo.equals("T1")) {
-                    Proposta proposta = new T1("ramo", "ola", "1223", "ola");
-                    controladorDoPrograma.adicionarProposta(proposta);
-                }else if(tipo.equals("T2")){
-                    Proposta proposta = new T2("ramo", "ola", "1223", "ola");
-                    controladorDoPrograma.adicionarProposta(proposta);
-                }else if(tipo.equals("T3")){
-                    Proposta proposta = new T3("cod_id","titulo","nr_aluno");
-                    controladorDoPrograma.adicionarProposta(proposta);
-                }
-                */
-
             }
             case 2 -> System.out.println(controladorDoPrograma.getPropostas());
             case 3 -> {
@@ -489,11 +469,21 @@ public class PoeUI {
                 //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
                 controladorDoPrograma.limparErros();
             }
-            case 4 ->{
-                controladorDoPrograma.adicionarProposta(PAInput.readString("Tipo[T1][T2][T3]:",true),);
+            case 4 -> {
+                switch (PAInput.readString("Tipo[T1][T2][T3]:", true)) {
+                    case "T1" -> {
+                        controladorDoPrograma.adicionarProposta(PAInput.readString("Tipo[T1][T2][T3]:", true), PAInput.readString("Id da proposta:", true), PAInput.readString("Titulo:", false), Long.parseLong(PAInput.readString("Numero Aluno associado:", true)), PAInput.readString("Email docente associado:", true), PAInput.readString("Ramo:", true), PAInput.readString("Empresa:", true));
+                    }
+                    case "T2" -> {
+
+                    }
+                    case "T3" -> {
+
+                    }
+            }
             }
             case 5 ->{
-
+                //controladorDoPrograma.editar();
             }
             case 6 ->{
                 controladorDoPrograma.remover(PAInput.readString("Id da proposta:",true));
@@ -538,7 +528,7 @@ public class PoeUI {
                 controladorDoPrograma.adicionarDocente(PAInput.readString("Nome:",false),PAInput.readString("Email:",true),false);
             }
             case 5 ->{
-                controladorDoPrograma.editar();
+                //controladorDoPrograma.editar();
             }
             case 6 ->{
                 controladorDoPrograma.remover(PAInput.readString("Email do Docente:",true));
@@ -584,10 +574,10 @@ public class PoeUI {
                  
             }
             case 4 ->{
-                controladorDoPrograma.adicionarAluno(PAInput.readString("Numero:",true),PAInput.readString("Nome Aluno(Primeiro e Ultimo Obrigatorios):",false),PAInput.readString("email:",true),PAInput.readString("Ramo:",true),PAInput.readNumber("classificacao: "),true,PAInput.readString("curso:",true));
+                controladorDoPrograma.adicionarAluno(PAInput.readString("Numero:",true),PAInput.readString("Nome Aluno(Primeiro e Ultimo Obrigatorios):",false),PAInput.readString("Email:",true),PAInput.readString("Ramo:",true),PAInput.readNumber("classificacao: "),true,PAInput.readString("curso:",true));
             }
             case 5 ->{
-                controladorDoPrograma.editar();
+                //controladorDoPrograma.editar();
             }
             case 6 ->{
                 controladorDoPrograma.remover(PAInput.readString("Numero de aluno:",true));
