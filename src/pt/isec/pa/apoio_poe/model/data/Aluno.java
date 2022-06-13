@@ -34,6 +34,10 @@ public class Aluno implements Serializable {
         return nr_Aluno;
     }
 
+    public String getNr_AlunoString() {
+        return String.valueOf(nr_Aluno);
+    }
+
     public String getNome_Aluno() {
         return nome_Aluno;
     }

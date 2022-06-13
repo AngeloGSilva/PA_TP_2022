@@ -62,10 +62,16 @@ public class GestaoPropostaState extends IStateAdaptar {
     }
 
     @Override
-    public boolean removerProposta(String cod_ID){
+    public boolean remover(String cod_ID){
         alteraState(new GestaoPropostaState(dados,contexto));
         return dados.removerProposta(cod_ID);
     }
+
+/*    @Override
+    public boolean removerProposta(String cod_ID){
+        alteraState(new GestaoPropostaState(dados,contexto));
+        return dados.removerProposta(cod_ID);
+    }*/
 
 
     @Override

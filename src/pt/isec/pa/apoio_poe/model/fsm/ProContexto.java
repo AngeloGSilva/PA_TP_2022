@@ -89,6 +89,11 @@ public class ProContexto {
         return state.adicionarAluno( nr_Aluno,  nome_Aluno,  email_Aluno,  ramo_Aluno,  classificacao_Aluno,  aceder_a_Estagio,  curso);
     }
 
+    public boolean remover(String eliminar){
+        return state.remover(eliminar);
+    }
+
+/*
     public boolean removerAluno(long nr_aluno){
         return state.removerAluno(nr_aluno);
     }
@@ -100,6 +105,7 @@ public class ProContexto {
     public boolean removerProposta(String codId){
         return state.removerProposta(codId);
     }
+*/
 
     public void atribuirDocentesauto() {
         state.atribuirDocentesauto();

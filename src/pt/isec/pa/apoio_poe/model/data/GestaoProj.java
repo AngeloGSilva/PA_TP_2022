@@ -1202,6 +1202,10 @@ public class GestaoProj implements Serializable {
     }
 
 
+    public boolean removerCandidatura(String id_Candidatura){
+
+        return false;
+    }
 
 
     //Dados Nas opcoes de Candidatura

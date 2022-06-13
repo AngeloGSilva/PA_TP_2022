@@ -51,13 +51,18 @@ abstract class IStateAdaptar implements IState{
     }
 
     @Override
+    public boolean remover(String eliminar){
+        return false;
+    }
+/*
+    @Override
     public boolean removerAluno(long nr_aluno){
         return false;
     }
     @Override
     public boolean removerDocente(String emaildoc){ return false;}
-
-    public boolean removerProposta(String cod_ID){return false;}
+    @Override
+    public boolean removerProposta(String cod_ID){return false;}*/
 
     @Override
     public boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente){return false;}

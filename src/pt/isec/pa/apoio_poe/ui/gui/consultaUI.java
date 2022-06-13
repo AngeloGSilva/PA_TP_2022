@@ -157,7 +157,7 @@ public class consultaUI extends BorderPane {
 
                 TableColumn<Candidatura, String> cod_ID = new TableColumn<Candidatura, String>("Codigo da Proposta");
                 cod_ID.setCellValueFactory(cellData ->
-                        new SimpleStringProperty(cellData.getValue().getIdPropostas()));
+                        new SimpleStringProperty(cellData.getValue().getIdPropostas().toString()));
                 cod_ID.setMinWidth(200);
 
                 tableCandidatura.getColumns().addAll(numeroAluno,nomeAluno,cod_ID);
@@ -189,7 +189,7 @@ public class consultaUI extends BorderPane {
                     if (tableAlunos !=null) {
                         Aluno selectedItem = tableAlunos.getSelectionModel().getSelectedItem();
                         tableAlunos.getItems().remove(selectedItem);
-                        manager.removerAluno(selectedItem.getNr_Aluno());
+                        manager.remover(selectedItem.getNr_AlunoString());
                         System.out.println(selectedItem.getNr_Aluno());
                     }
                 }
@@ -197,7 +197,7 @@ public class consultaUI extends BorderPane {
                     if (tableDocente !=null) {
                         Docente selectedItem = tableDocente.getSelectionModel().getSelectedItem();
                         tableDocente.getItems().remove(selectedItem);
-                        manager.removerDocente(selectedItem.getEmail_Docente());
+                        manager.remover(selectedItem.getEmail_Docente());
                         System.out.println(selectedItem.getEmail_Docente());
                     }
                 }
@@ -205,7 +205,7 @@ public class consultaUI extends BorderPane {
                     if (tableProposta !=null) {
                         Proposta selectedItem = tableProposta.getSelectionModel().getSelectedItem();
                         tableProposta.getItems().remove(selectedItem);
-                        manager.removerProposta(selectedItem.getCod_ID());
+                        manager.remover(selectedItem.getCod_ID());
                         System.out.println(selectedItem.getCod_ID());
                     }
                 }
@@ -217,6 +217,13 @@ public class consultaUI extends BorderPane {
                         td.showAndWait();
                         //tableCandidatura.getItems().remove(selectedItem);
                         System.out.println(td.getResult().toUpperCase(Locale.ROOT));
+                        for (String s: selectedItem.getIdPropostas()) {
+                            if (td.getResult().toUpperCase(Locale.ROOT).equals(s)){
+                                System.out.println("é um camelo");
+                            }else {
+                                System.out.println("nao é nenhum deles");
+                            }
+                        }
                         /*manager.removerProposta(selectedItem.g);
                         System.out.println(selectedItem.getCod_ID());*/
                     }

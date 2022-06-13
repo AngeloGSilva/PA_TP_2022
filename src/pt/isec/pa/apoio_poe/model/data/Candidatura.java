@@ -63,12 +63,12 @@ public class Candidatura implements Serializable {
         return aluno.getNome_Aluno();
     }
 
-    public String getIdPropostas(){
+    public ArrayList<String> getIdPropostas(){
         ArrayList<String> ids = new ArrayList<String>();
         for (Proposta propostas: propostas) {
             ids.add(propostas.getCod_ID());
         }
-        return ids.toString();
+        return ids;
     }
 
 

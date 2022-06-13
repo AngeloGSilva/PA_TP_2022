@@ -55,11 +55,17 @@ public class GestaoDocenteState extends IStateAdaptar {
         alteraState(new GestaoDocenteState(dados,contexto));
         return false;
     }
+    @Override
+    public boolean remover(String email_docente){
+        alteraState(new GestaoDocenteState(dados,contexto));
+        return dados.removerDocente(email_docente);
+    }
 
+/*    @Override
     public boolean removerDocente(String emaildoc){
         alteraState(new GestaoDocenteState(dados,contexto));
         return dados.removerDocente(emaildoc);
-    }
+    }*/
     @Override
     public void lerFicheiro(String fileName){
         dados.lerficheiroDocente(fileName);

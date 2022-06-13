@@ -102,7 +102,13 @@ public class ProgManager {
         return false;
     }
 
+    public boolean remover(String eliminar){
+        boolean resultado = controladorDoPrograma.remover(eliminar);
+        pcs.firePropertyChange(null,null,null);
+        return resultado;
+    }
 
+/*
     public boolean removerAluno(long nr_aluno){
         boolean resultado = controladorDoPrograma.removerAluno(nr_aluno);
         pcs.firePropertyChange(null,null,null);
@@ -119,7 +125,7 @@ public class ProgManager {
         boolean resultado = controladorDoPrograma.removerProposta(codID);
         pcs.firePropertyChange(null,null,null);
         return resultado;
-    }
+    }*/
 
 
     public boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente){return false;}

@@ -14,6 +14,12 @@ public class opCandidaturaState extends IStateAdaptar {
     }
 
     @Override
+    public boolean remover(String id_Candidatura){
+        alteraState(new opCandidaturaState(dados,contexto));
+        return dados.removerCandidatura(id_Candidatura);
+    }
+
+    @Override
     public boolean avancar(boolean guardado) {
             if(guardado && dados.isFase_Fechada_Config()){
                 dados.setFase_Fechada_Candidatura(guardado);
