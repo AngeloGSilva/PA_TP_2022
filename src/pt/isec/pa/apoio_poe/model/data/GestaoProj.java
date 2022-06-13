@@ -396,6 +396,22 @@ public class GestaoProj implements Serializable {
 
     //remover dos arrays
     public boolean removerAlunos(long nr_aluno){
+        ArrayList<String> Eliminadas = new ArrayList<>();
+        for (Candidatura candidatura: candidaturas){
+            if (candidatura.getNraluno().equals(nr_aluno)){
+                candidaturas.remove(candidatura);
+                break;
+            }
+        }
+        for (Proposta proposta:propostas) {
+            if (proposta.getCodigo_Aluno() != null && proposta.getCodigo_Aluno().equals(nr_aluno))
+                Eliminadas.add(proposta.getCod_ID());
+        }
+
+        for(String s:Eliminadas){
+            System.out.println("Entrei aqui");
+            removerProposta(s);
+        }
         return alunos.remove(getAlunoPorNumero(nr_aluno));
     }
 
