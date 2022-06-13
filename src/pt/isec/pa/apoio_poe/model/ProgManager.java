@@ -3,6 +3,8 @@ package pt.isec.pa.apoio_poe.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
+import pt.isec.pa.apoio_poe.model.data.Docente;
+import pt.isec.pa.apoio_poe.model.data.Proposta;
 import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
@@ -36,13 +38,30 @@ public class ProgManager {
     }
 
     public ObservableList<Aluno> getAlunos() {
-        ObservableList<Aluno> ob = FXCollections.observableArrayList(controladorDoPrograma.getAlunos());
+        ObservableList<Aluno> ob = FXCollections.observableArrayList(controladorDoPrograma.getAlunosTV());
+        System.out.println("Criar a lista de obs");
+        System.out.println(ob);
+        return ob;
+    }
+
+    public ObservableList<Docente> getDocentes() {
+        ObservableList<Docente> ob = FXCollections.observableArrayList(controladorDoPrograma.getDocentesTV());
+        System.out.println("Criar a lista de obs");
+        System.out.println(ob);
+        return ob;
+    }
+
+    public ObservableList<Proposta> getPropostas() {
+        System.out.println(controladorDoPrograma.getPropostaTV());
+        ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.getPropostaTV());
         System.out.println("Criar a lista de obs");
         System.out.println(ob);
         return ob;
     }
 
     public boolean voltar(boolean guardado) {
+        controladorDoPrograma.voltar(guardado);
+        pcs.firePropertyChange(null,null,null);
         return false;
     }
 

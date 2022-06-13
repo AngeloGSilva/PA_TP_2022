@@ -2,9 +2,12 @@ package pt.isec.pa.apoio_poe.ui.gui;
 
 import javafx.scene.layout.*;
 import pt.isec.pa.apoio_poe.model.ProgManager;
+import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import pt.isec.pa.apoio_poe.ui.gui.resources.CSSManager;
 
 import java.awt.*;
+
+import static pt.isec.pa.apoio_poe.model.fsm.PoeState.GESTAO_ALUNO;
 
 public class RootPane extends BorderPane {
     ProgManager manager;
@@ -18,22 +21,29 @@ public class RootPane extends BorderPane {
     }
 
     private void createViews() {
+        manager.addPropertyChangeListener(evt -> { update(); });
         CSSManager.applyCSS(this,"styles.css");
-        StackPane stackPane;
+/*        StackPane stackPane;
         stackPane = new StackPane(
-                new configuracaoUI(manager),
-                new gestaoAlunosUI(manager)
-        );
+                new configuracaoUI(manager)
+        );*/
         //stackPane.setBackground(Color.BLACK);
-        this.setCenter(stackPane);
+        //this.setCenter(stackPane);
     }
 
     private void registerHandlers() {
     }
 
     private void update() {
+        switch (manager.getState()) {
+            case CONFIGURACAO -> this.setCenter(new configuracaoUI(manager));
+            case GESTAO_ALUNO -> this.setCenter(new gestaoAlunosUI(manager));
+            case GESTAO_DOCENTE -> this.setCenter(new gestaoDocenteUI(manager));
+            case GESTAO_PROPOSTA -> this.setCenter(new gestaoPropostaUI(manager));
+
         /*if (estado == a waitBet)
              new WaitBetUI(gameBWManager) para nao ser tao pesado para nao carregar td lg no inicio
          */
+        }
     }
 }

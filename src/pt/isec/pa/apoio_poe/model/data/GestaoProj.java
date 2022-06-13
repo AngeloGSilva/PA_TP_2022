@@ -119,6 +119,14 @@ public class GestaoProj implements Serializable {
         return new ArrayList<Aluno>(alunos);
     }
 
+    public ArrayList<Docente> getDocentesTV(){
+        return new ArrayList<Docente>(docentes);
+    }
+
+    public ArrayList<Proposta> getPropostaTV(){
+        return new ArrayList<Proposta>(propostas);
+    }
+
     public String toStringDocentes() {
         return "Docentes:\n " + docentes;
     }

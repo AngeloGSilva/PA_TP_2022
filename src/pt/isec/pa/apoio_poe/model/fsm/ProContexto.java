@@ -1,9 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import pt.isec.pa.apoio_poe.model.data.Aluno;
-import pt.isec.pa.apoio_poe.model.data.Atribuicao;
-import pt.isec.pa.apoio_poe.model.data.GestaoProj;
-import pt.isec.pa.apoio_poe.model.data.Proposta;
+import pt.isec.pa.apoio_poe.model.data.*;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -128,8 +125,20 @@ public class ProContexto {
         dados.limparErros();
     }
 
-    public ArrayList<Aluno> getAlunos(){
+    public ArrayList<Aluno> getAlunosTV(){
         return dados.javafx();
+    }
+
+    public String getAlunos(){
+        return dados.toStringAlunos();
+    }
+
+    public ArrayList<Docente> getDocentesTV(){
+        return dados.getDocentesTV();
+    }
+
+    public ArrayList<Proposta> getPropostaTV(){
+        return dados.getPropostaTV();
     }
 
     public String getDocentes(){

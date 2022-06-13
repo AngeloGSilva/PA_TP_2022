@@ -1,24 +1,18 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import pt.isec.pa.apoio_poe.model.ProgManager;
 import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 
 import java.io.File;
-import java.util.ArrayList;
 
-public class gestaoAlunosUI extends BorderPane {
+public class gestaoDocenteUI extends BorderPane{
 
     ProgManager manager;
     Button btnExportar,btnConsulta,btnLerFich,btnAvancar,btnVoltar;
@@ -31,13 +25,14 @@ public class gestaoAlunosUI extends BorderPane {
     HBox textotry;
 
 
-    public gestaoAlunosUI(ProgManager manager) {
+    public gestaoDocenteUI(ProgManager manager) {
         this.manager = manager;
 
         createViews();
         registerHandlers();
         update();
     }
+
 
     private void createViews() {
 
@@ -117,5 +112,4 @@ public class gestaoAlunosUI extends BorderPane {
         //list.getItems().add(manager.getAlunos());
 
     }
-
 }

@@ -69,11 +69,11 @@ public class configuracaoUI extends BorderPane{
     }
 
     private void update() {
-        if (manager.getState() != PoeState.CONFIGURACAO){
+/*        if (manager.getState() != PoeState.CONFIGURACAO){
             this.setVisible(false);
             return;
         }
-        this.setVisible(true);
+        this.setVisible(true);*/
     }
 
 }
