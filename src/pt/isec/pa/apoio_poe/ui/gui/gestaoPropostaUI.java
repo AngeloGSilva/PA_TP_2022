@@ -33,8 +33,8 @@ public class gestaoPropostaUI extends BorderPane {
 
     private void createViews() {
 
-        textField = new TextField();
-        textotry = new HBox();
+        //textField = new TextField();
+        //textotry = new HBox();
         info = new Label();
         btnExportar = new Button("Exportar");
         btnExportar.setMinWidth(100);
@@ -59,10 +59,10 @@ public class gestaoPropostaUI extends BorderPane {
         this.setTop(hbox);
         plane = new BorderPane(new consultaUI(manager));
         this.setCenter(plane);
-        this.setBottom(textotry);
+/*        this.setBottom(textotry);
         textField.setPromptText("Numero do Aluno");
         textotry.getChildren().addAll(textField,btnConsulta);
-        textotry.setAlignment(Pos.BOTTOM_CENTER);
+        textotry.setAlignment(Pos.BOTTOM_CENTER);*/
         //HBox text = new HBox();
         //text.getChildren().add(tfield);
         //plane.setVisible(false);
@@ -88,11 +88,11 @@ public class gestaoPropostaUI extends BorderPane {
             manager.lerFicheiro(file.getAbsolutePath());
             Popup.display(PopupSupport.POPUP_LERFICH);
         });
-        btnConsulta.setOnAction(event ->{
+/*        btnConsulta.setOnAction(event ->{
             System.out.println(textField.getText());
             manager.removerAluno(Long.parseLong(textField.getText()));
             System.out.println(manager.getAlunos());
-        });
+        });*/
         btnAvancar.setOnAction(event ->{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Fechar Fase");
