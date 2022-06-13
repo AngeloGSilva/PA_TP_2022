@@ -99,7 +99,17 @@ public class ProgManager {
         return resultado;
     }
 
-    public boolean removerDocente(String emaildoc){ return false;}
+    public boolean removerDocente(String emaildoc){
+        boolean resultado = controladorDoPrograma.removerDocente(emaildoc);
+        pcs.firePropertyChange(null,null,null);
+        return resultado;
+    }
+
+    public boolean removerProposta(String codID){
+        boolean resultado = controladorDoPrograma.removerProposta(codID);
+        pcs.firePropertyChange(null,null,null);
+        return resultado;
+    }
 
 
     public boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente){return false;}

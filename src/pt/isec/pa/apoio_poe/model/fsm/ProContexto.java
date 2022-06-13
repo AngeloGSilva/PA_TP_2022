@@ -97,6 +97,9 @@ public class ProContexto {
         return state.removerDocente(emaildoc);
     }
 
+    public boolean removerProposta(String codId){
+        return state.removerProposta(codId);
+    }
 
     public void atribuirDocentesauto() {
         state.atribuirDocentesauto();

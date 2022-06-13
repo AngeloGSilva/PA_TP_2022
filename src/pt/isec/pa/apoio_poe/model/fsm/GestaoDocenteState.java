@@ -57,6 +57,7 @@ public class GestaoDocenteState extends IStateAdaptar {
     }
 
     public boolean removerDocente(String emaildoc){
+        alteraState(new GestaoDocenteState(dados,contexto));
         return dados.removerDocente(emaildoc);
     }
     @Override

@@ -400,9 +400,29 @@ public class GestaoProj implements Serializable {
     }
 
     public boolean removerDocente(String email){
+/*        int i=0, flag=0;
+        do{
+            propostas.iterator();
+            for (; i < propostas.size(); i++) {
+                if (getDocentePorEmailObjeto(email).equals(.getEmail_Docente())) {
+                    removerProposta(proposta.getCod_ID());
+                }
+                if (i == propostas.size() - 1) {
+                    flag = 1;
+                }
+            }
+        }while (flag==0);*/
+
+        for (Proposta proposta: propostas) {
+            if (email.equals(proposta.getEmail_Docente())){
+                removerProposta(proposta.getCod_ID());
+            }
+        }
+
+        //nao funciona direito ... pq ao apagar a proposta altera o size das propostas e o ciclo for para de correr lg nao chega a remover o docente
+
         return docentes.remove(getDocentePorEmailObjeto(email));
     }
-
 
 
     //funcoes que recebem o nome do ficheiro do state e chama o metodo da class estatica correspondente

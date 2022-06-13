@@ -4,17 +4,15 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import pt.isec.pa.apoio_poe.model.ProgManager;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
-import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 
 public class consultaUI extends BorderPane {
     ProgManager manager;
-    Button btnExportar;
+    Button btnDelete;
     VBox vBox;
 
     TableView<Aluno> tableAlunos;
@@ -30,7 +28,7 @@ public class consultaUI extends BorderPane {
     }
 
     private void createViews() {
-        btnExportar = new Button("eleminar");
+        btnDelete = new Button("eleminar");
         switch (manager.getState()){
             case GESTAO_ALUNO -> {
                 tableAlunos = new TableView<Aluno>();
@@ -69,7 +67,7 @@ public class consultaUI extends BorderPane {
                 //table.setItems(manager.getAlunos());
                 this.setCenter(tableAlunos);
                 vBox = new VBox();
-                vBox.getChildren().add(btnExportar);
+                vBox.getChildren().add(btnDelete);
                 vBox.setAlignment(Pos.CENTER);
                 this.setBottom(vBox);
                 tableAlunos.setItems(manager.getAlunos());
@@ -96,7 +94,7 @@ public class consultaUI extends BorderPane {
                 //table.setItems(manager.getAlunos());
                 this.setCenter(tableDocente);
                 vBox = new VBox();
-                vBox.getChildren().add(btnExportar);
+                vBox.getChildren().add(btnDelete);
                 vBox.setAlignment(Pos.CENTER);
                 this.setBottom(vBox);
                 tableDocente.setItems(manager.getDocentes());
@@ -134,7 +132,7 @@ public class consultaUI extends BorderPane {
 
                 this.setCenter(tableProposta);
                 vBox = new VBox();
-                vBox.getChildren().add(btnExportar);
+                vBox.getChildren().add(btnDelete);
                 vBox.setAlignment(Pos.CENTER);
                 this.setBottom(vBox);
                 tableProposta.setItems(manager.getPropostas());
@@ -150,7 +148,7 @@ public class consultaUI extends BorderPane {
 /*        table.addEventHandler(ActionEvent.ANY, evt ->{
             table.setItems(manager.getAlunos());
         });*/
-        btnExportar.setOnAction(e -> {
+        btnDelete.setOnAction(e -> {
             switch (manager.getState()) {
                 case GESTAO_ALUNO -> {
                     if (tableAlunos !=null) {
@@ -172,6 +170,7 @@ public class consultaUI extends BorderPane {
                     if (tableProposta !=null) {
                         Proposta selectedItem = tableProposta.getSelectionModel().getSelectedItem();
                         tableProposta.getItems().remove(selectedItem);
+                        manager.removerProposta(selectedItem.getCod_ID());
                         System.out.println(selectedItem.getCod_ID());
                     }
                 }
@@ -201,7 +200,11 @@ public class consultaUI extends BorderPane {
                     tableProposta.setItems(manager.getPropostas());
                 }
             }
-            //table.refresh();
+            default -> {
+/*                tableProposta.refresh();
+                tableAlunos.refresh();
+                tableDocente.refresh();*/
+            }
         }
         }
     }

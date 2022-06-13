@@ -61,6 +61,12 @@ public class GestaoPropostaState extends IStateAdaptar {
             return false;
     }
 
+    @Override
+    public boolean removerProposta(String cod_ID){
+        alteraState(new GestaoPropostaState(dados,contexto));
+        return dados.removerProposta(cod_ID);
+    }
+
 
     @Override
     public PoeState getState() {
