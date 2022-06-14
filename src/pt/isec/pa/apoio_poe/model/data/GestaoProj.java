@@ -115,7 +115,7 @@ public class GestaoProj implements Serializable {
         return "Alunos:\n " + alunos;
     }
 
-    public ArrayList<Aluno> javafx(){
+    public ArrayList<Aluno> getAlunosTV(){
         return new ArrayList<Aluno>(alunos);
     }
 

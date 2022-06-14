@@ -139,7 +139,7 @@ public class ProContexto {
     }
 
     public ArrayList<Aluno> getAlunosTV(){
-        return dados.javafx();
+        return dados.getAlunosTV();
     }
 
     public String getAlunos(){
