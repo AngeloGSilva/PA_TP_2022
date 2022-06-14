@@ -34,11 +34,13 @@ public class ProgManager {
     public boolean getFase_gestao(){
         return controladorDoPrograma.getFase_gestao();
     }
-    public void lerFicheiro(String fileName){
-        controladorDoPrograma.lerFicheiro(fileName);
+
+    public int lerFicheiro(String fileName){
+        int buf = controladorDoPrograma.lerFicheiro(fileName);
         //System.out.println(controladorDoPrograma.getAlunos());
         //System.out.println(controladorDoPrograma.getDocentes());
         pcs.firePropertyChange(null,null,null);
+        return buf;
     }
 
     public ObservableList<Aluno> getAlunos() {

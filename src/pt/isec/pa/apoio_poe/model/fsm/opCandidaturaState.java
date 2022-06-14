@@ -2,8 +2,6 @@ package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
-import java.util.SplittableRandom;
-
 public class opCandidaturaState extends IStateAdaptar {
     public opCandidaturaState(GestaoProj dados, ProContexto contexto) {
         super(dados, contexto);
@@ -37,9 +35,10 @@ public class opCandidaturaState extends IStateAdaptar {
     }
 
     @Override
-    public void lerFicheiro(String fileName){
-        dados.lerficheiroCandidaturas(fileName);
+    public int lerFicheiro(String fileName){
+        int buf= dados.lerficheiroCandidaturas(fileName);
         alteraState(new opCandidaturaState(dados,contexto));
+        return buf;
     }
 
     @Override

@@ -9,9 +9,10 @@ public class GestaoAlunoState extends IStateAdaptar {
     }
 
     @Override
-    public void lerFicheiro(String fileName){
-        dados.lerficheiroAluno(fileName);
+    public int lerFicheiro(String fileName){
+        int buf = dados.lerficheiroAluno(fileName);
         alteraState(new GestaoAlunoState(dados,contexto));
+        return buf;
     }
 
     @Override

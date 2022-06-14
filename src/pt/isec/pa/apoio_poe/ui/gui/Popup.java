@@ -11,7 +11,7 @@ import pt.isec.pa.apoio_poe.model.ProgManager;
 public class Popup extends VBox{
     static ProgManager manager;
 
-    public static void display(PopupSupport s,ProgManager man)
+    public static void display(PopupSupport s,ProgManager man,int aux)
     {
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL); //evita a aplicaçao continuar antes de fechar a janela
@@ -25,7 +25,11 @@ public class Popup extends VBox{
             }
             case POPUP_LERFICH->{
                 popupwindow.setTitle("Janela de informação");
-                lb.setText(String.valueOf(man.getAlunos().size()));
+                if(aux>0) { //Leu pelo menos 1
+                    lb.setText("[Sucesso]Li " + aux + " novos dados!");
+                }else{
+                    lb.setText("[Erro]Sem dados para leitura!");
+                }
             }
         }
         btn.setOnAction(e -> popupwindow.close());
@@ -33,9 +37,17 @@ public class Popup extends VBox{
 
         layout.getChildren().addAll(lb, btn);
         layout.setAlignment(Pos.CENTER);
-        Scene nscene= new Scene(layout, 200, 100);
+        Scene nscene = new Scene(layout, 200, 100);
+        popupwindow.setMinWidth(250);
         popupwindow.setMinHeight(150);
-        popupwindow.setMinWidth(150);
+
+        popupwindow.setMaxWidth(nscene.getWidth());
+        popupwindow.setMaxHeight(nscene.getHeight());
+
+
+
+
+
         //popupwindow.initStyle(StageStyle.TRANSPARENT);
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();

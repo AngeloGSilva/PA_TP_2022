@@ -33,7 +33,8 @@ public final class Ficheiro {
     private Ficheiro() {
     }
 
-    public static boolean lerDoncentes(String fileName, GestaoProj gestaoProj) {
+    public static int lerDoncentes(String fileName, GestaoProj gestaoProj) {
+        int count=0;
         try {
             //CaminhoFile = caminho + fileName;
             //fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv";
@@ -59,10 +60,11 @@ public final class Ficheiro {
         }catch (IOException e) {
             e.printStackTrace();
         }
-        return true;// se correu bem false se correu mal
+        return count;// se correu bem false se correu mal
     }
 
-    public static boolean lerAlunos(String fileName, GestaoProj gestaoProj) {
+    public static int lerAlunos(String fileName, GestaoProj gestaoProj) {
+        int count=0;
         try {
             //fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\ alunosteste.csv";
             //CaminhoFile = caminho + fileName;
@@ -86,6 +88,7 @@ public final class Ficheiro {
                         ("true".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT)) ||
                         "false".toUpperCase(Locale.ROOT).equals(data[6].toUpperCase(Locale.ROOT)))
                 ) {
+                    count++;
                     gestaoProj.adicionarAlunos(new Aluno(Long.parseLong(data[0]), data[1], data[2], data[4], Double.parseDouble(data[5]), Boolean.parseBoolean(data[6]),data[3]));
                 } else {
                     //metodo para gravar o erro e enviar para UI e informar o utilizador
@@ -100,11 +103,12 @@ public final class Ficheiro {
             e.printStackTrace();
         }
 
-        return true;// se correu bem false se correu mal
+        return count;// se correu bem false se correu mal
 
     }
 
-    public static boolean lerPropostas(String fileName, GestaoProj gestaoProj) {
+    public static int lerPropostas(String fileName, GestaoProj gestaoProj) {
+        int count=0;
         try {
             //CaminhoFile = caminho + fileName;
             //fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\propostas.csv";
@@ -188,10 +192,10 @@ public final class Ficheiro {
         }catch (IOException e) {
             e.printStackTrace();
         }
-        return true;// se correu bem false se correu mal
+        return count;// se correu bem false se correu mal
     }
 
-    public static boolean lercandidaturas(String fileName, GestaoProj gestaoProj){
+    public static int lercandidaturas(String fileName, GestaoProj gestaoProj){
 /*        switch(PAInput.chooseOption("Path dos ficheiros","Angelo","Rodrigo")){
             case 1 ->{
                 fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
@@ -200,6 +204,7 @@ public final class Ficheiro {
             }
         }*/
         ArrayList<Proposta> propostasPorAluno = new ArrayList<>();
+        int count=0;
         try {
             //CaminhoFile = caminho + fileName;
             f = new File(fileName);
@@ -242,7 +247,7 @@ public final class Ficheiro {
         }catch (IOException e){
             e.printStackTrace();
         }
-        return true;
+        return count;
     }
 
     public static void ExportarAlunos(String fileName,GestaoProj gestaoProj){

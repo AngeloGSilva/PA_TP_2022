@@ -17,7 +17,7 @@ public interface IState {
     boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente);
     boolean adicionarProposta(String tipo,String cod_ID, String titulo, Long codigo_Aluno, String email_Docente, String ramo,String empresa);
     void AtribuirAutomaticamente();
-    void lerFicheiro(String fileName);
+    int lerFicheiro(String fileName);
     boolean lerFicheiroDebug(String fileName);
 
     void resolverConflito(int selecionado);

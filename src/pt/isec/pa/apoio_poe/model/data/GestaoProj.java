@@ -452,19 +452,19 @@ public class GestaoProj implements Serializable {
 
 
     //funcoes que recebem o nome do ficheiro do state e chama o metodo da class estatica correspondente
-    public boolean lerficheiroAluno(String fileName) {
+    public int lerficheiroAluno(String fileName) {
         return Ficheiro.lerAlunos(fileName,this);
     }
 
-    public boolean lerficheiroDocente(String fileName) {
+    public int lerficheiroDocente(String fileName) {
         return Ficheiro.lerDoncentes(fileName,this);
     }
 
-    public boolean lerficheiroProposta(String fileName) {
+    public int lerficheiroProposta(String fileName) {
         return Ficheiro.lerPropostas(fileName,this);
     }
 
-    public boolean lerficheiroCandidaturas(String filename){
+    public int lerficheiroCandidaturas(String filename){
         return Ficheiro.lercandidaturas(filename,this);
     }
 

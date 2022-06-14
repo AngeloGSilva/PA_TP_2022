@@ -44,8 +44,8 @@ public class ProContexto {
         return state.avancar(guardado);
     }
 
-    public void lerFicheiro(String fileName){
-        state.lerFicheiro(fileName);
+    public int lerFicheiro(String fileName){
+        return state.lerFicheiro(fileName);
     }
 //State
     public void load() {

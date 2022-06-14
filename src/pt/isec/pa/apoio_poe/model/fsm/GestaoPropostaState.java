@@ -1,7 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
-import pt.isec.pa.apoio_poe.model.data.Proposta;
 
 public class GestaoPropostaState extends IStateAdaptar {
     public GestaoPropostaState(GestaoProj dados, ProContexto contexto) {
@@ -46,9 +45,10 @@ public class GestaoPropostaState extends IStateAdaptar {
     }
 
     @Override
-    public void lerFicheiro(String fileName){
-        dados.lerficheiroProposta(fileName);
+    public int lerFicheiro(String fileName){
+        int buf = dados.lerficheiroProposta(fileName);
         alteraState(new GestaoPropostaState(dados,contexto));
+        return buf;
     }
 
     @Override

@@ -36,7 +36,8 @@ abstract class IStateAdaptar implements IState{
     public void AtribuirAutomaticamente(){};
 
     @Override
-    public void lerFicheiro(String fileName){
+    public int lerFicheiro(String fileName){
+        return 0;
     }
 
     @Override
