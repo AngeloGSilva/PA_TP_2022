@@ -490,7 +490,7 @@ public class PoeUI {
                 controladorDoPrograma.limparErros();
             }
             case 4 ->{
-                controladorDoPrograma.adicionarProposta(PAInput.readString("Tipo[T1][T2][T3]:",true),);
+                //controladorDoPrograma.adicionarProposta(PAInput.readString("Tipo[T1][T2][T3]:",true),);
             }
             case 5 ->{
 
@@ -538,7 +538,7 @@ public class PoeUI {
                 controladorDoPrograma.adicionarDocente(PAInput.readString("Nome:",false),PAInput.readString("Email:",true),false);
             }
             case 5 ->{
-                controladorDoPrograma.editar();
+                //controladorDoPrograma.editar();
             }
             case 6 ->{
                 controladorDoPrograma.remover(PAInput.readString("Email do Docente:",true));
@@ -587,7 +587,7 @@ public class PoeUI {
                 controladorDoPrograma.adicionarAluno(PAInput.readString("Numero:",true),PAInput.readString("Nome Aluno(Primeiro e Ultimo Obrigatorios):",false),PAInput.readString("email:",true),PAInput.readString("Ramo:",true),PAInput.readNumber("classificacao: "),true,PAInput.readString("curso:",true));
             }
             case 5 ->{
-                controladorDoPrograma.editar();
+                //controladorDoPrograma.editar();
             }
             case 6 ->{
                 controladorDoPrograma.remover(PAInput.readString("Numero de aluno:",true));

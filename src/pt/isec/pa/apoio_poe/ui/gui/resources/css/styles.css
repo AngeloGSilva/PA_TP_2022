@@ -41,6 +41,39 @@
   -fx-border-radius: 24;
 }
 
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color: #95A5A6;
+}
+
+.table-row-cell:selected {
+   -fx-background-color: #B0C2C1;
+   -fx-text-background-color:  #000000;
+}
+
+.table-view .increment-button ,.table-view .decrement-button {
+    -fx-background-color:transparent;
+	-fx-background-radius: 2em;
+
+}
+.table-view .scroll-bar:horizontal .track,
+.table-view .scroll-bar:vertical .track{
+	-fx-background-color: transparent;
+	-fx-border-color:derive( #627372,80%);
+
+	-fx-background-radius: 2em;
+	-fx-border-radius:2em;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.table-view .scroll-bar:horizontal .thumb,
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color:derive( #627372,90%);
+	-fx-background-insets: 2, 0, 0;
+	-fx-background-radius: 2em;
+
+}
+
 #popup{
     -fx-background-color: #B0E0E6;
     -fx-font-size: 18;
