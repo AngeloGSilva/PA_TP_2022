@@ -79,7 +79,7 @@ public class gestaoAlunosUI extends BorderPane {
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
         btnExportar.setOnAction(event ->{
-            Popup.display(PopupSupport.POPUP_EXPORT);
+            Popup.display(PopupSupport.POPUP_EXPORT,manager);
         });
         btnLerFich.setOnAction(event ->{
             FileChooser fileChooser = new FileChooser();
@@ -92,7 +92,7 @@ public class gestaoAlunosUI extends BorderPane {
             File file = fileChooser.showOpenDialog(this.getScene().getWindow());
             System.out.println(file.getAbsolutePath());
             manager.lerFicheiro(file.getAbsolutePath());
-            Popup.display(PopupSupport.POPUP_LERFICH);
+            Popup.display(PopupSupport.POPUP_LERFICH,manager);
         });
 /*        btnConsulta.setOnAction(event ->{
             System.out.println(textField.getText());
