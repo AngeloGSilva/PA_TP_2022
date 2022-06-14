@@ -25,6 +25,9 @@ public class consultaUI extends BorderPane {
     TableView<Proposta> tableProposta;
     TableView<Candidatura> tableCandidatura;
 
+    ToggleButton tbAuto,tbNotReg,tbReg;
+    ToggleGroup tgFilter;
+
     public consultaUI(ProgManager manager) {
         this.manager = manager;
 
@@ -144,6 +147,21 @@ public class consultaUI extends BorderPane {
                 tableProposta.setItems(manager.getPropostas());
             }
             case OPCAO_CANDIDATURA -> {
+
+                tbReg = new ToggleButton("Registadas");
+                tbAuto = new ToggleButton("Autopropostos");
+                tbNotReg = new ToggleButton("Sem Registadas");
+
+                tgFilter = new ToggleGroup();
+
+                tbReg.setToggleGroup(tgFilter);
+                tbAuto.setToggleGroup(tgFilter);
+                tbNotReg.setToggleGroup(tgFilter);
+
+                tbReg.setAlignment(Pos.TOP_LEFT);
+                tbAuto.setAlignment(Pos.TOP_LEFT);
+                tbNotReg.setAlignment(Pos.TOP_LEFT);
+
                 tableCandidatura = new TableView<Candidatura>();
                 TableColumn<Candidatura, String> numeroAluno = new TableColumn<Candidatura, String>("Numero");
                 numeroAluno.setCellValueFactory(cellData ->
@@ -165,6 +183,9 @@ public class consultaUI extends BorderPane {
                 tableCandidatura.setMaxWidth(650);
                 tableCandidatura.setMaxHeight(300);
 
+                //this.getChildren().addAll(tbReg,tbNotReg,tbAuto);
+                this.setTop(tbReg);
+                tbReg.setAlignment(Pos.CENTER);
                 this.setCenter(tableCandidatura);
                 vBox = new VBox();
                 vBox.getChildren().add(btnDelete);

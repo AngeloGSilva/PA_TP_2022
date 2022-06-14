@@ -20,7 +20,7 @@ public class MainJFX extends Application {
         Scene scene = new Scene(root,800,600);
         stage.setScene(scene);
         stage.setTitle("Estagios/Projetos");
-        stage.setResizable(false);
+        //stage.setResizable(false);
         stage.show();
     }
 }

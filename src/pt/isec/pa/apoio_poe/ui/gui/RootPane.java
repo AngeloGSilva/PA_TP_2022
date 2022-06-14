@@ -41,6 +41,7 @@ public class RootPane extends BorderPane {
             case GESTAO_DOCENTE -> this.setCenter(new gestaoDocenteUI(manager));
             case GESTAO_PROPOSTA -> this.setCenter(new gestaoPropostaUI(manager));
             case OPCAO_CANDIDATURA -> this.setCenter(new opCandidaturaUI(manager));
+            case ATRIBUIR_PROPOSTA -> this.setCenter(new atriPropostaUI(manager));
 
         /*if (estado == a waitBet)
              new WaitBetUI(gameBWManager) para nao ser tao pesado para nao carregar td lg no inicio
