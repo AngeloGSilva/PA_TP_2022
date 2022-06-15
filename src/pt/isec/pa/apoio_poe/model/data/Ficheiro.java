@@ -34,7 +34,7 @@ public final class Ficheiro {
     }
 
     public static int lerDoncentes(String fileName, GestaoProj gestaoProj) {
-        int count=0;
+        int count = 0;
         try {
             //CaminhoFile = caminho + fileName;
             //fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\docentes.csv";
@@ -45,9 +45,10 @@ public final class Ficheiro {
                 data = linha.split(",");
                 if (data[0].contains(" ") &&  //sem nome
                         data[1].contains("@isec.pt") && //email valido
-                        !gestaoProj.getDocentes().contains(data[1]) && //email existe
+                        !gestaoProj.verificaEmailDocente(data[1]) && //email existe
                          data.length == 2 //2 parametros
                 ) {
+                    count++;
                     gestaoProj.adicionarDocentes(new Docente(data[0], data[1], false));
                 } else {
                     //metodo para gravar o erro e enviar para UI e informar o utilizador
@@ -126,6 +127,7 @@ public final class Ficheiro {
                                         !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
                                         ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
+                                    count++;
                                     gestaoProj.adicionarProposta(new T1(data[2], data[3], data[1],data[4]));
                                 } else if(data.length == 6 &&
                                         gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) &&
@@ -133,6 +135,7 @@ public final class Ficheiro {
                                         gestaoProj.VerificaAlunoAcederPropostaLeitura(Long.parseLong(data[5]),data[0]) && //Verifica proposta durante a leitura
                                         ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
+                                    count++;
                                     gestaoProj.adicionarProposta(new T1(data[2], data[3], data[1] ,Long.parseLong(data[5]),data[4]));
                                     gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[5])),gestaoProj.getPropostaPorId(data[1])));
                                 } else {
@@ -146,6 +149,7 @@ public final class Ficheiro {
                                         gestaoProj.verificaEmailDocente(data[4]) && //email de um docente valido
                                         ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ramos associados
                                 {
+                                    count++;
                                     gestaoProj.adicionarProposta(new T2(data[1], data[3], data[2], data[4]));
                                     //Definir o docente como proponente do projeto
                                     gestaoProj.getDocentePorEmailObjeto(data[4]).setPapel_Docente(true);
@@ -156,6 +160,7 @@ public final class Ficheiro {
                                         gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) && //numero de aluno valido
                                         ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ramos associado
                                 {
+                                    count++;
                                     gestaoProj.adicionarProposta(new T2(data[1], data[3], data[2], data[4], Long.parseLong(data[5])));
                                     //Definir o docente como proponente do projeto
                                     gestaoProj.getDocentePorEmailObjeto(data[4]).setPapel_Docente(true);
@@ -173,6 +178,7 @@ public final class Ficheiro {
                                         !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
                                         !gestaoProj.get_codigoAluno(Long.parseLong(data[3]))) //se aluno ja nao esta associado a um T3
                                 {
+                                    count++;
                                     gestaoProj.adicionarProposta(new T3(data[1], data[2], Long.parseLong(data[3]),gestaoProj.getAlunoPorNumero(Long.parseLong(data[3])).getRamo_Aluno()));
                                     gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[3])),gestaoProj.getPropostaPorId(data[1])));
                                 } else {
@@ -227,6 +233,7 @@ public final class Ficheiro {
                         }
                     }//se tem pelo menos 1 proposta
                     if(!propostasPorAluno.isEmpty()) {
+                        count++;
                         gestaoProj.adicionarCandidatura(new Candidatura(gestaoProj.getAlunoPorNumero(Long.parseLong(data[0])), propostasPorAluno));
                         propostasPorAluno.clear();
                     }

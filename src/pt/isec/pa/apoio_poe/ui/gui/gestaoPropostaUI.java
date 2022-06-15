@@ -18,6 +18,9 @@ public class gestaoPropostaUI extends BorderPane {
     HBox hbox;
     BorderPane plane;
 
+    //Variavel de auxilio mostrar info
+    int aux;
+
     TextField textField;
     HBox textotry;
 
@@ -73,7 +76,7 @@ public class gestaoPropostaUI extends BorderPane {
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
         btnExportar.setOnAction(event ->{
-            Popup.display(PopupSupport.POPUP_EXPORT,manager,0);
+            Popup.display(PopupSupport.POPUP_EXPORT,0);
         });
         btnLerFich.setOnAction(event ->{
             FileChooser fileChooser = new FileChooser();
@@ -85,8 +88,8 @@ public class gestaoPropostaUI extends BorderPane {
             );
             File file = fileChooser.showOpenDialog(this.getScene().getWindow());
             System.out.println(file.getAbsolutePath());
-            manager.lerFicheiro(file.getAbsolutePath());
-            Popup.display(PopupSupport.POPUP_LERFICH,manager,0);
+            aux = manager.lerFicheiro(file.getAbsolutePath());
+            Popup.display(PopupSupport.POPUP_LERFICH,aux);
         });
 /*        btnConsulta.setOnAction(event ->{
             System.out.println(textField.getText());

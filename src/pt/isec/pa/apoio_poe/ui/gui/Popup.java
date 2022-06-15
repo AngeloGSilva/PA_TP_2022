@@ -9,9 +9,9 @@ import pt.isec.pa.apoio_poe.model.ProgManager;
 
 
 public class Popup extends VBox{
-    static ProgManager manager;
 
-    public static void display(PopupSupport s,ProgManager man,int aux)
+
+    public static void display(PopupSupport s,int aux)
     {
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL); //evita a aplicaçao continuar antes de fechar a janela
@@ -43,10 +43,6 @@ public class Popup extends VBox{
 
         popupwindow.setMaxWidth(nscene.getWidth());
         popupwindow.setMaxHeight(nscene.getHeight());
-
-
-
-
 
         //popupwindow.initStyle(StageStyle.TRANSPARENT);
         popupwindow.setScene(nscene);

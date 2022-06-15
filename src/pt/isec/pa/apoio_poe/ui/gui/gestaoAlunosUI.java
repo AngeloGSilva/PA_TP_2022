@@ -24,6 +24,8 @@ public class gestaoAlunosUI extends BorderPane {
     HBox hbox;
     BorderPane plane;
 
+    //Variavel de auxilio mostrar info
+    int aux;
     TextField textField;
     HBox textotry;
 
@@ -37,7 +39,6 @@ public class gestaoAlunosUI extends BorderPane {
     }
 
     private void createViews() {
-
         //textField = new TextField();
         //textotry = new HBox();
         info = new Label();
@@ -79,7 +80,7 @@ public class gestaoAlunosUI extends BorderPane {
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
         btnExportar.setOnAction(event ->{
-            Popup.display(PopupSupport.POPUP_EXPORT,manager,0);
+            Popup.display(PopupSupport.POPUP_EXPORT,0);
         });
         btnLerFich.setOnAction(event ->{
             FileChooser fileChooser = new FileChooser();
@@ -91,8 +92,8 @@ public class gestaoAlunosUI extends BorderPane {
             );
             File file = fileChooser.showOpenDialog(this.getScene().getWindow());
             System.out.println(file.getAbsolutePath());
-            int aux = manager.lerFicheiro(file.getAbsolutePath());
-            Popup.display(PopupSupport.POPUP_LERFICH,manager,aux);
+            aux = manager.lerFicheiro(file.getAbsolutePath());
+            Popup.display(PopupSupport.POPUP_LERFICH,aux);
         });
 /*        btnConsulta.setOnAction(event ->{
             System.out.println(textField.getText());

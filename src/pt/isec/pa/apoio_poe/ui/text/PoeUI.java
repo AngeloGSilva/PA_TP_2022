@@ -456,26 +456,6 @@ public class PoeUI {
             case 1 -> {
                 controladorDoPrograma.exportarPropostas(PAInput.readString("Nome do ficheiro para exportar ",true));
 
-                /*
-                String tipo;
-                while (!(tipo = PAInput.readString("tipo de proposta",true)).equals("T1") &&
-                        !(tipo = PAInput.readString("tipo de proposta",true)).equals("T2") &&
-                        !(tipo = PAInput.readString("tipo de proposta",true)).equals("T3")){
-                    System.out.println("Tipo invalido T[1-3]");
-                }
-                */
-                /*
-                if(tipo.equals("T1")) {
-                    Proposta proposta = new T1("ramo", "ola", "1223", "ola");
-                    controladorDoPrograma.adicionarProposta(proposta);
-                }else if(tipo.equals("T2")){
-                    Proposta proposta = new T2("ramo", "ola", "1223", "ola");
-                    controladorDoPrograma.adicionarProposta(proposta);
-                }else if(tipo.equals("T3")){
-                    Proposta proposta = new T3("cod_id","titulo","nr_aluno");
-                    controladorDoPrograma.adicionarProposta(proposta);
-                }
-                */
 
             }
             case 2 -> System.out.println(controladorDoPrograma.getPropostas());
