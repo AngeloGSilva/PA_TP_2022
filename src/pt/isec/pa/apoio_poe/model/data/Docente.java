@@ -26,6 +26,10 @@ public class Docente implements Serializable {
         return nome_Docente;
     }
 
+    public void setNome_Docente(String newNome){
+        this.nome_Docente = newNome;
+    }
+
     public String getEmail_Docente() {
         return email_Docente;
     }

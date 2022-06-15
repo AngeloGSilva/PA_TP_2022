@@ -92,10 +92,10 @@ public class GestaoAlunoState extends IStateAdaptar {
 
     @Override
     public void editar(String identificador, String editado) {
-        //trycatch
-
+//try catch de numero, crash se for uma letra
         if(dados.getAlunoPorNumero(Long.parseLong(identificador)) !=null) {
             dados.getAlunoPorNumero(Long.parseLong(identificador)).setNomeAluno(editado);
+            alteraState(new GestaoDocenteState(dados, contexto));
         }else
             return;
     }

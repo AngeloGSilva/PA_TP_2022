@@ -83,6 +83,10 @@ public class GestaoDocenteState extends IStateAdaptar {
 
     @Override
     public void editar(String identificador, String editado) {
-
+        if(dados.getDocentePorEmailObjeto(identificador) != null) {
+            dados.getDocentePorEmailObjeto(identificador).setNome_Docente(editado);
+            alteraState(new GestaoDocenteState(dados,contexto));
+        }else
+            return;
     }
 }

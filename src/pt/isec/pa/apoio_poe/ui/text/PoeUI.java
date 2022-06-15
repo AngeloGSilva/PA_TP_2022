@@ -518,7 +518,8 @@ public class PoeUI {
                 controladorDoPrograma.adicionarDocente(PAInput.readString("Nome:",false),PAInput.readString("Email:",true),false);
             }
             case 5 ->{
-                //controladorDoPrograma.editar();
+                //A realizar
+                controladorDoPrograma.editar(PAInput.readString("Email do docente:",true),PAInput.readString("Edição [nome]:",false));
             }
             case 6 ->{
                 controladorDoPrograma.remover(PAInput.readString("Email do Docente:",true));
