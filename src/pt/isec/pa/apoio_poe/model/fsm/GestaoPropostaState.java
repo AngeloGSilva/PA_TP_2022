@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
+import pt.isec.pa.apoio_poe.model.data.Proposta;
 
 public class GestaoPropostaState extends IStateAdaptar {
     public GestaoPropostaState(GestaoProj dados, ProContexto contexto) {
@@ -53,7 +54,9 @@ public class GestaoPropostaState extends IStateAdaptar {
 
     @Override
     public boolean adicionarProposta(String tipo,String cod_ID, String titulo, Long codigo_Aluno, String email_Docente, String ramo,String empresa){
-        if(dados.adicionarProposta(dados.validarProposta(tipo,cod_ID,  titulo,  codigo_Aluno,  email_Docente,  ramo, empresa))){
+        Proposta p = dados.validarProposta(tipo,cod_ID,  titulo,  codigo_Aluno,  email_Docente,  ramo, empresa);
+        if(p!=null){
+            dados.adicionarProposta(p);
             alteraState(new GestaoPropostaState(dados,contexto));
             return true;
         }
