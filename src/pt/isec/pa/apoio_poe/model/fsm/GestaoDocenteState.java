@@ -80,4 +80,9 @@ public class GestaoDocenteState extends IStateAdaptar {
     public PoeState getState() {
         return PoeState.GESTAO_DOCENTE;
     }
+
+    @Override
+    public void editar(String identificador, String editado) {
+
+    }
 }

@@ -89,4 +89,14 @@ public class GestaoAlunoState extends IStateAdaptar {
     public PoeState getState() {
         return PoeState.GESTAO_ALUNO;
     }
+
+    @Override
+    public void editar(String identificador, String editado) {
+        //trycatch
+
+        if(dados.getAlunoPorNumero(Long.parseLong(identificador)) !=null) {
+            dados.getAlunoPorNumero(Long.parseLong(identificador)).setNomeAluno(editado);
+        }else
+            return;
+    }
 }

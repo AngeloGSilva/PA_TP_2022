@@ -47,6 +47,11 @@ public class ProContexto {
     public int lerFicheiro(String fileName){
         return state.lerFicheiro(fileName);
     }
+
+    public void editar(String identificador,String editado) {
+        state.editar(identificador,editado);
+    }
+
 //State
     public void load() {
         StateFactory name = new StateFactory();
@@ -321,6 +326,5 @@ public class ProContexto {
     public boolean isConflitoON() {
         return dados.isConflitoON();
     }
-
 
 }

@@ -561,13 +561,13 @@ public class PoeUI {
                 //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
                 controladorDoPrograma.limparErros();
 
-                 
+
             }
             case 4 ->{
                 controladorDoPrograma.adicionarAluno(PAInput.readString("Numero:",true),PAInput.readString("Nome Aluno(Primeiro e Ultimo Obrigatorios):",false),PAInput.readString("email:",true),PAInput.readString("Ramo:",true),PAInput.readNumber("classificacao: "),true,PAInput.readString("curso:",true));
             }
             case 5 ->{
-                //controladorDoPrograma.editar();
+                controladorDoPrograma.editar(PAInput.readString("Numero do aluno a editar:",true),PAInput.readString("Edição [nome]:",false));
             }
             case 6 ->{
                 controladorDoPrograma.remover(PAInput.readString("Numero de aluno:",true));

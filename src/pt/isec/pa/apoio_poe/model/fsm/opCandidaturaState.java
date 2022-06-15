@@ -45,4 +45,6 @@ public class opCandidaturaState extends IStateAdaptar {
     public PoeState getState() {
         return PoeState.OPCAO_CANDIDATURA;
     }
+
+
 }

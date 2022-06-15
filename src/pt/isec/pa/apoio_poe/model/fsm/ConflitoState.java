@@ -18,5 +18,7 @@ public class ConflitoState extends IStateAdaptar {
     public PoeState getState() {
         return PoeState.CONFLITO;
     }
+
+
 }
 

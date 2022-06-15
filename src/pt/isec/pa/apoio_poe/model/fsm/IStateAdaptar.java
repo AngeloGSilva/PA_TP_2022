@@ -40,6 +40,8 @@ abstract class IStateAdaptar implements IState{
         return 0;
     }
 
+
+
     @Override
     public boolean lerFicheiroDebug(String fileName){
         return false;
@@ -60,6 +62,8 @@ abstract class IStateAdaptar implements IState{
     public boolean remover(String eliminar){
         return false;
     }
+
+    public void editar(String identificador,String edicao){};
 /*
     @Override
     public boolean removerAluno(long nr_aluno){

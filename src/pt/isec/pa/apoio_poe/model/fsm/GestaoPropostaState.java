@@ -81,4 +81,9 @@ public class GestaoPropostaState extends IStateAdaptar {
     public PoeState getState() {
         return PoeState.GESTAO_PROPOSTA;
     }
+
+    @Override
+    public void editar(String identificador, String editado) {
+
+    }
 }

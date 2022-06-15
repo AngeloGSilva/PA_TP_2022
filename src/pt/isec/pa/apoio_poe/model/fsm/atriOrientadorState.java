@@ -41,6 +41,9 @@ public class atriOrientadorState extends IStateAdaptar {
         alteraState(new atriOrientadorState(dados, contexto));
         return false;
     }
+
+
+
     @Override
     public boolean selecionar(PoeState escolha) {
         return false;

@@ -30,4 +30,6 @@ public interface IState {
     void AtribuirAutomaticoAutopropostosDocentesAluno();
 
     boolean atribuirManualmenteAluno(long id_aluno, String proposta);
+
+    void editar(String identificador, String editado);
 }
