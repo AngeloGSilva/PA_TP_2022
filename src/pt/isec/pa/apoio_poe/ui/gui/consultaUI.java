@@ -5,12 +5,14 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import pt.isec.pa.apoio_poe.model.ProgManager;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.Candidatura;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
+import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -18,7 +20,8 @@ import java.util.Locale;
 public class consultaUI extends BorderPane {
     ProgManager manager;
     Button btnDelete;
-    VBox vBox;
+    HBox hBox;
+    HBox hboxFilters;
 
     TableView<Aluno> tableAlunos;
     TableView<Docente> tableDocente;
@@ -75,10 +78,10 @@ public class consultaUI extends BorderPane {
 
                 //table.setItems(manager.getAlunos());
                 this.setCenter(tableAlunos);
-                vBox = new VBox();
-                vBox.getChildren().add(btnDelete);
-                vBox.setAlignment(Pos.CENTER);
-                this.setBottom(vBox);
+                hBox = new HBox();
+                hBox.getChildren().add(btnDelete);
+                hBox.setAlignment(Pos.CENTER);
+                this.setBottom(hBox);
                 tableAlunos.setItems(manager.getAlunos());
             }
             case GESTAO_DOCENTE -> {
@@ -102,10 +105,10 @@ public class consultaUI extends BorderPane {
 
                 //table.setItems(manager.getAlunos());
                 this.setCenter(tableDocente);
-                vBox = new VBox();
-                vBox.getChildren().add(btnDelete);
-                vBox.setAlignment(Pos.CENTER);
-                this.setBottom(vBox);
+                hBox = new HBox();
+                hBox.getChildren().add(btnDelete);
+                hBox.setAlignment(Pos.CENTER);
+                this.setBottom(hBox);
                 tableDocente.setItems(manager.getDocentes());
             }
             case GESTAO_PROPOSTA -> {
@@ -140,10 +143,10 @@ public class consultaUI extends BorderPane {
                 tableProposta.setMaxHeight(300);
 
                 this.setCenter(tableProposta);
-                vBox = new VBox();
-                vBox.getChildren().add(btnDelete);
-                vBox.setAlignment(Pos.CENTER);
-                this.setBottom(vBox);
+                hBox = new HBox();
+                hBox.getChildren().add(btnDelete);
+                hBox.setAlignment(Pos.CENTER);
+                this.setBottom(hBox);
                 tableProposta.setItems(manager.getPropostas());
             }
             case OPCAO_CANDIDATURA -> {
@@ -165,7 +168,7 @@ public class consultaUI extends BorderPane {
                 tableCandidatura = new TableView<Candidatura>();
                 TableColumn<Candidatura, String> numeroAluno = new TableColumn<Candidatura, String>("Numero");
                 numeroAluno.setCellValueFactory(cellData ->
-                        new SimpleStringProperty(cellData.getValue().getNomeAluno()));
+                        new SimpleStringProperty(cellData.getValue().getNralunoString()));
                 numeroAluno.setMinWidth(100);
 
                 TableColumn<Candidatura, String> nomeAluno = new TableColumn<Candidatura, String>("Nome");
@@ -183,14 +186,18 @@ public class consultaUI extends BorderPane {
                 tableCandidatura.setMaxWidth(650);
                 tableCandidatura.setMaxHeight(300);
 
-                //this.getChildren().addAll(tbReg,tbNotReg,tbAuto);
-                this.setTop(tbReg);
-                tbReg.setAlignment(Pos.CENTER);
+                hboxFilters = new HBox();
+                hboxFilters.getChildren().addAll(tbAuto,tbReg,tbNotReg);
+                tbReg.setSelected(true);
+                hboxFilters.setAlignment(Pos.CENTER);
+                this.setTop(hboxFilters);
+
                 this.setCenter(tableCandidatura);
-                vBox = new VBox();
-                vBox.getChildren().add(btnDelete);
-                vBox.setAlignment(Pos.CENTER);
-                this.setBottom(vBox);
+                hBox = new HBox();
+                hBox.getChildren().add(btnDelete);
+                btnDelete.setAlignment(Pos.CENTER);
+                hBox.setAlignment(Pos.CENTER);
+                this.setBottom(hBox);
                 tableCandidatura.setItems(manager.getCandidaturas());
             }
         }
@@ -204,6 +211,24 @@ public class consultaUI extends BorderPane {
 /*        table.addEventHandler(ActionEvent.ANY, evt ->{
             table.setItems(manager.getAlunos());
         });*/
+
+        if (manager.getState().equals(PoeState.OPCAO_CANDIDATURA)) {
+            tbReg.setOnAction(e -> {
+                tableCandidatura.getItems().clear();
+                tableCandidatura.setItems(manager.getCandidaturas());
+            });
+
+            tbAuto.setOnAction(e -> {
+                tableCandidatura.getItems().clear();
+                tableCandidatura.setItems(manager.getCandidaturasAuto());
+            });
+
+            tbNotReg.setOnAction(e -> {
+                tableCandidatura.getItems().clear();
+                tableCandidatura.setItems(manager.getCandidaturas());
+            });
+        }
+
         btnDelete.setOnAction(e -> {
             switch (manager.getState()) {
                 case GESTAO_ALUNO -> {
@@ -247,9 +272,11 @@ public class consultaUI extends BorderPane {
                                 System.out.println("nao é nenhum deles");
                             }
                         }
+
                         /*manager.removerProposta(selectedItem.g);
                         System.out.println(selectedItem.getCod_ID());*/
                     }
+
                 }
                 //table.refresh();
             }

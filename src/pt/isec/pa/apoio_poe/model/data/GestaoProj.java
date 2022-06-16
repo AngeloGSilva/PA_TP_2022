@@ -131,6 +131,26 @@ public class GestaoProj implements Serializable {
         return new ArrayList<Candidatura>(candidaturas);
     }
 
+    public ArrayList<Candidatura> getCandidaturaTVAuto(){
+        return getAutoPropostos();
+    }
+
+    public ArrayList<Candidatura> getAutoPropostos(){
+        ArrayList<Candidatura> autopropostos = new ArrayList<>();
+        for(Proposta p : propostas){
+            if(p.getClass().getSimpleName().equals("T3")){
+                for (Candidatura candidatura: candidaturas) {
+                    if (p.getCodigo_Aluno().equals(candidatura.getNraluno())){
+                        autopropostos.add(candidatura);
+                    }
+                }
+            }
+        }
+        return autopropostos;
+    }
+
+
+
     public String toStringDocentes() {
         return "Docentes:\n " + docentes;
     }

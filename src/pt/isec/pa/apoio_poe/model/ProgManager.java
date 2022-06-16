@@ -74,6 +74,26 @@ public class ProgManager {
         //return dados.toStringCandidaturas();
     }
 
+
+/*    public ObservableList<Candidatura> getCandidaturasNotReg() {
+        System.out.println(controladorDoPrograma.getCandidaturasTVNotReg());
+        ObservableList<Candidatura> ob = FXCollections.observableArrayList(controladorDoPrograma.getCandidaturasTVNotReg());
+        System.out.println("Criar a lista de obs");
+        System.out.println(ob);
+        return ob;
+        //return dados.toStringCandidaturas();
+    }*/
+
+    public ObservableList<Candidatura> getCandidaturasAuto() {
+        System.out.println(controladorDoPrograma.getCandidaturaTVAuto());
+        ObservableList<Candidatura> ob = FXCollections.observableArrayList(controladorDoPrograma.getCandidaturaTVAuto());
+        System.out.println("Criar a lista de obs");
+        System.out.println(ob);
+        return ob;
+        //return dados.toStringCandidaturas();
+    }
+
+
     public boolean voltar(boolean guardado) {
         controladorDoPrograma.voltar(guardado);
         pcs.firePropertyChange(null,null,null);
