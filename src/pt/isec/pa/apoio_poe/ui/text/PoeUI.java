@@ -363,7 +363,7 @@ public class PoeUI {
                 }
                 case 2 -> {
 
-                switch (PAInput.chooseOption("Dados a consultar","Alunos","Propostas", "Voltar")){
+                switch (PAInput.chooseOption("Dados a consultar","Alunos","Propostas","All", "Voltar")){
                     case 1-> {
                         switch (PAInput.chooseOption("Escolher Filtro para alunos","Com autoproposta","Candidatura Registada", "Sem candidatura Registada","Voltar")){
                         case 1 ->{
@@ -402,6 +402,11 @@ public class PoeUI {
                         }
                         break;
                     }
+                    case 3->{
+                            System.out.println(controladorDoPrograma.getCandidaturasPrintEasy().toString());
+                    }case 4->{
+                        break;
+                    }
                 }
 
             }
@@ -424,7 +429,10 @@ public class PoeUI {
 
                 }
                 case 6-> {//Eliminar
-                    controladorDoPrograma.remover(PAInput.readString("Numero do aluno da Candidatura a eliminar:",true));
+                    if(controladorDoPrograma.remover(PAInput.readString("Numero do aluno da Candidatura a eliminar:",true)))
+                        System.out.println("Eliminado Com Sucesso!\n");
+                    else
+                        System.out.println("Algo correu mal!\n");
                 }
                 case 7 -> controladorDoPrograma.load();
                 case 8 -> controladorDoPrograma.save();

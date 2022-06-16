@@ -1283,7 +1283,21 @@ public class GestaoProj implements Serializable {
 
     }
 
-
+    public StringBuilder getCandidaturasPrintEasy() {
+        //Exploração de varios tipos de string
+        ArrayList view = new ArrayList();
+        view.add("\nCandidaturas:\n");
+        for(Candidatura c :candidaturas){
+            view.add("\nAluno: "+ c.getAluno().getNr_Aluno() + " Propostas:" + c.getIdPropostas());
+        }
+        view.add("\n");
+        String aux = String.valueOf(view);
+        aux = aux.replaceAll(",","");
+        StringBuilder aux2 = new StringBuilder(aux);
+        aux2.deleteCharAt(0);
+        aux2.deleteCharAt(aux2.length()-1);
+        return aux2;
+    }
     //Dados Nas opcoes de Candidatura
 
 }

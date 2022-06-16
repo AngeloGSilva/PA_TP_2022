@@ -343,4 +343,7 @@ public class ProContexto {
         return dados.isConflitoON();
     }
 
+    public StringBuilder getCandidaturasPrintEasy() {
+        return dados.getCandidaturasPrintEasy();
+    }
 }
