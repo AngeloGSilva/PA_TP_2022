@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,6 +25,7 @@ public class configuracaoUI extends BorderPane{
     }
 
     private void createViews() {
+        this.setPadding(new Insets(50));
         if (!manager.getFase_gestao()) {
             btnAlunos = new Button("Alunos");
             btnAlunos.setMinWidth(100);
@@ -53,6 +55,8 @@ public class configuracaoUI extends BorderPane{
             btnExit.setMinWidth(100);
             btnAvancar = new Button("Avancar");
             btnAvancar.setMinWidth(100);
+            hBox.setSpacing(10);
+            hBox.setAlignment(Pos.CENTER);
             hBox.getChildren().addAll(btnExit,btnAvancar);
             this.setTop(hBox);
         }
