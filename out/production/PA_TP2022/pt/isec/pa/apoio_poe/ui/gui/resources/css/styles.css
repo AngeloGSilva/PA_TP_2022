@@ -74,6 +74,9 @@
 	-fx-background-radius: 2em;
 
 }
+.vbox{
+    -fx-background-color: #000000;
+}
 
 #popup{
     -fx-background-color: #B0E0E6;

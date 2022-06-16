@@ -4,6 +4,7 @@ import javafx.scene.layout.*;
 import pt.isec.pa.apoio_poe.model.ProgManager;
 import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import pt.isec.pa.apoio_poe.ui.gui.resources.CSSManager;
+import pt.isec.pa.apoio_poe.ui.gui.resources.FontManager;
 
 import java.awt.*;
 
@@ -21,7 +22,8 @@ public class RootPane extends BorderPane {
     }
 
     private void createViews() {
-
+        FontManager.loadFont("joan.ttf",24);
+        CSSManager.applyCSS(this,"teste.css");
     }
 
     private void registerHandlers() {

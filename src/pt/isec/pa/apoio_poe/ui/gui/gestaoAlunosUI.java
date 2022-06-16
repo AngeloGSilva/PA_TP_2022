@@ -39,35 +39,29 @@ public class gestaoAlunosUI extends BorderPane {
 
     private void createViews() {
         this.setPadding(new Insets(30));
+        tooltip = new Tooltip();
 
         btnLerFich = new Button();
-        tooltip = new Tooltip("Importar");
-        tooltip.setShowDelay(Duration.seconds(0.3));
-        btnLerFich.setTooltip(tooltip);
         imageView = new ImageView(ImageManager.getImage("download.png"));
         btnLerFich.setGraphic(imageView);
-
+        btnLerFich.setText("Importar");
 
         btnExportar = new Button();
-        tooltip = new Tooltip("Exportar");
-        tooltip.setShowDelay(Duration.seconds(0.3));
-        btnExportar.setTooltip(tooltip);
         imageView = new ImageView(ImageManager.getImage("upload.png"));
         btnExportar.setGraphic(imageView);
+        btnExportar.setText("Exportar");
 
         btnAvancar = new Button();
-        tooltip = new Tooltip("Avançar");
-        tooltip.setShowDelay(Duration.seconds(0.3));
-        btnAvancar.setTooltip(tooltip);
         imageView = new ImageView(ImageManager.getImage("avance.png"));
+        btnAvancar.setContentDisplay(ContentDisplay.RIGHT);
         btnAvancar.setGraphic(imageView);
+        btnAvancar.setText("Avancar");
+
 
         btnVoltar = new Button();
-        tooltip = new Tooltip("Voltar");
-        tooltip.setShowDelay(Duration.seconds(0.3));
-        btnVoltar.setTooltip(tooltip);
         imageView = new ImageView(ImageManager.getImage("back.png"));
         btnVoltar.setGraphic(imageView);
+        btnVoltar.setText("Voltar");
 
 
 

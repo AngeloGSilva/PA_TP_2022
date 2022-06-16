@@ -1,0 +1,9 @@
+.tooltip{
+   -fx-background-color: white;
+   -fx-text-fill: black;
+}
+
+.button{
+    -fx-font-family: joan;
+}
+
