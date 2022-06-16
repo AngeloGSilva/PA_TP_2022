@@ -1,11 +1,13 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import pt.isec.pa.apoio_poe.model.ProgManager;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
@@ -21,6 +23,7 @@ public class consultaUI extends BorderPane {
     ProgManager manager;
     Button btnDelete;
     HBox hBox;
+    VBox vBox;
     HBox hboxFilters,hboxFiltersConf;
 
     TableView<Aluno> tableAlunos;
@@ -44,6 +47,7 @@ public class consultaUI extends BorderPane {
     }
 
     private void createViews() {
+        this.setMaxSize(750,450);
         btnDelete = new Button("eliminar");
         switch (manager.getState()){
             case CONFIGURACAO -> {
@@ -77,8 +81,8 @@ public class consultaUI extends BorderPane {
                 aceder_a_Estagio.setMinWidth(50);
                 tableAlunosConf.getColumns().addAll(nome,nr_Aluno,email_Aluno,curso,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
 
-                tableAlunosConf.setMaxWidth(650);
-                tableAlunosConf.setMaxHeight(300);
+                tableAlunosConf.setMaxWidth(750);
+                tableAlunosConf.setMaxHeight(450);
 
                 this.setCenter(tableAlunosConf);
                 tableAlunosConf.setItems(manager.getAlunos());
@@ -99,8 +103,8 @@ public class consultaUI extends BorderPane {
 
                 tableDocenteConf.getColumns().addAll(nomeDocente,papel_Docente,email_Docente);
 
-                tableDocenteConf.setMaxWidth(650);
-                tableDocenteConf.setMaxHeight(300);
+                tableDocenteConf.setMaxWidth(750);
+                tableDocenteConf.setMaxHeight(450);
 
                 tableDocenteConf.setItems(manager.getDocentes());
 
@@ -131,8 +135,8 @@ public class consultaUI extends BorderPane {
 
                 tablePropostaConf.getColumns().addAll(cod_ID,titulo,codigo_Aluno,email_Docente,empresa,ramo);
 
-                tablePropostaConf.setMaxWidth(650);
-                tablePropostaConf.setMaxHeight(300);
+                tablePropostaConf.setMaxWidth(750);
+                tablePropostaConf.setMaxHeight(450);
 
                 tablePropostaConf.setItems(manager.getPropostas());
 
@@ -187,8 +191,8 @@ public class consultaUI extends BorderPane {
                 aceder_a_Estagio.setMinWidth(50);
                 tableAlunos.getColumns().addAll(nome,nr_Aluno,email_Aluno,curso,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
 
-                tableAlunos.setMaxWidth(650);
-                tableAlunos.setMaxHeight(300);
+                tableAlunos.setMaxWidth(750);
+                tableAlunos.setMaxHeight(450);
 
                 //table.setItems(manager.getAlunos());
                 btnDelete = new Button("Eliminar");
@@ -216,8 +220,8 @@ public class consultaUI extends BorderPane {
 
                 tableDocente.getColumns().addAll(nomeDocente,papel_Docente,email_Docente);
 
-                tableDocente.setMaxWidth(650);
-                tableDocente.setMaxHeight(300);
+                tableDocente.setMaxWidth(750);
+                tableDocente.setMaxHeight(450);
 
                 btnDelete = new Button("Eliminar");
                 //table.setItems(manager.getAlunos());
@@ -256,8 +260,8 @@ public class consultaUI extends BorderPane {
 
                 tableProposta.getColumns().addAll(cod_ID,titulo,codigo_Aluno,email_Docente,empresa,ramo);
 
-                tableProposta.setMaxWidth(650);
-                tableProposta.setMaxHeight(300);
+                tableProposta.setMaxWidth(750);
+                tableProposta.setMaxHeight(450);
 
                 btnDelete = new Button("Eliminar");
                 this.setCenter(tableProposta);
@@ -268,11 +272,7 @@ public class consultaUI extends BorderPane {
                 tableProposta.setItems(manager.getPropostas());
             }
             case OPCAO_CANDIDATURA -> {
-                //btnDelete.setVisible(true);
-/*                //if (manager.get())
-                    btnDelete.setDisable(true);
-                else
-                    btnDelete.setDisable(false);*/
+
                 btnDelete.setDisable(false);
 
                 tableAlunos = new TableView<Aluno>();
@@ -305,8 +305,8 @@ public class consultaUI extends BorderPane {
                 aceder_a_Estagio.setMinWidth(50);
                 tableAlunos.getColumns().addAll(nome,nr_Aluno,email_Aluno,curso,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
 
-                tableAlunos.setMaxWidth(650);
-                tableAlunos.setMaxHeight(300);
+                tableAlunos.setMaxWidth(750);
+                tableAlunos.setMaxHeight(450);
 
                 tableAlunos.setItems(manager.getCandidaturasNotReg());
                 tableAlunos.setVisible(false);
@@ -321,9 +321,9 @@ public class consultaUI extends BorderPane {
                 tbAuto.setToggleGroup(tgFilter);
                 tbNotReg.setToggleGroup(tgFilter);
 
-                tbReg.setAlignment(Pos.TOP_LEFT);
-                tbAuto.setAlignment(Pos.TOP_LEFT);
-                tbNotReg.setAlignment(Pos.TOP_LEFT);
+                tbReg.setAlignment(Pos.CENTER);
+                tbAuto.setAlignment(Pos.CENTER);
+                tbNotReg.setAlignment(Pos.CENTER);
 
                 tableCandidatura = new TableView<Candidatura>();
                 TableColumn<Candidatura, String> numeroAluno = new TableColumn<Candidatura, String>("Numero");
@@ -343,20 +343,24 @@ public class consultaUI extends BorderPane {
 
                 tableCandidatura.getColumns().addAll(numeroAluno,nomeAluno,cod_ID);
 
-                tableCandidatura.setMaxWidth(650);
-                tableCandidatura.setMaxHeight(300);
-
+                tableCandidatura.setMaxWidth(750);
+                tableCandidatura.setMaxHeight(450);
                 hboxFilters = new HBox();
                 hboxFilters.getChildren().addAll(tbAuto,tbReg,tbNotReg);
                 tbReg.setSelected(true);
-                hboxFilters.setAlignment(Pos.CENTER);
+                hboxFilters.setAlignment(Pos.BOTTOM_CENTER);
+                //hboxFilters.setPadding(new Insets(bottom));
+                //this.topProperty(hboxFilters);
                 this.setTop(hboxFilters);
+                //HBox.setHgrow(hboxFilters, Priority.ALWAYS);
+
 
                 this.setCenter(tableCandidatura);
                 hBox = new HBox();
+                hBox.setAlignment(Pos.TOP_CENTER);
                 hBox.getChildren().add(btnDelete);
-                btnDelete.setAlignment(Pos.CENTER);
-                hBox.setAlignment(Pos.CENTER);
+                btnDelete.setAlignment(Pos.TOP_CENTER);
+
                 this.setBottom(hBox);
                 tableCandidatura.setItems(manager.getCandidaturas());
             }

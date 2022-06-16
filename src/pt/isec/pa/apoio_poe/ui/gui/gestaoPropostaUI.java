@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -35,7 +36,7 @@ public class gestaoPropostaUI extends BorderPane {
 
 
     private void createViews() {
-
+        this.setPadding(new Insets(30));
         //textField = new TextField();
         //textotry = new HBox();
         info = new Label();

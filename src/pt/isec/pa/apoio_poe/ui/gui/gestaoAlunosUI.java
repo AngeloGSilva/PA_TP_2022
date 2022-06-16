@@ -39,6 +39,7 @@ public class gestaoAlunosUI extends BorderPane {
     }
 
     private void createViews() {
+        this.setPadding(new Insets(30));
         info = new Label();
         btnExportar = new Button("Exportar");
         btnExportar.setMinWidth(100);
@@ -52,8 +53,10 @@ public class gestaoAlunosUI extends BorderPane {
         btnVoltar.setMinWidth(100);
         hbox = new HBox();
         hbox.setSpacing(10);
-        hbox.setAlignment(Pos.CENTER);
+        //btnVoltar.setAlignment(Pos.TOP_RIGHT);
         hbox.getChildren().addAll(btnExportar,btnLerFich,btnAvancar,btnVoltar);
+
+        hbox.setAlignment(Pos.CENTER);
         info.setVisible(false);
         this.setTop(hbox);
         plane = new BorderPane(new consultaUI(manager));
