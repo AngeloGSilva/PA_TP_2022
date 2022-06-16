@@ -473,6 +473,7 @@ public class PoeUI {
                 //controladorDoPrograma.adicionarProposta(PAInput.readString("Tipo[T1][T2][T3]:",true),);
             }
             case 5 ->{
+                controladorDoPrograma.editar(PAInput.readString("Id da proposta:",true),PAInput.readString("Edição [titulo]:",false));
 
             }
             case 6 ->{

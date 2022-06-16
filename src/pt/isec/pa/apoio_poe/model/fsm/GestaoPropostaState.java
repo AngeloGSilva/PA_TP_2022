@@ -85,6 +85,11 @@ public class GestaoPropostaState extends IStateAdaptar {
 
     @Override
     public void editar(String identificador, String editado) {
+        if(dados.getPropostaPorId(identificador) != null){
+            dados.getPropostaPorId(identificador).setTitulo(editado);
+            alteraState(new GestaoPropostaState(dados,contexto));
+        }else
+            return;
 
     }
 }

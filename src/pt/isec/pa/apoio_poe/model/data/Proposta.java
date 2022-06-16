@@ -33,6 +33,9 @@ public class Proposta implements Serializable {
         this.codigo_Aluno = codigo_Aluno;
     }
 
+    public void setTitulo(String newtitulo){
+        this.titulo=newtitulo;
+    }
     public String getEmpresa() {
         return empresa;
     }

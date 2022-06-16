@@ -311,11 +311,6 @@ public class consultaUI extends BorderPane {
                 tableAlunos.setItems(manager.getCandidaturasNotReg());
                 tableAlunos.setVisible(false);
 
-
-
-
-
-
                 tbReg = new ToggleButton("Registadas");
                 tbAuto = new ToggleButton("Autopropostos");
                 tbNotReg = new ToggleButton("Sem Registadas");

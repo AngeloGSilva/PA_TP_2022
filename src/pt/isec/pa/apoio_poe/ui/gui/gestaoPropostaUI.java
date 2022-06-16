@@ -88,9 +88,11 @@ public class gestaoPropostaUI extends BorderPane {
             );
             File file = fileChooser.showOpenDialog(this.getScene().getWindow());
             System.out.println(file.getAbsolutePath());
+            //Quantos items foram lidos
             aux = manager.lerFicheiro(file.getAbsolutePath());
             Popup.display(PopupSupport.POPUP_LERFICH,aux);
         });
+
 /*        btnConsulta.setOnAction(event ->{
             System.out.println(textField.getText());
             manager.removerAluno(Long.parseLong(textField.getText()));
@@ -99,7 +101,7 @@ public class gestaoPropostaUI extends BorderPane {
         btnAvancar.setOnAction(event ->{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Fechar Fase");
-            alert.setHeaderText("Ao Fechar a fase nao tera mais a possibilidade de alterar as informacoes");
+            alert.setHeaderText("Ao Fechar a fase nao terá mais a possibilidade de alterar as informações");
             alert.setContentText("Fechar?");
             ButtonType okButton = new ButtonType("Sim", ButtonBar.ButtonData.YES);
             ButtonType noButton = new ButtonType("Nao", ButtonBar.ButtonData.NO);
