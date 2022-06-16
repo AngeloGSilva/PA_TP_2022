@@ -1,10 +1,17 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -431,6 +438,17 @@ public class consultaUI extends BorderPane {
             });
         }
 
+/*
+        btnDelete.hoverProperty().addListener(((observableValue, oldValue, newValue) ->{
+            if (newValue) {
+                btnDelete.setText("Eliminar");
+            }
+            else {
+                btnDelete.setText("");
+            }
+        } ));*/
+
+
         btnDelete.setOnAction(e -> {
             switch (manager.getState()) {
                 case GESTAO_ALUNO -> {
@@ -439,6 +457,7 @@ public class consultaUI extends BorderPane {
                         tableAlunos.getItems().remove(selectedItem);
                         manager.remover(selectedItem.getNr_AlunoString());
                         System.out.println(selectedItem.getNr_Aluno());
+
                     }
                 }
                 case GESTAO_DOCENTE -> {
