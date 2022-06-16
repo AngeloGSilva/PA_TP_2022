@@ -151,6 +151,47 @@ public class consultaUI extends BorderPane {
             }
             case OPCAO_CANDIDATURA -> {
 
+                tableAlunos = new TableView<Aluno>();
+                TableColumn nome = new TableColumn("Nome");
+                nome.setCellValueFactory(new PropertyValueFactory<Aluno, String>("nome_Aluno"));
+                nome.setMinWidth(100);
+
+                TableColumn nr_Aluno = new TableColumn("Numero");
+                nr_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, Long>("nr_Aluno"));
+                nr_Aluno.setMinWidth(85);
+
+                TableColumn email_Aluno = new TableColumn("Email");
+                email_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, String>("email_Aluno"));
+                email_Aluno.setMinWidth(140);
+
+                TableColumn curso = new TableColumn("Curso");
+                curso.setCellValueFactory(new PropertyValueFactory<Aluno, String>("curso"));
+                curso.setMinWidth(50);
+
+                TableColumn ramo_Aluno = new TableColumn("Ramo");
+                ramo_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, String>("ramo_Aluno"));
+                ramo_Aluno.setMinWidth(50);
+
+                TableColumn classificacao_Aluno = new TableColumn("Classificacão");
+                classificacao_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, Double>("classificacao_Aluno"));
+                classificacao_Aluno.setMinWidth(50);
+
+                TableColumn aceder_a_Estagio = new TableColumn("Estagio");
+                aceder_a_Estagio.setCellValueFactory(new PropertyValueFactory<Aluno, Boolean>("aceder_a_Estagio"));
+                aceder_a_Estagio.setMinWidth(50);
+                tableAlunos.getColumns().addAll(nome,nr_Aluno,email_Aluno,curso,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
+
+                tableAlunos.setMaxWidth(650);
+                tableAlunos.setMaxHeight(300);
+
+                tableAlunos.setItems(manager.getCandidaturasNotReg());
+                tableAlunos.setVisible(false);
+
+
+
+
+
+
                 tbReg = new ToggleButton("Registadas");
                 tbAuto = new ToggleButton("Autopropostos");
                 tbNotReg = new ToggleButton("Sem Registadas");
@@ -214,18 +255,27 @@ public class consultaUI extends BorderPane {
 
         if (manager.getState().equals(PoeState.OPCAO_CANDIDATURA)) {
             tbReg.setOnAction(e -> {
+                tableAlunos.setVisible(false);
+                tableCandidatura.setVisible(true);
+                this.setCenter(tableCandidatura);
                 tableCandidatura.getItems().clear();
                 tableCandidatura.setItems(manager.getCandidaturas());
             });
 
             tbAuto.setOnAction(e -> {
+                tableAlunos.setVisible(false);
+                tableCandidatura.setVisible(true);
+                this.setCenter(tableCandidatura);
                 tableCandidatura.getItems().clear();
                 tableCandidatura.setItems(manager.getCandidaturasAuto());
             });
 
             tbNotReg.setOnAction(e -> {
                 tableCandidatura.getItems().clear();
-                tableCandidatura.setItems(manager.getCandidaturas());
+                tableCandidatura.setVisible(false);
+                this.setCenter(tableAlunos);
+                tableAlunos.setVisible(true);
+                tableAlunos.setItems(manager.getCandidaturasNotReg());
             });
         }
 

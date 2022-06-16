@@ -75,14 +75,14 @@ public class ProgManager {
     }
 
 
-/*    public ObservableList<Candidatura> getCandidaturasNotReg() {
+    public ObservableList<Aluno> getCandidaturasNotReg() {
         System.out.println(controladorDoPrograma.getCandidaturasTVNotReg());
-        ObservableList<Candidatura> ob = FXCollections.observableArrayList(controladorDoPrograma.getCandidaturasTVNotReg());
+        ObservableList<Aluno> ob = FXCollections.observableArrayList(controladorDoPrograma.getCandidaturasTVNotReg());
         System.out.println("Criar a lista de obs");
         System.out.println(ob);
         return ob;
         //return dados.toStringCandidaturas();
-    }*/
+    }
 
     public ObservableList<Candidatura> getCandidaturasAuto() {
         System.out.println(controladorDoPrograma.getCandidaturaTVAuto());

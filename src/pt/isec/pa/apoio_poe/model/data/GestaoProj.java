@@ -135,6 +135,26 @@ public class GestaoProj implements Serializable {
         return getAutoPropostos();
     }
 
+    public ArrayList<Aluno> getCandidaturasTVNotReg(){
+        return getAlunosNotReg();
+    }
+
+    public ArrayList<Aluno> getAlunosNotReg(){
+        ArrayList<Aluno> alunosNotReg = new ArrayList<>();
+        boolean encrontrou = false;
+        for (Aluno aluno: alunos) {
+            encrontrou = false;
+            for (Candidatura candidatura: candidaturas) {
+                if (candidatura.getNraluno().equals(aluno.getNr_Aluno())){
+                    encrontrou = true;
+                }
+            }
+            if (encrontrou == false)
+                alunosNotReg.add(aluno);
+        }
+        return alunosNotReg;
+    }
+
     public ArrayList<Candidatura> getAutoPropostos(){
         ArrayList<Candidatura> autopropostos = new ArrayList<>();
         for(Proposta p : propostas){
