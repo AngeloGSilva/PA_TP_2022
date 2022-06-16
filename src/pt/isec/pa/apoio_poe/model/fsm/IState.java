@@ -30,4 +30,6 @@ public interface IState {
     boolean atribuirManualmenteAluno(long id_aluno, String proposta);
 
     void editar(String identificador, String editado);
+
+    boolean adicionarCandidatura();
 }

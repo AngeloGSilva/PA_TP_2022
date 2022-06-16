@@ -475,7 +475,6 @@ public class GestaoProj implements Serializable {
         }
 
             for(String s:Eliminadas){
-                    System.out.println("Entrei aqui");
                     removerProposta(s);
             }
 
@@ -1261,6 +1260,27 @@ public class GestaoProj implements Serializable {
             }
         }
         return false;
+    }
+
+    public boolean removerCandidatura(Long nrAluno) {
+        for(Candidatura c:candidaturas){
+            if(c.getAluno().getNr_Aluno() == nrAluno) {
+                if (c.getNrPropostas() <= 1) // Elimina  apossibilidade de remover T2 com aluno e T3 com aluno
+                {
+                        if (c.getPropostas().get(0).getClass().getSimpleName().equals("T3") || c.getPropostas().get(0).getClass().getSimpleName().equals("T2")) {
+                            return false;
+                        }else {
+                            candidaturas.remove(c);
+                            return true;
+                        }
+                } else {
+                    candidaturas.remove(c);
+                    return true;
+                }
+            }
+        }
+        return false;
+
     }
 
 

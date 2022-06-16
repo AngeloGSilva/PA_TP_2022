@@ -111,20 +111,7 @@ public class PoeUI {
                     }
                     case 2 -> {
                         controladorDoPrograma.AtribuirAutomaticamente();
-                        /*int op = 0;
-                        do {
-                            ArrayList<String> conflito = controladorDoPrograma.atribuiAutomaticamente();
-                            if (conflito != null) {
-                                for (int i = 0; i < conflito.size() - 1; i++) {
-                                    System.out.println(controladorDoPrograma.getAlunoPorNr(conflito.get(i)));
-                                }
-                                System.out.println(controladorDoPrograma.getPropostaPorID(conflito.get(conflito.size() - 1)));
-                                controladorDoPrograma.atribuiAlunoAProposta(PAInput.readString("Escolhe o aluno para a proposta: ", true), conflito.get(conflito.size() - 1));
-                            } else {
-                                op = 1;
-                            }
-                        } while (op == 0);
-                        controladorDoPrograma.atribuirSemCandidatura();*/
+
                     }
                     case 3 -> {
                         System.out.println(controladorDoPrograma.getAlunosSemAtribuicao());
@@ -370,7 +357,7 @@ public class PoeUI {
                 case 5 -> controladorDoPrograma.voltar(true);
             }
         }else {
-            switch (PAInput.chooseOption("Opções:", "Exportar para um ficheiro", "Consulta", "Ler Ficheiro","Load","Save", "Avançar", "Voltar")) {
+            switch (PAInput.chooseOption("Opções:", "Exportar para um ficheiro", "Consulta", "Ler Ficheiro","Adicionar","Editar","Eliminar","Load","Save", "Avançar", "Voltar")) {
                 case 1 -> {
                     controladorDoPrograma.exportarCandidaturas(PAInput.readString("Nome do Ficheiro csv ", true));
                 }
@@ -429,10 +416,19 @@ public class PoeUI {
                     //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
                     controladorDoPrograma.limparErros();
                 }
-                case 4 -> {controladorDoPrograma.load();
+                case 4-> {//Adicionar
+                    controladorDoPrograma.adicionarCandidatura();
                 }
-                case 5 -> controladorDoPrograma.save();
-                case 6 -> {
+                case 5-> {//Editar
+                    //if()
+
+                }
+                case 6-> {//Eliminar
+                    controladorDoPrograma.remover(PAInput.readString("Numero do aluno da Candidatura a eliminar:",true));
+                }
+                case 7 -> controladorDoPrograma.load();
+                case 8 -> controladorDoPrograma.save();
+                case 9 -> {
                     switch (PAInput.chooseOption("Pretende Fechar a fase?", "Sim", "Nao")) {
                         case 1 -> {
                             if (!controladorDoPrograma.avancar(true)) {
@@ -445,7 +441,7 @@ public class PoeUI {
                         case 2 -> controladorDoPrograma.avancar(false);
                     }
                 }
-                case 7 -> {controladorDoPrograma.voltar(true);}
+                case 10 -> {controladorDoPrograma.voltar(true);}
             }
         }
     }
@@ -504,9 +500,6 @@ public class PoeUI {
                          System.out.println("Adicionado com sucesso proposta do tipo T3 ");
                      else
                          System.out.println("Erro em algum parametro [T3]");
-
-
-
                  }
                 }
             }
