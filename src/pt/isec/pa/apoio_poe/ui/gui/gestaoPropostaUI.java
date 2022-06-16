@@ -55,23 +55,10 @@ public class gestaoPropostaUI extends BorderPane {
         hbox.setSpacing(10);
         //hBox.getChildren().addAll();
         hbox.getChildren().addAll(btnExportar,btnLerFich,btnAvancar,btnVoltar);
-        //hBox.getChildren().add(btnAlunos);
-        //hBox.getChildren().add(btnDocentes);
-        //hBox.getChildren().add(btnProjetos);
-        //this.getChildren().addAll(vbox);
         info.setVisible(false);
         this.setTop(hbox);
         plane = new BorderPane(new consultaUI(manager));
         this.setCenter(plane);
-/*        this.setBottom(textotry);
-        textField.setPromptText("Numero do Aluno");
-        textotry.getChildren().addAll(textField,btnConsulta);
-        textotry.setAlignment(Pos.BOTTOM_CENTER);*/
-        //HBox text = new HBox();
-        //text.getChildren().add(tfield);
-        //plane.setVisible(false);
-        //this.setCenter(info);
-        //this.setRight(info);
     }
 
     private void registerHandlers() {
@@ -94,11 +81,6 @@ public class gestaoPropostaUI extends BorderPane {
             Popup.display(PopupSupport.POPUP_LERFICH,aux);
         });
 
-/*        btnConsulta.setOnAction(event ->{
-            System.out.println(textField.getText());
-            manager.removerAluno(Long.parseLong(textField.getText()));
-            System.out.println(manager.getAlunos());
-        });*/
         btnAvancar.setOnAction(event ->{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Fechar Fase");
@@ -121,14 +103,7 @@ public class gestaoPropostaUI extends BorderPane {
     }
 
     private void update() {
-/*        if (manager.getState() != PoeState.GESTAO_ALUNO){
-            this.setVisible(false);
-            return;
-        }
-        this.setVisible(true);*/
-        //this.setCenter(plane);
-        //this.setCenter(new consultaUI(manager));
-        //list.getItems().add(manager.getAlunos());
+
 
     }
 }

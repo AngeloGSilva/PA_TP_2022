@@ -1,33 +1,32 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 import pt.isec.pa.apoio_poe.model.ProgManager;
-import pt.isec.pa.apoio_poe.model.fsm.PoeState;
+import pt.isec.pa.apoio_poe.ui.gui.resources.ImageManager;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class gestaoAlunosUI extends BorderPane {
 
     ProgManager manager;
-    Button btnExportar,btnConsulta,btnLerFich,btnAvancar,btnVoltar;
+    Button btnExportar, btnDelete,btnLerFich,btnAvancar,btnVoltar,btnAdd;
     Label info;
 
+    ImageView imageView;
     HBox hbox;
+    VBox vBox;
     BorderPane plane;
+
+    Tooltip tooltip;
 
     //Variavel de auxilio mostrar info
     int aux;
-    TextField textField;
-    HBox textotry;
 
 
     public gestaoAlunosUI(ProgManager manager) {
@@ -40,21 +39,45 @@ public class gestaoAlunosUI extends BorderPane {
 
     private void createViews() {
         this.setPadding(new Insets(30));
+
+        btnLerFich = new Button();
+        tooltip = new Tooltip("Importar");
+        tooltip.setShowDelay(Duration.seconds(0.3));
+        btnLerFich.setTooltip(tooltip);
+        imageView = new ImageView(ImageManager.getImage("download.png"));
+        btnLerFich.setGraphic(imageView);
+
+
+        btnExportar = new Button();
+        tooltip = new Tooltip("Exportar");
+        tooltip.setShowDelay(Duration.seconds(0.3));
+        btnExportar.setTooltip(tooltip);
+        imageView = new ImageView(ImageManager.getImage("upload.png"));
+        btnExportar.setGraphic(imageView);
+
+        btnAvancar = new Button();
+        tooltip = new Tooltip("Avançar");
+        tooltip.setShowDelay(Duration.seconds(0.3));
+        btnAvancar.setTooltip(tooltip);
+        imageView = new ImageView(ImageManager.getImage("avance.png"));
+        btnAvancar.setGraphic(imageView);
+
+        btnVoltar = new Button();
+        tooltip = new Tooltip("Voltar");
+        tooltip.setShowDelay(Duration.seconds(0.3));
+        btnVoltar.setTooltip(tooltip);
+        imageView = new ImageView(ImageManager.getImage("back.png"));
+        btnVoltar.setGraphic(imageView);
+
+
+
+
         info = new Label();
-        btnExportar = new Button("Exportar");
-        btnExportar.setMinWidth(100);
-        btnConsulta = new Button("Eliminar");
-        btnConsulta.setMinWidth(100);
-        btnLerFich = new Button("Ler Ficheiro");
-        btnLerFich.setMinWidth(100);
-        btnAvancar  = new Button("Avancar");
-        btnAvancar.setMinWidth(100);
-        btnVoltar  = new Button("Voltar");
-        btnVoltar.setMinWidth(100);
+
         hbox = new HBox();
         hbox.setSpacing(10);
         //btnVoltar.setAlignment(Pos.TOP_RIGHT);
-        hbox.getChildren().addAll(btnExportar,btnLerFich,btnAvancar,btnVoltar);
+        hbox.getChildren().addAll(btnVoltar,btnLerFich,btnExportar,btnAvancar);
 
         hbox.setAlignment(Pos.CENTER);
         info.setVisible(false);
@@ -108,8 +131,6 @@ public class gestaoAlunosUI extends BorderPane {
     }
 
     private void update() {
-
-
     }
 
 }
