@@ -40,6 +40,11 @@ public class Proposta implements Serializable {
     public void setRamo(String newramo){
         this.ramo=newramo;
     }
+
+    public void setEmail_Docente(String newemail){
+        this.email_Docente=newemail;
+    }
+
     public String getEmpresa() {
         return empresa;
     }

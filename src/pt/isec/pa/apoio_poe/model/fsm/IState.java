@@ -1,7 +1,5 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import pt.isec.pa.apoio_poe.model.data.Proposta;
-
 public interface IState {
     //redo e undo?
     boolean voltar(boolean guardado);
@@ -10,7 +8,7 @@ public interface IState {
     boolean adicionarAluno(String nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio, String curso);
     boolean remover(String eliminar);
 
-    boolean removerCandidatura(String nr_Aluno,String eliminar);
+    boolean removerPropostaDeCandidatura(String nr_Aluno, String eliminar);
 /*    boolean removerAluno(long nr_aluno);
     boolean removerDocente(String emaildoc);*//*
     public boolean removerProposta(String cod_ID);*/

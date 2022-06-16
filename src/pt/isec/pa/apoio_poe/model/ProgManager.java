@@ -130,8 +130,8 @@ public class ProgManager {
         return resultado;
     }
 
-    public boolean removerCandidatura(String nr_Aluno,String id_Proposta){
-        boolean resultado = controladorDoPrograma.removerCandidatura(nr_Aluno,id_Proposta);
+    public boolean removerPropostaDeCandidatura(String nr_Aluno, String id_Proposta){
+        boolean resultado = controladorDoPrograma.removerPropostaDeCandidatura(nr_Aluno,id_Proposta);
         pcs.firePropertyChange(null,null,null);
         return resultado;
     }

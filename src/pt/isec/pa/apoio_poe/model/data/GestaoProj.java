@@ -450,34 +450,27 @@ public class GestaoProj implements Serializable {
         }
         for (Proposta proposta:propostas) {
             if (proposta.getCodigo_Aluno() != null && proposta.getCodigo_Aluno().equals(nr_aluno))
-                Eliminadas.add(proposta.getCod_ID());
+                if(proposta.getClass().getSimpleName().equals("T3")) {
+                    Eliminadas.add(proposta.getCod_ID());
+                }else if (proposta.getClass().getSimpleName().equals("T2") || proposta.getClass().getSimpleName().equals("T1"))
+                    proposta.setCodigo_Aluno(null);
         }
 
         for(String s:Eliminadas){
-            System.out.println("Entrei aqui");
             removerProposta(s);
         }
         return alunos.remove(getAlunoPorNumero(nr_aluno));
     }
 
     public boolean removerDocente(String email){
-/*        int i=0, flag=0;
-        do{
-            propostas.iterator();
-            for (; i < propostas.size(); i++) {
-                if (getDocentePorEmailObjeto(email).equals(.getEmail_Docente())) {
-                    removerProposta(proposta.getCod_ID());
-                }
-                if (i == propostas.size() - 1) {
-                    flag = 1;
-                }
-            }
-        }while (flag==0);*/
         ArrayList<String> Eliminadas = new ArrayList<>();
         //Eliminadas.clear();
         for(Proposta p:propostas){
-            if (email.equals(p.getEmail_Docente()) && p.getClass().getSimpleName().equals("T2")){
-                Eliminadas.add(p.getCod_ID());
+            if (email.equals(p.getEmail_Docente())){
+                if(p.getClass().getSimpleName().equals("T2")) {
+                    Eliminadas.add(p.getCod_ID());
+                }else if(p.getClass().getSimpleName().equals("T1") || p.getClass().getSimpleName().equals("T3"))
+                    p.setEmail_Docente(null);
             }
         }
 
@@ -1246,10 +1239,10 @@ public class GestaoProj implements Serializable {
     }
 
 
-    public boolean removerCandidatura(String nr_Aluno,String id_Candidatura){
+    public boolean removerPropostaDeCandidatura(String nr_Aluno, String id_proposta){
         for (Candidatura candidatura: candidaturas){
             if (candidatura.getNralunoString().equals(nr_Aluno)){
-                candidatura.removeProposta(id_Candidatura);
+                candidatura.removeProposta(id_proposta);
                 if(candidatura.getPropostas().size() == 0){
                     candidaturas.remove(candidatura);
                 }
