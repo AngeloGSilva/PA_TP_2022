@@ -39,8 +39,6 @@ public class gestaoAlunosUI extends BorderPane {
     }
 
     private void createViews() {
-        //textField = new TextField();
-        //textotry = new HBox();
         info = new Label();
         btnExportar = new Button("Exportar");
         btnExportar.setMinWidth(100);
@@ -55,26 +53,11 @@ public class gestaoAlunosUI extends BorderPane {
         hbox = new HBox();
         hbox.setSpacing(10);
         hbox.setAlignment(Pos.CENTER);
-        //hBox.getChildren().addAll();
-        //hbox.setPadding(new Insets(100));
         hbox.getChildren().addAll(btnExportar,btnLerFich,btnAvancar,btnVoltar);
-        //hBox.getChildren().add(btnAlunos);
-        //hBox.getChildren().add(btnDocentes);
-        //hBox.getChildren().add(btnProjetos);
-        //this.getChildren().addAll(vbox);
         info.setVisible(false);
         this.setTop(hbox);
         plane = new BorderPane(new consultaUI(manager));
         this.setCenter(plane);
-/*        this.setBottom(textotry);
-        textField.setPromptText("Numero do Aluno");
-        textotry.getChildren().addAll(textField,btnConsulta);
-        textotry.setAlignment(Pos.BOTTOM_CENTER);*/
-        //HBox text = new HBox();
-        //text.getChildren().add(tfield);
-        //plane.setVisible(false);
-        //this.setCenter(info);
-        //this.setRight(info);
     }
 
     private void registerHandlers() {

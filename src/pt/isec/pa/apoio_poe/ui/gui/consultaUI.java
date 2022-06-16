@@ -21,15 +21,19 @@ public class consultaUI extends BorderPane {
     ProgManager manager;
     Button btnDelete;
     HBox hBox;
-    HBox hboxFilters;
+    HBox hboxFilters,hboxFiltersConf;
 
     TableView<Aluno> tableAlunos;
     TableView<Docente> tableDocente;
     TableView<Proposta> tableProposta;
+
+    TableView<Aluno> tableAlunosConf;
+    TableView<Docente> tableDocenteConf;
+    TableView<Proposta> tablePropostaConf;
     TableView<Candidatura> tableCandidatura;
 
-    ToggleButton tbAuto,tbNotReg,tbReg;
-    ToggleGroup tgFilter;
+    ToggleButton tbAuto,tbNotReg,tbReg,tbAluno,tbDocente,tbProposta;
+    ToggleGroup tgFilter,tgFilterConf;
 
     public consultaUI(ProgManager manager) {
         this.manager = manager;
@@ -42,6 +46,116 @@ public class consultaUI extends BorderPane {
     private void createViews() {
         btnDelete = new Button("eliminar");
         switch (manager.getState()){
+            case CONFIGURACAO -> {
+                tableAlunosConf = new TableView<Aluno>();
+                TableColumn nome = new TableColumn("Nome");
+                nome.setCellValueFactory(new PropertyValueFactory<Aluno, String>("nome_Aluno"));
+                nome.setMinWidth(100);
+
+                TableColumn nr_Aluno = new TableColumn("Numero");
+                nr_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, Long>("nr_Aluno"));
+                nr_Aluno.setMinWidth(85);
+
+                TableColumn email_Aluno = new TableColumn("Email");
+                email_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, String>("email_Aluno"));
+                email_Aluno.setMinWidth(140);
+
+                TableColumn curso = new TableColumn("Curso");
+                curso.setCellValueFactory(new PropertyValueFactory<Aluno, String>("curso"));
+                curso.setMinWidth(50);
+
+                TableColumn ramo_Aluno = new TableColumn("Ramo");
+                ramo_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, String>("ramo_Aluno"));
+                ramo_Aluno.setMinWidth(50);
+
+                TableColumn classificacao_Aluno = new TableColumn("Classificacão");
+                classificacao_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, Double>("classificacao_Aluno"));
+                classificacao_Aluno.setMinWidth(50);
+
+                TableColumn aceder_a_Estagio = new TableColumn("Estagio");
+                aceder_a_Estagio.setCellValueFactory(new PropertyValueFactory<Aluno, Boolean>("aceder_a_Estagio"));
+                aceder_a_Estagio.setMinWidth(50);
+                tableAlunosConf.getColumns().addAll(nome,nr_Aluno,email_Aluno,curso,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
+
+                tableAlunosConf.setMaxWidth(650);
+                tableAlunosConf.setMaxHeight(300);
+
+                this.setCenter(tableAlunosConf);
+                tableAlunosConf.setItems(manager.getAlunos());
+
+
+                tableDocenteConf = new TableView<Docente>();
+                TableColumn nomeDocente = new TableColumn("Nome");
+                nomeDocente.setCellValueFactory(new PropertyValueFactory<Docente, String>("nome_Docente"));
+                nomeDocente.setMinWidth(100);
+
+                TableColumn papel_Docente = new TableColumn("Papel");
+                papel_Docente.setCellValueFactory(new PropertyValueFactory<Docente, Boolean>("papel_Docente"));
+                papel_Docente.setMinWidth(85);
+
+                TableColumn email_Docente = new TableColumn("Email");
+                email_Docente.setCellValueFactory(new PropertyValueFactory<Docente, String>("email_Docente"));
+                email_Docente.setMinWidth(140);
+
+                tableDocenteConf.getColumns().addAll(nomeDocente,papel_Docente,email_Docente);
+
+                tableDocenteConf.setMaxWidth(650);
+                tableDocenteConf.setMaxHeight(300);
+
+                tableDocenteConf.setItems(manager.getDocentes());
+
+                tablePropostaConf = new TableView<Proposta>();
+                TableColumn cod_ID = new TableColumn("Nome");
+                cod_ID.setCellValueFactory(new PropertyValueFactory<Docente, String>("cod_ID"));
+                cod_ID.setMinWidth(100);
+
+                TableColumn titulo = new TableColumn("Titulo");
+                titulo.setCellValueFactory(new PropertyValueFactory<Docente, String>("titulo"));
+                titulo.setMinWidth(100);
+
+                TableColumn codigo_Aluno = new TableColumn("Codigo Aluno");
+                codigo_Aluno.setCellValueFactory(new PropertyValueFactory<Docente, String>("codigo_Aluno"));
+                codigo_Aluno.setMinWidth(100);
+
+                TableColumn email_DocenteProposta = new TableColumn("Email Docente");
+                email_DocenteProposta.setCellValueFactory(new PropertyValueFactory<Docente, String>("email_Docente"));
+                email_DocenteProposta.setMinWidth(100);
+
+                TableColumn empresa = new TableColumn("Empresa");
+                empresa.setCellValueFactory(new PropertyValueFactory<Docente, String>("empresa"));
+                empresa.setMinWidth(100);
+
+                TableColumn ramo = new TableColumn("Ramo");
+                ramo.setCellValueFactory(new PropertyValueFactory<Docente, String>("ramo"));
+                ramo.setMinWidth(100);
+
+                tablePropostaConf.getColumns().addAll(cod_ID,titulo,codigo_Aluno,email_Docente,empresa,ramo);
+
+                tablePropostaConf.setMaxWidth(650);
+                tablePropostaConf.setMaxHeight(300);
+
+                tablePropostaConf.setItems(manager.getPropostas());
+
+                tbAluno = new ToggleButton("Alunos");
+                tbDocente = new ToggleButton("Docentes");
+                tbProposta = new ToggleButton("Propostas");
+
+                tgFilterConf = new ToggleGroup();
+
+                tbAluno.setToggleGroup(tgFilterConf);
+                tbDocente.setToggleGroup(tgFilterConf);
+                tbProposta.setToggleGroup(tgFilterConf);
+
+                tbAluno.setAlignment(Pos.TOP_LEFT);
+                tbDocente.setAlignment(Pos.TOP_LEFT);
+                tbProposta.setAlignment(Pos.TOP_LEFT);
+
+                hboxFiltersConf = new HBox();
+                hboxFiltersConf.getChildren().addAll(tbAluno,tbDocente,tbProposta);
+                tbAluno.setSelected(true);
+                hboxFiltersConf.setAlignment(Pos.CENTER);
+                this.setTop(hboxFiltersConf);
+            }
             case GESTAO_ALUNO -> {
                 tableAlunos = new TableView<Aluno>();
                 TableColumn nome = new TableColumn("Nome");
@@ -77,6 +191,8 @@ public class consultaUI extends BorderPane {
                 tableAlunos.setMaxHeight(300);
 
                 //table.setItems(manager.getAlunos());
+                btnDelete = new Button("Eliminar");
+
                 this.setCenter(tableAlunos);
                 hBox = new HBox();
                 hBox.getChildren().add(btnDelete);
@@ -103,6 +219,7 @@ public class consultaUI extends BorderPane {
                 tableDocente.setMaxWidth(650);
                 tableDocente.setMaxHeight(300);
 
+                btnDelete = new Button("Eliminar");
                 //table.setItems(manager.getAlunos());
                 this.setCenter(tableDocente);
                 hBox = new HBox();
@@ -142,6 +259,7 @@ public class consultaUI extends BorderPane {
                 tableProposta.setMaxWidth(650);
                 tableProposta.setMaxHeight(300);
 
+                btnDelete = new Button("Eliminar");
                 this.setCenter(tableProposta);
                 hBox = new HBox();
                 hBox.getChildren().add(btnDelete);
@@ -150,6 +268,12 @@ public class consultaUI extends BorderPane {
                 tableProposta.setItems(manager.getPropostas());
             }
             case OPCAO_CANDIDATURA -> {
+                //btnDelete.setVisible(true);
+/*                //if (manager.get())
+                    btnDelete.setDisable(true);
+                else
+                    btnDelete.setDisable(false);*/
+                btnDelete.setDisable(false);
 
                 tableAlunos = new TableView<Aluno>();
                 TableColumn nome = new TableColumn("Nome");
@@ -242,9 +366,6 @@ public class consultaUI extends BorderPane {
                 tableCandidatura.setItems(manager.getCandidaturas());
             }
         }
-
-
-        //this.setRight(info);
     }
 
     private void registerHandlers() {
@@ -260,6 +381,7 @@ public class consultaUI extends BorderPane {
                 this.setCenter(tableCandidatura);
                 tableCandidatura.getItems().clear();
                 tableCandidatura.setItems(manager.getCandidaturas());
+                btnDelete.setDisable(false);
             });
 
             tbAuto.setOnAction(e -> {
@@ -268,6 +390,7 @@ public class consultaUI extends BorderPane {
                 this.setCenter(tableCandidatura);
                 tableCandidatura.getItems().clear();
                 tableCandidatura.setItems(manager.getCandidaturasAuto());
+                btnDelete.setDisable(false);
             });
 
             tbNotReg.setOnAction(e -> {
@@ -276,6 +399,36 @@ public class consultaUI extends BorderPane {
                 this.setCenter(tableAlunos);
                 tableAlunos.setVisible(true);
                 tableAlunos.setItems(manager.getCandidaturasNotReg());
+                btnDelete.setDisable(true);
+            });
+        }
+
+        if (manager.getState().equals(PoeState.CONFIGURACAO) && manager.getFase_gestao()) {
+            tbAluno.setOnAction(e -> {
+                tableAlunosConf.setVisible(true);
+                tableDocenteConf.setVisible(false);
+                tablePropostaConf.setVisible(false);
+                this.setCenter(tableAlunosConf);
+                tableAlunosConf.getItems().clear();
+                tableAlunosConf.setItems(manager.getAlunos());
+            });
+
+            tbDocente.setOnAction(e -> {
+                tableAlunosConf.setVisible(false);
+                tableDocenteConf.setVisible(true);
+                tablePropostaConf.setVisible(false);
+                this.setCenter(tableDocenteConf);
+                tableDocenteConf.getItems().clear();
+                tableDocenteConf.setItems(manager.getDocentes());
+            });
+
+            tbProposta.setOnAction(e -> {
+                tableAlunosConf.setVisible(false);
+                tableDocenteConf.setVisible(false);
+                tablePropostaConf.setVisible(true);
+                this.setCenter(tablePropostaConf);
+                tablePropostaConf.getItems().clear();
+                tablePropostaConf.setItems(manager.getPropostas());
             });
         }
 
@@ -322,9 +475,6 @@ public class consultaUI extends BorderPane {
                                 System.out.println("nao é nenhum deles");
                             }
                         }
-
-                        /*manager.removerProposta(selectedItem.g);
-                        System.out.println(selectedItem.getCod_ID());*/
                     }
 
                 }

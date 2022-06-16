@@ -13,7 +13,7 @@ import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 
 public class configuracaoUI extends BorderPane{
     ProgManager manager;
-    Button btnAlunos,btnDocentes,btnProjetos,btnExit,btnConsulta;
+    Button btnAlunos,btnDocentes,btnProjetos,btnExit,btnAvancar;
 
     public configuracaoUI(ProgManager manager) {
         this.manager = manager;
@@ -47,21 +47,15 @@ public class configuracaoUI extends BorderPane{
             //this.getChildren().addAll(hBox);
             this.setCenter(hBox);
         }else {
+            HBox hBox = new HBox();
+            this.setCenter(new consultaUI(manager));
             btnExit = new Button("Exit");
             btnExit.setMinWidth(100);
-            btnConsulta = new Button("Consulta");
-            VBox hBox = new VBox();
-            hBox.setAlignment(Pos.CENTER);
-            hBox.setSpacing(10);
-            //hBox.getChildren().addAll();
-            hBox.getChildren().addAll(btnConsulta, btnExit);
-            //hBox.getChildren().add(btnAlunos);
-            //hBox.getChildren().add(btnDocentes);
-            //hBox.getChildren().add(btnProjetos);
-            //this.getChildren().addAll(hBox);
-            this.setCenter(hBox);
+            btnAvancar = new Button("Avancar");
+            btnAvancar.setMinWidth(100);
+            hBox.getChildren().addAll(btnExit,btnAvancar);
+            this.setTop(hBox);
         }
-        //hBox.getChildren().addAll(btnAlunos,btnDocentes,btnProjetos,btnExit);
     }
 
     private void registerHandlers() {
@@ -80,16 +74,15 @@ public class configuracaoUI extends BorderPane{
             btnProjetos.setOnAction(event -> {
                 manager.selecionar(PoeState.GESTAO_PROPOSTA);
             });
-
-
         }else {
-            btnConsulta.setOnAction(event -> {
-                Platform.exit();
+            btnAvancar.setOnAction(event -> {
+                manager.avancar(true);
             });
         }
         btnExit.setOnAction(event -> {
             Platform.exit();
         });
+
     }
 
     private void update() {
