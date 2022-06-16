@@ -105,14 +105,7 @@ public class gestaoAlunosUI extends BorderPane {
     }
 
     private void update() {
-/*        if (manager.getState() != PoeState.GESTAO_ALUNO){
-            this.setVisible(false);
-            return;
-        }
-        this.setVisible(true);*/
-        //this.setCenter(plane);
-        //this.setCenter(new consultaUI(manager));
-        //list.getItems().add(manager.getAlunos());
+
 
     }
 
