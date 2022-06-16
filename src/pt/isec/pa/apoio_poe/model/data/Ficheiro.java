@@ -132,6 +132,7 @@ public final class Ficheiro {
                                 } else if(data.length == 6 &&
                                         gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) &&
                                         !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
+                                        gestaoProj.VerificaRamoAlunoProposta(Long.parseLong(data[5]),data[2]) &&
                                         gestaoProj.VerificaAlunoAcederPropostaLeitura(Long.parseLong(data[5]),data[0]) && //Verifica proposta durante a leitura
                                         ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
@@ -155,8 +156,10 @@ public final class Ficheiro {
                                     gestaoProj.getDocentePorEmailObjeto(data[4]).setPapel_Docente(true);
                                     //Subir contador
                                     gestaoProj.getDocentePorEmailObjeto(data[4]).incContador();
-                                } else if (gestaoProj.verificaEmailDocente(data[4]) && //email de um docente valido
+                                } else if (data.length > 5 &&
+                                        gestaoProj.verificaEmailDocente(data[4]) && //email de um docente valido
                                         !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
+                                        gestaoProj.VerificaRamoAlunoProposta(Long.parseLong(data[5]),data[2]) &&
                                         gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) && //numero de aluno valido
                                         ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ramos associado
                                 {

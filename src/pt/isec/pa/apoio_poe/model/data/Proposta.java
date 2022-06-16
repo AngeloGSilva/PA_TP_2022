@@ -36,6 +36,10 @@ public class Proposta implements Serializable {
     public void setTitulo(String newtitulo){
         this.titulo=newtitulo;
     }
+
+    public void setRamo(String newramo){
+        this.ramo=newramo;
+    }
     public String getEmpresa() {
         return empresa;
     }

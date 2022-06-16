@@ -1148,6 +1148,7 @@ public class GestaoProj implements Serializable {
                 } else if(codigo_Aluno != null &&
                         VerificaAlunoExiste(codigo_Aluno) &&
                         !VerificaIdProposta(cod_ID) && //id da proposta repetido
+                        VerificaRamoAlunoProposta(codigo_Aluno,ramo) &&
                         VerificaAlunoAcederPropostaLeitura(codigo_Aluno,cod_ID) && //Verifica proposta durante a leitura
                         ((ramo.length() > 3 && ramo.contains("|")) || (ramo.length() <= 3 && Ramos.contains(ramo)))) //ver se tem mais q um ramo associado
                 {
@@ -1168,8 +1169,10 @@ public class GestaoProj implements Serializable {
                     //Subir contador
                     getDocentePorEmailObjeto(email_Docente).incContador();
                     return new T2(cod_ID, titulo, ramo, email_Docente);
-                } else if (verificaEmailDocente(email_Docente) && //email de um docente valido
+                } else if (codigo_Aluno != null &&
+                        verificaEmailDocente(email_Docente) && //email de um docente valido
                         !VerificaIdProposta(cod_ID) && //id da proposta repetido
+                        VerificaRamoAlunoProposta(codigo_Aluno,ramo) &&
                         VerificaAlunoExiste(codigo_Aluno) && //numero de aluno valido
                         ((ramo.length() > 3 && ramo.contains("|"))  || (ramo.length() <= 3 && Ramos.contains(ramo)))) //ramos associado
                 {
@@ -1251,6 +1254,17 @@ public class GestaoProj implements Serializable {
                     candidaturas.remove(candidatura);
                 }
                 return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean VerificaRamoAlunoProposta(long nraluno, String ramo) {
+        for(Aluno a:alunos){
+            if(a.getNr_Aluno() == nraluno) {
+                if (a.getRamo_Aluno().equals(ramo)) {
+                    return true;
+                }
             }
         }
         return false;

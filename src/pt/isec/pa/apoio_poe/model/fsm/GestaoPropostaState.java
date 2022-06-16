@@ -56,6 +56,8 @@ public class GestaoPropostaState extends IStateAdaptar {
     public boolean adicionarProposta(String tipo,String cod_ID, String titulo, Long codigo_Aluno, String email_Docente, String ramo,String empresa){
         Proposta p = dados.validarProposta(tipo,cod_ID,  titulo,  codigo_Aluno,  email_Docente,  ramo, empresa);
         if(p!=null){
+            if(tipo.equals("T3"))
+                p.setRamo(dados.getAlunoPorNumero(codigo_Aluno).getRamo_Aluno());
             dados.adicionarProposta(p);
             alteraState(new GestaoPropostaState(dados,contexto));
             return true;

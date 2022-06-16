@@ -470,7 +470,45 @@ public class PoeUI {
                 controladorDoPrograma.limparErros();
             }
             case 4 ->{
-                //controladorDoPrograma.adicionarProposta(PAInput.readString("Tipo[T1][T2][T3]:",true),);
+                String tipoaux;
+                switch(tipoaux = PAInput.readString("Tipo:\n[T1 - Estágio]\n[T2 - Projeto]\n[T3 - Estágio/projeto autoproposto]\n Opção:",true)){
+                 case "T1" ->{ //T1 com aluno associado
+                     if(PAInput.readString("Aluno Associado?[s/n]",true).equals("s")){
+                        if(controladorDoPrograma.adicionarProposta(tipoaux,PAInput.readString("Codigo Id:",true),PAInput.readString("Titulo:",true),Long.parseLong(PAInput.readString("Numero do aluno associado:",true)),null,PAInput.readString("Ramo:",true),PAInput.readString("Empresa:",false)))
+                            System.out.println("Adicionado com sucesso proposta do tipo T1 com aluno associado");
+                        else
+                            System.out.println("Erro em algum parametro[T1 com aluno associado]");
+                     }else{ //T1 sem aluno associado
+                         if(controladorDoPrograma.adicionarProposta(tipoaux,PAInput.readString("Codigo Id:",true),PAInput.readString("Titulo:",true),null,null,PAInput.readString("Ramo:",true),PAInput.readString("Empresa:",false)))
+                             System.out.println("Adicionado com sucesso proposta do tipo T1 sem aluno associado");
+                         else
+                             System.out.println("Erro em algum parametro[T1 sem aluno associado]");
+                     }
+                 }
+                 case "T2" ->{//definir docente como preponente
+                     if(PAInput.readString("Aluno Associado?[s/n]",true).equals("s")){
+                         if(controladorDoPrograma.adicionarProposta(tipoaux,PAInput.readString("Codigo Id:",true),PAInput.readString("Titulo:",true),Long.parseLong(PAInput.readString("Numero do aluno associado:",true)),PAInput.readString("Email docente responsável:",true),PAInput.readString("Ramo:",true),null))
+                             System.out.println("Adicionado com sucesso proposta do tipo T2 com aluno associado");
+                         else
+                             System.out.println("Erro em algum parametro[T2 com aluno associado]");
+                     }else{ //T2 sem aluno associado
+                         if(controladorDoPrograma.adicionarProposta(tipoaux,PAInput.readString("Codigo Id:",true),PAInput.readString("Titulo:",true),null,PAInput.readString("Email docente responsável:",true),PAInput.readString("Ramo:",true),null))
+                             System.out.println("Adicionado com sucesso proposta do tipo T2 sem aluno associado");
+                         else
+                             System.out.println("Erro em algum parametro[T2 sem aluno associado]");
+                     }
+
+                 }
+                 case "T3" ->{
+                     if(controladorDoPrograma.adicionarProposta(tipoaux,PAInput.readString("Codigo Id:",true),PAInput.readString("Titulo:",true),Long.parseLong(PAInput.readString("Numero do aluno associado:",true)),null,null,null))
+                         System.out.println("Adicionado com sucesso proposta do tipo T3 ");
+                     else
+                         System.out.println("Erro em algum parametro [T3]");
+
+
+
+                 }
+                }
             }
             case 5 ->{
                 controladorDoPrograma.editar(PAInput.readString("Id da proposta:",true),PAInput.readString("Edição [titulo]:",false));
