@@ -32,6 +32,7 @@ public class Popup extends VBox{
         lb.setAlignment(Pos.CENTER);
         vBox.setAlignment(Pos.CENTER);
         vBox.getChildren().addAll(lb,tabelaAlunos);
+        lb.setText(manager.getPropostaConflito().getCod_ID());
         tabelaAlunos.getItems().clear();
         tabelaAlunos.setItems(manager.getConflitosTV());
         Scene nscene = new Scene(vBox, 200, 100);
