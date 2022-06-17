@@ -6,9 +6,17 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 import pt.isec.pa.apoio_poe.model.ProgManager;
+import pt.isec.pa.apoio_poe.model.data.Aluno;
 
 
 public class Popup extends VBox{
+    public static void conflito(ProgManager manager) {
+        Stage popupwindow = new Stage();
+        popupwindow.initModality(Modality.APPLICATION_MODAL);
+        Label lb = new Label();
+        TableView<Aluno> tabelaAlunos = new TableView<>();
+        TableColumn nome_Aluno = new TableColumn<>(Nome);
+    }
 
 
     public static void display(PopupSupport s,int aux)
