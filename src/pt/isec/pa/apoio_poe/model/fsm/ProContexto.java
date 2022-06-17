@@ -335,6 +335,10 @@ public class ProContexto {
         return dados.getConflitos();
     }
 
+    public ArrayList<Aluno> getConflitosTV() {
+        return dados.getConflitosTV();
+    }
+
     public Proposta getPropostaConflito() {
         return dados.getPropostaConflito();
     }

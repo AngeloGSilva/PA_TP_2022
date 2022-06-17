@@ -99,6 +99,15 @@ public class ProgManager {
         //return dados.toStringCandidaturas();
     }
 
+    public ObservableList<Aluno> getConflitosTV() {
+        System.out.println(controladorDoPrograma.getConflitosTV());
+        ObservableList<Aluno> ob = FXCollections.observableArrayList(controladorDoPrograma.getConflitosTV());
+        System.out.println("Criar a lista de obs");
+        System.out.println(ob);
+        return ob;
+        //return dados.toStringCandidaturas();
+    }
+
 
     public boolean voltar(boolean guardado) {
         controladorDoPrograma.voltar(guardado);
@@ -189,6 +198,9 @@ public class ProgManager {
         return resultado;
     }
 
+    public Proposta getPropostaConflito() {
+        return controladorDoPrograma.getPropostaConflito();
+    }
 
 
 

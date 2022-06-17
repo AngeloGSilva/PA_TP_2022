@@ -119,6 +119,10 @@ public class GestaoProj implements Serializable {
         return new ArrayList<Aluno>(alunos);
     }
 
+    public ArrayList<Aluno> getConflitosTV() {
+        return new ArrayList<Aluno>(conflitos);
+    }
+
     public ArrayList<Docente> getDocentesTV(){
         return new ArrayList<Docente>(docentes);
     }
