@@ -17,7 +17,7 @@ public class opCandidaturaState extends IStateAdaptar {
     @Override
     public boolean adicionarCandidatura(String nrAluno,String codId){
         Candidatura c = dados.validarCandidatura(nrAluno,codId);
-        if(c==null){
+        if(c!=null){
             dados.adicionarCandidatura(c);
             alteraState(new opCandidaturaState(dados,contexto));
             return true;

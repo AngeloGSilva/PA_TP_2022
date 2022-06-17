@@ -15,7 +15,7 @@ public class Popup extends VBox{
         popupwindow.initModality(Modality.APPLICATION_MODAL);
         Label lb = new Label();
         TableView<Aluno> tabelaAlunos = new TableView<>();
-        TableColumn nome_Aluno = new TableColumn<>(Nome);
+        //TableColumn nome_Aluno = new TableColumn<>(Nome);
     }
 
 
