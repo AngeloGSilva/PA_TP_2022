@@ -1255,7 +1255,7 @@ public class GestaoProj implements Serializable {
     public boolean VerificaRamoAlunoProposta(long nraluno, String ramo) {
         for(Aluno a:alunos){
             if(a.getNr_Aluno() == nraluno) {
-                if (a.getRamo_Aluno().equals(ramo)) {
+                if (a.getRamo_Aluno().contains(ramo)) {
                     return true;
                 }
             }
@@ -1303,7 +1303,7 @@ public class GestaoProj implements Serializable {
     public boolean adicionarPropostaACandidatura(String nr_aluno, String idProp) {
         for(Candidatura c :candidaturas){
             if(c.getNralunoString().equals(nr_aluno)) {
-                if ((c.getIdPropostas().get(0).equals("T2") || c.getIdPropostas().get(0).equals("T3")) && c.getPropostas().get(0).getCodigo_Aluno()!=null)
+                if ((c.getPropostas().get(0).getClass().getSimpleName().equals("T2") || c.getPropostas().get(0).getClass().getSimpleName().equals("T3")) && c.getPropostas().get(0).getCodigo_Aluno()!=null)
                         return false;
                     for (Proposta p : propostas) {
                         if (p.getCod_ID().equals(idProp) && p.getCodigo_Aluno() == null) {
