@@ -1266,6 +1266,8 @@ public class GestaoProj implements Serializable {
         //Ainda remove a T2 e T3 com aluno associado, nao pode!
         for (Candidatura candidatura: candidaturas){
             if (candidatura.getNralunoString().equals(nr_Aluno)){
+                if(candidatura.getNrPropostas() == 1 && (candidatura.getPropostas().get(0).getClass().getSimpleName().equals("T3") || candidatura.getPropostas().get(0).getClass().getSimpleName().equals("T2")))
+                    return false;
                 candidatura.removeProposta(id_proposta);
                 if(candidatura.getPropostas().size() == 0){
                     candidaturas.remove(candidatura);
