@@ -425,7 +425,20 @@ public class PoeUI {
                     controladorDoPrograma.adicionarCandidatura();
                 }
                 case 5-> {//Editar
-                    //if()
+                    switch(PAInput.chooseOption("Adicionar ou remover proposta:","Adicionar","Remover")){
+                        case 1->{ // Adicionar com 1 proposta é sempre com 1 proposta, aqui podem se adicioanr mais propostas
+                            if(controladorDoPrograma.adicionarPropostaACandidatura(PAInput.readString("Numero de aluno:",true),PAInput.readString("Codigo da proposta:",true))){
+                                System.out.println("Adicionado Com Sucesso!\n");
+                            }else
+                                System.out.println("Erro ao adicionar!\n");
+                        }
+                        case 2->{
+                            controladorDoPrograma.removerPropostaDeCandidatura(PAInput.readString("Numero de aluno:",true),PAInput.readString("Codigo da proposta:",true));
+                        }
+                        default -> {
+                            break;
+                        }
+                    }
 
                 }
                 case 6-> {//Eliminar
@@ -444,7 +457,6 @@ public class PoeUI {
                             }else{
                                 System.out.println("Fase fechada!");
                             }
-
                         }
                         case 2 -> controladorDoPrograma.avancar(false);
                     }

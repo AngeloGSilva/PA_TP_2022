@@ -14,9 +14,15 @@ public class opCandidaturaState extends IStateAdaptar {
     }
 
     @Override
-    public boolean removerPropostaDeCandidatura(String nr_Aluno, String id_Candidatura){
+    public boolean removerPropostaDeCandidatura(String nr_Aluno, String IdProposta){
         alteraState(new opCandidaturaState(dados,contexto));
-        return dados.removerPropostaDeCandidatura(nr_Aluno,id_Candidatura);
+        return dados.removerPropostaDeCandidatura(nr_Aluno,IdProposta);
+    }
+
+    @Override
+    public boolean adicionarPropostaACandidatura(String nr_Aluno, String idProposta) {
+        alteraState(new opCandidaturaState(dados,contexto));
+        return dados.adicionarPropostaACandidatura(nr_Aluno, idProposta);
     }
 
     @Override

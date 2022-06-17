@@ -1239,6 +1239,7 @@ public class GestaoProj implements Serializable {
 
 
     public boolean removerPropostaDeCandidatura(String nr_Aluno, String id_proposta){
+        //Ainda remove a T2 e T3 com aluno associado, nao pode!
         for (Candidatura candidatura: candidaturas){
             if (candidatura.getNralunoString().equals(nr_Aluno)){
                 candidatura.removeProposta(id_proposta);
@@ -1297,6 +1298,22 @@ public class GestaoProj implements Serializable {
         aux2.deleteCharAt(0);
         aux2.deleteCharAt(aux2.length()-1);
         return aux2;
+    }
+
+    public boolean adicionarPropostaACandidatura(String nr_aluno, String idProp) {
+        for(Candidatura c :candidaturas){
+            if(c.getNralunoString().equals(nr_aluno)) {
+                if ((c.getIdPropostas().get(0).equals("T2") || c.getIdPropostas().get(0).equals("T3")) && c.getPropostas().get(0).getCodigo_Aluno()!=null)
+                        return false;
+                    for (Proposta p : propostas) {
+                        if (p.getCod_ID().equals(idProp) && p.getCodigo_Aluno() == null) {
+                            c.getPropostas().add(p);
+                            return true;
+                        }
+                    }
+                }
+        }
+        return false;
     }
     //Dados Nas opcoes de Candidatura
 

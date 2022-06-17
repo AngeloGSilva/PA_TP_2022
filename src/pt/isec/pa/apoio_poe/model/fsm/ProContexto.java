@@ -102,10 +102,6 @@ public class ProContexto {
         return state.remover(eliminar);
     }
 
-    public boolean removerPropostaDeCandidatura(String nr_Aluno, String eliminar){
-        return state.removerPropostaDeCandidatura(nr_Aluno,eliminar);
-    }
-
 /*
     public boolean removerAluno(long nr_aluno){
         return state.removerAluno(nr_aluno);
@@ -345,5 +341,13 @@ public class ProContexto {
 
     public StringBuilder getCandidaturasPrintEasy() {
         return dados.getCandidaturasPrintEasy();
+    }
+
+    public boolean adicionarPropostaACandidatura(String nrAluno,String codID) {
+        return state.adicionarPropostaACandidatura(nrAluno,codID);
+    }
+
+    public boolean removerPropostaDeCandidatura(String nr_Aluno, String eliminar){
+        return state.removerPropostaDeCandidatura(nr_Aluno,eliminar);
     }
 }

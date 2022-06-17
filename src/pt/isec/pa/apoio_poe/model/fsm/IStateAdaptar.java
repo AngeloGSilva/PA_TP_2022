@@ -59,6 +59,9 @@ abstract class IStateAdaptar implements IState{
     }
 
     @Override
+    public boolean adicionarPropostaACandidatura(String nr_Aluno, String eliminar){return false;}
+
+    @Override
     public boolean remover(String eliminar){
         return false;
     }
