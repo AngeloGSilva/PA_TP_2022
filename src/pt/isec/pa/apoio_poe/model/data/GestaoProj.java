@@ -331,8 +331,8 @@ public class GestaoProj implements Serializable {
             return verificado;
     }
 
-    //verifica se o numero passado ja esta vincolado a alguma candidatura
-    public boolean getNrAlunoCandidatura(long nr_Aluno){
+    //verifica se o numero passado ja esta vinculado a alguma candidatura
+    public boolean VerificaAlunoJaCandidato(long nr_Aluno){
         for (Candidatura x : candidaturas) {
             if(x.getNraluno() == nr_Aluno){
                 return true;
@@ -1196,6 +1196,7 @@ public class GestaoProj implements Serializable {
         return null;
     }
 
+
     public boolean removerProposta(String cod_ID){
         String tipo = getPropostaPorId(cod_ID).getClass().getSimpleName();
         Proposta aux = getPropostaPorId(cod_ID);
@@ -1253,10 +1254,24 @@ public class GestaoProj implements Serializable {
     }
 
     public boolean VerificaRamoAlunoProposta(long nraluno, String ramo) {
-        for(Aluno a:alunos){
-            if(a.getNr_Aluno() == nraluno) {
-                if (a.getRamo_Aluno().contains(ramo)) {
-                    return true;
+        String[] nova;
+        if(ramo.contains("|")) {
+            nova = ramo.split("\\|");
+            for(Aluno a :alunos){
+                if(a.getNr_Aluno() == nraluno) {
+                    for(int i=0;i<nova.length;i++){
+                        if(nova[i].equals(a.getRamo_Aluno()))
+                            return true;
+                    }
+                }
+
+            }
+        }else {
+            for (Aluno a : alunos) {
+                if (a.getNr_Aluno() == nraluno) {
+                    if (a.getRamo_Aluno().equals(ramo)) {
+                        return true;
+                    }
                 }
             }
         }

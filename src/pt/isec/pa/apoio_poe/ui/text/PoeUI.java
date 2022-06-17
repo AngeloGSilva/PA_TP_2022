@@ -422,7 +422,11 @@ public class PoeUI {
                     controladorDoPrograma.limparErros();
                 }
                 case 4-> {//Adicionar
-                    controladorDoPrograma.adicionarCandidatura();
+                    if(controladorDoPrograma.adicionarCandidatura(PAInput.readString("Numero de aluno:",true),PAInput.readString("Codigo da proposta:",true))){
+                        System.out.println("Candidatura criada com sucesso!\n");
+                    }else
+                        System.out.println("Erro ao criar!\n");
+
                 }
                 case 5-> {//Editar
                     switch(PAInput.chooseOption("Adicionar ou remover proposta:","Adicionar","Remover")){

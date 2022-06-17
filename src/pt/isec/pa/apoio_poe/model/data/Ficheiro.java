@@ -222,7 +222,7 @@ public final class Ficheiro {
             while ((linha = bufferedReader.readLine()) != null) {
                 data = linha.split(",");
                 if(gestaoProj.VerificaAlunoExiste(Long.parseLong(data[0])) &&
-                        !gestaoProj.getNrAlunoCandidatura(Long.parseLong(data[0])) &&
+                        !gestaoProj.VerificaAlunoJaCandidato(Long.parseLong(data[0])) &&
                         !gestaoProj.VerificaNumeroAssociadoAProposta(data[0]) &&
                         data.length > 1)
                 { //data[1].contains("P[0-9]{3}")
@@ -245,7 +245,7 @@ public final class Ficheiro {
                     //separar erro de aluno que nao existe / ou se é aluno com candidatura efetuada
                     if(gestaoProj.get_codigoAluno(Long.parseLong(data[0]))) {
                         gestaoProj.setErros("[Erro] Aluno ja tem candidatura efetuada" + data[0] + "\n");
-                    }else if(gestaoProj.getNrAlunoCandidatura(Long.parseLong(data[0]))){
+                    }else if(gestaoProj.VerificaAlunoJaCandidato(Long.parseLong(data[0]))){
                         gestaoProj.setErros("[Erro] Aluno ja proposto anteriormente!" + data[0] +"\n");
                     }else{
                         gestaoProj.setErros("[Erro] Aluno nao existe" + data[0] +"\n");
