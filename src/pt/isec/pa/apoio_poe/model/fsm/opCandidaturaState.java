@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
+import pt.isec.pa.apoio_poe.model.data.Candidatura;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
 public class opCandidaturaState extends IStateAdaptar {
@@ -10,6 +11,18 @@ public class opCandidaturaState extends IStateAdaptar {
     @Override
     public boolean voltar(boolean guardado) {
         alteraState(new ConfiguracaoState(dados,contexto));
+        return false;
+    }
+
+    @Override
+    public boolean adicionarCandidatura(String nrAluno,String codId){
+        Candidatura c = dados.validarCandidatura(nrAluno,codId);
+        if(c==null){
+            dados.adicionarCandidatura(c);
+            alteraState(new opCandidaturaState(dados,contexto));
+            return true;
+        }else
+        alteraState(new opCandidaturaState(dados,contexto));
         return false;
     }
 

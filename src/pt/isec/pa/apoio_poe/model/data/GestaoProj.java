@@ -1200,6 +1200,21 @@ public class GestaoProj implements Serializable {
         return null;
     }
 
+    public Candidatura validarCandidatura(String nrAluno,String codId){
+        //Validar aluno
+        if(VerificaAlunoExiste(Long.parseLong(nrAluno)) &&
+           !VerificaAlunoJaCandidato(Long.parseLong(nrAluno)) &&
+           !VerificaNumeroAssociadoAProposta(nrAluno)){
+            //Validar proposta
+            if(VerificaIdProposta(codId) &&
+            VerificaAlunoAcederProposta(Long.parseLong(nrAluno),codId) &&
+            VerificaPropostaComAluno(codId)){
+                return new Candidatura(getAlunoPorNumero(Long.parseLong(nrAluno)), getPropostaPorId(codId));
+            }
+            return null;
+        }
+        return null;
+    }
 
     public boolean removerProposta(String cod_ID){
         String tipo = getPropostaPorId(cod_ID).getClass().getSimpleName();

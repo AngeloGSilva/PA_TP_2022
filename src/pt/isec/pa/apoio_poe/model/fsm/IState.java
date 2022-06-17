@@ -10,6 +10,7 @@ public interface IState {
 /*    boolean removerAluno(long nr_aluno);
     boolean removerDocente(String emaildoc);*//*
     public boolean removerProposta(String cod_ID);*/
+    boolean adicionarCandidatura(String nrAluno,String codId);
     boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente);
     boolean adicionarProposta(String tipo,String cod_ID, String titulo, Long codigo_Aluno, String email_Docente, String ramo,String empresa);
     void AtribuirAutomaticamente();
@@ -28,8 +29,6 @@ public interface IState {
     boolean atribuirManualmenteAluno(long id_aluno, String proposta);
 
     void editar(String identificador, String editado);
-
-    boolean adicionarCandidatura();
 
     boolean adicionarPropostaACandidatura(String nrAluno, String codID);
 
