@@ -384,7 +384,8 @@ public class consultaUI extends BorderPane {
 
                 TableColumn<Atribuicao, String> nome_Docente = new TableColumn<Atribuicao, String>("Docente");
                 nome_Docente.setCellValueFactory(cellData ->
-                        new SimpleStringProperty(cellData.getValue().getDocente().getNome_Docente()));
+                            new SimpleStringProperty(cellData.getValue().getNomeDocenteTV())
+                        );
                 nome_Docente.setMinWidth(140);
 
                 TableColumn<Atribuicao, String> id_Proposta = new TableColumn<Atribuicao, String>("ID");
@@ -536,6 +537,8 @@ public class consultaUI extends BorderPane {
                     tableProposta.setItems(manager.getPropostas());
                 }
             }
+
+            case ATRIBUIR_PROPOSTA -> tableAtribuicoes.setItems(manager.getAtribuicoes());
             default -> {
 /*                tableProposta.refresh();
                 tableAlunos.refresh();

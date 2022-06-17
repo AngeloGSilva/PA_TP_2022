@@ -79,6 +79,11 @@ public class atriPropostaUI extends BorderPane {
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
 
+        btnAutoDoc.setOnAction(event ->{
+            manager.AtribuirAutomaticoAutopropostosDocentesAluno();
+        });
+
+
     }
 
     private void update() {

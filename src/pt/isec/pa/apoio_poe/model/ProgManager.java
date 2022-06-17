@@ -115,7 +115,10 @@ public class ProgManager {
     }
 
 
-    public void AtribuirAutomaticamente(){};
+    public void AtribuirAutomaticamente(){
+        controladorDoPrograma.AtribuirAutomaticamente();
+        pcs.firePropertyChange(null,null,null);
+    };
 
 
 
@@ -174,10 +177,17 @@ public class ProgManager {
     public boolean atribuirManualmenteDocente(String docente, int id_atribuicao){return false;}
 
 
-    public void AtribuirAutomaticoAutopropostosDocentesAluno(){}
+    public void AtribuirAutomaticoAutopropostosDocentesAluno(){
+        controladorDoPrograma.AtribuirAutomaticoAutopropostosDocentesAluno();
+        pcs.firePropertyChange(null,null,null);
+    }
 
 
-    public boolean atribuirManualmenteAluno(long id_aluno, String proposta){return false;}
+    public boolean atribuirManualmenteAluno(long id_aluno, String proposta){
+        boolean resultado = controladorDoPrograma.atribuirManualmenteAluno(id_aluno,proposta);
+        pcs.firePropertyChange(null,null,null);
+        return resultado;
+    }
 
 
 

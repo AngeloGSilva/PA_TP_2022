@@ -51,6 +51,13 @@ public class Atribuicao implements Serializable {
         return docente;
     }
 
+    public String getNomeDocenteTV(){
+        if (docente != null){
+            return docente.getNome_Docente();
+        }
+        return null;
+    }
+
     public Proposta getProposta() {
         return proposta;
     }

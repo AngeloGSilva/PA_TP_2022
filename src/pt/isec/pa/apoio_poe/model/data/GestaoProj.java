@@ -131,6 +131,10 @@ public class GestaoProj implements Serializable {
         return new ArrayList<Candidatura>(candidaturas);
     }
 
+    public ArrayList<Atribuicao> getAtribuicoesTV(){
+        return new ArrayList<Atribuicao>(atribuicoes);
+    }
+
     public ArrayList<Candidatura> getCandidaturaTVAuto(){
         return getAutoPropostos();
     }

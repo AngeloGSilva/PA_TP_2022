@@ -35,6 +35,7 @@ public class atriPropostaState extends IStateAdaptar {
     @Override
     public void AtribuirAutomaticamente(){
     if(dados.atribuiAutomaticamente() == false){
+        dados.atribuiEstagiosSugeridos();
         dados.atribuirSemCandidatura();
         alteraState(new atriPropostaState(dados,contexto));
     }else
@@ -45,7 +46,7 @@ public class atriPropostaState extends IStateAdaptar {
     public void AtribuirAutomaticoAutopropostosDocentesAluno() {
         dados.atribuiAutopropostos();
         dados.atribuiPropostasDocentesCompletas();
-        dados.atribuiEstagiosSugeridos();
+
         alteraState(new atriPropostaState(dados,contexto));
         //return false;
     }

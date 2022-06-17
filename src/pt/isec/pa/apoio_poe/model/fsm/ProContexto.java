@@ -163,6 +163,10 @@ public class ProContexto {
         return dados.getCandidaturaTV();
     }
 
+    public ArrayList<Atribuicao> getAtribuicoesTV(){
+        return dados.getAtribuicoesTV();
+    }
+
     public ArrayList<Candidatura> getCandidaturaTVAuto(){
         return dados.getCandidaturaTVAuto();
     }
