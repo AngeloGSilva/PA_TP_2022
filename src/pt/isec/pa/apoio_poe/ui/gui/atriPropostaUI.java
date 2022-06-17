@@ -53,7 +53,6 @@ public class atriPropostaUI extends BorderPane {
         btnManual.setGraphic(imageView);
         btnManual.setText("Manualmente");
 
-
         btnVoltar = new Button();
         imageView = new ImageView(ImageManager.getImage("back.png"));
         btnVoltar.setGraphic(imageView);
@@ -81,6 +80,11 @@ public class atriPropostaUI extends BorderPane {
 
         btnAutoDoc.setOnAction(event ->{
             manager.AtribuirAutomaticoAutopropostosDocentesAluno();
+        });
+
+        btnAtriAuto.setOnAction(event ->{
+            manager.AtribuirAutomaticamente();
+
         });
 
 
