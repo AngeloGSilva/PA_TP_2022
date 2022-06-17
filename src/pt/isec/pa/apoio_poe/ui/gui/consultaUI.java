@@ -19,10 +19,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import pt.isec.pa.apoio_poe.model.ProgManager;
-import pt.isec.pa.apoio_poe.model.data.Aluno;
-import pt.isec.pa.apoio_poe.model.data.Candidatura;
-import pt.isec.pa.apoio_poe.model.data.Docente;
-import pt.isec.pa.apoio_poe.model.data.Proposta;
+import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import pt.isec.pa.apoio_poe.ui.gui.resources.ImageManager;
 
@@ -45,6 +42,7 @@ public class consultaUI extends BorderPane {
     TableView<Docente> tableDocenteConf;
     TableView<Proposta> tablePropostaConf;
     TableView<Candidatura> tableCandidatura;
+    TableView<Atribuicao> tableAtribuicoes;
 
     ToggleButton tbAuto,tbNotReg,tbReg,tbAluno,tbDocente,tbProposta;
     ToggleGroup tgFilter,tgFilterConf;
@@ -371,14 +369,43 @@ public class consultaUI extends BorderPane {
                 this.setCenter(tableCandidatura);
                 tableCandidatura.setItems(manager.getCandidaturas());
             }
+            case ATRIBUIR_PROPOSTA -> {
+                tableAtribuicoes = new TableView<Atribuicao>();
+
+                TableColumn<Atribuicao, String> nome_Aluno = new TableColumn<Atribuicao, String>("Nome");
+                nome_Aluno.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getAluno().getNome_Aluno()));
+                nome_Aluno.setMinWidth(100);
+
+                TableColumn<Atribuicao, String> numero_Aluno = new TableColumn<Atribuicao, String>("Numero");
+                numero_Aluno.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getAluno().getNr_AlunoString()));
+                numero_Aluno.setMinWidth(85);
+
+                TableColumn<Atribuicao, String> nome_Docente = new TableColumn<Atribuicao, String>("Docente");
+                nome_Docente.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getDocente().getNome_Docente()));
+                nome_Docente.setMinWidth(140);
+
+                TableColumn<Atribuicao, String> id_Proposta = new TableColumn<Atribuicao, String>("ID");
+                id_Proposta.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getProposta().getCod_ID()));
+                id_Proposta.setMinWidth(140);
+
+
+                tableAtribuicoes.getColumns().addAll(nome_Aluno,numero_Aluno,nome_Docente,id_Proposta);
+
+                tableAtribuicoes.setMaxWidth(750);
+                tableAtribuicoes.setMaxHeight(450);
+
+                this.setCenter(tableAtribuicoes);
+                tableAtribuicoes.setItems(manager.getAtribuicoes());
+            }
         }
     }
 
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
-/*        table.addEventHandler(ActionEvent.ANY, evt ->{
-            table.setItems(manager.getAlunos());
-        });*/
 
         if (manager.getState().equals(PoeState.OPCAO_CANDIDATURA)) {
             tbReg.setOnAction(e -> {
@@ -438,17 +465,6 @@ public class consultaUI extends BorderPane {
             });
         }
 
-/*
-        btnDelete.hoverProperty().addListener(((observableValue, oldValue, newValue) ->{
-            if (newValue) {
-                btnDelete.setText("Eliminar");
-            }
-            else {
-                btnDelete.setText("");
-            }
-        } ));*/
-
-
         btnDelete.setOnAction(e -> {
             switch (manager.getState()) {
                 case GESTAO_ALUNO -> {
@@ -496,9 +512,7 @@ public class consultaUI extends BorderPane {
                     }
 
                 }
-                //table.refresh();
             }
-
         });
     }
 
