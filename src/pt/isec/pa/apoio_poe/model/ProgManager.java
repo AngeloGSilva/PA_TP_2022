@@ -147,7 +147,9 @@ public class ProgManager {
 
 
     public boolean adicionarAluno(String nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio, String curso){
-        return false;
+        boolean resultado = controladorDoPrograma.adicionarAluno(nr_Aluno, nome_Aluno, email_Aluno, ramo_Aluno, classificacao_Aluno, aceder_a_Estagio, curso);
+        pcs.firePropertyChange(null,null,null);
+        return resultado;
     }
 
     public boolean remover(String eliminar){

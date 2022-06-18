@@ -1,17 +1,9 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
-import javafx.animation.Transition;
-import javafx.animation.TranslateTransition;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.effect.BlurType;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Effect;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
@@ -20,7 +12,6 @@ import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import pt.isec.pa.apoio_poe.ui.gui.resources.ImageManager;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 public class consultaUI extends BorderPane {
@@ -40,7 +31,8 @@ public class consultaUI extends BorderPane {
     TableView<Docente> tableDocenteConf;
     TableView<Proposta> tablePropostaConf;
     TableView<Candidatura> tableCandidatura;
-    TableView<Atribuicao> tableAtribuicoes;
+    TableView<Atribuicao> tableAtribuicoesPro;
+    TableView<Atribuicao> tableAtribuicoesOri;
 
     ToggleButton tbAuto,tbNotReg,tbReg,tbAluno,tbDocente,tbProposta;
     ToggleGroup tgFilter,tgFilterConf;
@@ -404,7 +396,7 @@ public class consultaUI extends BorderPane {
 
             }
             case ATRIBUIR_PROPOSTA -> {
-                tableAtribuicoes = new TableView<Atribuicao>();
+                tableAtribuicoesPro = new TableView<Atribuicao>();
 
                 TableColumn<Atribuicao, String> nome_Aluno = new TableColumn<Atribuicao, String>("Nome");
                 nome_Aluno.setCellValueFactory(cellData ->
@@ -428,14 +420,45 @@ public class consultaUI extends BorderPane {
                 id_Proposta.setMinWidth(140);
 
 
-                tableAtribuicoes.getColumns().addAll(nome_Aluno,numero_Aluno,nome_Docente,id_Proposta);
+                tableAtribuicoesPro.getColumns().addAll(nome_Aluno,numero_Aluno,nome_Docente,id_Proposta);
 
-                tableAtribuicoes.setMaxWidth(750);
-                tableAtribuicoes.setMaxHeight(450);
+                tableAtribuicoesPro.setMaxWidth(750);
+                tableAtribuicoesPro.setMaxHeight(450);
 
-                this.setCenter(tableAtribuicoes);
-                tableAtribuicoes.getItems().clear();
-                tableAtribuicoes.setItems(manager.getAtribuicoes());
+                this.setCenter(tableAtribuicoesPro);
+                tableAtribuicoesPro.getItems().clear();
+                tableAtribuicoesPro.setItems(manager.getAtribuicoes());
+            }
+            case ATRIBUIR_ORIENTADOR -> {
+                tableAtribuicoesOri = new TableView<Atribuicao>();
+                TableColumn <Atribuicao,String> nome_Docente = new TableColumn("Nome Docente");
+                nome_Docente.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getDocente().getNome_Docente()));
+                nome_Docente.setMinWidth(100);
+
+                TableColumn <Atribuicao,String> email_Docente = new TableColumn("Email Docente");
+                email_Docente.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getDocente().getEmail_Docente()));
+                email_Docente.setMinWidth(140);
+
+                TableColumn <Atribuicao,String> id_Proposta = new TableColumn("Proposta");
+                id_Proposta.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getProposta().getCod_ID()));
+                id_Proposta.setMinWidth(140);
+
+                TableColumn <Atribuicao,String> nr_Aluno = new TableColumn("Numero Aluno");
+                nr_Aluno.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getAluno().getNr_AlunoString()));
+                nr_Aluno.setMinWidth(140);
+
+                tableAtribuicoesOri.getColumns().addAll(nome_Docente,email_Docente,nr_Aluno,id_Proposta);
+
+                tableAtribuicoesOri.setMaxWidth(750);
+                tableAtribuicoesOri.setMaxHeight(450);
+
+                this.setCenter(tableAtribuicoesOri);
+                tableAtribuicoesOri.setItems(manager.getAtribuicoes());
+
             }
         }
     }
@@ -443,11 +466,11 @@ public class consultaUI extends BorderPane {
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
 
-        delete.setOnAction(event -> {
+/*        delete.setOnAction(event -> {
                 Aluno selectedItem = tableAlunos.getSelectionModel().getSelectedItem();
                 tableAlunos.getItems().remove(selectedItem);
                 manager.remover(selectedItem.getNr_AlunoString());
-        });
+        });*/
 
         if (manager.getState().equals(PoeState.OPCAO_CANDIDATURA)) {
             btnFilter.setOnAction(e ->{
@@ -512,6 +535,53 @@ public class consultaUI extends BorderPane {
                 tablePropostaConf.setItems(manager.getPropostas());
             });
         }
+
+        btnAdd.setOnAction(e ->{
+            switch (manager.getState()) {
+            case GESTAO_ALUNO -> {
+                if (tableAlunos !=null) {
+                    Popup.add(manager);
+
+                }
+            }
+            case GESTAO_DOCENTE -> {
+                if (tableDocente !=null) {
+                    Docente selectedItem = tableDocente.getSelectionModel().getSelectedItem();
+                    tableDocente.getItems().remove(selectedItem);
+                    manager.remover(selectedItem.getEmail_Docente());
+                    System.out.println(selectedItem.getEmail_Docente());
+                }
+            }
+            case GESTAO_PROPOSTA -> {
+                if (tableProposta !=null) {
+                    Proposta selectedItem = tableProposta.getSelectionModel().getSelectedItem();
+                    tableProposta.getItems().remove(selectedItem);
+                    manager.remover(selectedItem.getCod_ID());
+                    System.out.println(selectedItem.getCod_ID());
+                }
+            }
+            case OPCAO_CANDIDATURA -> {
+                if (tableCandidatura !=null) {
+                    Candidatura selectedItem = tableCandidatura.getSelectionModel().getSelectedItem();
+                    TextInputDialog td = new TextInputDialog("Codigo Proposta");
+                    td.setHeaderText("Qual Proposta do Aluno " + selectedItem.getNomeAluno() + " deseja apagar?\n" + selectedItem.getIdPropostas());
+                    td.showAndWait();
+                    //tableCandidatura.getItems().remove(selectedItem);
+                    System.out.println(td.getResult().toUpperCase(Locale.ROOT));
+                    for (String s: selectedItem.getIdPropostas()) {
+                        if (td.getResult().toUpperCase(Locale.ROOT).equals(s)){
+                            System.out.println("é um camelo");
+                            System.out.println(selectedItem.getNralunoString());
+                            manager.removerPropostaDeCandidatura(selectedItem.getNralunoString(),td.getResult().toUpperCase(Locale.ROOT));
+                        }else {
+                            System.out.println("nao é nenhum deles");
+                        }
+                    }
+                }
+
+            }
+        }
+        });
 
         btnDelete.setOnAction(e -> {
             switch (manager.getState()) {
@@ -589,10 +659,17 @@ public class consultaUI extends BorderPane {
             }
 
             case ATRIBUIR_PROPOSTA -> {
-                if (tableAtribuicoes != null){
-                    tableAtribuicoes.getItems().clear();
-                    tableAtribuicoes.setItems(manager.getAtribuicoes());
-                    tableAtribuicoes.setContextMenu(new ContextMenu(delete));
+                if (tableAtribuicoesPro != null){
+                    tableAtribuicoesPro.getItems().clear();
+                    tableAtribuicoesPro.setItems(manager.getAtribuicoes());
+                    tableAtribuicoesPro.setContextMenu(new ContextMenu(delete));
+                }
+            }
+            case ATRIBUIR_ORIENTADOR -> {
+                if (tableAtribuicoesOri != null){
+                    tableAtribuicoesOri.getItems().clear();
+                    tableAtribuicoesOri.setItems(manager.getAtribuicoes());
+                    tableAtribuicoesOri.setContextMenu(new ContextMenu(delete));
                 }
             }
             default -> {

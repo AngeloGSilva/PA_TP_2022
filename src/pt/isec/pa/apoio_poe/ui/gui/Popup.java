@@ -70,6 +70,36 @@ public class Popup extends VBox{
     }
 
 
+    public static void add(ProgManager manager){
+        Stage popupwindow = new Stage();
+        popupwindow.initModality(Modality.APPLICATION_MODAL);
+        VBox vBox = new VBox();
+
+        TextField nome_Aluno = new TextField("Primeiro e Ultimo");
+        TextField nr_Aluno = new TextField("Numero");
+        TextField email_Aluno = new TextField("Email");
+        TextField ramo_Aluno = new TextField("Ramo");
+        TextField classificacao_Aluno = new TextField("Classificacao");
+        TextField curso_Aluno = new TextField("Curso");
+        Button btnAdd = new Button("Adicionar");
+        vBox.getChildren().addAll(nome_Aluno,nr_Aluno,email_Aluno,btnAdd);
+
+        btnAdd.setOnAction(e-> {
+            manager.adicionarAluno(nr_Aluno.getText(),nome_Aluno.getText(),email_Aluno.getText(),ramo_Aluno.getText(),Long.parseLong(classificacao_Aluno.getText()),true, curso_Aluno.getText());
+            popupwindow.close();
+        });
+
+        Scene nscene = new Scene(vBox, 200, 100);
+        popupwindow.setMinWidth(350);
+        popupwindow.setMinHeight(350);
+
+        popupwindow.setMaxWidth(nscene.getWidth());
+        popupwindow.setMaxHeight(nscene.getHeight());
+
+        //popupwindow.initStyle(StageStyle.TRANSPARENT);
+        popupwindow.setScene(nscene);
+        popupwindow.showAndWait();
+    }
 
 
     public static void display(PopupSupport s,int aux)
