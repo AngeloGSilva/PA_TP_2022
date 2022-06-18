@@ -85,7 +85,7 @@ public class Popup extends VBox{
         vBox.getChildren().addAll(nome_Aluno,nr_Aluno,email_Aluno,ramo_Aluno,classificacao_Aluno,curso_Aluno,btnAdd);
 
         btnAdd.setOnAction(e-> {
-            manager.adicionarAluno(nr_Aluno.getText(),nome_Aluno.getText(),email_Aluno.getText(),ramo_Aluno.getText(),Long.parseLong(classificacao_Aluno.getText()),true, curso_Aluno.getText());
+            manager.adicionarAluno(nr_Aluno.getText(),nome_Aluno.getText(),email_Aluno.getText(),ramo_Aluno.getText(),Double.parseDouble(classificacao_Aluno.getText()),true, curso_Aluno.getText());
             popupwindow.close();
         });
 

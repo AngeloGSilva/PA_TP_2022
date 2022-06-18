@@ -235,8 +235,6 @@ public class consultaUI extends BorderPane {
                 this.setCenter(tableAlunos);
                 tableAlunos.setItems(manager.getAlunos());
 
-
-
             }
             case GESTAO_DOCENTE -> {
                 tableDocente = new TableView<Docente>();
@@ -628,7 +626,6 @@ public class consultaUI extends BorderPane {
                             }
                         }
                     }
-
                 }
             }
         });
