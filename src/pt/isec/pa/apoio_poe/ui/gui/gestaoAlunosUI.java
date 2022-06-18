@@ -1,16 +1,10 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.stage.FileChooser;
-import javafx.util.Duration;
 import pt.isec.pa.apoio_poe.model.ProgManager;
-import pt.isec.pa.apoio_poe.ui.gui.resources.ImageManager;
-
-import java.io.File;
 
 public class gestaoAlunosUI extends BorderPane {
 
@@ -77,7 +71,7 @@ public class gestaoAlunosUI extends BorderPane {
         hbox.setAlignment(Pos.CENTER);
         info.setVisible(false);
         this.setTop(hbox);*/
-        this.setCenter(new consultaUI(manager));
+        this.setCenter(new tableViewsUI(manager));
     }
 
     private void registerHandlers() {

@@ -1,9 +1,11 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
@@ -14,7 +16,7 @@ import pt.isec.pa.apoio_poe.ui.gui.resources.ImageManager;
 
 import java.util.Locale;
 
-public class consultaUI extends BorderPane {
+public class tableViewsUI extends BorderPane {
     ProgManager manager;
     Button btnDelete,btnAdd;
     SplitMenuButton btnFilter;
@@ -34,12 +36,16 @@ public class consultaUI extends BorderPane {
     TableView<Atribuicao> tableAtribuicoesPro;
     TableView<Atribuicao> tableAtribuicoesOri;
 
+    TableColumn nome,nr_Aluno,email_Aluno,curso,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio;
+    TableColumn nomeDocente,papel_Docente,email_Docente;
+    TableColumn cod_ID,titulo,codigo_Aluno,email_DocenteProposta,empresa,ramo;
+
     ToggleButton tbAuto,tbNotReg,tbReg,tbAluno,tbDocente,tbProposta;
     ToggleGroup tgFilter,tgFilterConf;
 
     MenuItem delete;
 
-    public consultaUI(ProgManager manager) {
+    public tableViewsUI(ProgManager manager) {
         this.manager = manager;
 
         createViews();
@@ -88,31 +94,31 @@ public class consultaUI extends BorderPane {
             case CONFIGURACAO -> {
                 this.setLeft(null);
                 tableAlunosConf = new TableView<Aluno>();
-                TableColumn nome = new TableColumn("Nome");
+                nome = new TableColumn("Nome");
                 nome.setCellValueFactory(new PropertyValueFactory<Aluno, String>("nome_Aluno"));
                 nome.setMinWidth(100);
 
-                TableColumn nr_Aluno = new TableColumn("Numero");
+                nr_Aluno = new TableColumn("Numero");
                 nr_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, Long>("nr_Aluno"));
                 nr_Aluno.setMinWidth(85);
 
-                TableColumn email_Aluno = new TableColumn("Email");
+                email_Aluno = new TableColumn("Email");
                 email_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, String>("email_Aluno"));
                 email_Aluno.setMinWidth(140);
 
-                TableColumn curso = new TableColumn("Curso");
+                curso = new TableColumn("Curso");
                 curso.setCellValueFactory(new PropertyValueFactory<Aluno, String>("curso"));
                 curso.setMinWidth(50);
 
-                TableColumn ramo_Aluno = new TableColumn("Ramo");
+                ramo_Aluno = new TableColumn("Ramo");
                 ramo_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, String>("ramo_Aluno"));
                 ramo_Aluno.setMinWidth(50);
 
-                TableColumn classificacao_Aluno = new TableColumn("Classificacão");
+                classificacao_Aluno = new TableColumn("Classificacão");
                 classificacao_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, Double>("classificacao_Aluno"));
                 classificacao_Aluno.setMinWidth(50);
 
-                TableColumn aceder_a_Estagio = new TableColumn("Estagio");
+                aceder_a_Estagio = new TableColumn("Estagio");
                 aceder_a_Estagio.setCellValueFactory(new PropertyValueFactory<Aluno, Boolean>("aceder_a_Estagio"));
                 aceder_a_Estagio.setMinWidth(50);
                 tableAlunosConf.getColumns().addAll(nome,nr_Aluno,email_Aluno,curso,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
@@ -125,15 +131,15 @@ public class consultaUI extends BorderPane {
 
 
                 tableDocenteConf = new TableView<Docente>();
-                TableColumn nomeDocente = new TableColumn("Nome");
+                nomeDocente = new TableColumn("Nome");
                 nomeDocente.setCellValueFactory(new PropertyValueFactory<Docente, String>("nome_Docente"));
                 nomeDocente.setMinWidth(100);
 
-                TableColumn papel_Docente = new TableColumn("Papel");
+                papel_Docente = new TableColumn("Papel");
                 papel_Docente.setCellValueFactory(new PropertyValueFactory<Docente, Boolean>("papel_Docente"));
                 papel_Docente.setMinWidth(85);
 
-                TableColumn email_Docente = new TableColumn("Email");
+                email_Docente = new TableColumn("Email");
                 email_Docente.setCellValueFactory(new PropertyValueFactory<Docente, String>("email_Docente"));
                 email_Docente.setMinWidth(140);
 
@@ -145,27 +151,27 @@ public class consultaUI extends BorderPane {
                 tableDocenteConf.setItems(manager.getDocentes());
 
                 tablePropostaConf = new TableView<Proposta>();
-                TableColumn cod_ID = new TableColumn("Nome");
+                cod_ID = new TableColumn("Nome");
                 cod_ID.setCellValueFactory(new PropertyValueFactory<Docente, String>("cod_ID"));
                 cod_ID.setMinWidth(100);
 
-                TableColumn titulo = new TableColumn("Titulo");
+                titulo = new TableColumn("Titulo");
                 titulo.setCellValueFactory(new PropertyValueFactory<Docente, String>("titulo"));
                 titulo.setMinWidth(100);
 
-                TableColumn codigo_Aluno = new TableColumn("Codigo Aluno");
+                codigo_Aluno = new TableColumn("Codigo Aluno");
                 codigo_Aluno.setCellValueFactory(new PropertyValueFactory<Docente, String>("codigo_Aluno"));
                 codigo_Aluno.setMinWidth(100);
 
-                TableColumn email_DocenteProposta = new TableColumn("Email Docente");
+                email_DocenteProposta = new TableColumn("Email Docente");
                 email_DocenteProposta.setCellValueFactory(new PropertyValueFactory<Docente, String>("email_Docente"));
                 email_DocenteProposta.setMinWidth(100);
 
-                TableColumn empresa = new TableColumn("Empresa");
+                empresa = new TableColumn("Empresa");
                 empresa.setCellValueFactory(new PropertyValueFactory<Docente, String>("empresa"));
                 empresa.setMinWidth(100);
 
-                TableColumn ramo = new TableColumn("Ramo");
+                ramo = new TableColumn("Ramo");
                 ramo.setCellValueFactory(new PropertyValueFactory<Docente, String>("ramo"));
                 ramo.setMinWidth(100);
 
@@ -200,31 +206,32 @@ public class consultaUI extends BorderPane {
             }
             case GESTAO_ALUNO -> {
                 tableAlunos = new TableView<Aluno>();
-                TableColumn nome = new TableColumn("Nome");
+                nome = new TableColumn("Nome");
                 nome.setCellValueFactory(new PropertyValueFactory<Aluno, String>("nome_Aluno"));
+                nome.setCellFactory(TextFieldTableCell.forTableColumn());
                 nome.setMinWidth(100);
 
-                TableColumn nr_Aluno = new TableColumn("Numero");
+                nr_Aluno = new TableColumn("Numero");
                 nr_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, Long>("nr_Aluno"));
                 nr_Aluno.setMinWidth(85);
 
-                TableColumn email_Aluno = new TableColumn("Email");
+                email_Aluno = new TableColumn("Email");
                 email_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, String>("email_Aluno"));
                 email_Aluno.setMinWidth(140);
 
-                TableColumn curso = new TableColumn("Curso");
+                curso = new TableColumn("Curso");
                 curso.setCellValueFactory(new PropertyValueFactory<Aluno, String>("curso"));
                 curso.setMinWidth(50);
 
-                TableColumn ramo_Aluno = new TableColumn("Ramo");
+                ramo_Aluno = new TableColumn("Ramo");
                 ramo_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, String>("ramo_Aluno"));
                 ramo_Aluno.setMinWidth(50);
 
-                TableColumn classificacao_Aluno = new TableColumn("Classificacão");
+                classificacao_Aluno = new TableColumn("Classificacão");
                 classificacao_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, Double>("classificacao_Aluno"));
                 classificacao_Aluno.setMinWidth(50);
 
-                TableColumn aceder_a_Estagio = new TableColumn("Estagio");
+                aceder_a_Estagio = new TableColumn("Estagio");
                 aceder_a_Estagio.setCellValueFactory(new PropertyValueFactory<Aluno, Boolean>("aceder_a_Estagio"));
                 aceder_a_Estagio.setMinWidth(50);
                 tableAlunos.getColumns().addAll(nome,nr_Aluno,email_Aluno,curso,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
@@ -235,18 +242,22 @@ public class consultaUI extends BorderPane {
                 this.setCenter(tableAlunos);
                 tableAlunos.setItems(manager.getAlunos());
 
+                tableAlunos.setEditable(true);
+
+
             }
             case GESTAO_DOCENTE -> {
                 tableDocente = new TableView<Docente>();
-                TableColumn nomeDocente = new TableColumn("Nome");
+                nomeDocente = new TableColumn("Nome");
                 nomeDocente.setCellValueFactory(new PropertyValueFactory<Docente, String>("nome_Docente"));
+                nomeDocente.setCellFactory(TextFieldTableCell.forTableColumn());
                 nomeDocente.setMinWidth(100);
 
-                TableColumn papel_Docente = new TableColumn("Papel");
+                papel_Docente = new TableColumn("Papel");
                 papel_Docente.setCellValueFactory(new PropertyValueFactory<Docente, Boolean>("papel_Docente"));
                 papel_Docente.setMinWidth(85);
 
-                TableColumn email_Docente = new TableColumn("Email");
+                email_Docente = new TableColumn("Email");
                 email_Docente.setCellValueFactory(new PropertyValueFactory<Docente, String>("email_Docente"));
                 email_Docente.setMinWidth(140);
 
@@ -259,32 +270,32 @@ public class consultaUI extends BorderPane {
                 tableDocente.setItems(manager.getDocentes());
                 tableDocente.setUserData(tableDocente);
 
-
+                tableDocente.setEditable(true);
 
             }
             case GESTAO_PROPOSTA -> {
                 tableProposta = new TableView<Proposta>();
-                TableColumn cod_ID = new TableColumn("Nome");
+                cod_ID = new TableColumn("Nome");
                 cod_ID.setCellValueFactory(new PropertyValueFactory<Docente, String>("cod_ID"));
                 cod_ID.setMinWidth(100);
 
-                TableColumn titulo = new TableColumn("Titulo");
+                titulo = new TableColumn("Titulo");
                 titulo.setCellValueFactory(new PropertyValueFactory<Docente, String>("titulo"));
                 titulo.setMinWidth(100);
 
-                TableColumn codigo_Aluno = new TableColumn("Codigo Aluno");
+                codigo_Aluno = new TableColumn("Codigo Aluno");
                 codigo_Aluno.setCellValueFactory(new PropertyValueFactory<Docente, String>("codigo_Aluno"));
                 codigo_Aluno.setMinWidth(100);
 
-                TableColumn email_Docente = new TableColumn("Email Docente");
+                email_Docente = new TableColumn("Email Docente");
                 email_Docente.setCellValueFactory(new PropertyValueFactory<Docente, String>("email_Docente"));
                 email_Docente.setMinWidth(100);
 
-                TableColumn empresa = new TableColumn("Empresa");
+                empresa = new TableColumn("Empresa");
                 empresa.setCellValueFactory(new PropertyValueFactory<Docente, String>("empresa"));
                 empresa.setMinWidth(100);
 
-                TableColumn ramo = new TableColumn("Ramo");
+                ramo = new TableColumn("Ramo");
                 ramo.setCellValueFactory(new PropertyValueFactory<Docente, String>("ramo"));
                 ramo.setMinWidth(100);
 
@@ -303,31 +314,31 @@ public class consultaUI extends BorderPane {
                 btnDelete.setDisable(false);
 
                 tableAlunos = new TableView<Aluno>();
-                TableColumn nome = new TableColumn("Nome");
+                nome = new TableColumn("Nome");
                 nome.setCellValueFactory(new PropertyValueFactory<Aluno, String>("nome_Aluno"));
                 nome.setMinWidth(100);
 
-                TableColumn nr_Aluno = new TableColumn("Numero");
+                nr_Aluno = new TableColumn("Numero");
                 nr_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, Long>("nr_Aluno"));
                 nr_Aluno.setMinWidth(85);
 
-                TableColumn email_Aluno = new TableColumn("Email");
+                email_Aluno = new TableColumn("Email");
                 email_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, String>("email_Aluno"));
                 email_Aluno.setMinWidth(140);
 
-                TableColumn curso = new TableColumn("Curso");
+                curso = new TableColumn("Curso");
                 curso.setCellValueFactory(new PropertyValueFactory<Aluno, String>("curso"));
                 curso.setMinWidth(50);
 
-                TableColumn ramo_Aluno = new TableColumn("Ramo");
+                ramo_Aluno = new TableColumn("Ramo");
                 ramo_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, String>("ramo_Aluno"));
                 ramo_Aluno.setMinWidth(50);
 
-                TableColumn classificacao_Aluno = new TableColumn("Classificacão");
+                classificacao_Aluno = new TableColumn("Classificacão");
                 classificacao_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, Double>("classificacao_Aluno"));
                 classificacao_Aluno.setMinWidth(50);
 
-                TableColumn aceder_a_Estagio = new TableColumn("Estagio");
+                aceder_a_Estagio = new TableColumn("Estagio");
                 aceder_a_Estagio.setCellValueFactory(new PropertyValueFactory<Aluno, Boolean>("aceder_a_Estagio"));
                 aceder_a_Estagio.setMinWidth(50);
                 tableAlunos.getColumns().addAll(nome,nr_Aluno,email_Aluno,curso,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
@@ -470,6 +481,7 @@ public class consultaUI extends BorderPane {
                 manager.remover(selectedItem.getNr_AlunoString());
         });*/
 
+
         if (manager.getState().equals(PoeState.OPCAO_CANDIDATURA)) {
             btnFilter.setOnAction(e ->{
 
@@ -553,25 +565,10 @@ public class consultaUI extends BorderPane {
             }
             case OPCAO_CANDIDATURA -> {
                 if (tableCandidatura !=null) {
-                    Candidatura selectedItem = tableCandidatura.getSelectionModel().getSelectedItem();
-                    TextInputDialog td = new TextInputDialog("Codigo Proposta");
-                    td.setHeaderText("Qual Proposta do Aluno " + selectedItem.getNomeAluno() + " deseja apagar?\n" + selectedItem.getIdPropostas());
-                    td.showAndWait();
-                    //tableCandidatura.getItems().remove(selectedItem);
-                    System.out.println(td.getResult().toUpperCase(Locale.ROOT));
-                    for (String s: selectedItem.getIdPropostas()) {
-                        if (td.getResult().toUpperCase(Locale.ROOT).equals(s)){
-                            System.out.println("é um camelo");
-                            System.out.println(selectedItem.getNralunoString());
-                            manager.removerPropostaDeCandidatura(selectedItem.getNralunoString(),td.getResult().toUpperCase(Locale.ROOT));
-                        }else {
-                            System.out.println("nao é nenhum deles");
-                        }
+                        Popup.addCandidatura(manager);
                     }
                 }
-
             }
-        }
         });
 
         btnDelete.setOnAction(e -> {
@@ -622,6 +619,18 @@ public class consultaUI extends BorderPane {
                 }
             }
         });
+
+/*        if (tableAlunos != null){
+            nome.setOnEditCommit( t ->{
+               String nome = tableAlunos.getItems().get(tableAlunos.getSelectionModel().getSelectedIndices().get(tablePo));
+                System.out.println(nome.toString());
+                //manager.editar(tableAlunos.getSelectionModel().getSelectedItem().getNr_AlunoString(), String.valueOf((EventHandler<TableColumn.CellEditEvent<Aluno, String>>) t -> t.getNewValue()));
+            });
+        }
+
+        if (tableDocente != null){
+            nomeDocente.setOnEditCommit((EventHandler<TableColumn.CellEditEvent<Docente, String>>) t -> ((Docente) t.getTableView().getItems().get(t.getTablePosition().getRow())).setNome_Docente(t.getNewValue()));
+        }*/
     }
 
     private void update() {

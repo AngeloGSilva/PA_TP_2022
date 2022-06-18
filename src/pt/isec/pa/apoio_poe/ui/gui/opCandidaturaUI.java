@@ -2,14 +2,10 @@ package pt.isec.pa.apoio_poe.ui.gui;
 
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.FileChooser;
 import pt.isec.pa.apoio_poe.model.ProgManager;
-
-import java.io.File;
 
 
 public class opCandidaturaUI extends BorderPane {
@@ -35,7 +31,7 @@ public class opCandidaturaUI extends BorderPane {
 
     private void createViews() {
         this.setPadding(new Insets(30));
-        this.setCenter(new consultaUI(manager));
+        this.setCenter(new tableViewsUI(manager));
         this.setTop(new topButtonsUI(manager));
         /*//textField = new TextField();
         //textotry = new HBox();
@@ -62,7 +58,7 @@ public class opCandidaturaUI extends BorderPane {
         //this.getChildren().addAll(vbox);
         info.setVisible(false);
         this.setTop(hbox);
-        plane = new BorderPane(new consultaUI(manager));
+        plane = new BorderPane(new tableViewsUI(manager));
         this.setCenter(plane);*/
     }
 

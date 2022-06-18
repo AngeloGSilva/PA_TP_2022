@@ -1,19 +1,14 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import pt.isec.pa.apoio_poe.model.ProgManager;
-import pt.isec.pa.apoio_poe.ui.gui.resources.CSSManager;
-import pt.isec.pa.apoio_poe.ui.gui.resources.ImageManager;
 
 public class atriPropostaUI extends BorderPane {
 
@@ -73,9 +68,9 @@ public class atriPropostaUI extends BorderPane {
 
         hbox.setAlignment(Pos.CENTER);
         this.setTop(hbox);
-        plane = new BorderPane(new consultaUI(manager));
+        plane = new BorderPane(new tableViewsUI(manager));
         this.setCenter(plane);*/
-        this.setCenter(new consultaUI(manager));
+        this.setCenter(new tableViewsUI(manager));
     }
 
     private void registerHandlers() {

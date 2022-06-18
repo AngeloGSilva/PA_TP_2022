@@ -18,7 +18,7 @@ public class atriOrientadorUI extends BorderPane {
     private void createViews() {
         this.setPadding(new Insets(30));
         this.setTop(new topButtonsUI(manager));
-        this.setCenter(new consultaUI(manager));
+        this.setCenter(new tableViewsUI(manager));
     }
 
     private void registerHandlers() {

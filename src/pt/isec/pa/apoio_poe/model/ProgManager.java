@@ -10,6 +10,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class ProgManager {
+
     private ProContexto controladorDoPrograma;
     PropertyChangeSupport pcs;
 
@@ -21,6 +22,7 @@ public class ProgManager {
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         pcs.addPropertyChangeListener(listener);
     }
+
 
     public void selecionar(PoeState escolha) {
         controladorDoPrograma.selecionar(escolha);
@@ -195,6 +197,18 @@ public class ProgManager {
         boolean resultado = controladorDoPrograma.adicionarProposta( tipo, cod_ID,  titulo,  codigo_Aluno,  email_Docente,  ramo, empresa);
         pcs.firePropertyChange(null,null,null);
         return resultado;
+    }
+
+    public boolean adicionarCandidatura(String nrAluno,String codId){
+        boolean resultado = controladorDoPrograma.adicionarCandidatura(nrAluno,codId);
+        pcs.firePropertyChange(null,null,null);
+        return resultado;
+    }
+
+
+    public void editar(String identificador, String editado) {
+        controladorDoPrograma.editar(identificador,editado);
+        pcs.firePropertyChange(null,null,null);
     }
 
 

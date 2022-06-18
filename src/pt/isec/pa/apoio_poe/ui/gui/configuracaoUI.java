@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -50,7 +49,7 @@ public class configuracaoUI extends BorderPane{
             this.setCenter(hBox);
         }else {
             HBox hBox = new HBox();
-            this.setCenter(new consultaUI(manager));
+            this.setCenter(new tableViewsUI(manager));
             btnExit = new Button("Exit");
             btnExit.setMinWidth(100);
             btnAvancar = new Button("Avancar");
