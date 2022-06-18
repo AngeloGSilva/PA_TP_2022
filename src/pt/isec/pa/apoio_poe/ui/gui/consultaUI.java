@@ -13,10 +13,7 @@ import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Effect;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.util.Duration;
 import pt.isec.pa.apoio_poe.model.ProgManager;
 import pt.isec.pa.apoio_poe.model.data.*;
@@ -29,6 +26,7 @@ import java.util.Locale;
 public class consultaUI extends BorderPane {
     ProgManager manager;
     Button btnDelete,btnAdd;
+    SplitMenuButton btnFilter;
     Tooltip tooltip;
     HBox hBox;
     VBox vBox;
@@ -46,6 +44,8 @@ public class consultaUI extends BorderPane {
 
     ToggleButton tbAuto,tbNotReg,tbReg,tbAluno,tbDocente,tbProposta;
     ToggleGroup tgFilter,tgFilterConf;
+
+    MenuItem delete;
 
     public consultaUI(ProgManager manager) {
         this.manager = manager;
@@ -78,8 +78,23 @@ public class consultaUI extends BorderPane {
         vBox.setSpacing(10);
         this.setLeft(vBox);
 
+        delete = new MenuItem("Delete");
+
+        btnFilter = new SplitMenuButton();
+        imageView = new ImageView(ImageManager.getImage("filter.png"));
+        imageView.setFitHeight(17);
+        imageView.setFitWidth(15);
+        btnFilter.setGraphic(imageView);
+        MenuItem choice1 = new MenuItem("Choice 1");
+        MenuItem choice2 = new MenuItem("Choice 2");
+        btnFilter.getItems().addAll(choice1,choice2);
+
+
+
         switch (manager.getState()){
+
             case CONFIGURACAO -> {
+                this.setLeft(null);
                 tableAlunosConf = new TableView<Aluno>();
                 TableColumn nome = new TableColumn("Nome");
                 nome.setCellValueFactory(new PropertyValueFactory<Aluno, String>("nome_Aluno"));
@@ -188,6 +203,8 @@ public class consultaUI extends BorderPane {
                 tbAluno.setSelected(true);
                 hboxFiltersConf.setAlignment(Pos.CENTER);
                 this.setTop(hboxFiltersConf);
+
+
             }
             case GESTAO_ALUNO -> {
                 tableAlunos = new TableView<Aluno>();
@@ -225,6 +242,9 @@ public class consultaUI extends BorderPane {
 
                 this.setCenter(tableAlunos);
                 tableAlunos.setItems(manager.getAlunos());
+
+
+
             }
             case GESTAO_DOCENTE -> {
                 tableDocente = new TableView<Docente>();
@@ -248,6 +268,9 @@ public class consultaUI extends BorderPane {
                 this.setCenter(tableDocente);
                 tableDocente.setItems(manager.getDocentes());
                 tableDocente.setUserData(tableDocente);
+
+
+
             }
             case GESTAO_PROPOSTA -> {
                 tableProposta = new TableView<Proposta>();
@@ -282,6 +305,8 @@ public class consultaUI extends BorderPane {
 
                 this.setCenter(tableProposta);
                 tableProposta.setItems(manager.getPropostas());
+
+
             }
             case OPCAO_CANDIDATURA -> {
 
@@ -369,6 +394,14 @@ public class consultaUI extends BorderPane {
 
                 this.setCenter(tableCandidatura);
                 tableCandidatura.setItems(manager.getCandidaturas());
+
+
+                AnchorPane anchorPane = new AnchorPane();
+                anchorPane.getChildren().add(btnFilter);
+                AnchorPane.setLeftAnchor(btnFilter,10.0);
+                AnchorPane.setTopAnchor(btnFilter,25.0);
+                this.getChildren().add(anchorPane);
+
             }
             case ATRIBUIR_PROPOSTA -> {
                 tableAtribuicoes = new TableView<Atribuicao>();
@@ -410,7 +443,16 @@ public class consultaUI extends BorderPane {
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
 
+        delete.setOnAction(event -> {
+                Aluno selectedItem = tableAlunos.getSelectionModel().getSelectedItem();
+                tableAlunos.getItems().remove(selectedItem);
+                manager.remover(selectedItem.getNr_AlunoString());
+        });
+
         if (manager.getState().equals(PoeState.OPCAO_CANDIDATURA)) {
+            btnFilter.setOnAction(e ->{
+
+            });
             tbReg.setOnAction(e -> {
                 tableAlunos.setVisible(false);
                 tableCandidatura.setVisible(true);
@@ -418,6 +460,7 @@ public class consultaUI extends BorderPane {
                 tableCandidatura.getItems().clear();
                 tableCandidatura.setItems(manager.getCandidaturas());
                 btnDelete.setDisable(false);
+                btnAdd.setDisable(false);
             });
 
             tbAuto.setOnAction(e -> {
@@ -427,6 +470,7 @@ public class consultaUI extends BorderPane {
                 tableCandidatura.getItems().clear();
                 tableCandidatura.setItems(manager.getCandidaturasAuto());
                 btnDelete.setDisable(false);
+                btnAdd.setDisable(false);
             });
 
             tbNotReg.setOnAction(e -> {
@@ -436,6 +480,7 @@ public class consultaUI extends BorderPane {
                 tableAlunos.setVisible(true);
                 tableAlunos.setItems(manager.getCandidaturasNotReg());
                 btnDelete.setDisable(true);
+                btnAdd.setDisable(true);
             });
         }
 
@@ -525,18 +570,21 @@ public class consultaUI extends BorderPane {
                 if (tableAlunos !=null) {
                     tableAlunos.getItems().clear();
                     tableAlunos.setItems(manager.getAlunos());
+                    tableAlunos.setContextMenu(new ContextMenu(delete));
                 }
             }
             case GESTAO_DOCENTE -> {
                 if (tableDocente !=null) {
                     tableDocente.getItems().clear();
                     tableDocente.setItems(manager.getDocentes());
+                    tableDocente.setContextMenu(new ContextMenu(delete));
                 }
             }
             case GESTAO_PROPOSTA -> {
                 if (tableProposta !=null) {
                     tableProposta.getItems().clear();
                     tableProposta.setItems(manager.getPropostas());
+                    tableProposta.setContextMenu(new ContextMenu(delete));
                 }
             }
 
@@ -544,6 +592,7 @@ public class consultaUI extends BorderPane {
                 if (tableAtribuicoes != null){
                     tableAtribuicoes.getItems().clear();
                     tableAtribuicoes.setItems(manager.getAtribuicoes());
+                    tableAtribuicoes.setContextMenu(new ContextMenu(delete));
                 }
             }
             default -> {

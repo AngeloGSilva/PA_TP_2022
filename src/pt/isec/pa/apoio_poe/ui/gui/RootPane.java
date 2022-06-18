@@ -2,13 +2,8 @@ package pt.isec.pa.apoio_poe.ui.gui;
 
 import javafx.scene.layout.*;
 import pt.isec.pa.apoio_poe.model.ProgManager;
-import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import pt.isec.pa.apoio_poe.ui.gui.resources.CSSManager;
 import pt.isec.pa.apoio_poe.ui.gui.resources.FontManager;
-
-import java.awt.*;
-
-import static pt.isec.pa.apoio_poe.model.fsm.PoeState.GESTAO_ALUNO;
 
 public class RootPane extends BorderPane {
     ProgManager manager;
@@ -22,7 +17,7 @@ public class RootPane extends BorderPane {
     }
 
     private void createViews() {
-        FontManager.loadFont("joan.ttf",24);
+        FontManager.loadFont("opensans.ttf",24);
         CSSManager.applyCSS(this,"teste.css");
     }
 
@@ -38,10 +33,8 @@ public class RootPane extends BorderPane {
             case GESTAO_PROPOSTA -> this.setCenter(new gestaoPropostaUI(manager));
             case OPCAO_CANDIDATURA -> this.setCenter(new opCandidaturaUI(manager));
             case ATRIBUIR_PROPOSTA -> this.setCenter(new atriPropostaUI(manager));
+            case ATRIBUIR_ORIENTADOR -> this.setCenter(new atriOrientadorUI(manager));
 
-        /*if (estado == a waitBet)
-             new WaitBetUI(gameBWManager) para nao ser tao pesado para nao carregar td lg no inicio
-         */
         }
     }
 }

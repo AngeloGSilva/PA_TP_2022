@@ -34,8 +34,10 @@ public class opCandidaturaUI extends BorderPane {
     }
 
     private void createViews() {
-        this.setPadding(new Insets(50));
-        //textField = new TextField();
+        this.setPadding(new Insets(30));
+        this.setCenter(new consultaUI(manager));
+        this.setTop(new topButtonsUI(manager));
+        /*//textField = new TextField();
         //textotry = new HBox();
         info = new Label();
         btnExportar = new Button("Exportar");
@@ -61,12 +63,12 @@ public class opCandidaturaUI extends BorderPane {
         info.setVisible(false);
         this.setTop(hbox);
         plane = new BorderPane(new consultaUI(manager));
-        this.setCenter(plane);
+        this.setCenter(plane);*/
     }
 
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
-        btnExportar.setOnAction(event ->{
+        /*btnExportar.setOnAction(event ->{
             Popup.display(PopupSupport.POPUP_EXPORT,0);
         });
         btnLerFich.setOnAction(event ->{
@@ -101,7 +103,7 @@ public class opCandidaturaUI extends BorderPane {
         });
         btnVoltar.setOnAction(event ->{
             manager.voltar(false);
-        });
+        });*/
     }
 
     private void update() {

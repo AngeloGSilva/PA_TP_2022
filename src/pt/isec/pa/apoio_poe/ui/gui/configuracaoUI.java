@@ -25,7 +25,7 @@ public class configuracaoUI extends BorderPane{
     }
 
     private void createViews() {
-        this.setPadding(new Insets(50));
+        this.setPadding(new Insets(30));
         if (!manager.getFase_gestao()) {
             btnAlunos = new Button("Alunos");
             btnAlunos.setMinWidth(100);

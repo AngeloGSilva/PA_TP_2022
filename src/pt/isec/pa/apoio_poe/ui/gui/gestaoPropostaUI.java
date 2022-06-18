@@ -37,7 +37,8 @@ public class gestaoPropostaUI extends BorderPane {
 
     private void createViews() {
         this.setPadding(new Insets(30));
-        //textField = new TextField();
+        this.setTop(new topButtonsUI(manager));
+        /*//textField = new TextField();
         //textotry = new HBox();
         info = new Label();
         btnExportar = new Button("Exportar");
@@ -56,14 +57,13 @@ public class gestaoPropostaUI extends BorderPane {
         //hBox.getChildren().addAll();
         hbox.getChildren().addAll(btnExportar,btnLerFich,btnAvancar,btnVoltar);
         info.setVisible(false);
-        this.setTop(hbox);
-        plane = new BorderPane(new consultaUI(manager));
-        this.setCenter(plane);
+        this.setTop(hbox);*/
+        this.setCenter(new consultaUI(manager));
     }
 
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
-        btnExportar.setOnAction(event ->{
+/*        btnExportar.setOnAction(event ->{
             Popup.display(PopupSupport.POPUP_EXPORT,0);
         });
         btnLerFich.setOnAction(event ->{
@@ -99,7 +99,7 @@ public class gestaoPropostaUI extends BorderPane {
         });
         btnVoltar.setOnAction(event ->{
             manager.voltar(false);
-        });
+        });*/
     }
 
     private void update() {

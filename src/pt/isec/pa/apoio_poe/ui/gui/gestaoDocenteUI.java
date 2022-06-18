@@ -37,6 +37,7 @@ public class gestaoDocenteUI extends BorderPane{
 
 
     private void createViews() {
+        this.setPadding(new Insets(30));
         this.setTop(new topButtonsUI(manager));
 
         /*this.setPadding(new Insets(30));

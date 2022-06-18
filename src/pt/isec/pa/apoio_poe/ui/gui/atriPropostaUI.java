@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -37,7 +38,9 @@ public class atriPropostaUI extends BorderPane {
     }
 
     private void createViews() {
-        btnAutoDoc = new Button();
+        this.setPadding(new Insets(30));
+        this.setTop(new topButtonsUI(manager));
+/*        btnAutoDoc = new Button();
         imageView = new ImageView(ImageManager.getImage("download.png"));
         btnAutoDoc.setGraphic(imageView);
         btnAutoDoc.setText("Autopropostos");
@@ -71,22 +74,14 @@ public class atriPropostaUI extends BorderPane {
         hbox.setAlignment(Pos.CENTER);
         this.setTop(hbox);
         plane = new BorderPane(new consultaUI(manager));
-        this.setCenter(plane);
-
+        this.setCenter(plane);*/
+        this.setCenter(new consultaUI(manager));
     }
 
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
 
-        btnAutoDoc.setOnAction(event ->{
-            manager.AtribuirAutomaticoAutopropostosDocentesAluno();
-        });
 
-        btnAtriAuto.setOnAction(event ->{
-            if(!manager.AtribuirAutomaticamente()){
-                Popup.conflito(manager);
-            }
-        });
 
 
     }
