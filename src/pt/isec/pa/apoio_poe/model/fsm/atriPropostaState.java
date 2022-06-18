@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
+import pt.isec.pa.apoio_poe.model.data.Candidatura;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
 public class atriPropostaState extends IStateAdaptar {
@@ -61,7 +62,14 @@ public class atriPropostaState extends IStateAdaptar {
 
     @Override
     public Boolean removeAtribuicao(String nrAluno) {
-        return false;
+        if(dados.removerAtribuicao(nrAluno)){
+            alteraState(new atriPropostaState(dados,contexto));
+            return true;
+        }else {
+            alteraState(new atriPropostaState(dados, contexto));
+            return false;
+        }
+
     }
 
 
