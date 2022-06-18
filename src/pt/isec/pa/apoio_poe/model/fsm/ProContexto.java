@@ -34,7 +34,7 @@ public class ProContexto {
 
     public void resolverConflito(int selecionado){state.resolverConflito(selecionado);}
 
-    public void AtribuirAutomaticamente(){ state.AtribuirAutomaticamente();}
+    public boolean AtribuirAutomaticamente(){ return state.AtribuirAutomaticamente();}
 
     public boolean voltar(boolean guardado) {
         return state.voltar(guardado);

@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
+import javafx.scene.layout.BorderPane;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
 abstract class IStateAdaptar implements IState{
@@ -33,7 +34,7 @@ abstract class IStateAdaptar implements IState{
     }
 
     @Override
-    public void AtribuirAutomaticamente(){};
+    public boolean AtribuirAutomaticamente(){return false;};
 
     @Override
     public int lerFicheiro(String fileName){

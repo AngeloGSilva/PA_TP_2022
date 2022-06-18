@@ -400,6 +400,7 @@ public class consultaUI extends BorderPane {
                 tableAtribuicoes.setMaxHeight(450);
 
                 this.setCenter(tableAtribuicoes);
+                tableAtribuicoes.getItems().clear();
                 tableAtribuicoes.setItems(manager.getAtribuicoes());
             }
         }
@@ -538,7 +539,12 @@ public class consultaUI extends BorderPane {
                 }
             }
 
-            case ATRIBUIR_PROPOSTA -> tableAtribuicoes.setItems(manager.getAtribuicoes());
+            case ATRIBUIR_PROPOSTA -> {
+                if (tableAtribuicoes != null){
+                    tableAtribuicoes.getItems().clear();
+                    tableAtribuicoes.setItems(manager.getAtribuicoes());
+                }
+            }
             default -> {
 /*                tableProposta.refresh();
                 tableAlunos.refresh();

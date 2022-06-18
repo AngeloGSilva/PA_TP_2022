@@ -1,5 +1,7 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
@@ -12,8 +14,16 @@ import pt.isec.pa.apoio_poe.model.data.Aluno;
 
 public class Popup extends VBox{
     public static void conflito(ProgManager manager) {
+        Button btnSelected = new Button("Atribuir");
+
+
+
+
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL);
+
+
+
         Label lb = new Label();
         TableView<Aluno> tabelaAlunos = new TableView<>();
         TableColumn nome_Aluno = new TableColumn<>("Nome");
@@ -28,16 +38,27 @@ public class Popup extends VBox{
 
         tabelaAlunos.getColumns().addAll(numero_Aluno,nome_Aluno,curso_Aluno,classificacao_Aluno);
 
+
+        btnSelected.setOnAction(e->{
+            popupwindow.close();
+            Aluno selectedItem = tabelaAlunos.getSelectionModel().getSelectedItem();
+            manager.resolverConflito(Integer.parseInt(String.valueOf(selectedItem.getNr_Aluno())));
+            tabelaAlunos.getItems().clear();
+        });
+
         VBox vBox = new VBox();
         lb.setAlignment(Pos.CENTER);
         vBox.setAlignment(Pos.CENTER);
-        vBox.getChildren().addAll(lb,tabelaAlunos);
+        vBox.getChildren().addAll(lb,tabelaAlunos,btnSelected);
         lb.setText(manager.getPropostaConflito().getCod_ID());
-        tabelaAlunos.getItems().clear();
         tabelaAlunos.setItems(manager.getConflitosTV());
+
+
+
+
         Scene nscene = new Scene(vBox, 200, 100);
-        popupwindow.setMinWidth(250);
-        popupwindow.setMinHeight(150);
+        popupwindow.setMinWidth(350);
+        popupwindow.setMinHeight(350);
 
         popupwindow.setMaxWidth(nscene.getWidth());
         popupwindow.setMaxHeight(nscene.getHeight());
@@ -45,7 +66,10 @@ public class Popup extends VBox{
         //popupwindow.initStyle(StageStyle.TRANSPARENT);
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
+
     }
+
+
 
 
     public static void display(PopupSupport s,int aux)

@@ -115,8 +115,6 @@ public class ProgManager {
         return false;
     }
 
-    public void resolverConflito(int selecionado){}
-
     public boolean avancar(boolean guardado) {
         boolean resultado = controladorDoPrograma.avancar(guardado);
         pcs.firePropertyChange(null,null,null);
@@ -124,10 +122,20 @@ public class ProgManager {
     }
 
 
-    public void AtribuirAutomaticamente(){
-        controladorDoPrograma.AtribuirAutomaticamente();
+    public boolean AtribuirAutomaticamente(){
+        boolean resultado = controladorDoPrograma.AtribuirAutomaticamente();
         pcs.firePropertyChange(null,null,null);
+        return resultado;
     };
+
+    public void resolverConflito(int selecionado){
+        controladorDoPrograma.resolverConflito(selecionado);
+        pcs.firePropertyChange(null,null,null);
+    }
+
+    public boolean isConflitoON() {
+        return controladorDoPrograma.isConflitoON();
+    }
 
 
 

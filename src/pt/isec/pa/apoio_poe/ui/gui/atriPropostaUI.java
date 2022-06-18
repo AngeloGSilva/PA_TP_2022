@@ -83,14 +83,16 @@ public class atriPropostaUI extends BorderPane {
         });
 
         btnAtriAuto.setOnAction(event ->{
-            manager.AtribuirAutomaticamente();
-
+            if(!manager.AtribuirAutomaticamente()){
+                Popup.conflito(manager);
+            }
         });
 
 
     }
 
     private void update() {
+
 
     }
 

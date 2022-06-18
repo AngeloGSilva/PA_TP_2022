@@ -669,9 +669,13 @@ public class GestaoProj implements Serializable {
 
     public void atribuiAutopropostos(){
         for (Candidatura c: candidaturas) {
-            for (Proposta p: c.getPropostas()) {
-                if(p.getClass().getSimpleName().equals("T3")){
-                    atribuicoes.add(new Atribuicao(c.getAluno(),null,p));
+            if (!verificaCandidaturaAtribuida(c.getAluno())) {
+                for (Proposta p : c.getPropostas()) {
+                    if (!verificaPropostaAtribuida(p)){
+                        if (p.getClass().getSimpleName().equals("T3")) {
+                            atribuicoes.add(new Atribuicao(c.getAluno(), null, p));
+                        }
+                    }
                 }
             }
         }
@@ -679,9 +683,13 @@ public class GestaoProj implements Serializable {
 
     public void atribuiEstagiosSugeridos(){
         for (Candidatura c: candidaturas) {
-            for (Proposta p: c.getPropostas()) {
-                if(p.getClass().getSimpleName().equals("T1") && p.getCodigo_Aluno() != null){
-                    atribuicoes.add(new Atribuicao(c.getAluno(),null,p));
+            if (!verificaCandidaturaAtribuida(c.getAluno())) {
+                for (Proposta p : c.getPropostas()) {
+                    if (!verificaPropostaAtribuida(p)){
+                        if (p.getClass().getSimpleName().equals("T1") && p.getCodigo_Aluno() != null) {
+                            atribuicoes.add(new Atribuicao(c.getAluno(), null, p));
+                        }
+                    }
                 }
             }
         }
@@ -692,9 +700,10 @@ public class GestaoProj implements Serializable {
         for (Candidatura c: candidaturas) {
             for (Proposta p: c.getPropostas()) {
                 if(p.getClass().getSimpleName().equals("T2") &&
-                        p.getCodigo_Aluno() != null &&
+                        p.getCodigo_Aluno() == c.getNraluno() &&
                         VerificaAlunoAcederProposta(p.getCodigo_Aluno(),p.getCod_ID()) &&
                         p.getEmail_Docente() != null){
+
                     atribuicoes.add(new Atribuicao(c.getAluno(),getDocentePorEmailObjeto(p.getEmail_Docente()),p));
                 }
             }
@@ -720,7 +729,17 @@ public class GestaoProj implements Serializable {
     }
 
     public void atribuirSemCandidatura(){
-        boolean encontrou = false;
+        for (Aluno aluno: alunos) {
+            if (!verificaCandidaturaAtribuida(aluno)){
+                for (Proposta proposta:propostas) {
+                    if (!verificaPropostaAtribuida(proposta) && VerificaRamoAlunoProposta(aluno.getNr_Aluno(),proposta.getRamo())){
+                        atribuicoes.add(new Atribuicao(aluno,getDocentePorEmailObjeto(proposta.getEmail_Docente()),proposta));
+                    }
+                }
+            }
+        }
+
+        /*boolean encontrou = false;
         boolean propostaTaken = false;
         for (Aluno aluno: alunos) {
             encontrou = false;
@@ -749,7 +768,7 @@ public class GestaoProj implements Serializable {
                 }
                 }
             }
-        }
+        }*/
     }
 
     public ArrayList<String> ComparaClassificacoes(ArrayList<String> alunosconflito, Proposta proposta){
