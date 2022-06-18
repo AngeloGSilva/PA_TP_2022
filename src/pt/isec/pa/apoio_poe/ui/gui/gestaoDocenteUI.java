@@ -37,7 +37,9 @@ public class gestaoDocenteUI extends BorderPane{
 
 
     private void createViews() {
-        this.setPadding(new Insets(30));
+        this.setTop(new topButtonsUI(manager));
+
+        /*this.setPadding(new Insets(30));
         //textField = new TextField();
         //textotry = new HBox();
         info = new Label();
@@ -64,20 +66,24 @@ public class gestaoDocenteUI extends BorderPane{
         this.setTop(hbox);
         plane = new BorderPane(new consultaUI(manager));
         this.setCenter(plane);
-/*        this.setBottom(textotry);
+*//*        this.setBottom(textotry);
         textField.setPromptText("Numero do Aluno");
         textotry.getChildren().addAll(textField,btnConsulta);
-        textotry.setAlignment(Pos.BOTTOM_CENTER);*/
+        textotry.setAlignment(Pos.BOTTOM_CENTER);*//*
         //HBox text = new HBox();
         //text.getChildren().add(tfield);
         //plane.setVisible(false);
         //this.setCenter(info);
-        //this.setRight(info);
+        //this.setRight(info);*/
+
+        this.setCenter(new consultaUI(manager));
+
     }
 
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
-        btnExportar.setOnAction(event ->{
+
+/*        btnExportar.setOnAction(event ->{
             Popup.display(PopupSupport.POPUP_EXPORT,0);
         });
         btnLerFich.setOnAction(event ->{
@@ -93,11 +99,11 @@ public class gestaoDocenteUI extends BorderPane{
             aux = manager.lerFicheiro(file.getAbsolutePath());
             Popup.display(PopupSupport.POPUP_LERFICH,aux);
         });
-/*        btnConsulta.setOnAction(event ->{
+        btnConsulta.setOnAction(event ->{
             System.out.println(textField.getText());
             manager.removerAluno(Long.parseLong(textField.getText()));
             System.out.println(manager.getAlunos());
-        });*/
+        });
         btnAvancar.setOnAction(event ->{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Fechar Fase");
@@ -116,7 +122,7 @@ public class gestaoDocenteUI extends BorderPane{
         });
         btnVoltar.setOnAction(event ->{
             manager.voltar(false);
-        });
+        });*/
     }
 
     private void update() {

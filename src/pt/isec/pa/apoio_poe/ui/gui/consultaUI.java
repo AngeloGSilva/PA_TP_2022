@@ -247,6 +247,7 @@ public class consultaUI extends BorderPane {
 
                 this.setCenter(tableDocente);
                 tableDocente.setItems(manager.getDocentes());
+                tableDocente.setUserData(tableDocente);
             }
             case GESTAO_PROPOSTA -> {
                 tableProposta = new TableView<Proposta>();
