@@ -229,6 +229,7 @@ public final class Ficheiro {
                     for(int i = 1;i<data.length;i++){
                         if(gestaoProj.VerificaIdProposta(data[i]) &&
                                 gestaoProj.VerificaAlunoAcederProposta(Long.parseLong(data[0]),data[i]) &&
+                                gestaoProj.VerificaRamoAlunoProposta(Long.parseLong(data[0]),gestaoProj.getPropostaPorId(data[i]).getRamo()) &&
                                 gestaoProj.VerificaPropostaComAluno(data[i])){ //
                             propostasPorAluno.add(gestaoProj.getPropostaPorId(data[i]));
                         }else {

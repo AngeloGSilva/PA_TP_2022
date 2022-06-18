@@ -700,7 +700,8 @@ public class GestaoProj implements Serializable {
         for (Candidatura c: candidaturas) {
             for (Proposta p: c.getPropostas()) {
                 if(p.getClass().getSimpleName().equals("T2") &&
-                        p.getCodigo_Aluno() == c.getNraluno() &&
+                        p.getCodigo_Aluno() !=null &&
+                         c.getAluno().getNr_Aluno() == p.getCodigo_Aluno() &&
                         VerificaAlunoAcederProposta(p.getCodigo_Aluno(),p.getCod_ID()) &&
                         p.getEmail_Docente() != null){
 
@@ -1163,7 +1164,7 @@ public class GestaoProj implements Serializable {
                         !VerificaIdProposta(cod_ID) && //id da proposta repetido
                         ((ramo.length() > 3 && ramo.contains("|")) || (ramo.length() <= 3 && Ramos.contains(ramo)))) //ver se tem mais q um ramo associado
                 {
-                    return new T1(cod_ID, titulo, ramo,empresa);
+                    return new T1(ramo,titulo,cod_ID,empresa);
                 } else if(codigo_Aluno != null &&
                         VerificaAlunoExiste(codigo_Aluno) &&
                         !VerificaIdProposta(cod_ID) && //id da proposta repetido
@@ -1224,12 +1225,14 @@ public class GestaoProj implements Serializable {
     }
 
     public Candidatura validarCandidatura(String nrAluno,String codId){
+        //falta validar
         //Validar aluno
         if(VerificaAlunoExiste(Long.parseLong(nrAluno)) &&
            !VerificaAlunoJaCandidato(Long.parseLong(nrAluno)) &&
            !VerificaNumeroAssociadoAProposta(nrAluno)){
             //Validar proposta
             if(VerificaIdProposta(codId) &&
+            VerificaRamoAlunoProposta(Long.parseLong(nrAluno),getPropostaPorId(codId).getRamo()) &&
             VerificaAlunoAcederProposta(Long.parseLong(nrAluno),codId) &&
             VerificaPropostaComAluno(codId)){
                 return new Candidatura(getAlunoPorNumero(Long.parseLong(nrAluno)), getPropostaPorId(codId));
@@ -1371,6 +1374,16 @@ public class GestaoProj implements Serializable {
                         }
                     }
                 }
+        }
+        return false;
+    }
+
+    public boolean removerAtribuicao(String nrAluno) {
+        for(Atribuicao a :atribuicoes){
+            if(a.getAluno().getNr_AlunoString().equals(nrAluno) && a.getProposta().getClass().getSimpleName().equals("T1")){
+                a.getProposta().setCodigo_Aluno(null);
+                atribuicoes.remove(a);
+            }
         }
         return false;
     }
