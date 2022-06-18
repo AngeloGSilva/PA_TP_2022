@@ -33,4 +33,6 @@ public interface IState {
     boolean adicionarPropostaACandidatura(String nrAluno, String codID);
 
     boolean removerPropostaDeCandidatura(String nr_Aluno, String eliminar);
+
+    Boolean removeAtribuicao(String nrAluno);
 }

@@ -97,31 +97,31 @@ public class PoeUI {
         System.out.println("Atribuicao de Propostas:\n");
         if (!controladorDoPrograma.getFase_Proposta() && controladorDoPrograma.getFase_Candidatura()) {
             if (controladorDoPrograma.isConflitoON()){
+                //para nao parar num conflito
                 controladorDoPrograma.AtribuirAutomaticamente();
             }else{
-            switch (PAInput.chooseOption("Opções:", "Atribuir automatico Autopropostos e docentes com aluno", "Atribuir Automatico(Pode existir conflitos)", "Atribuir Alunos Manualmente", "Consulta", "Load", "Save", "avancar", "voltar")) {
-                    //(PAInput.chooseOption("Opções:", "Atribuir automatico Autopropostos e docentes com aluno","Atribuir automatico Autopropostos e docentes com aluno", "Atribuir Automatico(Pode existir conflitos)","Atribuir Alunos Manualmente", "Consulta","Candidaturas","Load","Save" ,"avancar","voltar")
+            switch (PAInput.chooseOption("Opções:", "Atribuir automatico Autopropostos e docentes com aluno", "Atribuir Automatico(Pode existir conflitos)", "Atribuir Alunos Manualmente", "Consulta","Eliminar Atribuições","Undo","Redo", "Load", "Save", "avancar", "voltar")) {
+
 
                     case 1 -> {
                         controladorDoPrograma.AtribuirAutomaticoAutopropostosDocentesAluno();
-                        //controladorDoPrograma.atribuiAutopropostos();
-                        //controladorDoPrograma.atribuiPropostasDocentes();
-                        //controladorDoPrograma.AtribuirAutomaticamente();
 
                     }
                     case 2 -> {
+                        //da set do cod de aluno
                         controladorDoPrograma.AtribuirAutomaticamente();
 
                     }
                     case 3 -> {
                         System.out.println(controladorDoPrograma.getAlunosSemAtribuicao());
                         System.out.println(controladorDoPrograma.getPropostasNaoAtribuidas());
+                        //reformular
                         String nr_Aluno = PAInput.readString("Escolha um aluno pelo numero: ", true);
                         String id_Proposta = PAInput.readString("Escolha uma proposta pelo id: ", true);
                         if (controladorDoPrograma.atribuirManualmenteAluno(Long.parseLong(nr_Aluno), id_Proposta.toUpperCase(Locale.ROOT))) {
                             System.out.println("Correu bem a Atribuicao"); //trocar pela ultima atribuicao feita para mostrar operacao realizada
                         } else
-                            System.out.println("Algo Correu mal.. verifica se aluno pode acerder a estagios ou a projetos");
+                            System.out.println("Algo Correu mal!\n");
                     }
                     case 4 -> {
                         switch (PAInput.chooseOption("Dados a consultar", "Alunos", "Propostas", "Voltar")) {
@@ -167,11 +167,21 @@ public class PoeUI {
                             }
                         }
                     }
-                    case 5 -> controladorDoPrograma.load();
+                    case 5 ->{//So vai eliminar Atribuições de T1's basicamente, ja que se nao elimina T3 nem T2 com aluno, so resta T1 com aluno.
+                            System.out.print(controladorDoPrograma.getAtribuicoes());
+                            controladorDoPrograma.removeAtribuicao(PAInput.readString("Numero de aluno da atribuição a eliminar:",true));
+                    }
+                    case 6->{
 
-                    case 6 -> controladorDoPrograma.save();
+                    }
+                    case 7 ->{
 
-                    case 7 -> {
+                    }
+                    case 8 -> controladorDoPrograma.load();
+
+                    case 9 -> controladorDoPrograma.save();
+
+                    case 10 -> {
                         switch (PAInput.chooseOption("Pretende Fechar a fase?", "Sim", "Nao")) {
                             case 1 -> {
                                 if (!controladorDoPrograma.avancar(true)){
@@ -183,8 +193,9 @@ public class PoeUI {
 
                     }
 
-                    case 8 -> controladorDoPrograma.voltar(true);
+                    case 11 -> controladorDoPrograma.voltar(true);
                 }}
+            //So consulta(Fase fechada)
             } else if (controladorDoPrograma.getFase_Proposta()){
                 switch (PAInput.chooseOption("Consulta", "Consultar Todos Dados", "Avancar", "Voltar", "Load", "Save")) {
                     case 1 -> {
@@ -449,7 +460,7 @@ public class PoeUI {
                     if(controladorDoPrograma.remover(PAInput.readString("Numero do aluno da Candidatura a eliminar:",true)))
                         System.out.println("Eliminado Com Sucesso!\n");
                     else
-                        System.out.println("Algo correu mal!\n");
+                        System.out.println("Erro ao eliminar!\n");
                 }
                 case 7 -> controladorDoPrograma.load();
                 case 8 -> controladorDoPrograma.save();

@@ -167,6 +167,8 @@ public class ProContexto {
         return dados.getAtribuicoesTV();
     }
 
+    public String getAtribuicoes(){return dados.toStringAtribuicoes();}
+
     public ArrayList<Candidatura> getCandidaturaTVAuto(){
         return dados.getCandidaturaTVAuto();
     }
@@ -357,5 +359,9 @@ public class ProContexto {
 
     public boolean removerPropostaDeCandidatura(String nr_Aluno, String eliminar){
         return state.removerPropostaDeCandidatura(nr_Aluno,eliminar);
+    }
+
+    public Boolean removeAtribuicao(String nrAluno) {
+        return state.removeAtribuicao(nrAluno);
     }
 }

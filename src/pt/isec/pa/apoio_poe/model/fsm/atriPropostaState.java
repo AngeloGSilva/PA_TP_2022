@@ -1,10 +1,6 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import pt.isec.pa.apoio_poe.Utils.PAInput;
-import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
-
-import java.util.ArrayList;
 
 public class atriPropostaState extends IStateAdaptar {
     public atriPropostaState(GestaoProj dados, ProContexto contexto) {
@@ -60,6 +56,11 @@ public class atriPropostaState extends IStateAdaptar {
             return true;
         }
         alteraState(new atriPropostaState(dados,contexto));
+        return false;
+    }
+
+    @Override
+    public Boolean removeAtribuicao(String nrAluno) {
         return false;
     }
 
