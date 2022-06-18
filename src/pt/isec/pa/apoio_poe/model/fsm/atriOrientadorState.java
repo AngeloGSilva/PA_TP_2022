@@ -42,6 +42,11 @@ public class atriOrientadorState extends IStateAdaptar {
         return false;
     }
 
+    @Override
+    public void removeDocenteAtribuido(int idProp) {
+        dados.removerDocenteAtribuido(idProp);
+        alteraState(new atriOrientadorState(dados, contexto));
+    }
 
 
     @Override

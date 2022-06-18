@@ -35,4 +35,8 @@ public interface IState {
     boolean removerPropostaDeCandidatura(String nr_Aluno, String eliminar);
 
     Boolean removeAtribuicao(String nrAluno);
+
+    int removerAllAtribuicao();
+
+    void removeDocenteAtribuido(int idProp);
 }

@@ -6,17 +6,17 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class ProContexto {
     private GestaoProj dados;
     private IState state;
+    private Deque<memento> stateHistory;
 
     public ProContexto() {
         dados = new GestaoProj();
         state = new ConfiguracaoState(dados,this);
+        stateHistory = new LinkedList<>();
     }
 
     public PoeState getState(){
@@ -77,6 +77,31 @@ public class ProContexto {
 
         }
     }
+    //Memento
+    public memento takeSnapshot(){
+        return new memento(this.takeSnapshot().state);
+    }
+
+    public void restore(){
+    }
+
+
+    public static class memento{
+        private final PoeState state;
+
+        private memento (PoeState newstate){
+            state = newstate;
+        }
+
+        private PoeState getsavedstate(){
+            return state;
+        }
+    }
+
+    public void undo(){}
+
+    public void redo(){}
+
 
     public boolean lerFicheiroDebug(String fileName){
         return state.lerFicheiroDebug(fileName);
@@ -250,7 +275,7 @@ public class ProContexto {
     }
 
     public String getAtribuicaoPorId(int id){
-        return dados.getAtribuicaoPorId(id);
+        return dados.getAtribuicaoPorIdString(id);
     }
 
     public String getAlunosSemAtribuicao(){
@@ -363,5 +388,13 @@ public class ProContexto {
 
     public Boolean removeAtribuicao(String nrAluno) {
         return state.removeAtribuicao(nrAluno);
+    }
+
+    public int removerAllAtribuicao() {
+        return state.removerAllAtribuicao();
+    }
+
+    public void removeDocenteAtribuido(int IdProp) {
+        state.removeDocenteAtribuido(IdProp);
     }
 }

@@ -1,6 +1,5 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import javafx.scene.layout.BorderPane;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
 abstract class IStateAdaptar implements IState{
@@ -101,5 +100,14 @@ abstract class IStateAdaptar implements IState{
 
     @Override
     public boolean atribuirManualmenteAluno(long id_aluno, String proposta){return false;}
+
+    @Override
+    public int removerAllAtribuicao() {
+        return 0;
+    }
+
+    @Override
+    public void removeDocenteAtribuido(int idProp) {
+    }
 
 }

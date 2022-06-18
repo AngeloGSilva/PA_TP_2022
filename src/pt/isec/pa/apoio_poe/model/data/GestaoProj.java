@@ -925,6 +925,11 @@ public class GestaoProj implements Serializable {
             for (Atribuicao atribuicao : atribuicoes) {
                 docente = getDocenteContadorMenor();
                 if (atribuicao.getDocente() == null) {
+                    //Set do email do docente na proposta
+                    for(Proposta p:propostas){
+                        if(p.getCod_ID().equals(atribuicao.getProposta().getCod_ID()))
+                            p.setEmail_Docente(docente.getEmail_Docente());
+                    }
                     atribuicao.setDocente(docente);
                     docente.incContador();
                 }
@@ -936,6 +941,10 @@ public class GestaoProj implements Serializable {
             for (Atribuicao atribuicao : atribuicoes) {
                 if (atribuicao.getId() == id_atribuicao) {
                     if (atribuicao.getDocente() == null) {
+                        for(Proposta p:propostas){
+                            if(p.getCod_ID().equals(atribuicao.getProposta().getCod_ID()))
+                                p.setEmail_Docente(getDocentePorEmailObjeto(docente).getEmail_Docente());
+                        }
                         atribuicao.setDocente(getDocentePorEmailObjeto(docente));
                         return true;
                     }
@@ -958,7 +967,7 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
-    public String getAtribuicaoPorId(int id) {
+    public String getAtribuicaoPorIdString(int id) {
         for (Atribuicao a:atribuicoes) {
             if (a.getId() == id){
                 return a.toString();
@@ -1383,9 +1392,49 @@ public class GestaoProj implements Serializable {
             if(a.getAluno().getNr_AlunoString().equals(nrAluno) && a.getProposta().getClass().getSimpleName().equals("T1")){
                 a.getProposta().setCodigo_Aluno(null);
                 atribuicoes.remove(a);
+                return true;
             }
         }
         return false;
+    }
+
+    public Atribuicao getAtribuicaoporId(int id){
+        for(Atribuicao a :atribuicoes){
+            if(a.getId() == id){
+                return a;
+            }
+        }
+        return null;
+    }
+
+    public int removerAllAtribuicao(){
+        int elim=0;
+        ArrayList<Integer> s = new ArrayList<>();
+        for(Atribuicao a :atribuicoes) {
+            if (a.getProposta().getClass().getSimpleName().equals("T1")) {
+                a.getProposta().setCodigo_Aluno(null);
+                s.add(a.getId());
+                elim++;
+            }
+        }
+        if(elim>0){
+            for(int i=0;i<s.size();i++)
+                atribuicoes.remove(getAtribuicaoporId(s.get(i)));
+        }
+        return elim;
+    }
+
+    public void removerDocenteAtribuido(int idProp) {
+        for(Atribuicao a:atribuicoes){
+            if(a.getId() == idProp){
+                for(Proposta p:propostas){
+                    if(a.getProposta().getCod_ID().equals(p.getCod_ID())){
+                        p.setEmail_Docente(null);
+                    }
+                }
+                a.setDocente(null);
+            }
+        }
     }
     //Dados Nas opcoes de Candidatura
 

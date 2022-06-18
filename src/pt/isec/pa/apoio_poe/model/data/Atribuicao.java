@@ -1,5 +1,7 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import pt.isec.pa.apoio_poe.model.fsm.PoeState;
+
 import java.io.Serializable;
 import java.util.Objects;
 

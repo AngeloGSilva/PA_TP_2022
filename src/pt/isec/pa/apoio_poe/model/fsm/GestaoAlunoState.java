@@ -95,7 +95,7 @@ public class GestaoAlunoState extends IStateAdaptar {
 //try catch de numero, crash se for uma letra
         if(dados.getAlunoPorNumero(Long.parseLong(identificador)) !=null) {
             dados.getAlunoPorNumero(Long.parseLong(identificador)).setNomeAluno(editado);
-            alteraState(new GestaoDocenteState(dados, contexto));
+            alteraState(new GestaoAlunoState(dados, contexto));
         }else
             return;
     }

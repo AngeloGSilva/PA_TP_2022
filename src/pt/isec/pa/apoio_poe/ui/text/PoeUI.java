@@ -53,7 +53,7 @@ public class PoeUI {
 
     private void atrOrientadorUI() {
         System.out.println("Atribuir Orientador:\n");
-        switch (PAInput.chooseOption("Opções:","Atribuir Docentes Automaticos","Atribuir Docentes Manualmente","Consulta", "Load","Save","Avancar", "Voltar")) {
+        switch (PAInput.chooseOption("Opções:","Atribuir Docentes Automaticos","Atribuir Docentes Manualmente","Consulta","Eliminar Atribuição de docente", "Load","Save","Avancar", "Voltar")) {
             case 1 -> {
                 controladorDoPrograma.atribuirDocentesauto();
             }
@@ -80,16 +80,18 @@ public class PoeUI {
                         System.out.println(controladorDoPrograma.getNumerodeOrientacoes());
                     }
                 }
+            }case 4->{
+                controladorDoPrograma.removeDocenteAtribuido((int) PAInput.readNumber("Id da proposta a remover o docente:"));
             }
 
-            case 4-> {
+            case 5-> {
                 controladorDoPrograma.load();
             }
-            case 5->{
+            case 6->{
                 controladorDoPrograma.save();
             }
-            case 6 -> controladorDoPrograma.avancar(true);
-            case 7 -> controladorDoPrograma.voltar(true);
+            case 7 -> controladorDoPrograma.avancar(true);
+            case 8 -> controladorDoPrograma.voltar(true);
         }
     }
 
@@ -119,6 +121,7 @@ public class PoeUI {
                         String nr_Aluno = PAInput.readString("Escolha um aluno pelo numero: ", true);
                         String id_Proposta = PAInput.readString("Escolha uma proposta pelo id: ", true);
                         if (controladorDoPrograma.atribuirManualmenteAluno(Long.parseLong(nr_Aluno), id_Proposta.toUpperCase(Locale.ROOT))) {
+
                             System.out.println("Correu bem a Atribuicao"); //trocar pela ultima atribuicao feita para mostrar operacao realizada
                         } else
                             System.out.println("Algo Correu mal!\n");
@@ -169,12 +172,26 @@ public class PoeUI {
                     }
                     case 5 ->{//So vai eliminar Atribuições de T1's basicamente, ja que se nao elimina T3 nem T2 com aluno, so resta T1 com aluno.
                             System.out.print(controladorDoPrograma.getAtribuicoes());
-                            controladorDoPrograma.removeAtribuicao(PAInput.readString("Numero de aluno da atribuição a eliminar:",true));
+                            switch(PAInput.chooseOption("Eliminar:","Atribuição","Todas Atribuições")){
+                                case 1->{
+                                    if(controladorDoPrograma.removeAtribuicao(PAInput.readString("Numero de aluno da atribuição a eliminar:",true))){
+                                        System.out.println("Removido com sucesso!\n");
+                                    }else
+                                        System.out.println("Erro ao eliminar Atribuição!\n");
+                                }
+                                case 2->{
+                                    int aux_int = controladorDoPrograma.removerAllAtribuicao();
+                                    if(aux_int >0){
+                                        System.out.println("Eliminei" + aux_int + "Atribuições");
+                                    }else
+                                        System.out.println("Erro");
+                                }
+                            }
                     }
-                    case 6->{
+                    case 6->{//undo
 
                     }
-                    case 7 ->{
+                    case 7 ->{//redo
 
                     }
                     case 8 -> controladorDoPrograma.load();
