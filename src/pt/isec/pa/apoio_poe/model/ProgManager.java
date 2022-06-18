@@ -184,10 +184,18 @@ public class ProgManager {
     }*/
 
 
-    public boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente){return false;}
+    public boolean adicionarDocente(String nome_Docente, String email_Docente, boolean papel_Docente){
+        boolean resultado = controladorDoPrograma.adicionarDocente(nome_Docente, email_Docente, papel_Docente);
+        pcs.firePropertyChange(null,null,null);
+        return resultado;
+    }
 
 
-    public boolean adicionarProposta(String tipo,String cod_ID, String titulo, Long codigo_Aluno, String email_Docente, String ramo,String empresa){return false;}
+    public boolean adicionarProposta(String tipo,String cod_ID, String titulo, Long codigo_Aluno, String email_Docente, String ramo,String empresa){
+        boolean resultado = controladorDoPrograma.adicionarProposta( tipo, cod_ID,  titulo,  codigo_Aluno,  email_Docente,  ramo, empresa);
+        pcs.firePropertyChange(null,null,null);
+        return resultado;
+    }
 
 
     public void atribuirDocentesauto() {}

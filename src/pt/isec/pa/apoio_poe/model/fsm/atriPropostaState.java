@@ -62,13 +62,14 @@ public class atriPropostaState extends IStateAdaptar {
 
     @Override
     public Boolean removeAtribuicao(String nrAluno) {
-        if(dados.removerAtribuicao(nrAluno)){
+        /*if(dados.removerAtribuicao(nrAluno)){
             alteraState(new atriPropostaState(dados,contexto));
             return true;
         }else {
             alteraState(new atriPropostaState(dados, contexto));
             return false;
-        }
+        }*/
+        return false;
 
     }
 

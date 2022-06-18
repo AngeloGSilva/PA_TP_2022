@@ -538,24 +538,17 @@ public class consultaUI extends BorderPane {
             switch (manager.getState()) {
             case GESTAO_ALUNO -> {
                 if (tableAlunos !=null) {
-                    Popup.add(manager);
-
+                    Popup.addAluno(manager);
                 }
             }
             case GESTAO_DOCENTE -> {
                 if (tableDocente !=null) {
-                    Docente selectedItem = tableDocente.getSelectionModel().getSelectedItem();
-                    tableDocente.getItems().remove(selectedItem);
-                    manager.remover(selectedItem.getEmail_Docente());
-                    System.out.println(selectedItem.getEmail_Docente());
+                    Popup.addDocente(manager);
                 }
             }
             case GESTAO_PROPOSTA -> {
                 if (tableProposta !=null) {
-                    Proposta selectedItem = tableProposta.getSelectionModel().getSelectedItem();
-                    tableProposta.getItems().remove(selectedItem);
-                    manager.remover(selectedItem.getCod_ID());
-                    System.out.println(selectedItem.getCod_ID());
+                    Popup.addProposta(manager);
                 }
             }
             case OPCAO_CANDIDATURA -> {
