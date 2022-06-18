@@ -90,47 +90,263 @@ public class Popup extends VBox{
         grid.getChildren().add(btnSelectTipo);
 
 
-        Button addAluno= new Button("aluno");
+        Button btnaddAluno= new Button("Associar Aluno");
+        grid.getChildren().add(btnaddAluno);
+        btnaddAluno.setManaged(false);
+        btnaddAluno.setVisible(false);
+
+        Button addDocente= new Button("Docente");
+
+        Button btnAdd = new Button("Adicionar");
+        grid.getChildren().add(btnAdd);
+
+        Button btnApagar = new Button("Apagar");
+        grid.getChildren().add(btnApagar);
+
+
+        btnAdd.setVisible(false);
+        btnAdd.setManaged(false);
+        btnApagar.setManaged(false);
+        btnApagar.setVisible(false);
 
         GridPane.setConstraints(tipo_de_proposta,0,0);
         GridPane.setConstraints(t1,0,1);
         GridPane.setConstraints(t2,1,1);
         GridPane.setConstraints(t3,2,1);
         GridPane.setConstraints(btnSelectTipo,1,2);
+        GridPane.setConstraints(btnAdd,2,2);
+        GridPane.setConstraints(btnApagar,2,3);
+
+
+        TextField id_proposta = new TextField();
+        id_proposta.setPromptText("Id Proposta");
+        id_proposta.setPrefColumnCount(15);
+        grid.getChildren().add(id_proposta);
+        id_proposta.setManaged(false);
+        id_proposta.setVisible(false);
+
+        TextField titulo_Proposta = new TextField();
+        titulo_Proposta.setPromptText("Titulo");
+        titulo_Proposta.setPrefColumnCount(15);
+        grid.getChildren().add(titulo_Proposta);
+        titulo_Proposta.setManaged(false);
+        titulo_Proposta.setVisible(false);
+
+        TextField nr_Aluno = new TextField();
+        nr_Aluno.setPromptText("Numero de Aluno");
+        nr_Aluno.setPrefColumnCount(15);
+        grid.getChildren().add(nr_Aluno);
+        nr_Aluno.setManaged(false);
+        nr_Aluno.setVisible(false);
+
+        TextField email_Docente = new TextField();
+        email_Docente.setPromptText("Email");
+        email_Docente.setPrefColumnCount(15);
+        grid.getChildren().add(email_Docente);
+        email_Docente.setManaged(false);
+        email_Docente.setVisible(false);
+
+        TextField ramo_Proposta = new TextField();
+        ramo_Proposta.setPromptText("Ramo da Proposta");
+        ramo_Proposta.setPrefColumnCount(15);
+        grid.getChildren().add(ramo_Proposta);
+        ramo_Proposta.setManaged(false);
+        ramo_Proposta.setVisible(false);
+
+        TextField empresa_Proposta = new TextField();
+        empresa_Proposta.setPromptText("Empresa");
+        empresa_Proposta.setPrefColumnCount(15);
+        grid.getChildren().add(empresa_Proposta);
+        empresa_Proposta.setManaged(false);
+        empresa_Proposta.setVisible(false);
+
 
         btnSelectTipo.setOnAction(e-> {
             RadioButton rb = (RadioButton) tipo_group.getSelectedToggle();
             if (rb.getText().equals("Estagio(T1)")){
+                tipo_de_proposta.setVisible(false);
                 t1.setVisible(false);
-                t1.setManaged(false);
                 t2.setVisible(false);
-                t2.setManaged(false);
                 t3.setVisible(false);
+
+                tipo_de_proposta.setManaged(false);
+                t1.setManaged(false);
+                t2.setManaged(false);
                 t3.setManaged(false);
+
                 btnSelectTipo.setVisible(false);
                 btnSelectTipo.setManaged(false);
 
-                grid.getChildren().add(addAluno);
-                GridPane.setConstraints(addAluno,0,1);
+                btnAdd.setVisible(true);
+                btnAdd.setManaged(true);
+                btnApagar.setManaged(true);
+                btnApagar.setVisible(true);
 
 
+
+
+                id_proposta.setVisible(true);
+                id_proposta.setManaged(true);
+                GridPane.setConstraints(id_proposta,0,0);
+
+                ramo_Proposta.setVisible(true);
+                ramo_Proposta.setManaged(true);
+                GridPane.setConstraints(ramo_Proposta,0,1);
+
+                empresa_Proposta.setVisible(true);
+                empresa_Proposta.setManaged(true);
+                GridPane.setConstraints(empresa_Proposta,0,2);
+
+                titulo_Proposta.setVisible(true);
+                titulo_Proposta.setManaged(true);
+                GridPane.setConstraints(titulo_Proposta,0,3);
+
+                btnaddAluno.setManaged(true);
+                btnaddAluno.setVisible(true);
+                GridPane.setConstraints(btnaddAluno,0,4);
+
+
+                btnaddAluno.setOnAction(event->{
+                    btnaddAluno.setManaged(false);
+                    btnaddAluno.setVisible(false);
+                    nr_Aluno.setManaged(true);
+                    nr_Aluno.setVisible(true);
+                    GridPane.setConstraints(nr_Aluno,0,4);
+                });
+
+                btnAdd.setOnAction( event ->{
+                    if (nr_Aluno.getText() != ""){
+                        manager.adicionarProposta("T1", id_proposta.getText(), titulo_Proposta.getText(), Long.parseLong(nr_Aluno.getText()),null, ramo_Proposta.getText(), empresa_Proposta.getText());
+                    }else {
+                        manager.adicionarProposta("T1", id_proposta.getText(), titulo_Proposta.getText(), null,null, ramo_Proposta.getText(), empresa_Proposta.getText());
+                    }
+                    popupwindow.close();
+                });
 
             }else if (rb.getText().equals("Projeto(T2)")){
+                tipo_de_proposta.setVisible(false);
+                t1.setVisible(false);
+                t2.setVisible(false);
+                t3.setVisible(false);
+
+                tipo_de_proposta.setManaged(false);
+                t1.setManaged(false);
+                t2.setManaged(false);
+                t3.setManaged(false);
+
+                btnSelectTipo.setVisible(false);
+                btnSelectTipo.setManaged(false);
+
+                btnAdd.setVisible(true);
+                btnAdd.setManaged(true);
+                btnApagar.setManaged(true);
+                btnApagar.setVisible(true);
+
+
+
+
+                id_proposta.setVisible(true);
+                id_proposta.setManaged(true);
+                GridPane.setConstraints(id_proposta,0,0);
+
+                email_Docente.setVisible(true);
+                email_Docente.setManaged(true);
+                GridPane.setConstraints(email_Docente,0,1);
+
+                ramo_Proposta.setVisible(true);
+                ramo_Proposta.setManaged(true);
+                GridPane.setConstraints(ramo_Proposta,0,2);
+
+                titulo_Proposta.setVisible(true);
+                titulo_Proposta.setManaged(true);
+                GridPane.setConstraints(titulo_Proposta,0,3);
+
+                btnaddAluno.setManaged(true);
+                btnaddAluno.setVisible(true);
+                GridPane.setConstraints(btnaddAluno,0,4);
+
+
+                btnaddAluno.setOnAction(event->{
+                    btnaddAluno.setManaged(false);
+                    btnaddAluno.setVisible(false);
+                    nr_Aluno.setManaged(true);
+                    nr_Aluno.setVisible(true);
+                    GridPane.setConstraints(nr_Aluno,0,4);
+                });
+
+                btnAdd.setOnAction( event ->{
+                    if (nr_Aluno.getText() != ""){
+                        manager.adicionarProposta("T2", id_proposta.getText(), titulo_Proposta.getText(), Long.parseLong(nr_Aluno.getText()),email_Docente.getText(), ramo_Proposta.getText(), null);
+                    }else {
+                        manager.adicionarProposta("T2", id_proposta.getText(), titulo_Proposta.getText(), null,email_Docente.getText(), ramo_Proposta.getText(), null);
+                    }
+                    popupwindow.close();
+                });
 
             } else if (rb.getText().equals("Autoproposto(T3)")) {
+                tipo_de_proposta.setVisible(false);
+                t1.setVisible(false);
+                t2.setVisible(false);
+                t3.setVisible(false);
 
+                tipo_de_proposta.setManaged(false);
+                t1.setManaged(false);
+                t2.setManaged(false);
+                t3.setManaged(false);
+
+                btnSelectTipo.setVisible(false);
+                btnSelectTipo.setManaged(false);
+
+                btnAdd.setVisible(true);
+                btnAdd.setManaged(true);
+                btnApagar.setManaged(true);
+                btnApagar.setVisible(true);
+
+
+
+
+                id_proposta.setVisible(true);
+                id_proposta.setManaged(true);
+                GridPane.setConstraints(id_proposta,0,0);
+
+                ramo_Proposta.setVisible(true);
+                ramo_Proposta.setManaged(true);
+                GridPane.setConstraints(ramo_Proposta,0,2);
+
+                titulo_Proposta.setVisible(true);
+                titulo_Proposta.setManaged(true);
+                GridPane.setConstraints(titulo_Proposta,0,3);
+
+                nr_Aluno.setManaged(true);
+                nr_Aluno.setVisible(true);
+                GridPane.setConstraints(nr_Aluno,0,4);
+
+
+                btnAdd.setOnAction( event ->{
+                    manager.adicionarProposta("T3", id_proposta.getText(), titulo_Proposta.getText(), Long.parseLong(nr_Aluno.getText()),null, ramo_Proposta.getText(), null);
+                    popupwindow.close();
+                });
             }
+
+
+            //manager.adicionarProposta();
+
+
         });
 
-        addAluno.setOnAction(event->{
-            TextField nome = new TextField("ola");
-            grid.getChildren().add(nome);
-            GridPane.setConstraints(addAluno,0,3);
+
+        btnApagar.setOnAction(e-> {
+            empresa_Proposta.clear();
+            ramo_Proposta.clear();
+            email_Docente.clear();
+            nr_Aluno.clear();
+            titulo_Proposta.clear();
+            id_proposta.clear();
         });
 
 
         Scene nscene = new Scene(grid, 200, 100);
-        popupwindow.setTitle("Adicionar Aluno");
+        popupwindow.setTitle("Adicionar Proposta");
         popupwindow.setMinWidth(350);
         popupwindow.setMinHeight(300);
 
