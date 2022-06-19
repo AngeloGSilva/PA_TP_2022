@@ -3,6 +3,14 @@ package pt.isec.pa.apoio_poe.model.data;
 import java.io.Serializable;
 import java.util.*;
 
+/*
+* nao comecar maiusculas
+*  ex: Numero do Aluno : nr_Aluno Variaveis
+* nome de metodos: verificaAlunoPeloNome
+*
+* */
+
+
 public class GestaoProj implements Serializable {
     //array de erros para utilizar no UI
     ArrayList<String> erros = new ArrayList<>();
@@ -147,6 +155,11 @@ public class GestaoProj implements Serializable {
         return getAlunosNotReg();
     }
 
+
+    /**
+     * Procura Alunos nao registados
+     * @return ArrayList de Alunos
+     */
     public ArrayList<Aluno> getAlunosNotReg(){
         ArrayList<Aluno> alunosNotReg = new ArrayList<>();
         boolean encrontrou = false;
@@ -380,6 +393,11 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
+    /**
+     * explicar metodo
+     * @param email email do aluno
+     * @return false caso email ja exista true caso nao exista
+     */
     public boolean getAlunoPorEmail(String email) {
         for (Aluno d : alunos) {
             if (d.getEmail_Aluno().equals(email)) {
@@ -1233,11 +1251,24 @@ public class GestaoProj implements Serializable {
         return null;
     }
 
+    public boolean verificaPropostaEmCandidatura(String nrAluno,String codId){
+        for (Candidatura candidatura: candidaturas) {
+            if (nrAluno.equals(candidatura.getNralunoString())){
+                for (Proposta proposta:candidatura.getPropostas()) {
+                    if (codId.equals(proposta.getCod_ID())){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public Candidatura validarCandidatura(String nrAluno,String codId){
         //falta validar
         //Validar aluno
         if(VerificaAlunoExiste(Long.parseLong(nrAluno)) &&
-           !VerificaAlunoJaCandidato(Long.parseLong(nrAluno)) &&
+           !verificaPropostaEmCandidatura(nrAluno,codId) &&
            !VerificaNumeroAssociadoAProposta(nrAluno)){
             //Validar proposta
             if(VerificaIdProposta(codId) &&
@@ -1375,12 +1406,10 @@ public class GestaoProj implements Serializable {
         for(Candidatura c :candidaturas){
             if(c.getNralunoString().equals(nr_aluno)) {
                 if ((c.getPropostas().get(0).getClass().getSimpleName().equals("T2") || c.getPropostas().get(0).getClass().getSimpleName().equals("T3")) && c.getPropostas().get(0).getCodigo_Aluno()!=null)
-                        return false;
-                    for (Proposta p : propostas) {
-                        if (p.getCod_ID().equals(idProp) && p.getCodigo_Aluno() == null) {
-                            c.getPropostas().add(p);
-                            return true;
-                        }
+                    return false;
+                    if (!verificaPropostaEmCandidatura(nr_aluno,idProp) && VerificaIdProposta(idProp)) {
+                        c.getPropostas().add(getPropostaPorId(idProp));
+                        return true;
                     }
                 }
         }

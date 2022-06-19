@@ -397,4 +397,8 @@ public class ProContexto {
     public void removeDocenteAtribuido(int IdProp) {
         state.removeDocenteAtribuido(IdProp);
     }
+
+    public boolean VerificaAlunoJaCandidato(long nr_Aluno){
+        return dados.VerificaAlunoJaCandidato(nr_Aluno);
+    }
 }

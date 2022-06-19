@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
+import pt.isec.pa.apoio_poe.model.fsm.opCandidaturaState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -205,10 +206,20 @@ public class ProgManager {
         return resultado;
     }
 
+    public boolean adicionarPropostaACandidatura(String nr_Aluno, String idProposta) {
+        boolean resultado =  controladorDoPrograma.adicionarPropostaACandidatura(nr_Aluno, idProposta);
+        pcs.firePropertyChange(null,null,null);
+        return resultado;
+    }
+
 
     public void editar(String identificador, String editado) {
         controladorDoPrograma.editar(identificador,editado);
         pcs.firePropertyChange(null,null,null);
+    }
+
+    public boolean VerificaAlunoJaCandidato(long nr_Aluno){
+        return controladorDoPrograma.VerificaAlunoJaCandidato(nr_Aluno);
     }
 
 

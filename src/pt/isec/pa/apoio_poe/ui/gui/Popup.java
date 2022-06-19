@@ -574,7 +574,11 @@ public class Popup extends VBox{
         GridPane.setConstraints(btnApagar,2,1);
 
         btnAdd.setOnAction(e-> {
-            manager.adicionarCandidatura(nr_Aluno.getText(), id_Proposta.getText());
+            if (!manager.VerificaAlunoJaCandidato((Long.parseLong(nr_Aluno.getText())))){
+                manager.adicionarCandidatura(nr_Aluno.getText(), id_Proposta.getText());
+            }else{
+                manager.adicionarPropostaACandidatura(nr_Aluno.getText(),id_Proposta.getText());
+            }
             popupwindow.close();
         });
 
