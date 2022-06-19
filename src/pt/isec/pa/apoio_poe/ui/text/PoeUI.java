@@ -627,7 +627,7 @@ public class PoeUI {
 
     private void gestaoAlunosUI() {
         System.out.println("Gestão de alunos:\n");
-        switch (PAInput.chooseOption("Opções:", "Exportar para um ficheiro", "Consulta","Ler de ficheiro","Adicionar","Editar","Eliminar","Avancar","Voltar","[Nao usar][debug]")) {
+        switch (PAInput.chooseOption("Opções:", "Exportar para um ficheiro", "Consulta","Ler de ficheiro","Adicionar","Editar","Eliminar","Avancar","Voltar")) {
             case 1 -> {
                 controladorDoPrograma.exportarAlunos(PAInput.readString("Nome do ficheiro para exportar ",true));
             }
@@ -670,27 +670,6 @@ public class PoeUI {
             }
             case 8 ->{
                 controladorDoPrograma.voltar(false);
-            }
-            case 9->{
-                switch(PAInput.chooseOption("Quem Utiliza?","Angelo","Rodrigo")) {
-                    case 1 ->{
-                        controladorDoPrograma.lerFicheiroDebug("a");
-                    }
-                    case 2 ->{
-                        controladorDoPrograma.lerFicheiroDebug("r");
-                    }
-                }
-                    //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
-                    String errorDisplay = controladorDoPrograma.getErros().toString();
-                    //Retirar os [] do print
-                    errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
-                    System.out.println(errorDisplay);
-                    //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
-                    controladorDoPrograma.limparErros();
-
-                    System.out.println("A passar de fase");
-                    controladorDoPrograma.avancar(true);
-
             }
         }
     }

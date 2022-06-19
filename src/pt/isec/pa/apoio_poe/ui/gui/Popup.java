@@ -58,6 +58,7 @@ public class Popup extends VBox{
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
     }
+
     public static void addProposta(ProgManager manager){
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL);
@@ -357,6 +358,7 @@ public class Popup extends VBox{
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
     }
+
     public static void addAluno(ProgManager manager){
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL);

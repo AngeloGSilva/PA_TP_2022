@@ -138,6 +138,7 @@ public class topButtonsUI extends VBox{
 
         private void registerHandlers() {
             manager.addPropertyChangeListener(evt -> { update(); });
+
             if (manager.getState() == PoeState.ATRIBUIR_PROPOSTA){
                 btnAutoDoc.setOnAction(event ->{
                     manager.AtribuirAutomaticoAutopropostosDocentesAluno();
@@ -170,9 +171,6 @@ public class topButtonsUI extends VBox{
                     Popup.display(PopupSupport.POPUP_LERFICH,aux);
                 });
             }
-
-
-
             btnAvancar.setOnAction(event ->{
                 Popup.avancarFase(manager);
             });

@@ -1,10 +1,8 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
-import pt.isec.pa.apoio_poe.model.data.Proposta;
 
-public class atriOrientadorState extends IStateAdaptar {
+public class atriOrientadorState extends IStateAdapter {
     public atriOrientadorState(GestaoProj dados, ProContexto contexto) {
         super(dados, contexto);
     }

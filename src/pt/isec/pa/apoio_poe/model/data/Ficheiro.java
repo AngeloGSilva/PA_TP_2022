@@ -33,6 +33,12 @@ public final class Ficheiro {
     private Ficheiro() {
     }
 
+    /**
+     *Função para ler ficheiro de docentes
+     * @param fileName Nome do ficheiro a partir do qual vai ler os Docentes
+     * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
+     * @return Devolve o numero de elemento lidos com sucesso
+     */
     public static int lerDoncentes(String fileName, GestaoProj gestaoProj) {
         int count = 0;
         try {
@@ -61,9 +67,15 @@ public final class Ficheiro {
         }catch (IOException e) {
             e.printStackTrace();
         }
-        return count;// se correu bem false se correu mal
+        return count;
     }
 
+    /**
+     *Função para ler ficheiro de Alunos
+     * @param fileName Nome do ficheiro a partir do qual vai ler os Alunos
+     * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
+     * @return Devolve o numero de elemento lidos com sucesso
+     */
     public static int lerAlunos(String fileName, GestaoProj gestaoProj) {
         int count=0;
         try {
@@ -77,7 +89,7 @@ public final class Ficheiro {
             while ((linha = bufferedReader.readLine()) != null) {
                 data = linha.split(",");
                 if (data[0].length() == 10 && //se o numero tem 10 digitos
-                        !gestaoProj.VerificaAlunoExiste(Long.parseLong(data[0])) && //se o numero ja nao se encontra noutro aluno
+                        !gestaoProj.verificaAlunoExiste(Long.parseLong(data[0])) && //se o numero ja nao se encontra noutro aluno
                         data[1].contains(" ") &&  //se tem um espaco entre os dois nomes (lg tem 2 nomes)
                         //email deve ter a + numero de aluno, seguido de @isec.pt
                         data[2].contains("@isec.pt") && //email valido
@@ -108,6 +120,12 @@ public final class Ficheiro {
 
     }
 
+    /**
+     *Função para ler ficheiro de Propostas
+     * @param fileName Nome do ficheiro a partir do qual vai ler os Alunos
+     * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
+     * @return Devolve o numero de elemento lidos com sucesso
+     */
     public static int lerPropostas(String fileName, GestaoProj gestaoProj) {
         int count=0;
         try {
@@ -124,16 +142,16 @@ public final class Ficheiro {
                         switch (data[0]) {
                             case "T1" -> {
                                 if (data.length == 5 && //proposta tem 5 campos
-                                        !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
+                                        !gestaoProj.verificaIdProposta(data[1]) && //id da proposta repetido
                                         ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
                                     count++;
                                     gestaoProj.adicionarProposta(new T1(data[2], data[3], data[1],data[4]));
                                 } else if(data.length == 6 &&
-                                        gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) &&
-                                        !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
-                                        gestaoProj.VerificaRamoAlunoProposta(Long.parseLong(data[5]),data[2]) &&
-                                        gestaoProj.VerificaAlunoAcederPropostaLeitura(Long.parseLong(data[5]),data[0]) && //Verifica proposta durante a leitura
+                                        gestaoProj.verificaAlunoExiste(Long.parseLong(data[5])) &&
+                                        !gestaoProj.verificaIdProposta(data[1]) && //id da proposta repetido
+                                        gestaoProj.verificaRamoAlunoProposta(Long.parseLong(data[5]),data[2]) &&
+                                        gestaoProj.verificaAlunoAcederPropostaLeitura(Long.parseLong(data[5]),data[0]) && //Verifica proposta durante a leitura
                                         ((data[2].length() > 3 && data[2].contains("|")) || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ver se tem mais q um ramo associado
                                 {
                                     count++;
@@ -146,7 +164,7 @@ public final class Ficheiro {
                             }
                             case "T2" -> {
                                 if (data.length == 5 &&
-                                        !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
+                                        !gestaoProj.verificaIdProposta(data[1]) && //id da proposta repetido
                                         gestaoProj.verificaEmailDocente(data[4]) && //email de um docente valido
                                         ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ramos associados
                                 {
@@ -158,9 +176,9 @@ public final class Ficheiro {
                                     gestaoProj.getDocentePorEmailObjeto(data[4]).incContador();
                                 } else if (data.length > 5 &&
                                         gestaoProj.verificaEmailDocente(data[4]) && //email de um docente valido
-                                        !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
-                                        gestaoProj.VerificaRamoAlunoProposta(Long.parseLong(data[5]),data[2]) &&
-                                        gestaoProj.VerificaAlunoExiste(Long.parseLong(data[5])) && //numero de aluno valido
+                                        !gestaoProj.verificaIdProposta(data[1]) && //id da proposta repetido
+                                        gestaoProj.verificaRamoAlunoProposta(Long.parseLong(data[5]),data[2]) &&
+                                        gestaoProj.verificaAlunoExiste(Long.parseLong(data[5])) && //numero de aluno valido
                                         ((data[2].length() > 3 && data[2].contains("|"))  || (data[2].length() <= 3 && Ramos.contains(data[2])))) //ramos associado
                                 {
                                     count++;
@@ -177,8 +195,8 @@ public final class Ficheiro {
                                 }
                             }
                             case "T3" -> {
-                                if (gestaoProj.VerificaAlunoExiste(Long.parseLong(data[3])) && //numero de aluno valido
-                                        !gestaoProj.VerificaIdProposta(data[1]) && //id da proposta repetido
+                                if (gestaoProj.verificaAlunoExiste(Long.parseLong(data[3])) && //numero de aluno valido
+                                        !gestaoProj.verificaIdProposta(data[1]) && //id da proposta repetido
                                         !gestaoProj.get_codigoAluno(Long.parseLong(data[3]))) //se aluno ja nao esta associado a um T3
                                 {
                                     count++;
@@ -204,14 +222,13 @@ public final class Ficheiro {
         return count;// se correu bem false se correu mal
     }
 
+    /**
+     *Função para ler ficheiro de Candidaturas
+     * @param fileName Nome do ficheiro a partir do qual vai ler as Candidaturas
+     * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
+     * @return Devolve o numero de elemento lidos com sucesso
+     */
     public static int lercandidaturas(String fileName, GestaoProj gestaoProj){
-/*        switch(PAInput.chooseOption("Path dos ficheiros","Angelo","Rodrigo")){
-            case 1 ->{
-                fileName = "C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
-            }case 2 ->{
-                fileName = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\candidaturas.csv";
-            }
-        }*/
         ArrayList<Proposta> propostasPorAluno = new ArrayList<>();
         int count=0;
         try {
@@ -221,16 +238,16 @@ public final class Ficheiro {
             bufferedReader = new BufferedReader(fileReader);
             while ((linha = bufferedReader.readLine()) != null) {
                 data = linha.split(",");
-                if(gestaoProj.VerificaAlunoExiste(Long.parseLong(data[0])) &&
-                        !gestaoProj.VerificaAlunoJaCandidato(Long.parseLong(data[0])) &&
-                        !gestaoProj.VerificaNumeroAssociadoAProposta(data[0]) &&
+                if(gestaoProj.verificaAlunoExiste(Long.parseLong(data[0])) &&
+                        !gestaoProj.verificaAlunoJaCandidato(Long.parseLong(data[0])) &&
+                        !gestaoProj.verificaNumeroAssociadoAProposta(data[0]) &&
                         data.length > 1)
                 { //data[1].contains("P[0-9]{3}")
                     for(int i = 1;i<data.length;i++){
-                        if(gestaoProj.VerificaIdProposta(data[i]) &&
-                                gestaoProj.VerificaAlunoAcederProposta(Long.parseLong(data[0]),data[i]) &&
-                                gestaoProj.VerificaRamoAlunoProposta(Long.parseLong(data[0]),gestaoProj.getPropostaPorId(data[i]).getRamo()) &&
-                                gestaoProj.VerificaPropostaComAluno(data[i])){ //
+                        if(gestaoProj.verificaIdProposta(data[i]) &&
+                                gestaoProj.verificaAlunoAcederProposta(Long.parseLong(data[0]),data[i]) &&
+                                gestaoProj.verificaRamoAlunoProposta(Long.parseLong(data[0]),gestaoProj.getPropostaPorId(data[i]).getRamo()) &&
+                                gestaoProj.verificaPropostaComAluno(data[i])){ 
                             propostasPorAluno.add(gestaoProj.getPropostaPorId(data[i]));
                         }else {
                             gestaoProj.setErros("[Erro] no seguinte Proposta"+ data[i] +"do aluno" + data[0] +  "\n");
@@ -246,7 +263,7 @@ public final class Ficheiro {
                     //separar erro de aluno que nao existe / ou se é aluno com candidatura efetuada
                     if(gestaoProj.get_codigoAluno(Long.parseLong(data[0]))) {
                         gestaoProj.setErros("[Erro] Aluno ja tem candidatura efetuada" + data[0] + "\n");
-                    }else if(gestaoProj.VerificaAlunoJaCandidato(Long.parseLong(data[0]))){
+                    }else if(gestaoProj.verificaAlunoJaCandidato(Long.parseLong(data[0]))){
                         gestaoProj.setErros("[Erro] Aluno ja proposto anteriormente!" + data[0] +"\n");
                     }else{
                         gestaoProj.setErros("[Erro] Aluno nao existe" + data[0] +"\n");
@@ -261,6 +278,11 @@ public final class Ficheiro {
         return count;
     }
 
+    /**
+     * Função que vai exportar todos os Alunos para um ficheiro csv
+     * @param fileName Nome do ficheiro a criar
+     * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
+     */
     public static void ExportarAlunos(String fileName,GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
         f = new File(fileName);
@@ -291,6 +313,11 @@ public final class Ficheiro {
         pw.close();
     }
 
+    /**
+     * Função que vai exportar todas as Propostas para um ficheiro csv
+     * @param fileName Nome do ficheiro a criar
+     * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
+     */
     public static void ExportarPropostas(String fileName,GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
         f = new File(fileName);
@@ -350,6 +377,11 @@ public final class Ficheiro {
         pw.close();
     }
 
+    /**
+     * Função que vai exportar todos os Docentes para um ficheiro csv
+     * @param fileName Nome do ficheiro a criar
+     * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
+     */
     public static void ExportarDocentes(String fileName,GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
         f = new File(fileName);
@@ -371,8 +403,13 @@ public final class Ficheiro {
         pw.close();
     }
 
-    public static void ExportarCandidaturas(String filename,GestaoProj gestaoProj){
-        f = new File(filename);
+    /**
+     * Função que vai exportar todas as Candidaturas para um ficheiro csv
+     * @param fileName Nome do ficheiro a criar
+     * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
+     */
+    public static void ExportarCandidaturas(String fileName,GestaoProj gestaoProj){
+        f = new File(fileName);
 
         try {
             fw = new FileWriter(f);
@@ -394,4 +431,5 @@ public final class Ficheiro {
         pw.close();
     }
 
+    ///???Adicionar um return no exportar candidaturas
 }

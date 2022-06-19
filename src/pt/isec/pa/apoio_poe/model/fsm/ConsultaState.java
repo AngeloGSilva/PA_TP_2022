@@ -1,9 +1,8 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
-public class ConsultaState extends IStateAdaptar {
+public class ConsultaState extends IStateAdapter {
     public ConsultaState(GestaoProj dados, ProContexto contexto) {
         super(dados, contexto);
     }

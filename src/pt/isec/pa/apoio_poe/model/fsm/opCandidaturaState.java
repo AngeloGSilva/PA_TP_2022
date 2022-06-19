@@ -3,7 +3,7 @@ package pt.isec.pa.apoio_poe.model.fsm;
 import pt.isec.pa.apoio_poe.model.data.Candidatura;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
-public class opCandidaturaState extends IStateAdaptar {
+public class opCandidaturaState extends IStateAdapter {
     public opCandidaturaState(GestaoProj dados, ProContexto contexto) {
         super(dados, contexto);
     }

@@ -1,10 +1,9 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
 
-public class ConfiguracaoState extends IStateAdaptar {
+public class ConfiguracaoState extends IStateAdapter {
     protected ConfiguracaoState(GestaoProj dados, ProContexto contexto) {
         super(dados ,contexto);
         //comecar

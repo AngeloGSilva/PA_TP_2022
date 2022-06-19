@@ -2,11 +2,11 @@ package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
-abstract class IStateAdaptar implements IState{
+abstract class IStateAdapter implements IState{
     protected GestaoProj dados;
     protected ProContexto contexto;
 
-    protected IStateAdaptar(GestaoProj dados, ProContexto contexto) {
+    protected IStateAdapter(GestaoProj dados, ProContexto contexto) {
         this.dados = dados;
         this.contexto = contexto;
     }

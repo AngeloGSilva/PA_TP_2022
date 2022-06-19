@@ -3,7 +3,7 @@ package pt.isec.pa.apoio_poe.model.fsm;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
-public class GestaoAlunoState extends IStateAdaptar {
+public class GestaoAlunoState extends IStateAdapter {
     public GestaoAlunoState(GestaoProj dados, ProContexto contexto) {
         super(dados,contexto);
         //inicio
@@ -49,12 +49,6 @@ public class GestaoAlunoState extends IStateAdaptar {
         alteraState(new GestaoAlunoState(dados,contexto));
         return dados.removerAlunos(Long.parseLong(nr_aluno));
     }
-/*
-    @Override
-    public boolean removerAluno(long nr_aluno){
-        alteraState(new GestaoAlunoState(dados,contexto));
-        return dados.removerAlunos(nr_aluno);
-    }*/
 
     @Override
     public boolean voltar(boolean guardado) {
@@ -69,7 +63,7 @@ public class GestaoAlunoState extends IStateAdaptar {
 
     @Override
     public boolean avancar(boolean guardado) {
-        if(guardado && dados.CondicaoAvancar()){
+        if(guardado && dados.condicaoAvancar()){
             dados.setFase_Fechada_Config(true);
             System.out.println("Fase fechada\n");
             alteraState(new opCandidaturaState(dados, contexto));

@@ -2,7 +2,7 @@ package pt.isec.pa.apoio_poe.model.fsm;
 
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
-public class atriPropostaState extends IStateAdaptar {
+public class atriPropostaState extends IStateAdapter {
     public atriPropostaState(GestaoProj dados, ProContexto contexto) {
         super(dados, contexto);
     }
@@ -15,7 +15,7 @@ public class atriPropostaState extends IStateAdaptar {
 
     @Override
     public boolean avancar(boolean guardado) {
-        if (dados.AlunoCandidaturaFoiAtribuido()){
+        if (dados.alunoCandidaturaFoiAtribuido()){
             if(guardado){
                 dados.setFase_Fechada_atriProposta(guardado);
                 alteraState(new atriOrientadorState(dados, contexto));

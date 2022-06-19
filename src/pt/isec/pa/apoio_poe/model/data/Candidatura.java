@@ -84,7 +84,6 @@ public class Candidatura implements Serializable {
         return ids;
     }
 
-
     @Override
     public String toString() {
         return "\nCandidatura: " +

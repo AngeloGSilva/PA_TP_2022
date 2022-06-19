@@ -3,7 +3,7 @@ package pt.isec.pa.apoio_poe.model.fsm;
 import pt.isec.pa.apoio_poe.model.data.Docente;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
-public class GestaoDocenteState extends IStateAdaptar {
+public class GestaoDocenteState extends IStateAdapter {
     public GestaoDocenteState(GestaoProj dados, ProContexto contexto) {
         super(dados,contexto);
     }
@@ -29,7 +29,7 @@ public class GestaoDocenteState extends IStateAdaptar {
 
     @Override
     public boolean avancar(boolean guardado) {
-        if(guardado && dados.CondicaoAvancar()){
+        if(guardado && dados.condicaoAvancar()){
             dados.setFase_Fechada_Config(true);
             //System.out.println("Fase fechada\n");
             alteraState(new opCandidaturaState(dados, contexto));

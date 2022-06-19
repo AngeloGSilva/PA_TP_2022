@@ -89,4 +89,5 @@ public class Atribuicao implements Serializable {
         }
 
     }
+    //??? equals?
 }

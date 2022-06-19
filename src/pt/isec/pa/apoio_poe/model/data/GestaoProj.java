@@ -54,17 +54,12 @@ public class GestaoProj implements Serializable {
     private HashSet<Candidatura> candidaturas;
     private HashSet<Atribuicao> atribuicoes;
 
-    //private HashSet<Aluno> alunosDisponiveis;
-    //private HashSet<Proposta> propostaDisponiveis;
-
     public GestaoProj() {
         alunos = new HashSet<>();
         docentes = new HashSet<>();
         propostas = new HashSet<>();
         candidaturas = new HashSet<>();
         atribuicoes = new HashSet<>();
-        //propostaDisponiveis = new HashSet<>();
-        //alunosDisponiveis =  new HashSet<>();
     }
 
     //gets e sets para as fecho das fases
@@ -100,7 +95,11 @@ public class GestaoProj implements Serializable {
         this.fase_Fechada_Config = fase_Fechada_Config;
     }
 
-    public boolean AlunoCandidaturaFoiAtribuido(){
+    /**
+     * Função de verificação do fecho da fase de Atribuir propostas
+     * @return True se todos os alunos com candidaturas efetuadas possuem uma Atribuição
+     */
+    public boolean alunoCandidaturaFoiAtribuido(){
         int contador = 0;
         for (Candidatura candidatura: candidaturas) {
             for (Atribuicao atribuicao: atribuicoes) {
@@ -113,14 +112,6 @@ public class GestaoProj implements Serializable {
             return true;
         }
         return false;
-    }
-
-
-
-
-    //toStrings dos varios arrays.... (nao sei se é necessario)
-    public String toStringAlunos() {
-        return "Alunos:\n " + alunos;
     }
 
     public ArrayList<Aluno> getAlunosTV(){
@@ -191,6 +182,10 @@ public class GestaoProj implements Serializable {
     }
 
 
+    //toStrings dos varios arrays.... (nao sei se é necessario)
+    public String toStringAlunos() {
+        return "Alunos:\n " + alunos;
+    }
 
     public String toStringDocentes() {
         return "Docentes:\n " + docentes;
@@ -222,15 +217,15 @@ public class GestaoProj implements Serializable {
     }
 
     public String toStringAtribuicoesSemDocente() {
-        return PreencheAtribuicoesSemDocente().toString();
+        return preencheAtribuicoesSemDocente().toString();
     }
 
     public String toStringAlunosSemAtribuicao() {
-        return PreencheAlunosDisponiveis().toString();
+        return preencheAlunosDisponiveis().toString();
     }
 
     public String toStringPropostasSemAtribuicao() {
-        return PreenchePropostasDisponiveis().toString();
+        return preenchePropostasDisponiveis().toString();
     }
 
     //Devolver um to.string()
@@ -247,7 +242,7 @@ public class GestaoProj implements Serializable {
 
 
     //Alunos com candidatura registada
-    public HashSet<Aluno> AlunosCandidaturaRegistada(){
+    public HashSet<Aluno> alunosCandidaturaRegistada(){
         HashSet<Aluno> alunosD= new HashSet<>();
         for(Aluno a:alunos) {
             for (Candidatura ca : candidaturas)
@@ -258,7 +253,7 @@ public class GestaoProj implements Serializable {
     }
 
     //Alunos sem candidatura registada
-    public HashSet<Aluno> AlunosSemCandidaturaRegistada(){
+    public HashSet<Aluno> alunosSemCandidaturaRegistada(){
         boolean existe = true;
         HashSet<Aluno> alunosSR= new HashSet<>();
         for(Aluno a:alunos) {
@@ -297,7 +292,7 @@ public class GestaoProj implements Serializable {
     }
 
     //Facilita a utilização dos Atribuicoes sem docentes
-    public HashSet<Atribuicao> PreencheAtribuicoesSemDocente(){
+    public HashSet<Atribuicao> preencheAtribuicoesSemDocente(){
         HashSet<Atribuicao> atribuicaoSemDocente= new HashSet<>();
         for(Atribuicao a : atribuicoes) {
             if (a.getDocente() == null){
@@ -309,7 +304,7 @@ public class GestaoProj implements Serializable {
 
     //isto nao esta a fazer muito sentido ... e nao esta a funcionar
     //Facilita a utilização dos alunos e das propostas ao associar
-    public HashSet<Aluno> PreencheAlunosDisponiveis(){
+    public HashSet<Aluno> preencheAlunosDisponiveis(){
         HashSet<Aluno> alunosD= new HashSet<>();
         boolean existe = false;
         for(Aluno a:alunos) {
@@ -326,7 +321,7 @@ public class GestaoProj implements Serializable {
     }
 
     //nao é != em vez de ==
-    public HashSet<Proposta> PreenchePropostasDisponiveis(){
+    public HashSet<Proposta> preenchePropostasDisponiveis(){
         HashSet<Proposta> PropostasD= new HashSet<>();
         boolean existe =  false;
         for(Proposta p:propostas) {
@@ -341,7 +336,7 @@ public class GestaoProj implements Serializable {
         return PropostasD;
     }
 
-    public boolean CondicaoAvancar(){
+    public boolean condicaoAvancar(){
         boolean verificado=true;
         String[] ramos = {"DA", "SI", "RAS"};
         for(int i=0;i<ramos.length;i++) {
@@ -353,7 +348,7 @@ public class GestaoProj implements Serializable {
     }
 
     //verifica se o numero passado ja esta vinculado a alguma candidatura
-    public boolean VerificaAlunoJaCandidato(long nr_Aluno){
+    public boolean verificaAlunoJaCandidato(long nr_Aluno){
         for (Candidatura x : candidaturas) {
             if(x.getNraluno() == nr_Aluno){
                 return true;
@@ -383,7 +378,7 @@ public class GestaoProj implements Serializable {
     }
 
     //verifica se o numero pertence a algum aluno
-    public boolean VerificaAlunoExiste(long nr) {
+    public boolean verificaAlunoExiste(long nr) {
         if(alunos.size() == 0)
             return false;
         for (Aluno d: alunos) {
@@ -420,7 +415,7 @@ public class GestaoProj implements Serializable {
     }
 
     //verifica se o Id da proposta ja pertence a alguma proposta
-    public boolean VerificaIdProposta(String IDPro){
+    public boolean verificaIdProposta(String IDPro){
         for (Proposta x: propostas) {
             if(x.getCod_ID().equals(IDPro)){
                 return true;
@@ -428,7 +423,6 @@ public class GestaoProj implements Serializable {
         }
         return false;
     }
-
 
     public HashSet<Candidatura> getCandidaturas() {
         return candidaturas;
@@ -463,8 +457,6 @@ public class GestaoProj implements Serializable {
         return candidaturas.add(candidatura);
     }
 
-
-
     //remover dos arrays
     public boolean removerAlunos(long nr_aluno){
         ArrayList<String> Eliminadas = new ArrayList<>();
@@ -481,7 +473,6 @@ public class GestaoProj implements Serializable {
                 }else if (proposta.getClass().getSimpleName().equals("T2") || proposta.getClass().getSimpleName().equals("T1"))
                     proposta.setCodigo_Aluno(null);
         }
-
         for(String s:Eliminadas){
             removerProposta(s);
         }
@@ -509,7 +500,6 @@ public class GestaoProj implements Serializable {
         return docentes.remove(getDocentePorEmailObjeto(email));
     }
 
-
     //funcoes que recebem o nome do ficheiro do state e chama o metodo da class estatica correspondente
     public int lerficheiroAluno(String fileName) {
         return Ficheiro.lerAlunos(fileName,this);
@@ -528,7 +518,7 @@ public class GestaoProj implements Serializable {
     }
 
     //verifica se a proposta passada tem algum aluno
-    public boolean VerificaPropostaComAluno(String id_Proposta){
+    public boolean verificaPropostaComAluno(String id_Proposta){
         for (Proposta x : propostas) {
             if (x.getCod_ID().equals(id_Proposta)){
                 if(x.getCodigo_Aluno() == null){
@@ -540,7 +530,7 @@ public class GestaoProj implements Serializable {
     }
 
     //verifica se o aluno passado esta associado a alguma proposta
-    public boolean VerificaNumeroAssociadoAProposta(String codaluno){
+    public boolean verificaNumeroAssociadoAProposta(String codaluno){
         for (Proposta x : propostas) {
             if (codaluno.equals(x.getCodigo_Aluno())){
                 return true;
@@ -611,17 +601,6 @@ public class GestaoProj implements Serializable {
         }
         return list;
     }
-/*
-    public ArrayList<Proposta> getPropostasCandidatos() {
-        ArrayList<Candidatura> list;
-        list = new ArrayList<>();
-        for (Candidatura x : candidaturas) {
-            if(){
-                list.add(x);
-            }
-        }
-        return list;
-    }*/
 
     public ArrayList<Proposta> getPropostasSemCandidaturas() {
         ArrayList<Proposta> list = new ArrayList<>();
@@ -667,7 +646,7 @@ public class GestaoProj implements Serializable {
         ArrayList<Proposta> list;
         list = new ArrayList<>();
         for (Proposta x : propostas) {
-            if(!VerificaPropostaComAluno(x.getCod_ID())){
+            if(!verificaPropostaComAluno(x.getCod_ID())){
                 list.add(x);
             }
         }
@@ -678,7 +657,7 @@ public class GestaoProj implements Serializable {
         ArrayList<Proposta> list;
         list = new ArrayList<>();
         for (Proposta x : propostas) {
-            if(VerificaPropostaComAluno(x.getCod_ID())){
+            if(verificaPropostaComAluno(x.getCod_ID())){
                 list.add(x);
             }
         }
@@ -720,7 +699,7 @@ public class GestaoProj implements Serializable {
                 if(p.getClass().getSimpleName().equals("T2") &&
                         p.getCodigo_Aluno() !=null &&
                          c.getAluno().getNr_Aluno() == p.getCodigo_Aluno() &&
-                        VerificaAlunoAcederProposta(p.getCodigo_Aluno(),p.getCod_ID()) &&
+                        verificaAlunoAcederProposta(p.getCodigo_Aluno(),p.getCod_ID()) &&
                         !verificaCandidaturaAtribuida(c.getAluno()) &&
                         p.getEmail_Docente() != null){
 
@@ -752,7 +731,7 @@ public class GestaoProj implements Serializable {
         for (Aluno aluno: alunos) {
             if (!verificaCandidaturaAtribuida(aluno)){
                 for (Proposta proposta:propostas) {
-                    if (!verificaPropostaAtribuida(proposta) && VerificaRamoAlunoProposta(aluno.getNr_Aluno(),proposta.getRamo())){
+                    if (!verificaPropostaAtribuida(proposta) && verificaRamoAlunoProposta(aluno.getNr_Aluno(),proposta.getRamo())){
                         atribuicoes.add(new Atribuicao(aluno,getDocentePorEmailObjeto(proposta.getEmail_Docente()),proposta));
                     }
                 }
@@ -874,7 +853,7 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
-    //caso de asneira voltar a esta versao
+    //Função de backup
 /*    public ArrayList<String> atribuiAutomaticamente() {
         //ArrayList<String> conflitos = new ArrayList<>();
         boolean repetido = false;
@@ -927,7 +906,6 @@ public class GestaoProj implements Serializable {
 
     public Docente getDocenteContadorMenor(){
         Docente docenteMinimo = null;
-        int docenteMenor = 0;
         int out=0;
         for(Docente docente:docentes) {
             docenteMinimo = docente;
@@ -943,17 +921,6 @@ public class GestaoProj implements Serializable {
             }
         return null;
         }
-
-        /*for (Docente docente: docentes) {
-                if (docente.getContador() < 5) {
-                    if (docenteMenor >= docente.getContador()) {
-                        docenteMenor = docente.getContador();
-                        docenteMinimo = docente;
-                    }
-                }
-        }
-        return docenteMinimo;
-    }*/
 
     public void atribuirDocentesauto() {
         Docente docente = null;
@@ -992,9 +959,9 @@ public class GestaoProj implements Serializable {
     }
 
     public boolean atribuirManualmenteAluno(long id_aluno, String proposta){
-        if (VerificaAlunoExiste(id_aluno) &&
-                VerificaIdProposta(proposta) &&
-                VerificaAlunoAcederProposta(id_aluno,proposta) &&
+        if (verificaAlunoExiste(id_aluno) &&
+                verificaIdProposta(proposta) &&
+                verificaAlunoAcederProposta(id_aluno,proposta) &&
                 !verificaPropostaAtribuida(getPropostaPorId(proposta)) &&
                 !verificaCandidaturaAtribuida(getAlunoPorNumero(id_aluno))){
             getPropostaPorId(proposta).setCodigo_Aluno(id_aluno);
@@ -1013,7 +980,7 @@ public class GestaoProj implements Serializable {
         return null;
     }
 
-    public boolean VerificaAlunoAcederProposta(long nr_aluno, String id_proposta) {
+    public boolean verificaAlunoAcederProposta(long nr_aluno, String id_proposta) {
         if (getAlunoPorNumero(nr_aluno).isAceder_a_Estagio()) {
             return true;
         }else if (getPropostaPorId(id_proposta).getClass().getSimpleName().equals("T2")){
@@ -1022,7 +989,7 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
-    public boolean VerificaAlunoAcederPropostaLeitura(long nr_aluno, String id_proposta) {
+    public boolean verificaAlunoAcederPropostaLeitura(long nr_aluno, String id_proposta) {
         if (getAlunoPorNumero(nr_aluno).isAceder_a_Estagio()) {
             return true;
         }else if (id_proposta.equals("T2")){
@@ -1101,8 +1068,6 @@ public class GestaoProj implements Serializable {
         return PropostasDisponiveis;
     }
 
-
-
     public ArrayList<Proposta> getPropostasAtribuidas() {
         ArrayList<Proposta> PropostasAtribuidas = new ArrayList<>();
         for(Proposta p:propostas){
@@ -1123,7 +1088,6 @@ public class GestaoProj implements Serializable {
             }
         return ComOrientador;
         }
-
 
     public ArrayList<Atribuicao> getAlunosSemOrientador() {
         ArrayList<Atribuicao> SemOrientador = new ArrayList<>();
@@ -1172,11 +1136,9 @@ public class GestaoProj implements Serializable {
     private  List<String> Tipos = Arrays.asList(tipos);
 
 
-
-
     public Aluno validarAluno(String nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio, String curso){
         if (nr_Aluno.length() == 10 && //se o numero tem 10 digitos
-                !VerificaAlunoExiste(Long.parseLong(nr_Aluno)) && //se o numero ja nao se encontra noutro aluno
+                !verificaAlunoExiste(Long.parseLong(nr_Aluno)) && //se o numero ja nao se encontra noutro aluno
                 nome_Aluno.contains(" ") &&  //se tem um espaco entre os dois nomes (lg tem 2 nomes)
                 //email deve ter a + numero de aluno, seguido de @isec.pt
                 email_Aluno.contains("@isec.pt") && //email valido
@@ -1207,15 +1169,15 @@ public class GestaoProj implements Serializable {
         switch (tipo) {
             case "T1" -> {
                 if (codigo_Aluno == null && //nao tem aluno
-                        !VerificaIdProposta(cod_ID) && //id da proposta repetido
+                        !verificaIdProposta(cod_ID) && //id da proposta repetido
                         ((ramo.length() > 3 && ramo.contains("|")) || (ramo.length() <= 3 && Ramos.contains(ramo)))) //ver se tem mais q um ramo associado
                 {
                     return new T1(ramo,titulo,cod_ID,empresa);
                 } else if(codigo_Aluno != null &&
-                        VerificaAlunoExiste(codigo_Aluno) &&
-                        !VerificaIdProposta(cod_ID) && //id da proposta repetido
-                        VerificaRamoAlunoProposta(codigo_Aluno,ramo) &&
-                        VerificaAlunoAcederPropostaLeitura(codigo_Aluno,cod_ID) && //Verifica proposta durante a leitura
+                        verificaAlunoExiste(codigo_Aluno) &&
+                        !verificaIdProposta(cod_ID) && //id da proposta repetido
+                        verificaRamoAlunoProposta(codigo_Aluno,ramo) &&
+                        verificaAlunoAcederPropostaLeitura(codigo_Aluno,cod_ID) && //Verifica proposta durante a leitura
                         ((ramo.length() > 3 && ramo.contains("|")) || (ramo.length() <= 3 && Ramos.contains(ramo)))) //ver se tem mais q um ramo associado
                 {
                     return new T1(ramo, titulo, cod_ID ,codigo_Aluno,empresa);
@@ -1226,7 +1188,7 @@ public class GestaoProj implements Serializable {
             }
             case "T2" -> {
                 if (codigo_Aluno == null &&
-                        !VerificaIdProposta(cod_ID) && //id da proposta repetido
+                        !verificaIdProposta(cod_ID) && //id da proposta repetido
                         verificaEmailDocente(email_Docente) && //email de um docente valido
                         ((ramo.length() > 3 && ramo.contains("|"))  || (ramo.length() <= 3 && Ramos.contains(ramo)))) //ramos associados
                 {
@@ -1237,9 +1199,9 @@ public class GestaoProj implements Serializable {
                     return new T2(cod_ID, titulo, ramo, email_Docente);
                 } else if (codigo_Aluno != null &&
                         verificaEmailDocente(email_Docente) && //email de um docente valido
-                        !VerificaIdProposta(cod_ID) && //id da proposta repetido
-                        VerificaRamoAlunoProposta(codigo_Aluno,ramo) &&
-                        VerificaAlunoExiste(codigo_Aluno) && //numero de aluno valido
+                        !verificaIdProposta(cod_ID) && //id da proposta repetido
+                        verificaRamoAlunoProposta(codigo_Aluno,ramo) &&
+                        verificaAlunoExiste(codigo_Aluno) && //numero de aluno valido
                         ((ramo.length() > 3 && ramo.contains("|"))  || (ramo.length() <= 3 && Ramos.contains(ramo)))) //ramos associado
                 {
                     //Definir o docente como proponente do projeto
@@ -1255,8 +1217,8 @@ public class GestaoProj implements Serializable {
                 }
             }
             case "T3" -> {
-                if (VerificaAlunoExiste(codigo_Aluno) && //numero de aluno valido
-                        !VerificaIdProposta(cod_ID) && //id da proposta repetido
+                if (verificaAlunoExiste(codigo_Aluno) && //numero de aluno valido
+                        !verificaIdProposta(cod_ID) && //id da proposta repetido
                         !get_codigoAluno(codigo_Aluno)) //se aluno ja nao esta associado a um T3
                 {
                     adicionarCandidatura(new Candidatura(getAlunoPorNumero(codigo_Aluno),getPropostaPorId(cod_ID)));
@@ -1286,14 +1248,14 @@ public class GestaoProj implements Serializable {
     public Candidatura validarCandidatura(String nrAluno,String codId){
         //falta validar
         //Validar aluno
-        if(VerificaAlunoExiste(Long.parseLong(nrAluno)) &&
+        if(verificaAlunoExiste(Long.parseLong(nrAluno)) &&
            !verificaPropostaEmCandidatura(nrAluno,codId) &&
-           !VerificaNumeroAssociadoAProposta(nrAluno)){
+           !verificaNumeroAssociadoAProposta(nrAluno)){
             //Validar proposta
-            if(VerificaIdProposta(codId) &&
-            VerificaRamoAlunoProposta(Long.parseLong(nrAluno),getPropostaPorId(codId).getRamo()) &&
-            VerificaAlunoAcederProposta(Long.parseLong(nrAluno),codId) &&
-            VerificaPropostaComAluno(codId)){
+            if(verificaIdProposta(codId) &&
+            verificaRamoAlunoProposta(Long.parseLong(nrAluno),getPropostaPorId(codId).getRamo()) &&
+            verificaAlunoAcederProposta(Long.parseLong(nrAluno),codId) &&
+            verificaPropostaComAluno(codId)){
                 return new Candidatura(getAlunoPorNumero(Long.parseLong(nrAluno)), getPropostaPorId(codId));
             }
             return null;
@@ -1342,7 +1304,6 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
-
     public boolean removerPropostaDeCandidatura(String nr_Aluno, String id_proposta){
         //Ainda remove a T2 e T3 com aluno associado, nao pode!
         for (Candidatura candidatura: candidaturas){
@@ -1359,7 +1320,7 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
-    public boolean VerificaRamoAlunoProposta(long nraluno, String ramo) {
+    public boolean verificaRamoAlunoProposta(long nraluno, String ramo) {
         String[] nova;
         if(ramo.contains("|")) {
             nova = ramo.split("\\|");
@@ -1426,7 +1387,7 @@ public class GestaoProj implements Serializable {
             if(c.getNralunoString().equals(nr_aluno)) {
                 if ((c.getPropostas().get(0).getClass().getSimpleName().equals("T2") || c.getPropostas().get(0).getClass().getSimpleName().equals("T3")) && c.getPropostas().get(0).getCodigo_Aluno()!=null)
                     return false;
-                    if (!verificaPropostaEmCandidatura(nr_aluno,idProp) && VerificaIdProposta(idProp)) {
+                    if (!verificaPropostaEmCandidatura(nr_aluno,idProp) && verificaIdProposta(idProp)) {
                         c.getPropostas().add(getPropostaPorId(idProp));
                         return true;
                     }

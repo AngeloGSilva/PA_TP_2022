@@ -295,11 +295,11 @@ public class ProContexto {
     }
 
     public String getAlunosComCandidaturaString(){
-        return String.valueOf(dados.AlunosCandidaturaRegistada());
+        return String.valueOf(dados.alunosCandidaturaRegistada());
     }
 
     public String getAlunosSemCandidaturaString(){
-        return String.valueOf(dados.AlunosSemCandidaturaRegistada());
+        return String.valueOf(dados.alunosSemCandidaturaRegistada());
     }
 
 
@@ -399,6 +399,6 @@ public class ProContexto {
     }
 
     public boolean VerificaAlunoJaCandidato(long nr_Aluno){
-        return dados.VerificaAlunoJaCandidato(nr_Aluno);
+        return dados.verificaAlunoJaCandidato(nr_Aluno);
     }
 }

@@ -3,7 +3,7 @@ package pt.isec.pa.apoio_poe.model.fsm;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 import pt.isec.pa.apoio_poe.model.data.Proposta;
 
-public class GestaoPropostaState extends IStateAdaptar {
+public class GestaoPropostaState extends IStateAdapter {
     public GestaoPropostaState(GestaoProj dados, ProContexto contexto) {
         super(dados,contexto);
     }
@@ -21,7 +21,7 @@ public class GestaoPropostaState extends IStateAdaptar {
 
     @Override
     public boolean avancar(boolean guardado) {
-        if(guardado && dados.CondicaoAvancar()){
+        if(guardado && dados.condicaoAvancar()){
             dados.setFase_Fechada_Config(true);
             //System.out.println("Fase fechada\n");
             alteraState(new opCandidaturaState(dados, contexto));
@@ -56,7 +56,7 @@ public class GestaoPropostaState extends IStateAdaptar {
     public boolean adicionarProposta(String tipo,String cod_ID, String titulo, Long codigo_Aluno, String email_Docente, String ramo,String empresa){
         Proposta p = dados.validarProposta(tipo,cod_ID,  titulo,  codigo_Aluno,  email_Docente,  ramo, empresa);
         if(p!=null){
-            if(tipo.equals("T3"))
+            if(tipo.equals("T3")) // se for do tipo T3, o ramo da proposta é o ramo do aluno
                 p.setRamo(dados.getAlunoPorNumero(codigo_Aluno).getRamo_Aluno());
             dados.adicionarProposta(p);
             alteraState(new GestaoPropostaState(dados,contexto));

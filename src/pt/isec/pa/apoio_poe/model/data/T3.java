@@ -13,8 +13,8 @@ public class T3 extends Proposta implements Serializable {
         return "T3" +
                 " Codigo Id : " + getCod_ID() +
                 " Titulo : " + getTitulo() +
-                " |Aluno associado| : " + getCodigo_Aluno() +
                 " Ramo: " + getRamo() +
+                " |Aluno associado| : " + getCodigo_Aluno() +
                 "\n";
     }
 }

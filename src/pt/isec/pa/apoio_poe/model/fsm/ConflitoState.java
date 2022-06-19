@@ -1,9 +1,8 @@
 package pt.isec.pa.apoio_poe.model.fsm;
 
-import pt.isec.pa.apoio_poe.model.data.Aluno;
 import pt.isec.pa.apoio_poe.model.data.GestaoProj;
 
-public class ConflitoState extends IStateAdaptar {
+public class ConflitoState extends IStateAdapter {
     public ConflitoState(GestaoProj dados, ProContexto contexto) {
         super(dados, contexto);
     }
