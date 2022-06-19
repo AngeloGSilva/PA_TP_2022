@@ -930,7 +930,7 @@ public class GestaoProj implements Serializable {
         int docenteMenor = 0;
         for (Docente docente: docentes) {
                 if (docente.getContador() < 5) {
-                    if (docenteMenor > docente.getContador()) {
+                    if (docenteMenor >= docente.getContador()) {
                         docenteMenor = docente.getContador();
                         docenteMinimo = docente;
                     }
