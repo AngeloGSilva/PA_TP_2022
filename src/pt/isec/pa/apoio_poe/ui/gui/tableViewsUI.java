@@ -28,7 +28,6 @@ public class tableViewsUI extends BorderPane {
     TableView<Aluno> tableAlunos;
     TableView<Docente> tableDocente;
     TableView<Proposta> tableProposta;
-
     TableView<Aluno> tableAlunosConf;
     TableView<Docente> tableDocenteConf;
     TableView<Proposta> tablePropostaConf;
@@ -36,12 +35,20 @@ public class tableViewsUI extends BorderPane {
     TableView<Atribuicao> tableAtribuicoesPro;
     TableView<Atribuicao> tableAtribuicoesOri;
 
+    //tabelas para o UI final
+    TableView<Aluno> tableAlunosFinal;
+    TableView<Docente> tableDocenteFinal;
+    TableView<Proposta> tablePropostaFinal;
+    TableView<Candidatura> tableCandidaturaFinal;
+    TableView<Atribuicao> tableAtribuicoesFinal;
+
     TableColumn nome,nr_Aluno,email_Aluno,curso,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio;
     TableColumn nomeDocente,papel_Docente,email_Docente;
     TableColumn cod_ID,titulo,codigo_Aluno,email_DocenteProposta,empresa,ramo;
 
-    ToggleButton tbAuto,tbNotReg,tbReg,tbAluno,tbDocente,tbProposta;
-    ToggleGroup tgFilter,tgFilterConf;
+    ToggleButton tbAuto,tbNotReg,tbReg;
+    ToggleButton tbAluno,tbDocente,tbProposta,tbCandidatura,tbAtribuicoes;
+    ToggleGroup tgFilter,tgFilterConf,tgConsultaUI;
 
     MenuItem delete;
 
@@ -470,18 +477,189 @@ public class tableViewsUI extends BorderPane {
                 tableAtribuicoesOri.setItems(manager.getAtribuicoes());
 
             }
+            case CONSULTA -> {
+                btnDelete.setManaged(false);
+                btnDelete.setVisible(false);
+                btnAdd.setManaged(false);
+                btnAdd.setVisible(false);
+
+                //tabela Alunos
+                tableAlunosFinal = new TableView<Aluno>();
+                nome = new TableColumn("Nome");
+                nome.setCellValueFactory(new PropertyValueFactory<Aluno, String>("nome_Aluno"));
+                nome.setCellFactory(TextFieldTableCell.forTableColumn());
+                nome.setMinWidth(100);
+
+                nr_Aluno = new TableColumn("Numero");
+                nr_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, Long>("nr_Aluno"));
+                nr_Aluno.setMinWidth(85);
+
+                email_Aluno = new TableColumn("Email");
+                email_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, String>("email_Aluno"));
+                email_Aluno.setMinWidth(140);
+
+                curso = new TableColumn("Curso");
+                curso.setCellValueFactory(new PropertyValueFactory<Aluno, String>("curso"));
+                curso.setMinWidth(50);
+
+                ramo_Aluno = new TableColumn("Ramo");
+                ramo_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, String>("ramo_Aluno"));
+                ramo_Aluno.setMinWidth(50);
+
+                classificacao_Aluno = new TableColumn("Classificacão");
+                classificacao_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, Double>("classificacao_Aluno"));
+                classificacao_Aluno.setMinWidth(50);
+
+                aceder_a_Estagio = new TableColumn("Estagio");
+                aceder_a_Estagio.setCellValueFactory(new PropertyValueFactory<Aluno, Boolean>("aceder_a_Estagio"));
+                aceder_a_Estagio.setMinWidth(50);
+                tableAlunosFinal.getColumns().addAll(nome,nr_Aluno,email_Aluno,curso,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
+
+                tableAlunosFinal.setMaxWidth(750);
+                tableAlunosFinal.setMaxHeight(450);
+
+                tableAlunosFinal.setItems(manager.getAlunos());
+                this.setCenter(tableAlunosFinal);
+
+                //tabela Docentes
+                tableDocenteFinal = new TableView<Docente>();
+                nomeDocente = new TableColumn("Nome");
+                nomeDocente.setCellValueFactory(new PropertyValueFactory<Docente, String>("nome_Docente"));
+                nomeDocente.setCellFactory(TextFieldTableCell.forTableColumn());
+                nomeDocente.setMinWidth(100);
+
+                papel_Docente = new TableColumn("Papel");
+                papel_Docente.setCellValueFactory(new PropertyValueFactory<Docente, Boolean>("papel_Docente"));
+                papel_Docente.setMinWidth(85);
+
+                email_Docente = new TableColumn("Email");
+                email_Docente.setCellValueFactory(new PropertyValueFactory<Docente, String>("email_Docente"));
+                email_Docente.setMinWidth(140);
+
+                tableDocenteFinal.getColumns().addAll(nomeDocente,papel_Docente,email_Docente);
+
+                tableDocenteFinal.setMaxWidth(750);
+                tableDocenteFinal.setMaxHeight(450);
+
+                tableDocenteFinal.setVisible(false);
+                tableDocenteFinal.setManaged(false);
+
+                //tabela Propostas
+                tablePropostaFinal = new TableView<Proposta>();
+                cod_ID = new TableColumn("Nome");
+                cod_ID.setCellValueFactory(new PropertyValueFactory<Docente, String>("cod_ID"));
+                cod_ID.setMinWidth(100);
+
+                titulo = new TableColumn("Titulo");
+                titulo.setCellValueFactory(new PropertyValueFactory<Docente, String>("titulo"));
+                titulo.setMinWidth(100);
+
+                codigo_Aluno = new TableColumn("Codigo Aluno");
+                codigo_Aluno.setCellValueFactory(new PropertyValueFactory<Docente, String>("codigo_Aluno"));
+                codigo_Aluno.setMinWidth(100);
+
+                email_Docente = new TableColumn("Email Docente");
+                email_Docente.setCellValueFactory(new PropertyValueFactory<Docente, String>("email_Docente"));
+                email_Docente.setMinWidth(100);
+
+                empresa = new TableColumn("Empresa");
+                empresa.setCellValueFactory(new PropertyValueFactory<Docente, String>("empresa"));
+                empresa.setMinWidth(100);
+
+                ramo = new TableColumn("Ramo");
+                ramo.setCellValueFactory(new PropertyValueFactory<Docente, String>("ramo"));
+                ramo.setMinWidth(100);
+
+                tablePropostaFinal.getColumns().addAll(cod_ID,titulo,codigo_Aluno,email_Docente,empresa,ramo);
+
+                tablePropostaFinal.setMaxWidth(750);
+                tablePropostaFinal.setMaxHeight(450);
+
+                tablePropostaFinal.setVisible(false);
+                tablePropostaFinal.setManaged(false);
+
+                //tabela Candidaturas
+                tableCandidaturaFinal = new TableView<Candidatura>();
+                TableColumn<Candidatura, String> numeroAluno = new TableColumn<Candidatura, String>("Numero");
+                numeroAluno.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getNralunoString()));
+                numeroAluno.setMinWidth(100);
+
+                TableColumn<Candidatura, String> nomeAluno = new TableColumn<Candidatura, String>("Nome");
+                nomeAluno.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getNomeAluno()));
+                nomeAluno.setMinWidth(100);
+
+                TableColumn<Candidatura, String> cod_ID = new TableColumn<Candidatura, String>("Codigo da Proposta");
+                cod_ID.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getIdPropostas().toString()));
+                cod_ID.setMinWidth(200);
+
+                tableCandidaturaFinal.getColumns().addAll(numeroAluno,nomeAluno,cod_ID);
+
+                tableCandidaturaFinal.setMaxWidth(750);
+                tableCandidaturaFinal.setMaxHeight(450);
+
+                tableCandidaturaFinal.setVisible(false);
+                tableCandidaturaFinal.setManaged(false);
+
+                //tabela Atribuicoes de Estagios/Projetos
+                tableAtribuicoesFinal = new TableView<Atribuicao>();
+                TableColumn<Atribuicao, String> nome_Aluno = new TableColumn<Atribuicao, String>("Nome");
+                nome_Aluno.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getAluno().getNome_Aluno()));
+                nome_Aluno.setMinWidth(100);
+
+                TableColumn<Atribuicao, String> numero_Aluno = new TableColumn<Atribuicao, String>("Numero");
+                numero_Aluno.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getAluno().getNr_AlunoString()));
+                numero_Aluno.setMinWidth(85);
+
+                TableColumn<Atribuicao, String> nome_Docente = new TableColumn<Atribuicao, String>("Docente");
+                nome_Docente.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getNomeDocenteTV())
+                );
+                nome_Docente.setMinWidth(140);
+
+                TableColumn<Atribuicao, String> id_Proposta = new TableColumn<Atribuicao, String>("ID");
+                id_Proposta.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getProposta().getCod_ID()));
+                id_Proposta.setMinWidth(140);
+
+
+                tableAtribuicoesFinal.getColumns().addAll(nome_Aluno,numero_Aluno,nome_Docente,id_Proposta);
+
+                tableAtribuicoesFinal.setMaxWidth(750);
+                tableAtribuicoesFinal.setMaxHeight(450);
+
+                tableAtribuicoesFinal.setManaged(false);
+                tableAtribuicoesFinal.setVisible(false);
+
+                tbAluno = new ToggleButton("Alunos");
+                tbDocente = new ToggleButton("Docentes");
+                tbProposta = new ToggleButton("Propostas");
+                tbCandidatura = new ToggleButton("Candidaturas");
+                tbAtribuicoes = new ToggleButton("Atribuicoes");
+
+                tgConsultaUI = new ToggleGroup();
+
+                tbAluno.setToggleGroup(tgConsultaUI);
+                tbDocente.setToggleGroup(tgConsultaUI);
+                tbProposta.setToggleGroup(tgConsultaUI);
+                tbCandidatura.setToggleGroup(tgConsultaUI);
+                tbAtribuicoes.setToggleGroup(tgConsultaUI);
+
+                hboxFilters = new HBox();
+                hboxFilters.getChildren().addAll(tbAluno,tbDocente,tbProposta,tbCandidatura,tbAtribuicoes);
+                tbAluno.setSelected(true);
+                hboxFilters.setAlignment(Pos.BOTTOM_CENTER);
+                this.setTop(hboxFilters);
+            }
         }
     }
 
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
-
-/*        delete.setOnAction(event -> {
-                Aluno selectedItem = tableAlunos.getSelectionModel().getSelectedItem();
-                tableAlunos.getItems().remove(selectedItem);
-                manager.remover(selectedItem.getNr_AlunoString());
-        });*/
-
 
         if (manager.getState().equals(PoeState.OPCAO_CANDIDATURA)) {
             btnFilter.setOnAction(e ->{
@@ -621,17 +799,44 @@ public class tableViewsUI extends BorderPane {
             }
         });
 
-/*        if (tableAlunos != null){
-            nome.setOnEditCommit( t ->{
-               String nome = tableAlunos.getItems().get(tableAlunos.getSelectionModel().getSelectedIndices().get(tablePo));
-                System.out.println(nome.toString());
-                //manager.editar(tableAlunos.getSelectionModel().getSelectedItem().getNr_AlunoString(), String.valueOf((EventHandler<TableColumn.CellEditEvent<Aluno, String>>) t -> t.getNewValue()));
+        if (manager.getState().equals(PoeState.CONSULTA)){
+            tbAluno.setOnAction(event -> {
+                tableAlunosFinal.setVisible(true);
+                tableAlunosFinal.setManaged(true);
+                tableAlunosFinal.setItems(manager.getAlunos());
+                this.setCenter(tableAlunosFinal);
             });
+
+            tbDocente.setOnAction(event -> {
+                tableDocenteFinal.setVisible(true);
+                tableDocenteFinal.setManaged(true);
+                tableDocenteFinal.setItems(manager.getDocentes());
+                this.setCenter(tableDocenteFinal);
+            });
+
+            tbProposta.setOnAction(event -> {
+                tablePropostaFinal.setVisible(true);
+                tablePropostaFinal.setManaged(true);
+                tablePropostaFinal.setItems(manager.getPropostas());
+                this.setCenter(tablePropostaFinal);
+            });
+
+            tbCandidatura.setOnAction(event -> {
+                tableCandidaturaFinal.setVisible(true);
+                tableCandidaturaFinal.setManaged(true);
+                tableCandidaturaFinal.setItems(manager.getCandidaturas());
+                this.setCenter(tableCandidaturaFinal);
+            });
+
+            tbAtribuicoes.setOnAction(event -> {
+                tableAtribuicoesFinal.setVisible(true);
+                tableAtribuicoesFinal.setManaged(true);
+                tableAtribuicoesFinal.setItems(manager.getAtribuicoes());
+                this.setCenter(tableAtribuicoesFinal);
+            });
+
         }
 
-        if (tableDocente != null){
-            nomeDocente.setOnEditCommit((EventHandler<TableColumn.CellEditEvent<Docente, String>>) t -> ((Docente) t.getTableView().getItems().get(t.getTablePosition().getRow())).setNome_Docente(t.getNewValue()));
-        }*/
     }
 
     private void update() {

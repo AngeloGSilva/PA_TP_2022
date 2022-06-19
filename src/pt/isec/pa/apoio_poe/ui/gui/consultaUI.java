@@ -5,18 +5,22 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import pt.isec.pa.apoio_poe.model.ProgManager;
 import pt.isec.pa.apoio_poe.ui.gui.resources.CSSManager;
 import pt.isec.pa.apoio_poe.ui.gui.resources.FontManager;
 import pt.isec.pa.apoio_poe.ui.gui.resources.ImageManager;
 
-public class consultaUI extends GridPane {
+public class consultaUI extends BorderPane {
 
     ProgManager manager;
     Button btnGraficos, btnTabelas, btnback;
     ImageView imageView;
+
+    HBox hBox;
 
     public consultaUI(ProgManager manager) {
         this.manager = manager;
@@ -28,32 +32,31 @@ public class consultaUI extends GridPane {
 
     private void createViews() {
         this.setPadding(new Insets(10, 10, 10, 10));
-        this.setVgap(6);
-        this.setHgap(6);
+
+        hBox = new HBox();
 
         btnGraficos = new Button("Graficos");
         imageView = new ImageView(ImageManager.getImage("chart.png"));
         btnGraficos.setContentDisplay(ContentDisplay.LEFT);
         btnGraficos.setGraphic(imageView);
-        this.getChildren().add(btnGraficos);
+        hBox.getChildren().add(btnGraficos);
 
         btnTabelas = new Button("Tabelas");
         imageView = new ImageView(ImageManager.getImage("dataTables.png"));
         btnTabelas.setContentDisplay(ContentDisplay.LEFT);
         btnTabelas.setGraphic(imageView);
-        this.getChildren().add(btnTabelas);
+        hBox.getChildren().add(btnTabelas);
 
         btnback = new Button("Voltar");
         imageView = new ImageView(ImageManager.getImage("back.png"));
         btnback.setContentDisplay(ContentDisplay.LEFT);
         btnback.setGraphic(imageView);
-        this.getChildren().add(btnback);
+        hBox.getChildren().add(btnback);
         btnback.setVisible(false);
         btnback.setManaged(false);
 
-        GridPane.setConstraints(btnGraficos,0,0);
-        GridPane.setConstraints(btnGraficos,0,0);
-        GridPane.setConstraints(btnTabelas,0,1);
+
+        this.setTop(hBox);
 
     }
 
@@ -80,7 +83,12 @@ public class consultaUI extends GridPane {
 
             btnback.setVisible(true);
             btnback.setManaged(true);
+
+            //hBox.getChildren().add(new tableViewsUI(manager));
+            this.setCenter(new tableViewsUI(manager));
         });
+
+
 
         btnback.setOnAction(event -> {
             btnGraficos.setVisible(true);

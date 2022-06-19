@@ -1445,6 +1445,21 @@ public class GestaoProj implements Serializable {
             }
         }
     }
-    //Dados Nas opcoes de Candidatura
 
+    //contar frequencia
+    public HashMap<String, Integer> frequenciaDeElementos() {
+        HashMap<String, Integer> freqMap
+                = new HashMap<String, Integer>();
+
+        for (Proposta proposta : propostas) {
+            if (freqMap.containsKey(proposta.getRamo())) {
+
+                // If number is present in freqMap,
+                // incrementing it's count by 1
+                freqMap.put(proposta.getRamo(), freqMap.get(proposta.getRamo()) + 1);
+            }else
+                freqMap.put(proposta.getRamo(), 1);
+        }
+        return freqMap;
+    }
 }

@@ -9,6 +9,7 @@ import pt.isec.pa.apoio_poe.model.fsm.opCandidaturaState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.HashMap;
 
 public class ProgManager {
 
@@ -270,6 +271,10 @@ public class ProgManager {
 
     public PoeState getState(){
         return controladorDoPrograma.getState();
+    }
+
+    public HashMap<String, Integer> frequenciaDeElementos(){
+        return controladorDoPrograma.frequenciaDeElementos();
     }
 
 }

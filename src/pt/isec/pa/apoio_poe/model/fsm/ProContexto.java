@@ -401,4 +401,6 @@ public class ProContexto {
     public boolean VerificaAlunoJaCandidato(long nr_Aluno){
         return dados.verificaAlunoJaCandidato(nr_Aluno);
     }
+
+    public HashMap<String, Integer> frequenciaDeElementos(){return dados.frequenciaDeElementos();}
 }
