@@ -1,7 +1,6 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,12 +13,20 @@ import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import pt.isec.pa.apoio_poe.ui.gui.resources.ImageManager;
 
+import java.awt.event.MouseEvent;
 import java.util.Locale;
 
 public class tableViewsUI extends BorderPane {
     ProgManager manager;
     Button btnDelete,btnAdd;
-    SplitMenuButton btnFilter;
+
+    SplitMenuButton btnMenuAluno,btnMenuProposta;
+    MenuItem itemAuto, itemNotReg, itemReg;
+
+    //ToggleButton tbAuto,tbNotReg,tbReg;
+    ToggleButton tbAluno,tbDocente,tbProposta,tbCandidatura,tbAtribuicoes;
+
+    ToggleGroup tgFilter,tgFilterConf,tgConsultaUI;
     Tooltip tooltip;
     HBox hBox;
     VBox vBox;
@@ -46,9 +53,7 @@ public class tableViewsUI extends BorderPane {
     TableColumn nomeDocente,papel_Docente,email_Docente;
     TableColumn cod_ID,titulo,codigo_Aluno,email_DocenteProposta,empresa,ramo;
 
-    ToggleButton tbAuto,tbNotReg,tbReg;
-    ToggleButton tbAluno,tbDocente,tbProposta,tbCandidatura,tbAtribuicoes;
-    ToggleGroup tgFilter,tgFilterConf,tgConsultaUI;
+
 
     MenuItem delete;
 
@@ -85,16 +90,19 @@ public class tableViewsUI extends BorderPane {
 
         delete = new MenuItem("Delete");
 
-        btnFilter = new SplitMenuButton();
-        imageView = new ImageView(ImageManager.getImage("filter.png"));
+        btnMenuAluno = new SplitMenuButton();
+        btnMenuAluno.setText("Alunos");
+        imageView = new ImageView(ImageManager.getImage("estudante.png"));
         imageView.setFitHeight(17);
         imageView.setFitWidth(15);
-        btnFilter.setGraphic(imageView);
-        MenuItem choice1 = new MenuItem("Choice 1");
-        MenuItem choice2 = new MenuItem("Choice 2");
-        btnFilter.getItems().addAll(choice1,choice2);
+        btnMenuAluno.setGraphic(imageView);
 
-
+        btnMenuProposta = new SplitMenuButton();
+        btnMenuProposta.setText("propostas");
+        imageView = new ImageView(ImageManager.getImage("propostas.png"));
+        imageView.setFitHeight(17);
+        imageView.setFitWidth(15);
+        btnMenuProposta.setGraphic(imageView);
 
         switch (manager.getState()){
 
@@ -356,7 +364,7 @@ public class tableViewsUI extends BorderPane {
                 tableAlunos.setItems(manager.getCandidaturasNotReg());
                 tableAlunos.setVisible(false);
 
-                tbReg = new ToggleButton("Registadas");
+                /*tbReg = new ToggleButton("Registadas");
                 tbAuto = new ToggleButton("Autopropostos");
                 tbNotReg = new ToggleButton("Sem Registadas");
 
@@ -368,7 +376,7 @@ public class tableViewsUI extends BorderPane {
 
                 tbReg.setAlignment(Pos.CENTER);
                 tbAuto.setAlignment(Pos.CENTER);
-                tbNotReg.setAlignment(Pos.CENTER);
+                tbNotReg.setAlignment(Pos.CENTER);*/
 
                 tableCandidatura = new TableView<Candidatura>();
                 TableColumn<Candidatura, String> numeroAluno = new TableColumn<Candidatura, String>("Numero");
@@ -391,8 +399,8 @@ public class tableViewsUI extends BorderPane {
                 tableCandidatura.setMaxWidth(750);
                 tableCandidatura.setMaxHeight(450);
                 hboxFilters = new HBox();
-                hboxFilters.getChildren().addAll(tbAuto,tbReg,tbNotReg);
-                tbReg.setSelected(true);
+                hboxFilters.getChildren().addAll(btnMenuAluno,btnMenuProposta);
+                //tbReg.setSelected(true);
                 hboxFilters.setAlignment(Pos.BOTTOM_CENTER);
                 //hboxFilters.setPadding(new Insets(bottom));
                 //this.topProperty(hboxFilters);
@@ -404,11 +412,16 @@ public class tableViewsUI extends BorderPane {
                 tableCandidatura.setItems(manager.getCandidaturas());
 
 
-                AnchorPane anchorPane = new AnchorPane();
+                /*AnchorPane anchorPane = new AnchorPane();
                 anchorPane.getChildren().add(btnFilter);
                 AnchorPane.setLeftAnchor(btnFilter,10.0);
                 AnchorPane.setTopAnchor(btnFilter,25.0);
-                this.getChildren().add(anchorPane);
+                this.getChildren().add(anchorPane);*/
+                itemReg = new MenuItem("Registadas");
+                itemAuto = new MenuItem("Autopropostos");
+                itemNotReg = new MenuItem("Sem Registadas");
+
+                btnMenuAluno.getItems().addAll(itemReg,itemAuto,itemNotReg);
 
             }
             case ATRIBUIR_PROPOSTA -> {
@@ -662,10 +675,7 @@ public class tableViewsUI extends BorderPane {
         manager.addPropertyChangeListener(evt -> { update(); });
 
         if (manager.getState().equals(PoeState.OPCAO_CANDIDATURA)) {
-            btnFilter.setOnAction(e ->{
-
-            });
-            tbReg.setOnAction(e -> {
+            itemReg.setOnAction(e -> {
                 tableAlunos.setVisible(false);
                 tableCandidatura.setVisible(true);
                 this.setCenter(tableCandidatura);
@@ -675,7 +685,7 @@ public class tableViewsUI extends BorderPane {
                 btnAdd.setDisable(false);
             });
 
-            tbAuto.setOnAction(e -> {
+            itemAuto.setOnAction(e -> {
                 tableAlunos.setVisible(false);
                 tableCandidatura.setVisible(true);
                 this.setCenter(tableCandidatura);
@@ -685,7 +695,7 @@ public class tableViewsUI extends BorderPane {
                 btnAdd.setDisable(false);
             });
 
-            tbNotReg.setOnAction(e -> {
+            itemNotReg.setOnAction(e -> {
                 tableCandidatura.getItems().clear();
                 tableCandidatura.setVisible(false);
                 this.setCenter(tableAlunos);
@@ -800,6 +810,7 @@ public class tableViewsUI extends BorderPane {
         });
 
         if (manager.getState().equals(PoeState.CONSULTA)){
+
             tbAluno.setOnAction(event -> {
                 tableAlunosFinal.setVisible(true);
                 tableAlunosFinal.setManaged(true);

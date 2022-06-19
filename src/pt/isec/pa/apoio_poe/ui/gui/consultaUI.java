@@ -31,6 +31,8 @@ public class consultaUI extends BorderPane {
     }
 
     private void createViews() {
+        this.setTop(new graficosUI(manager));
+
         this.setPadding(new Insets(10, 10, 10, 10));
 
         hBox = new HBox();

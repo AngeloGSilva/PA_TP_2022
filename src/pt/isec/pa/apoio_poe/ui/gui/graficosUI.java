@@ -1,6 +1,9 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.scene.chart.PieChart;
 import javafx.scene.layout.GridPane;
 import pt.isec.pa.apoio_poe.model.ProgManager;
 import pt.isec.pa.apoio_poe.ui.gui.resources.CSSManager;
@@ -18,9 +21,7 @@ public class graficosUI extends GridPane {
     }
 
     private void createViews() {
-        this.setPadding(new Insets(10, 10, 10, 10));
-        this.setVgap(6);
-        this.setHgap(6);
+
     }
 
     private void registerHandlers() {
