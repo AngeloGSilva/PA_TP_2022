@@ -684,6 +684,7 @@ public class GestaoProj implements Serializable {
                 for (Proposta p : c.getPropostas()) {
                     if (!verificaPropostaAtribuida(p)){
                         if (p.getClass().getSimpleName().equals("T1") && p.getCodigo_Aluno() != null) {
+                            p.setCodigo_Aluno(c.getNraluno());
                             atribuicoes.add(new Atribuicao(c.getAluno(), null, p));
                         }
                     }
@@ -698,7 +699,7 @@ public class GestaoProj implements Serializable {
             for (Proposta p: c.getPropostas()) {
                 if(p.getClass().getSimpleName().equals("T2") &&
                         p.getCodigo_Aluno() !=null &&
-                         c.getAluno().getNr_Aluno() == p.getCodigo_Aluno() &&
+                        c.getAluno().getNr_Aluno() == p.getCodigo_Aluno() &&
                         verificaAlunoAcederProposta(p.getCodigo_Aluno(),p.getCod_ID()) &&
                         !verificaCandidaturaAtribuida(c.getAluno()) &&
                         p.getEmail_Docente() != null){
@@ -732,6 +733,7 @@ public class GestaoProj implements Serializable {
             if (!verificaCandidaturaAtribuida(aluno)){
                 for (Proposta proposta:propostas) {
                     if (!verificaPropostaAtribuida(proposta) && verificaRamoAlunoProposta(aluno.getNr_Aluno(),proposta.getRamo())){
+                        proposta.setCodigo_Aluno(aluno.getNr_Aluno());
                         atribuicoes.add(new Atribuicao(aluno,getDocentePorEmailObjeto(proposta.getEmail_Docente()),proposta));
                     }
                 }
@@ -810,7 +812,6 @@ public class GestaoProj implements Serializable {
     }
 
     public boolean atribuiAutomaticamente() {
-        //ArrayList<String> conflitos = new ArrayList<>();
         conflitos.clear();
         boolean repetido = false;
         for (Candidatura c: candidaturas) {
@@ -964,8 +965,8 @@ public class GestaoProj implements Serializable {
                 verificaAlunoAcederProposta(id_aluno,proposta) &&
                 !verificaPropostaAtribuida(getPropostaPorId(proposta)) &&
                 !verificaCandidaturaAtribuida(getAlunoPorNumero(id_aluno))){
-            getPropostaPorId(proposta).setCodigo_Aluno(id_aluno);
-            atribuicoes.add(new Atribuicao(getAlunoPorNumero(id_aluno),getDocentePorEmailObjeto(getPropostaPorId(proposta).getEmail_Docente()),getPropostaPorId(proposta)));
+                getPropostaPorId(proposta).setCodigo_Aluno(id_aluno);
+                atribuicoes.add(new Atribuicao(getAlunoPorNumero(id_aluno),getDocentePorEmailObjeto(getPropostaPorId(proposta).getEmail_Docente()),getPropostaPorId(proposta)));
             return true;
         }
         return false;

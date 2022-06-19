@@ -105,12 +105,12 @@ public class PoeUI {
 
 
                     case 1 -> {
-                        controladorDoPrograma.AtribuirAutomaticoAutopropostosDocentesAluno();
+                        controladorDoPrograma.AtribuirAutomaticoAutopropostosDocentesAluno(); //100%
 
                     }
                     case 2 -> {
                         //da set do cod de aluno
-                        controladorDoPrograma.AtribuirAutomaticamente();
+                        controladorDoPrograma.AtribuirAutomaticamente(); //
 
                     }
                     case 3 -> {

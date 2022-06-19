@@ -44,7 +44,6 @@ public class atriPropostaState extends IStateAdapter {
     public void AtribuirAutomaticoAutopropostosDocentesAluno() {
         dados.atribuiAutopropostos();
         dados.atribuiPropostasDocentesCompletas();
-
         alteraState(new atriPropostaState(dados,contexto));
         //return false;
     }
@@ -70,7 +69,6 @@ public class atriPropostaState extends IStateAdapter {
         alteraState(new atriPropostaState(dados,contexto));
         return dados.removerAllAtribuicao();
     }
-
 
     @Override
     public PoeState getState() {
