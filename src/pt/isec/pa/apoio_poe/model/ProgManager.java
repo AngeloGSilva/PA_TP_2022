@@ -36,12 +36,31 @@ public class ProgManager {
         return controladorDoPrograma.getFase_gestao();
     }
 
+    public boolean getFase_Candidatura(){
+        return controladorDoPrograma.getFase_Candidatura();
+    }
+
+    public boolean getFase_Orientador(){
+        return controladorDoPrograma.getFase_Orientador();
+    }
+
+    public boolean getFase_Proposta(){
+        return controladorDoPrograma.getFase_Proposta();
+    }
+
+
     public int lerFicheiro(String fileName){
         int buf = controladorDoPrograma.lerFicheiro(fileName);
         //System.out.println(controladorDoPrograma.getAlunos());
         //System.out.println(controladorDoPrograma.getDocentes());
         pcs.firePropertyChange(null,null,null);
         return buf;
+    }
+
+    public boolean removerProposta(String id_Proposta){
+        boolean resultado = controladorDoPrograma.removerProposta(id_Proposta);
+        pcs.firePropertyChange(null,null,null);
+        return resultado;
     }
 
     public ObservableList<Aluno> getAlunos() {
@@ -61,6 +80,38 @@ public class ProgManager {
     public ObservableList<Proposta> getPropostas() {
         System.out.println(controladorDoPrograma.getPropostaTV());
         ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.getPropostaTV());
+        System.out.println("Criar a lista de obs");
+        System.out.println(ob);
+        return ob;
+    }
+
+    public ObservableList<Proposta> getPropostasAuto() {
+        System.out.println(controladorDoPrograma.getAutopropostasAlunos());
+        ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.getAutopropostasAlunos());
+        System.out.println("Criar a lista de obs");
+        System.out.println(ob);
+        return ob;
+    }
+
+    public ObservableList<Proposta> getPropostasDoc() {
+        System.out.println(controladorDoPrograma.getPropostasDocentes());
+        ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.getPropostasDocentes());
+        System.out.println("Criar a lista de obs");
+        System.out.println(ob);
+        return ob;
+    }
+
+    public ObservableList<Proposta> getPropostasComCandidatura() {
+        System.out.println(controladorDoPrograma.getPropostasComCandidaturas());
+        ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.getPropostasComCandidaturas());
+        System.out.println("Criar a lista de obs");
+        System.out.println(ob);
+        return ob;
+    }
+
+    public ObservableList<Proposta> getPropostasSemCandidatura() {
+        System.out.println(controladorDoPrograma.getPropostasSemCandidaturas());
+        ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.getPropostasSemCandidaturas());
         System.out.println("Criar a lista de obs");
         System.out.println(ob);
         return ob;

@@ -65,8 +65,10 @@ abstract class IStateAdapter implements IState{
     public boolean remover(String eliminar){
         return false;
     }
-
+    @Override
     public void editar(String identificador,String edicao){};
+    @Override
+    public boolean removerProposta(String id_Proposta){return false;}
 /*
     @Override
     public boolean removerAluno(long nr_aluno){

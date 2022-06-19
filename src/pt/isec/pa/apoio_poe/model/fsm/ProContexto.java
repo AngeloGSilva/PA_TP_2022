@@ -310,6 +310,8 @@ public class ProContexto {
         return dados.getPropostasAutopropostos();
     }
 
+    public boolean removerProposta(String id_Proposta){return state.removerProposta(id_Proposta);}
+
     public ArrayList<Aluno> getAlunosPropostaAtribuida() {
         return dados.getAlunosComPropostas();
     }

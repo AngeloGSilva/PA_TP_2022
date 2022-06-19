@@ -22,7 +22,7 @@ public class tableViewsUI extends BorderPane {
 
     SplitMenuButton btnMenuAluno,btnMenuProposta;
     MenuItem itemAuto, itemNotReg, itemReg;
-    MenuItem itemAutoPropostas, itemProDocentes, itemProCandidaturas;
+    MenuItem itemAutoPropostas, itemProDocentes, itemProCandidaturas, itemProSemCandidaturas;
 
     //ToggleButton tbAuto,tbNotReg,tbReg;
     ToggleButton tbAluno,tbDocente,tbProposta,tbCandidatura,tbAtribuicoes;
@@ -52,7 +52,7 @@ public class tableViewsUI extends BorderPane {
 
     TableColumn nome,nr_Aluno,email_Aluno,curso,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio;
     TableColumn nomeDocente,papel_Docente,email_Docente;
-    TableColumn cod_ID,titulo,codigo_Aluno,email_DocenteProposta,empresa,ramo;
+    TableColumn cod_ID,id_Proposta,titulo,codigo_Aluno,email_DocenteProposta,empresa,ramo;
 
 
 
@@ -291,8 +291,8 @@ public class tableViewsUI extends BorderPane {
             }
             case GESTAO_PROPOSTA -> {
                 tableProposta = new TableView<Proposta>();
-                cod_ID = new TableColumn("Nome");
-                cod_ID.setCellValueFactory(new PropertyValueFactory<Docente, String>("cod_ID"));
+                cod_ID = new TableColumn("Codigo");
+                cod_ID.setCellValueFactory(new PropertyValueFactory<Proposta, String>("cod_ID"));
                 cod_ID.setMinWidth(100);
 
                 titulo = new TableColumn("Titulo");
@@ -365,20 +365,6 @@ public class tableViewsUI extends BorderPane {
                 tableAlunos.setItems(manager.getCandidaturasNotReg());
                 tableAlunos.setVisible(false);
 
-                /*tbReg = new ToggleButton("Registadas");
-                tbAuto = new ToggleButton("Autopropostos");
-                tbNotReg = new ToggleButton("Sem Registadas");
-
-                tgFilter = new ToggleGroup();
-
-                tbReg.setToggleGroup(tgFilter);
-                tbAuto.setToggleGroup(tgFilter);
-                tbNotReg.setToggleGroup(tgFilter);
-
-                tbReg.setAlignment(Pos.CENTER);
-                tbAuto.setAlignment(Pos.CENTER);
-                tbNotReg.setAlignment(Pos.CENTER);*/
-
                 tableCandidatura = new TableView<Candidatura>();
                 TableColumn<Candidatura, String> numeroAluno = new TableColumn<Candidatura, String>("Numero");
                 numeroAluno.setCellValueFactory(cellData ->
@@ -399,25 +385,47 @@ public class tableViewsUI extends BorderPane {
 
                 tableCandidatura.setMaxWidth(750);
                 tableCandidatura.setMaxHeight(450);
+
+                tableProposta = new TableView<Proposta>();
+                id_Proposta = new TableColumn("Codigo");
+                id_Proposta.setCellValueFactory(new PropertyValueFactory<Proposta, String>("cod_ID"));
+                id_Proposta.setMinWidth(100);
+
+                titulo = new TableColumn("Titulo");
+                titulo.setCellValueFactory(new PropertyValueFactory<Docente, String>("titulo"));
+                titulo.setMinWidth(100);
+
+                codigo_Aluno = new TableColumn("Codigo Aluno");
+                codigo_Aluno.setCellValueFactory(new PropertyValueFactory<Docente, String>("codigo_Aluno"));
+                codigo_Aluno.setMinWidth(100);
+
+                email_Docente = new TableColumn("Email Docente");
+                email_Docente.setCellValueFactory(new PropertyValueFactory<Docente, String>("email_Docente"));
+                email_Docente.setMinWidth(100);
+
+                empresa = new TableColumn("Empresa");
+                empresa.setCellValueFactory(new PropertyValueFactory<Docente, String>("empresa"));
+                empresa.setMinWidth(100);
+
+                ramo = new TableColumn("Ramo");
+                ramo.setCellValueFactory(new PropertyValueFactory<Docente, String>("ramo"));
+                ramo.setMinWidth(100);
+
+                tableProposta.getColumns().addAll(id_Proposta,titulo,codigo_Aluno,email_Docente,empresa,ramo);
+
+                tableProposta.setMaxWidth(750);
+                tableProposta.setMaxHeight(450);
+
+                tableProposta.setVisible(false);
+
                 hboxFilters = new HBox();
                 hboxFilters.getChildren().addAll(btnMenuAluno,btnMenuProposta);
-                //tbReg.setSelected(true);
                 hboxFilters.setAlignment(Pos.BOTTOM_CENTER);
-                //hboxFilters.setPadding(new Insets(bottom));
-                //this.topProperty(hboxFilters);
                 this.setTop(hboxFilters);
-                //HBox.setHgrow(hboxFilters, Priority.ALWAYS);
-
 
                 this.setCenter(tableCandidatura);
                 tableCandidatura.setItems(manager.getCandidaturas());
 
-
-                /*AnchorPane anchorPane = new AnchorPane();
-                anchorPane.getChildren().add(btnFilter);
-                AnchorPane.setLeftAnchor(btnFilter,10.0);
-                AnchorPane.setTopAnchor(btnFilter,25.0);
-                this.getChildren().add(anchorPane);*/
                 itemReg = new MenuItem("Registadas");
                 itemAuto = new MenuItem("Autopropostos");
                 itemNotReg = new MenuItem("Sem Registadas");
@@ -427,10 +435,9 @@ public class tableViewsUI extends BorderPane {
                 itemProCandidaturas = new MenuItem("Com Candidaturas");
                 itemAutoPropostas = new MenuItem("Autopropostos");
                 itemProDocentes = new MenuItem("Propostas de Docentes");
+                itemProSemCandidaturas = new MenuItem("Propostas Sem Candidaturas");
 
-                btnMenuProposta.getItems().addAll(itemAutoPropostas,itemProCandidaturas,itemProDocentes);
-
-
+                btnMenuProposta.getItems().addAll(itemAutoPropostas,itemProCandidaturas,itemProDocentes,itemProSemCandidaturas);
             }
             case ATRIBUIR_PROPOSTA -> {
                 tableAtribuicoesPro = new TableView<Atribuicao>();
@@ -682,8 +689,87 @@ public class tableViewsUI extends BorderPane {
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
 
-        if (manager.getState().equals(PoeState.OPCAO_CANDIDATURA)) {
+        if (manager.getState().equals(PoeState.OPCAO_CANDIDATURA) && manager.g) {
+            itemAutoPropostas.setOnAction(event -> {
+                tableCandidatura.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
+
+                tableAlunos.setVisible(false);
+                tableCandidatura.setVisible(false);
+                tableProposta.setItems(manager.getPropostasAuto());
+                tableProposta.setVisible(true);
+                this.setCenter(tableProposta);
+                btnDelete.setDisable(true);
+                btnAdd.setDisable(true);
+                tableAlunos.setManaged(false);
+                tableCandidatura.setManaged(false);
+                tableProposta.setManaged(true);
+            });
+
+            itemProDocentes.setOnAction(event -> {
+                tableCandidatura.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
+
+                tableAlunos.setVisible(false);
+                tableCandidatura.setVisible(false);
+                btnDelete.setDisable(false);
+                btnAdd.setDisable(false);
+                this.setCenter(tableProposta);
+                tableProposta.setVisible(true);
+                tableProposta.setItems(manager.getPropostasDoc());
+                btnDelete.setDisable(true);
+                btnAdd.setDisable(true);
+                tableAlunos.setManaged(false);
+                tableCandidatura.setManaged(false);
+                tableProposta.setManaged(true);
+            });
+
+            itemProCandidaturas.setOnAction(event -> {
+                tableCandidatura.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
+
+                tableAlunos.setVisible(false);
+                tableCandidatura.setVisible(false);
+                btnDelete.setDisable(false);
+                btnAdd.setDisable(false);
+                this.setCenter(tableProposta);
+                tableProposta.setVisible(true);
+                tableProposta.setItems(manager.getPropostasComCandidatura());
+                btnDelete.setDisable(true);
+                btnAdd.setDisable(true);
+                tableAlunos.setManaged(false);
+                tableCandidatura.setManaged(false);
+                tableProposta.setManaged(true);
+            });
+
+            itemProSemCandidaturas.setOnAction(event -> {
+                tableCandidatura.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
+
+                tableAlunos.setVisible(false);
+                tableCandidatura.setVisible(false);
+                btnDelete.setDisable(false);
+                btnAdd.setDisable(false);
+                this.setCenter(tableProposta);
+                tableProposta.setVisible(true);
+                tableProposta.setItems(manager.getPropostasSemCandidatura());
+                btnDelete.setDisable(true);
+                btnAdd.setDisable(true);
+                tableAlunos.setManaged(false);
+                tableCandidatura.setManaged(false);
+                tableProposta.setManaged(true);
+            });
+
             itemReg.setOnAction(e -> {
+                tableCandidatura.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
+
+                tableProposta.setVisible(false);
                 tableAlunos.setVisible(false);
                 tableCandidatura.setVisible(true);
                 this.setCenter(tableCandidatura);
@@ -691,26 +777,43 @@ public class tableViewsUI extends BorderPane {
                 tableCandidatura.setItems(manager.getCandidaturas());
                 btnDelete.setDisable(false);
                 btnAdd.setDisable(false);
+                tableAlunos.setManaged(false);
+                tableCandidatura.setManaged(true);
+                tableProposta.setManaged(false);
             });
 
             itemAuto.setOnAction(e -> {
+                tableCandidatura.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
+
+                tableProposta.setVisible(false);
                 tableAlunos.setVisible(false);
                 tableCandidatura.setVisible(true);
                 this.setCenter(tableCandidatura);
-                tableCandidatura.getItems().clear();
                 tableCandidatura.setItems(manager.getCandidaturasAuto());
-                btnDelete.setDisable(false);
-                btnAdd.setDisable(false);
+                btnDelete.setDisable(true);
+                btnAdd.setDisable(true);
+                tableAlunos.setManaged(false);
+                tableCandidatura.setManaged(true);
+                tableProposta.setManaged(false);
             });
 
             itemNotReg.setOnAction(e -> {
                 tableCandidatura.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
+
+                tableProposta.setVisible(false);
                 tableCandidatura.setVisible(false);
                 this.setCenter(tableAlunos);
                 tableAlunos.setVisible(true);
                 tableAlunos.setItems(manager.getCandidaturasNotReg());
                 btnDelete.setDisable(true);
                 btnAdd.setDisable(true);
+                tableAlunos.setManaged(true);
+                tableCandidatura.setManaged(false);
+                tableProposta.setManaged(false);
             });
         }
 
@@ -796,7 +899,7 @@ public class tableViewsUI extends BorderPane {
                     }
                 }
                 case OPCAO_CANDIDATURA -> {
-                    if (tableCandidatura !=null) {
+                    if (tableCandidatura !=null && tableCandidatura.isVisible() == true) {
                         Candidatura selectedItem = tableCandidatura.getSelectionModel().getSelectedItem();
                         TextInputDialog td = new TextInputDialog("Codigo Proposta");
                         td.setHeaderText("Qual Proposta do Aluno " + selectedItem.getNomeAluno() + " deseja apagar?\n" + selectedItem.getIdPropostas());
@@ -896,12 +999,7 @@ public class tableViewsUI extends BorderPane {
                     tableAtribuicoesOri.setContextMenu(new ContextMenu(delete));
                 }
             }
-            default -> {
-/*                tableProposta.refresh();
-                tableAlunos.refresh();
-                tableDocente.refresh();*/
-            }
-        }
         }
     }
+}
 
