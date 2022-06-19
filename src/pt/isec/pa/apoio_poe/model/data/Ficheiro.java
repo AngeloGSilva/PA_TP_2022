@@ -247,7 +247,7 @@ public final class Ficheiro {
                         if(gestaoProj.verificaIdProposta(data[i]) &&
                                 gestaoProj.verificaAlunoAcederProposta(Long.parseLong(data[0]),data[i]) &&
                                 gestaoProj.verificaRamoAlunoProposta(Long.parseLong(data[0]),gestaoProj.getPropostaPorId(data[i]).getRamo()) &&
-                                gestaoProj.verificaPropostaComAluno(data[i])){ 
+                                gestaoProj.verificaPropostaComAluno(data[i])){
                             propostasPorAluno.add(gestaoProj.getPropostaPorId(data[i]));
                         }else {
                             gestaoProj.setErros("[Erro] no seguinte Proposta"+ data[i] +"do aluno" + data[0] +  "\n");

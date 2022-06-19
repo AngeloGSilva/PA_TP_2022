@@ -1248,9 +1248,10 @@ public class GestaoProj implements Serializable {
     public Candidatura validarCandidatura(String nrAluno,String codId){
         //falta validar
         //Validar aluno
-        if(verificaAlunoExiste(Long.parseLong(nrAluno)) &&
-           !verificaPropostaEmCandidatura(nrAluno,codId) &&
-           !verificaNumeroAssociadoAProposta(nrAluno)){
+        if(verificaAlunoExiste(Long.parseLong(nrAluno)) && //Aluno existe
+                !verificaCandidaturaAtribuida(getAlunoPorNumero(Long.parseLong(nrAluno)))&&//Verifica se ja existe nas candidaturas
+                !verificaPropostaEmCandidatura(nrAluno,codId) && //repetida
+                !verificaNumeroAssociadoAProposta(nrAluno)){ //se ja esta associada
             //Validar proposta
             if(verificaIdProposta(codId) &&
             verificaRamoAlunoProposta(Long.parseLong(nrAluno),getPropostaPorId(codId).getRamo()) &&
@@ -1305,7 +1306,7 @@ public class GestaoProj implements Serializable {
     }
 
     public boolean removerPropostaDeCandidatura(String nr_Aluno, String id_proposta){
-        //Ainda remove a T2 e T3 com aluno associado, nao pode!
+        //So nao remove Proposta de T3 e de T2 com proposta com aluno associado!
         for (Candidatura candidatura: candidaturas){
             if (candidatura.getNralunoString().equals(nr_Aluno)){
                 if(candidatura.getNrPropostas() == 1 && (candidatura.getPropostas().get(0).getClass().getSimpleName().equals("T3") || candidatura.getPropostas().get(0).getClass().getSimpleName().equals("T2")))
@@ -1348,11 +1349,12 @@ public class GestaoProj implements Serializable {
     public boolean removerCandidatura(Long nrAluno) {
         for(Candidatura c:candidaturas){
             if(c.getAluno().getNr_Aluno() == nrAluno) {
-                if (c.getNrPropostas() <= 1) // Elimina  apossibilidade de remover T2 com aluno e T3 com aluno
+                if (c.getNrPropostas() <= 1) //Elimina  a possibilidade de remover T2 com aluno e T3 com aluno
                 {
-                        if (c.getPropostas().get(0).getClass().getSimpleName().equals("T3") || c.getPropostas().get(0).getClass().getSimpleName().equals("T2")) {
+                        if (c.getPropostas().get(0).getClass().getSimpleName().equals("T3") || (c.getPropostas().get(0).getClass().getSimpleName().equals("T2") && nrAluno.equals(c.getPropostas().get(0).getCodigo_Aluno()))) {
                             return false;
-                        }else {
+                        } else {
+                            c.getPropostas().get(0).setCodigo_Aluno(null); // se a proposta for do Tipo T1,fica disponivel para mais alunos
                             candidaturas.remove(c);
                             return true;
                         }

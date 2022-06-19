@@ -8,7 +8,6 @@ import java.util.Locale;
 
 public class PoeUI {
     ProContexto controladorDoPrograma;
-    //private String caminhoDefaultFicheiros = "\\\\Resources\\\\ficheiros\\\\";
     public PoeUI(ProContexto controladorDoPrograma) {
         this.controladorDoPrograma = controladorDoPrograma;
     }
@@ -473,11 +472,11 @@ public class PoeUI {
                     }
 
                 }
-                case 6-> {//Eliminar
+                case 6-> {//100%
                     if(controladorDoPrograma.remover(PAInput.readString("Numero do aluno da Candidatura a eliminar:",true)))
                         System.out.println("Eliminado Com Sucesso!\n");
                     else
-                        System.out.println("Erro ao eliminar!\n");
+                        System.out.println("Se a astibuição foi realizada na fase de configuração, não é permitido eliminar!\n");
                 }
                 case 7 -> controladorDoPrograma.load();
                 case 8 -> controladorDoPrograma.save();
