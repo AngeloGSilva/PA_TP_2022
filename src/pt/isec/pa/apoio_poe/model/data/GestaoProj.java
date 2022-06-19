@@ -928,7 +928,23 @@ public class GestaoProj implements Serializable {
     public Docente getDocenteContadorMenor(){
         Docente docenteMinimo = null;
         int docenteMenor = 0;
-        for (Docente docente: docentes) {
+        int out=0;
+        for(Docente docente:docentes) {
+            docenteMinimo = docente;
+            for (Docente docente2 : docentes) {
+                out++;
+                if (docente.getContador() > docente2.getContador()) {
+                    docenteMinimo = docente2;
+                    return docenteMinimo;
+                }
+                if (out == docentes.size())
+                    return docenteMinimo;
+            }
+            }
+        return null;
+        }
+
+        /*for (Docente docente: docentes) {
                 if (docente.getContador() < 5) {
                     if (docenteMenor >= docente.getContador()) {
                         docenteMenor = docente.getContador();
@@ -937,7 +953,7 @@ public class GestaoProj implements Serializable {
                 }
         }
         return docenteMinimo;
-    }
+    }*/
 
     public void atribuirDocentesauto() {
         Docente docente = null;
