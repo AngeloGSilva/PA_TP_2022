@@ -393,4 +393,5 @@ public class ProContexto {
     public int contaPropostaRAS(){return dados.contaPropostaRAS();}
     public int contaPropostaDA(){return dados.contaPropostaDA();}
     public int contaPropostaSI(){return dados.contaPropostaSI();}
+    public HashMap<String, Integer> contaEstagios(){return dados.contaEstagios();}
 }

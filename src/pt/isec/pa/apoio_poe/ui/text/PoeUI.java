@@ -210,7 +210,8 @@ public class PoeUI {
                     }
 
                     case 11 -> controladorDoPrograma.voltar(true);
-                }}
+                }
+            }
             //So consulta(Fase fechada)
             } else if (controladorDoPrograma.getFase_Proposta()){
                 switch (PAInput.chooseOption("Consulta", "Consultar Todos Dados", "Avancar", "Voltar", "Load", "Save")) {

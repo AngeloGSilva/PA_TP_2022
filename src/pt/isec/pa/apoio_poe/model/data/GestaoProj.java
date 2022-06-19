@@ -378,6 +378,13 @@ public class GestaoProj implements Serializable {
     }
 
     //verifica se o numero pertence a algum aluno
+
+    /**
+     *
+     * @param nr
+     * @return
+     */
+
     public boolean verificaAlunoExiste(long nr) {
         if(alunos.size() == 0)
             return false;
@@ -1036,17 +1043,18 @@ public class GestaoProj implements Serializable {
             return alunosProposta;
     }
 
-    public ArrayList<Aluno> getAlunosSemPropostas(){
+    public ArrayList<Aluno> getAlunosSemPropostas() {
         ArrayList<Aluno> alunosSemProposta = new ArrayList<>();
         boolean existe=false;
-        for(Aluno a:alunos){
+        for (Aluno a:alunos){
             existe=false;
             for(Atribuicao at:atribuicoes){
                 if(a.getNr_Aluno() == at.getAluno().getNr_Aluno()){
                     existe=true;
                 }
-                if(!existe)
-                    alunosSemProposta.add(a);
+            }
+            if(!existe){
+                alunosSemProposta.add(a);
             }
         }
         return alunosSemProposta;
@@ -1454,8 +1462,7 @@ public class GestaoProj implements Serializable {
 
     //contar frequencia
     public HashMap<String, Integer> frequenciaDeElementos() {
-        HashMap<String, Integer> freqMap
-                = new HashMap<String, Integer>();
+        HashMap<String, Integer> freqMap = new HashMap<String, Integer>();
 
         for (Proposta proposta : propostas) {
             if (freqMap.containsKey(proposta.getRamo())) {
@@ -1467,6 +1474,38 @@ public class GestaoProj implements Serializable {
                 freqMap.put(proposta.getRamo(), 1);
         }
         return freqMap;
+    }
+
+    public ArrayList<String> getEntidades() {
+        ArrayList<String> entidades = new ArrayList<String>();
+        for (Proposta proposta: propostas) {
+            if(proposta.getClass().getSimpleName().equals("T1"))
+                entidades.add(proposta.getEmpresa());
+        }
+        return new ArrayList<String>(entidades);
+    }
+
+    public HashMap<String, Integer> contaEstagios() {
+        HashMap<String, Integer> pares = new HashMap<>();
+        int frequencia = 0;
+        List<String> teste = getEntidades();
+        //int maior = 0;
+        if (propostas==null)
+            return null;
+        for (Proposta proposta : propostas) {
+           if(proposta.getClass().getSimpleName().equals("T1")) {
+               frequencia = Collections.frequency(teste, (proposta.getEmpresa()));
+               pares.put(proposta.getEmpresa(), frequencia);
+           }
+            }
+        List<Map.Entry<String, Integer> > list =
+                new LinkedList<>(pares.entrySet());
+        Collections.sort(list, Map.Entry.comparingByValue());
+        HashMap<String, Integer> temp = new LinkedHashMap<String, Integer>();
+        for (Map.Entry<String, Integer> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+        return temp;
     }
 
     public int contaPropostaRAS(){

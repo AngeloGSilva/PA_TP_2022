@@ -281,4 +281,7 @@ public class ProgManager {
     public int contaPropostaDA(){return controladorDoPrograma.contaPropostaDA();}
     public int contaPropostaSI(){return controladorDoPrograma.contaPropostaSI();}
 
+    public HashMap contaEstagios() {
+        return controladorDoPrograma.contaEstagios();
+    }
 }
