@@ -136,6 +136,7 @@ public class ProgManager {
         pcs.firePropertyChange(null,null,null);
     }
 
+
     public boolean isConflitoON() {
         return controladorDoPrograma.isConflitoON();
     }
@@ -240,7 +241,10 @@ public class ProgManager {
     }
 
 
-    public void atribuirDocentesauto() {}
+    public void atribuirDocentesauto() {
+        controladorDoPrograma.atribuirDocentesauto();
+        pcs.firePropertyChange(null,null,null);
+    }
 
 
     public boolean atribuirManualmenteDocente(String docente, int id_atribuicao){return false;}

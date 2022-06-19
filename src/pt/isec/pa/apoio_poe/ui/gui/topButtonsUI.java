@@ -147,7 +147,9 @@ public class topButtonsUI extends VBox{
                     }
                 });
             }else if (manager.getState() == PoeState.ATRIBUIR_ORIENTADOR){
-
+                btnAtriDoc.setOnAction(event -> {
+                    manager.atribuirDocentesauto();
+                });
             }else {
                 btnExportar.setOnAction(event ->{
                     Popup.exportar(manager);

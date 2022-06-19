@@ -47,7 +47,7 @@ public class Docente implements Serializable {
     }
 
     public void incContador() {
-        contador++;
+        this.contador++;
     }
 
     public void decContador() {

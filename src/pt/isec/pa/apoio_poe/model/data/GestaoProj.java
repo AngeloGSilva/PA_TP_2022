@@ -721,6 +721,7 @@ public class GestaoProj implements Serializable {
                         p.getCodigo_Aluno() !=null &&
                          c.getAluno().getNr_Aluno() == p.getCodigo_Aluno() &&
                         VerificaAlunoAcederProposta(p.getCodigo_Aluno(),p.getCod_ID()) &&
+                        !verificaCandidaturaAtribuida(c.getAluno()) &&
                         p.getEmail_Docente() != null){
 
                     atribuicoes.add(new Atribuicao(c.getAluno(),getDocentePorEmailObjeto(p.getEmail_Docente()),p));
@@ -928,12 +929,12 @@ public class GestaoProj implements Serializable {
         Docente docenteMinimo = null;
         int docenteMenor = 0;
         for (Docente docente: docentes) {
-            if (docente.getContador() < 5) {
-                if (docenteMenor <= docente.getContador()) {
-                    docenteMenor = docente.getContador();
-                    docenteMinimo = docente;
+                if (docente.getContador() < 5) {
+                    if (docenteMenor < docente.getContador()) {
+                        docenteMenor = docente.getContador();
+                        docenteMinimo = docente;
+                    }
                 }
-            }
         }
         return docenteMinimo;
     }

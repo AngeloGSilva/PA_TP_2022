@@ -440,22 +440,23 @@ public class tableViewsUI extends BorderPane {
             }
             case ATRIBUIR_ORIENTADOR -> {
                 tableAtribuicoesOri = new TableView<Atribuicao>();
-                TableColumn <Atribuicao,String> nome_Docente = new TableColumn("Nome Docente");
+                TableColumn<Atribuicao, String> nome_Docente = new TableColumn<Atribuicao, String>("Nome Docente");
                 nome_Docente.setCellValueFactory(cellData ->
-                        new SimpleStringProperty(cellData.getValue().getDocente().getNome_Docente()));
-                nome_Docente.setMinWidth(100);
+                        new SimpleStringProperty(cellData.getValue().getNomeDocenteTV())
+                );
+                nome_Docente.setMinWidth(140);
 
-                TableColumn <Atribuicao,String> email_Docente = new TableColumn("Email Docente");
+                TableColumn <Atribuicao,String> email_Docente = new TableColumn<Atribuicao, String>("Email Docente");
                 email_Docente.setCellValueFactory(cellData ->
-                        new SimpleStringProperty(cellData.getValue().getDocente().getEmail_Docente()));
+                        new SimpleStringProperty(cellData.getValue().getEmailDocenteTV()));
                 email_Docente.setMinWidth(140);
 
-                TableColumn <Atribuicao,String> id_Proposta = new TableColumn("Proposta");
+                TableColumn <Atribuicao,String> id_Proposta = new TableColumn<Atribuicao, String>("Proposta");
                 id_Proposta.setCellValueFactory(cellData ->
                         new SimpleStringProperty(cellData.getValue().getProposta().getCod_ID()));
                 id_Proposta.setMinWidth(140);
 
-                TableColumn <Atribuicao,String> nr_Aluno = new TableColumn("Numero Aluno");
+                TableColumn <Atribuicao,String> nr_Aluno = new TableColumn<Atribuicao, String>("Numero Aluno");
                 nr_Aluno.setCellValueFactory(cellData ->
                         new SimpleStringProperty(cellData.getValue().getAluno().getNr_AlunoString()));
                 nr_Aluno.setMinWidth(140);
