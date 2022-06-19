@@ -53,7 +53,7 @@ public class Popup extends VBox{
 
         popupwindow.setMaxWidth(nscene.getWidth());
         popupwindow.setMaxHeight(nscene.getHeight());
-
+        popupwindow.setResizable(false);
         //popupwindow.initStyle(StageStyle.TRANSPARENT);
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
@@ -353,7 +353,7 @@ public class Popup extends VBox{
 
         popupwindow.setMaxWidth(nscene.getWidth());
         popupwindow.setMaxHeight(nscene.getHeight());
-
+        popupwindow.setResizable(false);
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
     }
@@ -458,7 +458,7 @@ public class Popup extends VBox{
 
         popupwindow.setMaxWidth(nscene.getWidth());
         popupwindow.setMaxHeight(nscene.getHeight());
-
+        popupwindow.setResizable(false);
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
     }
@@ -536,7 +536,7 @@ public class Popup extends VBox{
 
         popupwindow.setMaxWidth(nscene.getWidth());
         popupwindow.setMaxHeight(nscene.getHeight());
-
+        popupwindow.setResizable(false);
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
     }
@@ -594,7 +594,7 @@ public class Popup extends VBox{
 
         popupwindow.setMaxWidth(nscene.getWidth());
         popupwindow.setMaxHeight(nscene.getHeight());
-
+        popupwindow.setResizable(false);
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
     }
@@ -629,7 +629,7 @@ public class Popup extends VBox{
 
         popupwindow.setMaxWidth(nscene.getWidth());
         popupwindow.setMaxHeight(nscene.getHeight());
-
+        popupwindow.setResizable(false);
         //popupwindow.initStyle(StageStyle.TRANSPARENT);
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
@@ -693,7 +693,7 @@ public class Popup extends VBox{
 
         popupwindow.setMaxWidth(nscene.getWidth());
         popupwindow.setMaxHeight(nscene.getHeight());
-
+        popupwindow.setResizable(false);
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
     }

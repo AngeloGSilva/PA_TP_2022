@@ -1,10 +1,12 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import pt.isec.pa.apoio_poe.model.ProgManager;
 import pt.isec.pa.apoio_poe.ui.gui.resources.CSSManager;
 import pt.isec.pa.apoio_poe.ui.gui.resources.FontManager;
@@ -43,15 +45,16 @@ public class consultaUI extends GridPane {
 
         btnback = new Button("Voltar");
         imageView = new ImageView(ImageManager.getImage("back.png"));
-        btnback.setContentDisplay(ContentDisplay.RIGHT);
+        btnback.setContentDisplay(ContentDisplay.LEFT);
         btnback.setGraphic(imageView);
         this.getChildren().add(btnback);
         btnback.setVisible(false);
         btnback.setManaged(false);
 
-        GridPane.setConstraints(btnGraficos,10,5);
-        GridPane.setConstraints(btnGraficos,40,5);
-        GridPane.setConstraints(btnTabelas,50,5);
+        GridPane.setConstraints(btnGraficos,0,0);
+        GridPane.setConstraints(btnGraficos,0,0);
+        GridPane.setConstraints(btnTabelas,0,1);
+
     }
 
     private void registerHandlers() {
