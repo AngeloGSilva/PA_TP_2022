@@ -127,20 +127,6 @@ public class ProContexto {
         return state.remover(eliminar);
     }
 
-/*
-    public boolean removerAluno(long nr_aluno){
-        return state.removerAluno(nr_aluno);
-    }
-
-    public boolean removerDocente(String emaildoc){
-        return state.removerDocente(emaildoc);
-    }
-
-    public boolean removerProposta(String codId){
-        return state.removerProposta(codId);
-    }
-*/
-
     public void atribuirDocentesauto() {
         state.atribuirDocentesauto();
     }

@@ -448,7 +448,7 @@ public class PoeUI {
                     //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
                     controladorDoPrograma.limparErros();
                 }
-                case 4-> {//Adicionar
+                case 4-> {//100%
                     if(controladorDoPrograma.adicionarCandidatura(PAInput.readString("Numero de aluno:",true),PAInput.readString("Codigo da proposta:",true))){
                         System.out.println("Candidatura criada com sucesso!\n");
                     }else
@@ -476,7 +476,7 @@ public class PoeUI {
                     if(controladorDoPrograma.remover(PAInput.readString("Numero do aluno da Candidatura a eliminar:",true)))
                         System.out.println("Eliminado Com Sucesso!\n");
                     else
-                        System.out.println("Se a astibuição foi realizada na fase de configuração, não é permitido eliminar!\n");
+                        System.out.println("Se a astibuição foi realizada na fase de configuração, não é permitido eliminar[T2][T3]!\n");
                 }
                 case 7 -> controladorDoPrograma.load();
                 case 8 -> controladorDoPrograma.save();

@@ -1309,7 +1309,7 @@ public class GestaoProj implements Serializable {
         //So nao remove Proposta de T3 e de T2 com proposta com aluno associado!
         for (Candidatura candidatura: candidaturas){
             if (candidatura.getNralunoString().equals(nr_Aluno)){
-                if(candidatura.getNrPropostas() == 1 && (candidatura.getPropostas().get(0).getClass().getSimpleName().equals("T3") || candidatura.getPropostas().get(0).getClass().getSimpleName().equals("T2")))
+                if(candidatura.getNrPropostas() == 1 && (candidatura.getPropostas().get(0).getClass().getSimpleName().equals("T3") || (candidatura.getPropostas().get(0).getClass().getSimpleName().equals("T2")) && nr_Aluno.equals(candidatura.getPropostas().get(0).getCodigo_Aluno())))
                     return false;
                 candidatura.removeProposta(id_proposta);
                 if(candidatura.getPropostas().size() == 0){
@@ -1387,10 +1387,13 @@ public class GestaoProj implements Serializable {
     public boolean adicionarPropostaACandidatura(String nr_aluno, String idProp) {
         for(Candidatura c :candidaturas){
             if(c.getNralunoString().equals(nr_aluno)) {
-                if ((c.getPropostas().get(0).getClass().getSimpleName().equals("T2") || c.getPropostas().get(0).getClass().getSimpleName().equals("T3")) && c.getPropostas().get(0).getCodigo_Aluno()!=null)
+                if (c.getPropostas().get(0).getClass().getSimpleName().equals("T3") || (c.getPropostas().get(0).getClass().getSimpleName().equals("T2") && nr_aluno.equals(c.getPropostas().get(0).getCodigo_Aluno())))
                     return false;
-                    if (!verificaPropostaEmCandidatura(nr_aluno,idProp) && verificaIdProposta(idProp)) {
-                        c.getPropostas().add(getPropostaPorId(idProp));
+                    if (!verificaPropostaEmCandidatura(nr_aluno,idProp) &&
+                            verificaIdProposta(idProp) &&
+                            verificaPropostaComAluno(idProp) &&
+                            verificaRamoAlunoProposta(Long.parseLong(nr_aluno),getPropostaPorId(idProp).getRamo())) {
+                            c.getPropostas().add(getPropostaPorId(idProp));
                         return true;
                     }
                 }

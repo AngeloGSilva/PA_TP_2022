@@ -58,6 +58,7 @@ public class Candidatura implements Serializable {
     public void removeProposta(String id_proposta) {
         for (Proposta proposta : propostas) {
             if (proposta.getCod_ID().equals(id_proposta)){
+                proposta.setCodigo_Aluno(null);
                 propostas.remove(proposta);
                 return;
             }
