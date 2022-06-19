@@ -75,10 +75,6 @@ public class atriPropostaUI extends BorderPane {
 
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
-
-
-
-
     }
 
     private void update() {

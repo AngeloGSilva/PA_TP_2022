@@ -213,6 +213,23 @@ public class ProgManager {
     }
 
 
+    public void exportarAlunos(String fileName){
+        controladorDoPrograma.exportarAlunos(fileName);
+    }
+
+    public void exportarPropostas(String FileName){
+        controladorDoPrograma.exportarPropostas(FileName);
+    }
+
+    public void exportarDocentes(String Filename){
+        controladorDoPrograma.exportarDocentes(Filename);
+    }
+
+    public void exportarCandidaturas(String FileName){
+        controladorDoPrograma.exportarCandidaturas(FileName);
+    }
+
+
     public void editar(String identificador, String editado) {
         controladorDoPrograma.editar(identificador,editado);
         pcs.firePropertyChange(null,null,null);

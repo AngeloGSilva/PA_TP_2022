@@ -10,6 +10,8 @@ import javafx.stage.*;
 import pt.isec.pa.apoio_poe.model.ProgManager;
 import pt.isec.pa.apoio_poe.model.data.Aluno;
 
+import java.util.Locale;
+
 
 public class Popup extends VBox{
     public static void conflito(ProgManager manager) {
@@ -56,7 +58,6 @@ public class Popup extends VBox{
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
     }
-
     public static void addProposta(ProgManager manager){
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL);
@@ -437,7 +438,7 @@ public class Popup extends VBox{
                 resultado = true;
             else
                 resultado = false;
-            manager.adicionarAluno(nr_Aluno.getText(),nome_Aluno.getText(),email_Aluno.getText(),ramo_Aluno.getText(),Double.parseDouble(classificacao_Aluno.getText()),resultado, curso_Aluno.getText());
+            manager.adicionarAluno(nr_Aluno.getText(),nome_Aluno.getText(),email_Aluno.getText(),ramo_Aluno.getText().toUpperCase(Locale.ROOT),Double.parseDouble(classificacao_Aluno.getText()),resultado, curso_Aluno.getText().toUpperCase());
             popupwindow.close();
         });
 
@@ -539,7 +540,6 @@ public class Popup extends VBox{
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
     }
-
     public static void addCandidatura(ProgManager manager){
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL);
@@ -575,9 +575,9 @@ public class Popup extends VBox{
 
         btnAdd.setOnAction(e-> {
             if (!manager.VerificaAlunoJaCandidato((Long.parseLong(nr_Aluno.getText())))){
-                manager.adicionarCandidatura(nr_Aluno.getText(), id_Proposta.getText());
+                manager.adicionarCandidatura(nr_Aluno.getText(), id_Proposta.getText().toUpperCase());
             }else{
-                manager.adicionarPropostaACandidatura(nr_Aluno.getText(),id_Proposta.getText());
+                manager.adicionarPropostaACandidatura(nr_Aluno.getText(),id_Proposta.getText().toUpperCase());
             }
             popupwindow.close();
         });
@@ -598,9 +598,7 @@ public class Popup extends VBox{
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
     }
-
-    public static void display(PopupSupport s,int aux)
-    {
+    public static void display(PopupSupport s,int aux) {
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL); //evita a aplicaçao continuar antes de fechar a janela
         Button btn = new Button("Ok");
@@ -637,6 +635,85 @@ public class Popup extends VBox{
         popupwindow.showAndWait();
 
 
+    }
+    public static void exportar(ProgManager manager){
+        Stage popupwindow = new Stage();
+        popupwindow.initModality(Modality.APPLICATION_MODAL);
+
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(3);
+        grid.setHgap(3);
+
+        TextField nome_Ficheiro = new TextField();
+        nome_Ficheiro.setPromptText("Nome Ficheiro");
+        nome_Ficheiro.setPrefColumnCount(10);
+        grid.getChildren().add(nome_Ficheiro);
+
+        Label lbFicheiro = new Label("Nome Ficheiro?");
+        grid.getChildren().add(lbFicheiro);
+        lbFicheiro.setAlignment(Pos.CENTER);
+
+
+        Button btnAdd = new Button("Adicionar");
+        grid.getChildren().add(btnAdd);
+
+        Button btnApagar = new Button("Apagar");
+        grid.getChildren().add(btnApagar);
+
+        GridPane.setConstraints(lbFicheiro,0,0);
+        GridPane.setConstraints(nome_Ficheiro,0,1);
+        GridPane.setConstraints(btnAdd,0,2);
+        GridPane.setConstraints(btnApagar,1,2);
+
+        btnAdd.setOnAction(e-> {
+            //adicionar if para ver se tem dados nos hashsets
+            switch (manager.getState()){
+                case GESTAO_ALUNO -> {
+                    manager.exportarAlunos(nome_Ficheiro.getText());
+                }
+                case GESTAO_PROPOSTA -> {
+                    manager.exportarPropostas(nome_Ficheiro.getText());
+                }
+                case GESTAO_DOCENTE -> {
+                    manager.exportarDocentes(nome_Ficheiro.getText());
+                }
+            }
+            popupwindow.close();
+        });
+
+        btnApagar.setOnAction(e-> {
+            nome_Ficheiro.clear();
+        });
+
+        Scene nscene = new Scene(grid, 200, 100);
+        popupwindow.setTitle("Exportar Lista");
+        popupwindow.setMinWidth(250);
+        popupwindow.setMinHeight(150);
+
+        popupwindow.setMaxWidth(nscene.getWidth());
+        popupwindow.setMaxHeight(nscene.getHeight());
+
+        popupwindow.setScene(nscene);
+        popupwindow.showAndWait();
+    }
+
+    public static void avancarFase(ProgManager manager){
+        //as vezes da erro se estiver aqui e nao sei pq
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Fechar Fase");
+        alert.setHeaderText("Ao Fechar a fase nao tera mais a possibilidade de alterar as informacoes");
+        alert.setContentText("Pertende Fechar a fase?");
+        ButtonType okButton = new ButtonType("Sim", ButtonBar.ButtonData.YES);
+        ButtonType noButton = new ButtonType("Nao", ButtonBar.ButtonData.NO);
+        alert.getButtonTypes().setAll(okButton, noButton);
+        alert.showAndWait().ifPresent(type -> {
+            if (type == okButton) {
+                manager.avancar(true);
+            } else if (type == noButton) {
+                manager.avancar(false);
+            }
+        });
     }
 
 }

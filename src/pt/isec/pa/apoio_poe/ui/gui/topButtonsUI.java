@@ -150,7 +150,7 @@ public class topButtonsUI extends VBox{
 
             }else {
                 btnExportar.setOnAction(event ->{
-                    Popup.display(PopupSupport.POPUP_EXPORT,0);
+                    Popup.exportar(manager);
                 });
                 btnLerFich.setOnAction(event ->{
                     FileChooser fileChooser = new FileChooser();
@@ -170,20 +170,8 @@ public class topButtonsUI extends VBox{
 
 
             btnAvancar.setOnAction(event ->{
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Fechar Fase");
-                alert.setHeaderText("Ao Fechar a fase nao tera mais a possibilidade de alterar as informacoes");
-                alert.setContentText("Fechar?");
-                ButtonType okButton = new ButtonType("Sim", ButtonBar.ButtonData.YES);
-                ButtonType noButton = new ButtonType("Nao", ButtonBar.ButtonData.NO);
-                alert.getButtonTypes().setAll(okButton, noButton);
-                alert.showAndWait().ifPresent(type -> {
-                    if (type == okButton) {
-                        manager.avancar(true);
-                    } else if (type == noButton) {
-                        manager.avancar(false);
-                    }
-                });
+
+                Popup.avancarFase(manager);
             });
             btnVoltar.setOnAction(event ->{
                 manager.voltar(false);
