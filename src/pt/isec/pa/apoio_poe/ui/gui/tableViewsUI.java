@@ -22,6 +22,7 @@ public class tableViewsUI extends BorderPane {
 
     SplitMenuButton btnMenuAluno,btnMenuProposta;
     MenuItem itemAuto, itemNotReg, itemReg;
+    MenuItem itemAutoPropostas, itemProDocentes, itemProCandidaturas;
 
     //ToggleButton tbAuto,tbNotReg,tbReg;
     ToggleButton tbAluno,tbDocente,tbProposta,tbCandidatura,tbAtribuicoes;
@@ -422,6 +423,13 @@ public class tableViewsUI extends BorderPane {
                 itemNotReg = new MenuItem("Sem Registadas");
 
                 btnMenuAluno.getItems().addAll(itemReg,itemAuto,itemNotReg);
+
+                itemProCandidaturas = new MenuItem("Com Candidaturas");
+                itemAutoPropostas = new MenuItem("Autopropostos");
+                itemProDocentes = new MenuItem("Propostas de Docentes");
+
+                btnMenuProposta.getItems().addAll(itemAutoPropostas,itemProCandidaturas,itemProDocentes);
+
 
             }
             case ATRIBUIR_PROPOSTA -> {

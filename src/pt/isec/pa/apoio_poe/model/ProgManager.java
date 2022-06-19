@@ -277,4 +277,8 @@ public class ProgManager {
         return controladorDoPrograma.frequenciaDeElementos();
     }
 
+    public int contaPropostaRAS(){return controladorDoPrograma.contaPropostaRAS();}
+    public int contaPropostaDA(){return controladorDoPrograma.contaPropostaDA();}
+    public int contaPropostaSI(){return controladorDoPrograma.contaPropostaSI();}
+
 }

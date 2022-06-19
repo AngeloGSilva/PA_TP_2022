@@ -1468,4 +1468,38 @@ public class GestaoProj implements Serializable {
         }
         return freqMap;
     }
+
+    public int contaPropostaRAS(){
+        int contador = 0;
+        if (propostas == null || propostas.size() == 0)
+            return 0;
+        for (Proposta proposta : propostas) {
+            if (proposta.getRamo().contains("RAS"))
+                contador++;
+        }
+        return contador;
+    }
+
+    public int contaPropostaDA(){
+        int contador = 0;
+        if (propostas == null || propostas.size() == 0)
+            return 0;
+        for (Proposta proposta : propostas) {
+            if (proposta.getRamo().contains("DA"))
+                contador++;
+        }
+        return contador;
+    }
+
+    public int contaPropostaSI(){
+        int contador = 0;
+        if (propostas == null || propostas.size() == 0)
+            return 0;
+        for (Proposta proposta : propostas) {
+            if (proposta.getRamo().contains("SI"))
+                contador++;
+        }
+        return contador;
+    }
+
 }

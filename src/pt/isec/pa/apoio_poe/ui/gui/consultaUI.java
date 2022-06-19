@@ -74,6 +74,8 @@ public class consultaUI extends BorderPane {
 
             btnback.setVisible(true);
             btnback.setManaged(true);
+
+            this.setCenter(new graficosUI(manager));
         });
 
         btnTabelas.setOnAction(event -> {
@@ -101,6 +103,7 @@ public class consultaUI extends BorderPane {
 
             btnback.setVisible(false);
             btnback.setManaged(false);
+            this.setCenter(null);
         });
     }
 

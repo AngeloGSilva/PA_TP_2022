@@ -148,12 +148,13 @@ public class Popup extends VBox{
         email_Docente.setManaged(false);
         email_Docente.setVisible(false);
 
-        TextField ramo_Proposta = new TextField();
-        ramo_Proposta.setPromptText("Ramo da Proposta");
-        ramo_Proposta.setPrefColumnCount(15);
+        ChoiceBox ramo_Proposta = new ChoiceBox<>();
+        ramo_Proposta.getItems().addAll("DA", "RAS", "SI");
+        ramo_Proposta.setValue("DA");
         grid.getChildren().add(ramo_Proposta);
         ramo_Proposta.setManaged(false);
         ramo_Proposta.setVisible(false);
+
 
         TextField empresa_Proposta = new TextField();
         empresa_Proposta.setPromptText("Empresa");
@@ -218,9 +219,9 @@ public class Popup extends VBox{
 
                 btnAdd.setOnAction( event ->{
                     if (nr_Aluno.getText() != ""){
-                        manager.adicionarProposta("T1", id_proposta.getText(), titulo_Proposta.getText(), Long.parseLong(nr_Aluno.getText()),null, ramo_Proposta.getText(), empresa_Proposta.getText());
+                        manager.adicionarProposta("T1", id_proposta.getText(), titulo_Proposta.getText(), Long.parseLong(nr_Aluno.getText()),null, ramo_Proposta.getValue().toString(), empresa_Proposta.getText());
                     }else {
-                        manager.adicionarProposta("T1", id_proposta.getText(), titulo_Proposta.getText(), null,null, ramo_Proposta.getText(), empresa_Proposta.getText());
+                        manager.adicionarProposta("T1", id_proposta.getText(), titulo_Proposta.getText(), null,null, ramo_Proposta.getValue().toString(), empresa_Proposta.getText());
                     }
                     popupwindow.close();
                 });
@@ -278,9 +279,9 @@ public class Popup extends VBox{
 
                 btnAdd.setOnAction( event ->{
                     if (nr_Aluno.getText() != ""){
-                        manager.adicionarProposta("T2", id_proposta.getText(), titulo_Proposta.getText(), Long.parseLong(nr_Aluno.getText()),email_Docente.getText(), ramo_Proposta.getText(), null);
+                        manager.adicionarProposta("T2", id_proposta.getText(), titulo_Proposta.getText(), Long.parseLong(nr_Aluno.getText()),email_Docente.getText(), ramo_Proposta.getValue().toString(), null);
                     }else {
-                        manager.adicionarProposta("T2", id_proposta.getText(), titulo_Proposta.getText(), null,email_Docente.getText(), ramo_Proposta.getText(), null);
+                        manager.adicionarProposta("T2", id_proposta.getText(), titulo_Proposta.getText(), null,email_Docente.getText(), ramo_Proposta.getValue().toString(), null);
                     }
                     popupwindow.close();
                 });
@@ -325,7 +326,7 @@ public class Popup extends VBox{
 
 
                 btnAdd.setOnAction( event ->{
-                    manager.adicionarProposta("T3", id_proposta.getText(), titulo_Proposta.getText(), Long.parseLong(nr_Aluno.getText()),null, ramo_Proposta.getText(), null);
+                    manager.adicionarProposta("T3", id_proposta.getText(), titulo_Proposta.getText(), Long.parseLong(nr_Aluno.getText()),null, ramo_Proposta.getValue().toString(), null);
                     popupwindow.close();
                 });
             }
@@ -339,7 +340,6 @@ public class Popup extends VBox{
 
         btnApagar.setOnAction(e-> {
             empresa_Proposta.clear();
-            ramo_Proposta.clear();
             email_Docente.clear();
             nr_Aluno.clear();
             titulo_Proposta.clear();
@@ -384,20 +384,31 @@ public class Popup extends VBox{
         email_Aluno.setPrefColumnCount(15);
         grid.getChildren().add(email_Aluno);
 
+        ChoiceBox ramo_Aluno = new ChoiceBox<>();
+        ramo_Aluno.getItems().addAll("DA", "RAS", "SI");
+        ramo_Aluno.setValue("DA");
+        grid.getChildren().add(ramo_Aluno);
+
+        ChoiceBox curso_Aluno = new ChoiceBox<>();
+        curso_Aluno.getItems().addAll("LEI", "LEI-PL");
+        curso_Aluno.setValue("LEI");
+        grid.getChildren().add(curso_Aluno);
+/*
         TextField ramo_Aluno = new TextField();
         ramo_Aluno.setPromptText("Ramo");
         ramo_Aluno.setPrefColumnCount(15);
         grid.getChildren().add(ramo_Aluno);
+*/
 
         TextField classificacao_Aluno = new TextField();
         classificacao_Aluno.setPromptText("Classificacao");
         classificacao_Aluno.setPrefColumnCount(15);
         grid.getChildren().add(classificacao_Aluno);
 
-        TextField curso_Aluno = new TextField();
+/*        TextField curso_Aluno = new TextField();
         curso_Aluno.setPromptText("Curso");
         curso_Aluno.setPrefColumnCount(15);
-        grid.getChildren().add(curso_Aluno);
+        grid.getChildren().add(curso_Aluno);*/
 
         Label estagio = new Label("Pode Acerder a Estagio?");
         grid.getChildren().add(estagio);
@@ -424,8 +435,8 @@ public class Popup extends VBox{
         GridPane.setConstraints(nome_Aluno,0,0);
         GridPane.setConstraints(nr_Aluno,0,1);
         GridPane.setConstraints(email_Aluno,0,2);
-        GridPane.setConstraints(ramo_Aluno,0,3);
-        GridPane.setConstraints(classificacao_Aluno,0,4);
+        GridPane.setConstraints(classificacao_Aluno,0,3);
+        GridPane.setConstraints(ramo_Aluno,0,4);
         GridPane.setConstraints(curso_Aluno,0,5);
         GridPane.setConstraints(estagio,0,7);
         GridPane.setConstraints(acede,0,8);
@@ -440,7 +451,7 @@ public class Popup extends VBox{
                 resultado = true;
             else
                 resultado = false;
-            manager.adicionarAluno(nr_Aluno.getText(),nome_Aluno.getText(),email_Aluno.getText(),ramo_Aluno.getText().toUpperCase(Locale.ROOT),Double.parseDouble(classificacao_Aluno.getText()),resultado, curso_Aluno.getText().toUpperCase());
+            manager.adicionarAluno(nr_Aluno.getText(),nome_Aluno.getText(),email_Aluno.getText(),ramo_Aluno.getValue().toString(),Double.parseDouble(classificacao_Aluno.getText()),resultado, curso_Aluno.getValue().toString());
             popupwindow.close();
         });
 
@@ -448,9 +459,7 @@ public class Popup extends VBox{
            nr_Aluno.clear();
            nome_Aluno.clear();
            email_Aluno.clear();
-           ramo_Aluno.clear();
            classificacao_Aluno.clear();
-           curso_Aluno.clear();
         });
 
         Scene nscene = new Scene(grid, 200, 100);
