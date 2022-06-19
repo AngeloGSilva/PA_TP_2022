@@ -18,7 +18,7 @@ import java.io.File;
 public class topButtonsUI extends VBox{
 
         ProgManager manager;
-        Button btnExportar, btnLerFich,btnAvancar,btnVoltar,btnAutoDoc,btnAtriAuto,btnManual,btnAtriDoc;
+        Button btnExportar, btnLerFich,btnAvancar,btnVoltar,btnAutoDoc,btnAtriAuto,btnManual,btnAtriDoc,btnGraficos,btnTabelas;
         Label info;
 
         ImageView imageView;
@@ -56,17 +56,19 @@ public class topButtonsUI extends VBox{
             info.setAlignment(Pos.TOP_CENTER);
 
 
-            //this.setPadding(new Insets(30));
-            btnAvancar = new Button();
-            imageView = new ImageView(ImageManager.getImage("avance.png"));
-            btnAvancar.setContentDisplay(ContentDisplay.RIGHT);
-            btnAvancar.setGraphic(imageView);
-            btnAvancar.setText("Avancar");
 
-            btnVoltar = new Button();
-            imageView = new ImageView(ImageManager.getImage("back.png"));
-            btnVoltar.setGraphic(imageView);
-            btnVoltar.setText("Voltar");
+                //this.setPadding(new Insets(30));
+                btnAvancar = new Button();
+                imageView = new ImageView(ImageManager.getImage("avance.png"));
+                btnAvancar.setContentDisplay(ContentDisplay.RIGHT);
+                btnAvancar.setGraphic(imageView);
+                btnAvancar.setText("Avancar");
+
+                btnVoltar = new Button();
+                imageView = new ImageView(ImageManager.getImage("back.png"));
+                btnVoltar.setGraphic(imageView);
+                btnVoltar.setText("Voltar");
+
 
 
             switch (manager.getState()){
@@ -172,7 +174,6 @@ public class topButtonsUI extends VBox{
 
 
             btnAvancar.setOnAction(event ->{
-
                 Popup.avancarFase(manager);
             });
             btnVoltar.setOnAction(event ->{

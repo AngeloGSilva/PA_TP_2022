@@ -34,7 +34,7 @@ public class RootPane extends BorderPane {
             case OPCAO_CANDIDATURA -> this.setCenter(new opCandidaturaUI(manager));
             case ATRIBUIR_PROPOSTA -> this.setCenter(new atriPropostaUI(manager));
             case ATRIBUIR_ORIENTADOR -> this.setCenter(new atriOrientadorUI(manager));
-
+            case CONSULTA -> this.setCenter(new consultaUI(manager));
         }
     }
 }
