@@ -86,7 +86,6 @@ public class ProContexto {
     }
 
 
-
     public static class memento{
         private final PoeState state;
 
@@ -373,6 +372,8 @@ public class ProContexto {
     public StringBuilder getCandidaturasPrintEasy() {
         return dados.getCandidaturasPrintEasy();
     }
+
+    public StringBuilder getAtribuicoesPrintEasy() { return dados.getAtribuicoesPrintEasy();}
 
     public boolean adicionarPropostaACandidatura(String nrAluno,String codID) {
         return state.adicionarPropostaACandidatura(nrAluno,codID);

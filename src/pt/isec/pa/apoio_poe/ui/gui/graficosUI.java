@@ -49,7 +49,7 @@ public class graficosUI extends GridPane {
         chart.setLegendSide(Side.LEFT);
 
         this.getChildren().add(chart);
-        GridPane.setConstraints(chart, 10, 10);
+        GridPane.setConstraints(chart, 10, 10);//posição
 
         //PieChart de propostas atribuidas vs nao atribuidas
         pieChartData2 =
@@ -62,7 +62,7 @@ public class graficosUI extends GridPane {
         chart2.setLegendSide(Side.RIGHT);
 
         this.getChildren().add(chart2);
-        GridPane.setConstraints(chart2, 20, 10);
+        GridPane.setConstraints(chart2, 20, 10);//posição
 
         //barchart de top de empresas
         final CategoryAxis xAxis = new CategoryAxis();
@@ -77,7 +77,7 @@ public class graficosUI extends GridPane {
         series1.setName("Número de estágios");
 
         this.getChildren().add(bc);
-        GridPane.setConstraints(bc, 20, 20);
+        GridPane.setConstraints(bc, 20, 20);//posição
 
         //barchart de top Docentes com mais orientações
         final CategoryAxis xAxis2 = new CategoryAxis();
@@ -92,7 +92,7 @@ public class graficosUI extends GridPane {
         series2.setName("Número de orientações");
 
         this.getChildren().add(bc2);
-        GridPane.setConstraints(bc2, 10, 20);
+        GridPane.setConstraints(bc2, 10, 20);//posição
 
     }
 

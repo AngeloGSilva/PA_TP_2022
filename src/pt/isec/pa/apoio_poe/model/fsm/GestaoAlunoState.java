@@ -72,7 +72,7 @@ public class GestaoAlunoState extends IStateAdapter {
             System.out.println("Nao fechou a fase\n");
             alteraState(new opCandidaturaState(dados, contexto));
         }else {
-            System.out.println("Numero de propostas inferior ao numero de alunos,fase nao fechada\n");
+            //System.out.println("Numero de propostas inferior ao numero de alunos,fase nao fechada\n");
             alteraState(new opCandidaturaState(dados, contexto));
             return false;
         }

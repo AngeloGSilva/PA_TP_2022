@@ -73,7 +73,7 @@ public class PoeUI {
                 }
             }
             case 3 ->{
-                switch (PAInput.chooseOption("Dados a consultar","Lista de estudantes com proposta atribuída e com orientador associado","Lista de estudantes com proposta atribuída mas sem orientador associado","Número de orientações por docente, em média, mínimo, máximo, e por docente especificado" , "Voltar")){
+                switch (PAInput.chooseOption("Dados a consultar","Lista de estudantes com proposta atribuída e com orientador associado","Lista de estudantes com proposta atribuída mas sem orientador associado","Número de orientações por docente, em média, mínimo, máximo, e por docente especificado","Todos" , "Voltar")){
                     case 1->{
                         System.out.println(controladorDoPrograma.getAlunosComOrientador());
                     }
@@ -82,6 +82,9 @@ public class PoeUI {
                     }
                     case 3->{
                         System.out.println(controladorDoPrograma.getNumerodeOrientacoes());
+                    }
+                    case 4->{
+                        System.out.println(controladorDoPrograma.getAtribuicoesPrintEasy());
                     }
                 }
             }case 4->{
@@ -116,12 +119,11 @@ public class PoeUI {
 
 
                     case 1 -> {
-                        controladorDoPrograma.AtribuirAutomaticoAutopropostosDocentesAluno(); //100%
+                        controladorDoPrograma.AtribuirAutomaticoAutopropostosDocentesAluno();
 
                     }
                     case 2 -> {
-                        //da set do cod de aluno
-                        controladorDoPrograma.AtribuirAutomaticamente(); //
+                        controladorDoPrograma.AtribuirAutomaticamente();
 
                     }
                     case 3 -> {
@@ -137,7 +139,7 @@ public class PoeUI {
                             System.out.println("Algo Correu mal!\n");
                     }
                     case 4 -> {
-                        switch (PAInput.chooseOption("Dados a consultar", "Alunos", "Propostas", "Voltar")) {
+                        switch (PAInput.chooseOption("Dados a consultar", "Alunos", "Propostas","Todos", "Voltar")) {
                             case 1 -> {
                                 switch (PAInput.chooseOption("Escolher Filtro para alunos", "Autoproposta Associada", "Candidatura Registada", "Proposta Atribuida", "Sem Prosposta Associada", "Voltar")) {
                                     case 1 -> {
@@ -177,7 +179,10 @@ public class PoeUI {
                                     }
                                 }
 
-                            }
+                            }case 3->{
+                                System.out.println(controladorDoPrograma.getAtribuicoesPrintEasy());
+
+                            }case 4->{break;}
                         }
                     }
                     case 5 ->{//So vai eliminar Atribuições de T1's basicamente, ja que se nao elimina T3 nem T2 com aluno, so resta T1 com aluno.
@@ -402,7 +407,7 @@ public class PoeUI {
                 }
                 case 2 -> {
 
-                switch (PAInput.chooseOption("Dados a consultar","Alunos","Propostas","All", "Voltar")){
+                switch (PAInput.chooseOption("Dados a consultar","Alunos","Propostas","Todos", "Voltar")){
                     case 1-> {
                         switch (PAInput.chooseOption("Escolher Filtro para alunos","Com autoproposta","Candidatura Registada", "Sem candidatura Registada","Voltar")){
                         case 1 ->{

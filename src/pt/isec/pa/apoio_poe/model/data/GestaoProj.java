@@ -908,28 +908,6 @@ public class GestaoProj implements Serializable {
         return list;
     }
 
-    public ArrayList<Proposta> getPropostasSemCandidatos() {
-        ArrayList<Proposta> list;
-        list = new ArrayList<>();
-        for (Proposta x : propostas) {
-            if(!verificaPropostaComAluno(x.getCod_ID())){
-                list.add(x);
-            }
-        }
-        return list;
-    }
-
-    public ArrayList<Proposta> getPropostasCandidatos() {
-        ArrayList<Proposta> list;
-        list = new ArrayList<>();
-        for (Proposta x : propostas) {
-            if(verificaPropostaComAluno(x.getCod_ID())){
-                list.add(x);
-            }
-        }
-        return list;
-    }
-
     public void atribuiAutopropostos(){
         for (Candidatura c: candidaturas) {
             if (!verificaCandidaturaAtribuida(c.getAluno())) {
@@ -1007,38 +985,6 @@ public class GestaoProj implements Serializable {
         }
     }
 
-    public ArrayList<String> ComparaClassificacoes(ArrayList<String> alunosconflito, Proposta proposta){
-        ArrayList<String> propostaAlunos = new ArrayList<>();
-        double maiorClassificacao = 0;
-        long nrAluno=0;
-        int contador=0;
-        for (String aluno: alunosconflito) {
-            if (maiorClassificacao <= getAlunoPorNumero(Long.parseLong(aluno)).getClassificacao_Aluno()){
-                maiorClassificacao = getAlunoPorNumero(Long.parseLong(aluno)).getClassificacao_Aluno();
-                nrAluno = Long.parseLong(aluno);
-            }
-        }
-        for (String aluno: alunosconflito) {
-            if (maiorClassificacao == getAlunoPorNumero(Long.parseLong(aluno)).getClassificacao_Aluno()){
-                contador++;
-            }
-        }
-        if (contador>1){
-            for (String aluno : alunosconflito) {
-                if (getAlunoPorNumero(Long.parseLong(aluno)).getClassificacao_Aluno() == maiorClassificacao){
-                    propostaAlunos.add(aluno);
-                }
-            }
-            propostaAlunos.add(proposta.getCod_ID());
-            return propostaAlunos;
-        }else{
-            atribuicoes.add(new Atribuicao(getAlunoPorNumero(nrAluno),getDocentePorEmailObjeto(proposta.getEmail_Docente()),proposta));
-            proposta.setCodigo_Aluno(getAlunoPorNumero(nrAluno).getNr_Aluno());
-            //System.out.println("Atribuiu a este cabecudo"+ nrAluno);
-        }
-        return null;
-    }
-
     public boolean atribuiAutomaticamente() {
         conflitos.clear();
         boolean repetido = false;
@@ -1082,18 +1028,12 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
-
     public String getCandidaturaPorNrAluno(Long nraluno) {
         for(Candidatura x : candidaturas){
             if(x.getAluno().getNr_Aluno() == nraluno)
                 return x.toString();
         }
         return null;
-    }
-
-    public void atribuiPropostaAluno(String escolhido, String id_proposta) {
-        getPropostaPorId(id_proposta).setCodigo_Aluno(Long.parseLong(escolhido));
-        atribuicoes.add(new Atribuicao(getAlunoPorNumero(Long.parseLong(escolhido)),getDocentePorEmailObjeto(getPropostaPorId(id_proposta).getEmail_Docente()),getPropostaPorId(id_proposta)));
     }
 
     public Docente getDocenteContadorMenor(){
@@ -1323,7 +1263,6 @@ public class GestaoProj implements Serializable {
         return String.valueOf(Orientadores);
     }
 
-
     public Aluno validarAluno(String nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio, String curso){
         if (nr_Aluno.length() == 10 && //se o numero tem 10 digitos
                 !verificaAlunoExiste(Long.parseLong(nr_Aluno)) && //se o numero ja nao se encontra noutro aluno
@@ -1530,6 +1469,26 @@ public class GestaoProj implements Serializable {
         aux2.deleteCharAt(aux2.length()-1);
         return aux2;
     }
+    public StringBuilder getAtribuicoesPrintEasy(){
+        ArrayList view = new ArrayList();
+        view.add("\nAtribuições:\n");
+        for(Atribuicao a :atribuicoes){
+            view.add("\nAluno: "+ a.getAluno().getNome_Aluno() + " Nrº-" +a.getAluno().getNr_Aluno());
+            view.add("\n");
+            if(a.getDocente()!=null) {
+                view.add("Docente:" + a.getDocente().getNome_Docente() + ", Email:" + a.getDocente().getEmail_Docente());
+                view.add("\n");
+            }
+            view.add("Proposta Atribuida:["+ a.getProposta().getClass().getSimpleName() + "]" + a.getProposta().getCod_ID());
+            view.add("\n");
+        }
+        String aux = String.valueOf(view);
+        aux = aux.replaceAll(",","");
+        StringBuilder aux2 = new StringBuilder(aux);
+        aux2.deleteCharAt(0);
+        aux2.deleteCharAt(aux2.length()-1);
+        return aux2;
+    }
 
     public boolean adicionarPropostaACandidatura(String nr_aluno, String idProp) {
         for(Candidatura c :candidaturas){
@@ -1677,7 +1636,6 @@ public class GestaoProj implements Serializable {
         }
         return contador;
     }
-
 
     public HashMap<String, Integer> contaEstagios() {
         HashMap<String, Integer> pares = new HashMap<>();
