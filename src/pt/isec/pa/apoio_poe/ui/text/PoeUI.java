@@ -88,7 +88,10 @@ public class PoeUI {
                     }
                 }
             }case 4->{
-                controladorDoPrograma.removeDocenteAtribuido((int) PAInput.readNumber("Id da proposta a remover o docente:"));
+                if(controladorDoPrograma.removeDocenteAtribuido((int) PAInput.readNumber("Id da proposta a remover o docente:"))){
+                    System.out.println("Removi com sucesso!\n");
+                }else
+                    System.out.println("Remover falhou!\n");
             }
             case 5->{
                 /*TODO*/
@@ -117,14 +120,11 @@ public class PoeUI {
             }else{
             switch (PAInput.chooseOption("Opções:", "Atribuir automatico Autopropostos e docentes com aluno", "Atribuir Automatico(Pode existir conflitos)", "Atribuir Alunos Manualmente", "Consulta","Eliminar Atribuições","Undo","Redo", "Load", "Save", "avancar", "voltar")) {
 
-
                     case 1 -> {
                         controladorDoPrograma.AtribuirAutomaticoAutopropostosDocentesAluno();
-
                     }
                     case 2 -> {
                         controladorDoPrograma.AtribuirAutomaticamente();
-
                     }
                     case 3 -> {
                         System.out.println(controladorDoPrograma.getAlunosSemAtribuicao());
@@ -481,7 +481,10 @@ public class PoeUI {
                                 System.out.println("Erro ao adicionar!\n");
                         }
                         case 2->{
-                            controladorDoPrograma.removerPropostaDeCandidatura(PAInput.readString("Numero de aluno:",true),PAInput.readString("Codigo da proposta:",true));
+                            if(controladorDoPrograma.removerPropostaDeCandidatura(PAInput.readString("Numero de aluno:",true),PAInput.readString("Codigo da proposta:",true))){
+                                System.out.println("Removida Com Sucesso!\n");
+                            }else
+                                System.out.println("Eliminar falhou!\n");
                         }
                         default -> {
                             break;
@@ -493,7 +496,7 @@ public class PoeUI {
                     if(controladorDoPrograma.remover(PAInput.readString("Numero do aluno da Candidatura a eliminar:",true)))
                         System.out.println("Eliminado Com Sucesso!\n");
                     else
-                        System.out.println("Se a astibuição foi realizada na fase de configuração, não é permitido eliminar[T2][T3]!\n");
+                        System.out.println("Eliminar falhou,não é permitido eliminar [T2][T3]!\n");
                 }
                 case 7 -> controladorDoPrograma.load();
                 case 8 -> controladorDoPrograma.save();
@@ -519,13 +522,10 @@ public class PoeUI {
         switch (PAInput.chooseOption("Opções:", "Exportar para um ficheiro", "Consulta","Ler ficheiro","Adicionar","Editar","Eliminar","Avancar","Voltar")) {
             case 1 -> {
                 controladorDoPrograma.exportarPropostas(PAInput.readString("Nome do ficheiro para exportar ",true));
-
-
             }
             case 2 -> System.out.println(controladorDoPrograma.getPropostas());
             case 3 -> {
                 controladorDoPrograma.lerFicheiro(PAInput.readString("Nome do Ficheiro csv", true));
-                //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
                 //Retirar os [] do print
                 errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
@@ -576,7 +576,10 @@ public class PoeUI {
 
             }
             case 6 ->{
-                controladorDoPrograma.remover(PAInput.readString("Id da proposta:",true));
+                if(controladorDoPrograma.remover(PAInput.readString("Id da proposta:",true))){
+                    System.out.println("Proposta removida com sucesso\n");
+                }else
+                    System.out.println("Proposta não removida\n");
             }
             case 7 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
@@ -599,30 +602,33 @@ public class PoeUI {
         switch (PAInput.chooseOption("Opções:", "Exportar para ficheiro", "Consulta","Ler ficheiro","Adicionar","Editar","Eliminar","Avancar", "Voltar")) {
             case 1 -> {
                 controladorDoPrograma.exportarDocentes(PAInput.readString("Nome do Ficheiro csv ", true));
-
             }
             case 2 -> {
                 System.out.println(controladorDoPrograma.getDocentes());
             }
             case 3 -> {
                 controladorDoPrograma.lerFicheiro(PAInput.readString("Nome do Ficheiro csv ", true));
-                //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
                 //Retirar os [] do print
                 errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
                 System.out.println(errorDisplay);
-                //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
                 controladorDoPrograma.limparErros();
             }
             case 4 ->{
-                controladorDoPrograma.adicionarDocente(PAInput.readString("Nome:",false),PAInput.readString("Email:",true),false);
+                if(controladorDoPrograma.adicionarDocente(PAInput.readString("Nome:",false),PAInput.readString("Email:",true),false)){
+                    System.out.println("Docente adicionado com sucesso!\n");
+                }else
+                    System.out.println("Docente nao adicionado!\n");
             }
             case 5 ->{
                 //A realizar
                 controladorDoPrograma.editar(PAInput.readString("Email do docente:",true),PAInput.readString("Edição [nome]:",false));
             }
             case 6 ->{
-                controladorDoPrograma.remover(PAInput.readString("Email do Docente:",true));
+                if(controladorDoPrograma.remover(PAInput.readString("Email do Docente:",true))){
+                    System.out.println("Docente removido com sucesso!\n");
+                }else
+                    System.out.println("Docente nao removido!\n");
             }
             case 7 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){
@@ -651,27 +657,28 @@ public class PoeUI {
                 System.out.println(controladorDoPrograma.getAlunos());
             }
             case 3 -> {
-                //controladorDoPrograma.removerAluno(Long.parseLong(PAInput.readString("Numero:",true)));
 
                 controladorDoPrograma.lerFicheiro(PAInput.readString("Nome do Ficheiro csv ", true));
-                //Mostrar quais linhas nao foram lidas por alguma razao nos ficheiros
                 String errorDisplay = controladorDoPrograma.getErros().toString();
-                //Retirar os [] do print
                 errorDisplay = errorDisplay.substring(1, errorDisplay.length() - 1);
                 System.out.println(errorDisplay);
-                //limpar o array dos erros para nao mostrar informacoes de outros ficheiros na proxima leitura
                 controladorDoPrograma.limparErros();
-
 
             }
             case 4 ->{
-                controladorDoPrograma.adicionarAluno(PAInput.readString("Numero:",true),PAInput.readString("Nome Aluno(Primeiro e Ultimo Obrigatorios):",false),PAInput.readString("email:",true),PAInput.readString("Ramo:",true),PAInput.readNumber("classificacao: "),true,PAInput.readString("curso:",true));
+                if(controladorDoPrograma.adicionarAluno(PAInput.readString("Numero:",true),PAInput.readString("Nome Aluno(Primeiro e Ultimo Obrigatorios):",false),PAInput.readString("email:",true),PAInput.readString("Ramo:",true),PAInput.readNumber("classificacao: "),true,PAInput.readString("curso:",true))){
+                    System.out.println("Aluno adicionado com sucesso");
+                }else
+                    System.out.println("Aluno adicionado com sucesso");
             }
             case 5 ->{
                 controladorDoPrograma.editar(PAInput.readString("Numero do aluno a editar:",true),PAInput.readString("Edição [nome]:",false));
             }
             case 6 ->{
-                controladorDoPrograma.remover(PAInput.readString("Numero de aluno:",true));
+                if(controladorDoPrograma.remover(PAInput.readString("Numero de aluno:",true))){
+                System.out.println("Aluno removido com sucesso");
+            }else
+                System.out.println("Aluno removido com sucesso");
             }
             case 7 -> {
                 switch (PAInput.chooseOption("Pretende Fechar a fase?","Sim","Nao")){

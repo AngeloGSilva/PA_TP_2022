@@ -41,9 +41,10 @@ public class atriOrientadorState extends IStateAdapter {
     }
 
     @Override
-    public void removeDocenteAtribuido(int idProp) {
-        dados.removerDocenteAtribuido(idProp);
+    public boolean removeDocenteAtribuido(int idProp) {
         alteraState(new atriOrientadorState(dados, contexto));
+        return  dados.removerDocenteAtribuido(idProp);
+
     }
 
 

@@ -39,5 +39,5 @@ public interface IState {
 
     int removerAllAtribuicao();
 
-    void removeDocenteAtribuido(int idProp);
+    boolean removeDocenteAtribuido(int idProp);
 }

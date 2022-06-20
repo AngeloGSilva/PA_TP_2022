@@ -109,7 +109,8 @@ abstract class IStateAdapter implements IState{
     }
 
     @Override
-    public void removeDocenteAtribuido(int idProp) {
+    public boolean removeDocenteAtribuido(int idProp) {
+        return false;
     }
 
 }
