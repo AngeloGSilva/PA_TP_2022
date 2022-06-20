@@ -86,6 +86,7 @@ public class ProContexto {
     }
 
 
+
     public static class memento{
         private final PoeState state;
 
@@ -394,10 +395,14 @@ public class ProContexto {
         return dados.verificaAlunoJaCandidato(nr_Aluno);
     }
 
-    public HashMap<String, Integer> frequenciaDeElementos(){return dados.frequenciaDeElementos();}
-
     public int contaPropostaRAS(){return dados.contaPropostaRAS();}
     public int contaPropostaDA(){return dados.contaPropostaDA();}
     public int contaPropostaSI(){return dados.contaPropostaSI();}
+
+    public int contaPropostasAtribuidas(){return dados.contaPropostasAtribuidas();}
+    public int contaPropostasNaoAtribuidas(){return dados.contaPropostasNaoAtribuidas();}
+
     public HashMap<String, Integer> contaEstagios(){return dados.contaEstagios();}
+
+    public HashMap<String,Integer> contaOrientacoes() { return dados.contaOrientacoes();}
 }

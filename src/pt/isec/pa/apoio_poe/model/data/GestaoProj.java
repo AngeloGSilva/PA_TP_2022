@@ -1594,23 +1594,7 @@ public class GestaoProj implements Serializable {
         }
     }
 
-    //contar frequencia
-    public HashMap<String, Integer> frequenciaDeElementos() {
-        HashMap<String, Integer> freqMap = new HashMap<String, Integer>();
-
-        for (Proposta proposta : propostas) {
-            if (freqMap.containsKey(proposta.getRamo())) {
-
-                // If number is present in freqMap,
-                // incrementing it's count by 1
-                freqMap.put(proposta.getRamo(), freqMap.get(proposta.getRamo()) + 1);
-            }else
-                freqMap.put(proposta.getRamo(), 1);
-        }
-        return freqMap;
-    }
-
-    public ArrayList<String> getEntidades() {
+    public ArrayList<String> getPropostasChart() {
         ArrayList<String> entidades = new ArrayList<String>();
         for (Proposta proposta: propostas) {
             if(proposta.getClass().getSimpleName().equals("T1"))
@@ -1619,27 +1603,16 @@ public class GestaoProj implements Serializable {
         return new ArrayList<String>(entidades);
     }
 
-    public HashMap<String, Integer> contaEstagios() {
-        HashMap<String, Integer> pares = new HashMap<>();
-        int frequencia = 0;
-        List<String> teste = getEntidades();
-        //int maior = 0;
-        if (propostas==null)
-            return null;
-        for (Proposta proposta : propostas) {
-           if(proposta.getClass().getSimpleName().equals("T1")) {
-               frequencia = Collections.frequency(teste, (proposta.getEmpresa()));
-               pares.put(proposta.getEmpresa(), frequencia);
-           }
+    public ArrayList<String> getDocentesChart() {
+        ArrayList<String> entidades = new ArrayList<String>();
+        for(Docente d:docentes) {
+            for (Atribuicao a : atribuicoes) {
+                if (a.getDocente().getEmail_Docente().equals(d.getEmail_Docente())){
+                    entidades.add(d.getEmail_Docente());
+                }
             }
-        List<Map.Entry<String, Integer> > list =
-                new LinkedList<>(pares.entrySet());
-        Collections.sort(list, Map.Entry.comparingByValue());
-        HashMap<String, Integer> temp = new LinkedHashMap<String, Integer>();
-        for (Map.Entry<String, Integer> aa : list) {
-            temp.put(aa.getKey(), aa.getValue());
         }
-        return temp;
+        return new ArrayList<String>(entidades);
     }
 
     public int contaPropostaRAS(){
@@ -1673,6 +1646,80 @@ public class GestaoProj implements Serializable {
                 contador++;
         }
         return contador;
+    }
+
+    public int contaPropostasAtribuidas(){
+        int contador=0;
+        for(Atribuicao a:atribuicoes){
+            for(Proposta p:propostas){
+                if(a.getProposta().getCod_ID().equals(p.getCod_ID()))
+                    contador++;
+            }
+        }
+        return contador;
+    }
+
+    public int contaPropostasNaoAtribuidas(){
+        int contador=0;
+        boolean existe=false;
+        for(Atribuicao a:atribuicoes){
+            existe=false;
+            for(Proposta p:propostas){
+                if(a.getProposta().getCod_ID().equals(p.getCod_ID()))
+                    existe=true;
+            }
+            if(!existe)
+                contador++;
+        }
+        return contador;
+    }
+
+
+    public HashMap<String, Integer> contaEstagios() {
+        HashMap<String, Integer> pares = new HashMap<>();
+        int frequencia = 0;
+        List<String> teste = getPropostasChart();
+        //int maior = 0;
+        if (propostas==null)
+            return null;
+        for (Proposta proposta : propostas) {
+            if(proposta.getClass().getSimpleName().equals("T1")) {
+                frequencia = Collections.frequency(teste, (proposta.getEmpresa()));
+                pares.put(proposta.getEmpresa(), frequencia);
+            }
+        }
+        List<Map.Entry<String, Integer> > list =
+                new LinkedList<>(pares.entrySet());
+        Collections.sort(list, Map.Entry.comparingByValue());
+        HashMap<String, Integer> temp = new LinkedHashMap<String, Integer>();
+        for (Map.Entry<String, Integer> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+        return temp;
+    }
+
+    public HashMap<String, Integer> contaOrientacoes() {
+        HashMap<String, Integer> pares = new HashMap<>();
+        int frequencia = 0;
+        List<String> teste = getDocentesChart();
+        if (docentes == null)
+            return null;
+        for (Docente d : docentes) {
+            for (Atribuicao a : atribuicoes) {
+                if (a.getDocente().getEmail_Docente().equals(d.getEmail_Docente())) {
+                    frequencia = Collections.frequency(teste, d.getEmail_Docente());
+                    pares.put(d.getEmail_Docente(), frequencia);
+                }
+            }
+        }
+        List<Map.Entry<String, Integer> > list =
+                new LinkedList<>(pares.entrySet());
+        Collections.sort(list, Map.Entry.comparingByValue());
+        HashMap<String, Integer> temp = new LinkedHashMap<String, Integer>();
+        for (Map.Entry<String, Integer> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+        return temp;
     }
 
 }

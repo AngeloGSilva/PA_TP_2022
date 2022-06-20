@@ -335,15 +335,18 @@ public class ProgManager {
         return controladorDoPrograma.getState();
     }
 
-    public HashMap<String, Integer> frequenciaDeElementos(){
-        return controladorDoPrograma.frequenciaDeElementos();
-    }
-
     public int contaPropostaRAS(){return controladorDoPrograma.contaPropostaRAS();}
     public int contaPropostaDA(){return controladorDoPrograma.contaPropostaDA();}
     public int contaPropostaSI(){return controladorDoPrograma.contaPropostaSI();}
 
+    public int contaPropostasAtribuidas(){return controladorDoPrograma.contaPropostasAtribuidas();}
+    public int contaPropostasNaoAtribuidas(){return controladorDoPrograma.contaPropostasNaoAtribuidas();}
+
     public HashMap contaEstagios() {
         return controladorDoPrograma.contaEstagios();
+    }
+
+    public HashMap contaOrientacoes() {
+        return controladorDoPrograma.contaOrientacoes();
     }
 }
