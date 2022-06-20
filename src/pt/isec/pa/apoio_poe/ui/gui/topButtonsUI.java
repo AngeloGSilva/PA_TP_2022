@@ -84,9 +84,23 @@ public class topButtonsUI extends VBox{
                     btnAtriAuto.setGraphic(imageView);
                     btnAtriAuto.setText("Automaticamente");
 
+
+                    btnAutoDoc.setVisible(true);
+                    btnAutoDoc.setManaged(true);
+                    btnAtriAuto.setManaged(true);
+                    btnAtriAuto.setVisible(true);
+
                     hbox.getChildren().addAll(btnVoltar, btnAutoDoc, btnAtriAuto,btnExportar, btnAvancar);
                     hbox.setAlignment(Pos.CENTER);
                     hbox.setSpacing(10);
+
+
+                    if (manager.getFase_Proposta()){
+                        btnAutoDoc.setVisible(false);
+                        btnAutoDoc.setManaged(false);
+                        btnAtriAuto.setManaged(false);
+                        btnAtriAuto.setVisible(false);
+                    }
                 }
                 case ATRIBUIR_ORIENTADOR -> {
                     btnAtriDoc = new Button();
@@ -196,6 +210,11 @@ public class topButtonsUI extends VBox{
                             Popup.avancarFase(manager);
                         else
                             manager.avancar(manager.getFase_Candidatura());
+                    }case ATRIBUIR_PROPOSTA -> {
+                        if (!manager.getFase_Proposta())
+                            Popup.avancarFase(manager);
+                        else
+                            manager.avancar(manager.getFase_Proposta());
                     }
                     default -> Popup.avancarFase(manager);
 

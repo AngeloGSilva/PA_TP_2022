@@ -1,6 +1,7 @@
 package pt.isec.pa.apoio_poe.ui.gui;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -57,8 +58,8 @@ public class consultaUI extends BorderPane {
         btnback.setVisible(false);
         btnback.setManaged(false);
 
-
         this.setTop(hBox);
+        hBox.setAlignment(Pos.TOP_CENTER);
 
     }
 
@@ -75,6 +76,7 @@ public class consultaUI extends BorderPane {
             btnback.setVisible(true);
             btnback.setManaged(true);
 
+            hBox.setAlignment(Pos.TOP_LEFT);
             this.setCenter(new graficosUI(manager));
         });
 
@@ -88,7 +90,7 @@ public class consultaUI extends BorderPane {
             btnback.setVisible(true);
             btnback.setManaged(true);
 
-            //hBox.getChildren().add(new tableViewsUI(manager));
+            hBox.setAlignment(Pos.TOP_LEFT);
             this.setCenter(new tableViewsUI(manager));
         });
 
@@ -103,6 +105,7 @@ public class consultaUI extends BorderPane {
 
             btnback.setVisible(false);
             btnback.setManaged(false);
+            hBox.setAlignment(Pos.TOP_CENTER);
             this.setCenter(null);
         });
     }

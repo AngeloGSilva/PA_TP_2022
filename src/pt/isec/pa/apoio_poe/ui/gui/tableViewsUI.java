@@ -446,6 +446,13 @@ public class tableViewsUI extends BorderPane {
                 btnMenuProposta.getItems().addAll(itemAutoPropostas,itemProCandidaturas,itemProDocentes,itemProSemCandidaturas);
             }
             case ATRIBUIR_PROPOSTA -> {
+                if (manager.getFase_Proposta()){
+                    btnDelete.setManaged(false);
+                    btnAdd.setManaged(false);
+                    btnDelete.setVisible(false);
+                    btnAdd.setVisible(false);
+                }
+
                 tableAtribuicoesPro = new TableView<Atribuicao>();
 
                 TableColumn<Atribuicao, String> nome_Aluno = new TableColumn<Atribuicao, String>("Nome");

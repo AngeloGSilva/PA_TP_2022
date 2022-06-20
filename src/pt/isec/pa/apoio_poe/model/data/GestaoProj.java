@@ -996,12 +996,12 @@ public class GestaoProj implements Serializable {
 
     public void atribuirSemCandidatura(){
         for (Aluno aluno: alunos) {
-            if (!verificaCandidaturaAtribuida(aluno)){
-                for (Proposta proposta:propostas) {
-                    if (!verificaPropostaAtribuida(proposta) && verificaRamoAlunoProposta(aluno.getNr_Aluno(),proposta.getRamo())){
+            for (Proposta proposta:propostas) {
+                if (!verificaPropostaAtribuida(proposta) &&
+                        verificaRamoAlunoProposta(aluno.getNr_Aluno(),proposta.getRamo()) &&
+                        !verificaCandidaturaAtribuida(aluno)){
                         proposta.setCodigo_Aluno(aluno.getNr_Aluno());
                         atribuicoes.add(new Atribuicao(aluno,getDocentePorEmailObjeto(proposta.getEmail_Docente()),proposta));
-                    }
                 }
             }
         }

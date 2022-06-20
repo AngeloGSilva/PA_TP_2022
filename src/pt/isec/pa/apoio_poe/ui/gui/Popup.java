@@ -254,13 +254,6 @@ public class Popup extends VBox{
         email_Docente.setManaged(false);
         email_Docente.setVisible(false);
 
-        ChoiceBox ramo_Proposta = new ChoiceBox<>();
-        ramo_Proposta.getItems().addAll("DA", "RAS", "SI");
-        ramo_Proposta.setValue("DA");
-        grid.getChildren().add(ramo_Proposta);
-        ramo_Proposta.setManaged(false);
-        ramo_Proposta.setVisible(false);
-
 
         TextField empresa_Proposta = new TextField();
         empresa_Proposta.setPromptText("Empresa");
@@ -268,6 +261,13 @@ public class Popup extends VBox{
         grid.getChildren().add(empresa_Proposta);
         empresa_Proposta.setManaged(false);
         empresa_Proposta.setVisible(false);
+
+        ChoiceBox ramo_Proposta = new ChoiceBox<>();
+        ramo_Proposta.getItems().addAll("DA", "RAS", "SI");
+        ramo_Proposta.setValue("DA");
+        grid.getChildren().add(ramo_Proposta);
+        ramo_Proposta.setManaged(false);
+        ramo_Proposta.setVisible(false);
 
 
         btnSelectTipo.setOnAction(e-> {
@@ -291,24 +291,21 @@ public class Popup extends VBox{
                 btnApagar.setManaged(true);
                 btnApagar.setVisible(true);
 
-
-
-
                 id_proposta.setVisible(true);
                 id_proposta.setManaged(true);
                 GridPane.setConstraints(id_proposta,0,0);
 
-                ramo_Proposta.setVisible(true);
-                ramo_Proposta.setManaged(true);
-                GridPane.setConstraints(ramo_Proposta,0,1);
-
                 empresa_Proposta.setVisible(true);
                 empresa_Proposta.setManaged(true);
-                GridPane.setConstraints(empresa_Proposta,0,2);
+                GridPane.setConstraints(empresa_Proposta,0,1);
 
                 titulo_Proposta.setVisible(true);
                 titulo_Proposta.setManaged(true);
-                GridPane.setConstraints(titulo_Proposta,0,3);
+                GridPane.setConstraints(titulo_Proposta,0,2);
+
+                ramo_Proposta.setVisible(true);
+                ramo_Proposta.setManaged(true);
+                GridPane.setConstraints(ramo_Proposta,0,3);
 
                 btnaddAluno.setManaged(true);
                 btnaddAluno.setVisible(true);
@@ -489,15 +486,6 @@ public class Popup extends VBox{
         email_Aluno.setPrefColumnCount(15);
         grid.getChildren().add(email_Aluno);
 
-        ChoiceBox ramo_Aluno = new ChoiceBox<>();
-        ramo_Aluno.getItems().addAll("DA", "RAS", "SI");
-        ramo_Aluno.setValue("DA");
-        grid.getChildren().add(ramo_Aluno);
-
-        ChoiceBox curso_Aluno = new ChoiceBox<>();
-        curso_Aluno.getItems().addAll("LEI", "LEI-PL");
-        curso_Aluno.setValue("LEI");
-        grid.getChildren().add(curso_Aluno);
 /*
         TextField ramo_Aluno = new TextField();
         ramo_Aluno.setPromptText("Ramo");
@@ -509,6 +497,16 @@ public class Popup extends VBox{
         classificacao_Aluno.setPromptText("Classificacao");
         classificacao_Aluno.setPrefColumnCount(15);
         grid.getChildren().add(classificacao_Aluno);
+
+        ChoiceBox ramo_Aluno = new ChoiceBox<>();
+        ramo_Aluno.getItems().addAll("DA", "RAS", "SI");
+        ramo_Aluno.setValue("DA");
+        grid.getChildren().add(ramo_Aluno);
+
+        ChoiceBox curso_Aluno = new ChoiceBox<>();
+        curso_Aluno.getItems().addAll("LEI", "LEI-PL");
+        curso_Aluno.setValue("LEI");
+        grid.getChildren().add(curso_Aluno);
 
 /*        TextField curso_Aluno = new TextField();
         curso_Aluno.setPromptText("Curso");
