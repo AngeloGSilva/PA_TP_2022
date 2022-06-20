@@ -13,7 +13,6 @@ public class GestaoDocenteState extends IStateAdapter {
         if(!dados.isFase_Fechada_Config()){
             alteraState(new ConfiguracaoState(dados,contexto));
         }else {
-            System.out.println("Fase fechada");
             alteraState(new ConfiguracaoState(dados,contexto));
         }
         return false;

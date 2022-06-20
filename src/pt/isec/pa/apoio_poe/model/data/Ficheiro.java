@@ -73,7 +73,6 @@ public final class Ficheiro {
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println("Ficheiro nao existe!");
         }catch (IOException e) {
             e.printStackTrace();
         }

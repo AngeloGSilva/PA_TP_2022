@@ -98,39 +98,26 @@ public class ProgManager {
 
     public ObservableList<Aluno> getAlunos() {
         ObservableList<Aluno> ob = FXCollections.observableArrayList(controladorDoPrograma.getAlunosTV());
-        System.out.println("Criar a lista de obs");
-        System.out.println(ob);
         return ob;
     }
 
     public ObservableList<Docente> getDocentes() {
         ObservableList<Docente> ob = FXCollections.observableArrayList(controladorDoPrograma.getDocentesTV());
-        System.out.println("Criar a lista de obs");
-        System.out.println(ob);
         return ob;
     }
 
     public ObservableList<Proposta> getPropostas() {
-        System.out.println(controladorDoPrograma.getPropostaTV());
         ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.getPropostaTV());
-        System.out.println("Criar a lista de obs");
-        System.out.println(ob);
         return ob;
     }
 
     public ObservableList<Proposta> getPropostasAuto() {
-        System.out.println(controladorDoPrograma.getAutopropostasAlunos());
         ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.getAutopropostasAlunos());
-        System.out.println("Criar a lista de obs");
-        System.out.println(ob);
         return ob;
     }
 
     public ObservableList<Proposta> getPropostasDoc() {
-        System.out.println(controladorDoPrograma.getPropostasDocentes());
         ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.getPropostasDocentes());
-        System.out.println("Criar a lista de obs");
-        System.out.println(ob);
         return ob;
     }
 
@@ -140,45 +127,28 @@ public class ProgManager {
     }
 
     public ObservableList<Proposta> getPropostasComCandidatura() {
-        System.out.println(controladorDoPrograma.getPropostasComCandidaturas());
         ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.getPropostasComCandidaturas());
-        System.out.println("Criar a lista de obs");
-        System.out.println(ob);
         return ob;
     }
 
     public ObservableList<Proposta> getPropostasSemCandidatura() {
-        System.out.println(controladorDoPrograma.getPropostasSemCandidaturas());
         ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.getPropostasSemCandidaturas());
-        System.out.println("Criar a lista de obs");
-        System.out.println(ob);
         return ob;
     }
 
     public ObservableList<Candidatura> getCandidaturas() {
-        System.out.println(controladorDoPrograma.getCandidaturaTV());
         ObservableList<Candidatura> ob = FXCollections.observableArrayList(controladorDoPrograma.getCandidaturaTV());
-        System.out.println("Criar a lista de obs");
-        System.out.println(ob);
         return ob;
-        //return dados.toStringCandidaturas();
     }
 
     public ObservableList<Atribuicao> getAtribuicoes() {
-        System.out.println(controladorDoPrograma.getAtribuicoesTV());
         ObservableList<Atribuicao> ob = FXCollections.observableArrayList(controladorDoPrograma.getAtribuicoesTV());
-        System.out.println("Criar a lista de obs");
-        System.out.println(ob);
         return ob;
-        //return dados.toStringCandidaturas();
     }
 
 
     public ObservableList<Aluno> getCandidaturasNotReg() {
-        System.out.println(controladorDoPrograma.getCandidaturasTVNotReg());
         ObservableList<Aluno> ob = FXCollections.observableArrayList(controladorDoPrograma.getCandidaturasTVNotReg());
-        System.out.println("Criar a lista de obs");
-        System.out.println(ob);
         return ob;
         //return dados.toStringCandidaturas();
     }

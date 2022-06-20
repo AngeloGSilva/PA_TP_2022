@@ -196,7 +196,6 @@ public class topButtonsUI extends VBox{
                             new FileChooser.ExtensionFilter("All files","*.*")
                     );
                     File file = fileChooser.showOpenDialog(this.getScene().getWindow());
-                    System.out.println(file.getAbsolutePath());
                     aux = manager.lerFicheiro(file.getAbsolutePath());
                     Popup.display(PopupSupport.POPUP_LERFICH,aux);
                 });

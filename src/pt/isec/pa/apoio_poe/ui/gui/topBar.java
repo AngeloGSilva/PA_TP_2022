@@ -48,7 +48,6 @@ public class topBar extends MenuBar {
             File hFile = fileChooser.showSaveDialog(this.getScene().getWindow());
             if (hFile != null){
                 manager.save(hFile.getName());
-                System.out.println(hFile.getName());
             }
         });
 
