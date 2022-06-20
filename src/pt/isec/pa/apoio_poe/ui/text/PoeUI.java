@@ -52,7 +52,7 @@ public class PoeUI {
 
     private void atrOrientadorUI() {
         System.out.println("Atribuir Orientador:\n");
-        switch (PAInput.chooseOption("Opções:","Atribuir Docentes Automaticos","Atribuir Docentes Manualmente","Consulta","Eliminar Atribuição de docente", "Load","Save","Avancar", "Voltar")) {
+        switch (PAInput.chooseOption("Opções:","Atribuir Docentes Automaticos","Atribuir Docentes Manualmente","Consulta","Eliminar Atribuição de docente","Undo","Redo", "Load","Save","Avancar", "Voltar")) {
             case 1 -> {
                 controladorDoPrograma.atribuirDocentesauto();
             }
@@ -82,15 +82,21 @@ public class PoeUI {
             }case 4->{
                 controladorDoPrograma.removeDocenteAtribuido((int) PAInput.readNumber("Id da proposta a remover o docente:"));
             }
+            case 5->{
+                /*TODO*/
 
-            case 5-> {
+            }case 6->{
+                /*TODO*/
+            }
+
+            case 7-> {
                 controladorDoPrograma.load();
             }
-            case 6->{
+            case 8->{
                 controladorDoPrograma.save();
             }
-            case 7 -> controladorDoPrograma.avancar(true);
-            case 8 -> controladorDoPrograma.voltar(true);
+            case 9 -> controladorDoPrograma.avancar(true);
+            case 10 -> controladorDoPrograma.voltar(true);
         }
     }
 
@@ -188,10 +194,10 @@ public class PoeUI {
                             }
                     }
                     case 6->{//undo
-
+                        /*TODO*/
                     }
                     case 7 ->{//redo
-
+                        /*TODO*/
                     }
                     case 8 -> controladorDoPrograma.load();
 

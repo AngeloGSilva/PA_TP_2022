@@ -689,7 +689,7 @@ public class tableViewsUI extends BorderPane {
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
 
-        if (manager.getState().equals(PoeState.OPCAO_CANDIDATURA) && manager.g) {
+        if (manager.getState().equals(PoeState.OPCAO_CANDIDATURA)) {
             itemAutoPropostas.setOnAction(event -> {
                 tableCandidatura.getItems().clear();
                 tableProposta.getItems().clear();
