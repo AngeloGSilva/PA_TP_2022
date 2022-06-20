@@ -104,10 +104,10 @@ public class PoeUI {
             }
 
             case 7-> {
-                controladorDoPrograma.load();
+                controladorDoPrograma.load("file.bin");
             }
             case 8->{
-                controladorDoPrograma.save();
+                controladorDoPrograma.save("file.bin");
             }
             case 9 -> controladorDoPrograma.avancar(true);
             case 10 -> controladorDoPrograma.voltar(true);
@@ -212,9 +212,9 @@ public class PoeUI {
                     case 7 ->{//redo
                         /*TODO*/
                     }
-                    case 8 -> controladorDoPrograma.load();
+                    case 8 -> controladorDoPrograma.load("file.bin");
 
-                    case 9 -> controladorDoPrograma.save();
+                    case 9 -> controladorDoPrograma.save("file.bin");
 
                     case 10 -> {
                         switch (PAInput.chooseOption("Pretende Fechar a fase?", "Sim", "Nao")) {
@@ -280,8 +280,8 @@ public class PoeUI {
                     }
                     case 2 -> controladorDoPrograma.avancar(true);
                     case 3 -> controladorDoPrograma.voltar(true);
-                    case 4 -> controladorDoPrograma.load();
-                    case 5 -> controladorDoPrograma.save();
+                    case 4 -> controladorDoPrograma.load("file.bin");
+                    case 5 -> controladorDoPrograma.save("file.bin");
                 }
             }else if (!controladorDoPrograma.getFase_Candidatura() && !controladorDoPrograma.getFase_Proposta()){
             switch (PAInput.chooseOption("Opções:", "Atribuir automatico Autopropostos e docentes com aluno" ,"Consulta", "Load", "Save", "avancar", "voltar")) {
@@ -333,9 +333,9 @@ public class PoeUI {
                         }
                     }
                 }
-                case 3 -> controladorDoPrograma.load();
+                case 3 -> controladorDoPrograma.load("file.bin");
 
-                case 4 -> controladorDoPrograma.save();
+                case 4 -> controladorDoPrograma.save("file.bin");
 
                 case 5 -> {
                     switch (PAInput.chooseOption("Pretende Fechar a fase?", "Sim", "Nao")) {
@@ -398,8 +398,8 @@ public class PoeUI {
                         }
                     }
                 }
-                case 2 -> controladorDoPrograma.load();
-                case 3 -> controladorDoPrograma.save();
+                case 2 -> controladorDoPrograma.load("file.bin");
+                case 3 -> controladorDoPrograma.save("file.bin");
                 case 4 -> controladorDoPrograma.avancar(true);
                 case 5 -> controladorDoPrograma.voltar(true);
             }
@@ -501,8 +501,8 @@ public class PoeUI {
                     else
                         System.out.println("Eliminar falhou,não é permitido eliminar [T2][T3]!\n");
                 }
-                case 7 -> controladorDoPrograma.load();
-                case 8 -> controladorDoPrograma.save();
+                case 7 -> controladorDoPrograma.load("file.bin");
+                case 8 -> controladorDoPrograma.save("file.bin");
                 case 9 -> {
                     switch (PAInput.chooseOption("Pretende Fechar a fase?", "Sim", "Nao")) {
                         case 1 -> {
@@ -715,10 +715,10 @@ public class PoeUI {
                    controladorDoPrograma.selecionar(PoeState.GESTAO_PROPOSTA);
                }
                case 4->{
-                   controladorDoPrograma.load();
+                   controladorDoPrograma.load("file.bin");
                }
                case 5->{
-                   controladorDoPrograma.save();
+                   controladorDoPrograma.save("file.bin");
                }
            }
 
@@ -740,8 +740,8 @@ public class PoeUI {
                         }
                     }
                 }
-                case 2 -> controladorDoPrograma.load();
-                case 3 ->  controladorDoPrograma.save();
+                case 2 -> controladorDoPrograma.load("file.bin");
+                case 3 ->  controladorDoPrograma.save("file.bin");
                 case 4 -> controladorDoPrograma.avancar(controladorDoPrograma.getFase_gestao());
             }
     }

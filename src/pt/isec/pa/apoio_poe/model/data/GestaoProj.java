@@ -996,6 +996,15 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
+    public int getIdAtribuicao(String id_Proposta){
+        for (Atribuicao atribuicao:atribuicoes) {
+            if (atribuicao.getProposta().getCod_ID().equals(id_Proposta)){
+                return atribuicao.getId();
+            }
+        }
+        return -1;
+    }
+
     public boolean verificaPropostaAtribuida(Proposta proposta){
         for (Atribuicao a: atribuicoes) {
             if (a.getProposta().equals(proposta)){

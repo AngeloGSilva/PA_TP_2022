@@ -1273,13 +1273,25 @@ public class tableViewsUI extends BorderPane {
                         System.out.println(td.getResult().toUpperCase(Locale.ROOT));
                         for (String s: selectedItem.getIdPropostas()) {
                             if (td.getResult().toUpperCase(Locale.ROOT).equals(s)){
-                                System.out.println("é um camelo");
                                 System.out.println(selectedItem.getNralunoString());
                                 manager.removerPropostaDeCandidatura(selectedItem.getNralunoString(),td.getResult().toUpperCase(Locale.ROOT));
                             }else {
                                 System.out.println("nao é nenhum deles");
                             }
                         }
+                    }
+                }
+                case ATRIBUIR_PROPOSTA -> {
+                    if (tableAtribuicoesPro !=null) {
+                        Atribuicao selectedItem = tableAtribuicoesPro.getSelectionModel().getSelectedItem();
+                        tableAtribuicoesPro.getItems().remove(selectedItem);
+                        manager.removeAtribuicao(selectedItem.getAluno().getNr_AlunoString());
+                    }
+                }
+                case ATRIBUIR_ORIENTADOR -> {
+                    if (tableAtribuicoesOri != null){
+                        Atribuicao selectedItem = tableAtribuicoesOri.getSelectionModel().getSelectedItem();
+                        manager.removeDocenteAtribuido(selectedItem.getId());
                     }
                 }
             }

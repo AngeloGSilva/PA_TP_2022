@@ -89,7 +89,7 @@ public class Popup extends VBox{
         GridPane.setConstraints(btnApagar,2,1);
 
         btnAdd.setOnAction(e-> {
-            //manager.atribuirManualmenteDocente(email_Docente.getText(), manager.getAtribuicaoporId(id_Proposta.getText()).ge);
+            manager.atribuirManualmenteDocente(email_Docente.getText(), manager.getIdAtribuicao(id_Proposta.getText().toUpperCase()));
             popupwindow.close();
         });
 
@@ -143,9 +143,7 @@ public class Popup extends VBox{
         GridPane.setConstraints(btnApagar,2,1);
 
         btnAdd.setOnAction(e-> {
-            if (!manager.VerificaAlunoJaCandidato((Long.parseLong(nr_Aluno.getText())))){
-                manager.atribuirManualmenteAluno(Long.parseLong(nr_Aluno.getText()), id_Proposta.getText().toUpperCase());
-            }
+            manager.atribuirManualmenteAluno(Long.parseLong(nr_Aluno.getText()), id_Proposta.getText().toUpperCase());
             popupwindow.close();
         });
 
@@ -794,6 +792,12 @@ public class Popup extends VBox{
                 }
                 case OPCAO_CANDIDATURA -> {
                     manager.exportarCandidaturas(nome_Ficheiro.getText());
+                }
+                case ATRIBUIR_ORIENTADOR -> {
+                    manager.exportarInfoFinal(nome_Ficheiro.getText());
+                }
+                case ATRIBUIR_PROPOSTA -> {
+                    manager.exportarInfoFinal(nome_Ficheiro.getText());
                 }
             }
             popupwindow.close();

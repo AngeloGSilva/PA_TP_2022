@@ -56,10 +56,10 @@ public class ProContexto {
     }
 
 //State
-    public void load() {
+    public void load(String file_name) {
         StateFactory name = new StateFactory();
         try (ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream("Loadsave.bin"))) {
+                new FileInputStream(file_name))) {
             GestaoProj newapp = (GestaoProj) ois.readObject();
             dados = newapp;
             this.alterarState(name.createState(PoeState.valueOf(dados.getStatekeep().toString()),this,dados));
@@ -70,10 +70,10 @@ public class ProContexto {
     }
 
 
-    public void save() {
+    public void save(String file_name) {
         dados.setStatekeep(state.getState());
         try (ObjectOutputStream ous = new ObjectOutputStream(
-                new FileOutputStream("Loadsave.bin"))) {
+                new FileOutputStream(file_name))) {
             ous.writeObject(dados);
         }
         catch (Exception e){
@@ -310,6 +310,10 @@ public class ProContexto {
 
     public void exportarInfoFinal(String FileName){
         dados.exportarInfoFinal(FileName);
+    }
+
+    public int getIdAtribuicao(String id_Proposta){
+        return dados.getIdAtribuicao(id_Proposta);
     }
 
     public ArrayList<Proposta> getAutopropostasAlunos() {

@@ -10,6 +10,7 @@ import pt.isec.pa.apoio_poe.model.ProgManager;
 
 import java.io.File;
 
+
 /**
  * class topBar class onde esta presente o save e load
  * @see MenuBar
@@ -41,12 +42,13 @@ public class topBar extends MenuBar {
             fileChooser.setTitle("Save file...");
             fileChooser.setInitialDirectory(new File("."));
             fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("(*.dat)", "*.dat"),
+                    new FileChooser.ExtensionFilter("(*.bin)", "*.bin"),
                     new FileChooser.ExtensionFilter("All", "*.*")
             );
             File hFile = fileChooser.showSaveDialog(this.getScene().getWindow());
             if (hFile != null){
-                manager.save();
+                manager.save(hFile.getName());
+                System.out.println(hFile.getName());
             }
         });
 
@@ -55,12 +57,12 @@ public class topBar extends MenuBar {
             fileChooser.setTitle("File open...");
             fileChooser.setInitialDirectory(new File("."));
             fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("(*.dat)", "*.dat"),
+                    new FileChooser.ExtensionFilter("(*.bin)", "*.bin"),
                     new FileChooser.ExtensionFilter("All", "*.*")
             );
             File hFile = fileChooser.showOpenDialog(this.getScene().getWindow());
             if (hFile != null){
-                manager.load();
+                manager.load(hFile.getName());
             }
         });
 

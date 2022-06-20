@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
+import pt.isec.pa.apoio_poe.model.fsm.atriPropostaState;
 import pt.isec.pa.apoio_poe.model.fsm.opCandidaturaState;
 
 import java.beans.PropertyChangeListener;
@@ -44,12 +45,12 @@ public class ProgManager {
         return controladorDoPrograma.getFase_Candidatura();
     }
 
-    public void load(){
-        controladorDoPrograma.load();
+    public void load(String file_name){
+        controladorDoPrograma.load(file_name);
     }
 
-    public void save(){
-        controladorDoPrograma.load();
+    public void save(String file_name){
+        controladorDoPrograma.save(file_name);
     }
 
     public boolean getFase_Orientador(){
@@ -317,6 +318,13 @@ public class ProgManager {
         controladorDoPrograma.exportarCandidaturas(FileName);
     }
 
+    public void exportarInfoFinal(String FileName){
+        controladorDoPrograma.exportarInfoFinal(FileName);
+    }
+
+    public int getIdAtribuicao(String id_Proposta){
+        return controladorDoPrograma.getIdAtribuicao(id_Proposta);
+    }
 
     public void editar(String identificador, String editado) {
         controladorDoPrograma.editar(identificador,editado);
@@ -337,7 +345,11 @@ public class ProgManager {
         return controladorDoPrograma.getAtribuicaoporId(id);
     }
 
-    public boolean atribuirManualmenteDocente(String docente, int id_atribuicao){return false;}
+    public boolean atribuirManualmenteDocente(String docente, int id_atribuicao){
+        boolean res = controladorDoPrograma.atribuirManualmenteDocente(docente,id_atribuicao);
+        pcs.firePropertyChange(null,null,null);
+        return res;
+    }
 
 
     public void AtribuirAutomaticoAutopropostosDocentesAluno(){
@@ -345,6 +357,17 @@ public class ProgManager {
         pcs.firePropertyChange(null,null,null);
     }
 
+    public Boolean removeAtribuicao(String nrAluno) {
+        Boolean res =  controladorDoPrograma.removeAtribuicao(nrAluno);
+        pcs.firePropertyChange(null,null,null);
+        return res;
+    }
+
+    public boolean removeDocenteAtribuido(int IdProp) {
+        boolean res =  controladorDoPrograma.removeDocenteAtribuido(IdProp);
+        pcs.firePropertyChange(null,null,null);
+        return res;
+    }
 
     public boolean atribuirManualmenteAluno(long id_aluno, String proposta){
         boolean resultado = controladorDoPrograma.atribuirManualmenteAluno(id_aluno,proposta);
