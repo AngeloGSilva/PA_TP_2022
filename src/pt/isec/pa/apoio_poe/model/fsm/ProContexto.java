@@ -8,6 +8,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
+/**
+ * Class que faz a ponte entre qualquer entidade externa aos dados , com os dados do programa
+ */
 public class ProContexto {
     private GestaoProj dados;
     private IState state;

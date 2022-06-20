@@ -28,6 +28,9 @@ public class RootPane extends BorderPane {
         manager.addPropertyChangeListener(evt -> { update(); });
     }
 
+    /**
+     * Metodo que esta encarregue de "desenhar" os restantes UI's
+     */
     private void update() {
         switch (manager.getState()) {
             case CONFIGURACAO -> this.setCenter(new configuracaoUI(manager));

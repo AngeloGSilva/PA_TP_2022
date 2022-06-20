@@ -6,6 +6,9 @@ import pt.isec.pa.apoio_poe.model.fsm.ProContexto;
 
 import java.util.Locale;
 
+/**
+ * Class onde é feita toda a interface de texto
+ */
 public class PoeUI {
     ProContexto controladorDoPrograma;
     public PoeUI(ProContexto controladorDoPrograma) {

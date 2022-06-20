@@ -16,6 +16,10 @@ import pt.isec.pa.apoio_poe.ui.gui.resources.ImageManager;
 
 import java.io.File;
 
+/**
+ * Class topButtonsUI dos buttons do top dos UI's
+ * @see VBox
+ */
 public class topButtonsUI extends VBox{
 
         ProgManager manager;

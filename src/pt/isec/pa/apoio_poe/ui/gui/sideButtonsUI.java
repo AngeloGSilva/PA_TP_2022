@@ -13,6 +13,10 @@ import pt.isec.pa.apoio_poe.ui.gui.resources.CSSManager;
 import pt.isec.pa.apoio_poe.ui.gui.resources.FontManager;
 import pt.isec.pa.apoio_poe.ui.gui.resources.ImageManager;
 
+/**
+ * Class para desenhar os butoes adicionar e remover
+ * @see VBox
+ */
 public class sideButtonsUI extends VBox {
 
     ProgManager manager;

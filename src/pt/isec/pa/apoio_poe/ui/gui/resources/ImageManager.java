@@ -5,6 +5,10 @@ import javafx.scene.image.Image;
 import java.io.InputStream;
 import java.util.HashMap;
 
+/**
+ * Class para tratar as Imagens
+ * @author Prof. Alvaro
+ */
 public class ImageManager {
     private ImageManager() { }
     private static final HashMap<String, Image> images = new HashMap<>();

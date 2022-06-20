@@ -4,6 +4,10 @@ import javafx.scene.text.Font;
 
 import java.io.InputStream;
 
+/**
+ * Class para as fontes
+ * @author Prof. Alvaro
+ */
 public class FontManager {
     private FontManager() { }
     public static Font loadFont(String filename, int size) {

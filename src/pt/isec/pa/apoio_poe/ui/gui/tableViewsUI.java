@@ -15,6 +15,10 @@ import pt.isec.pa.apoio_poe.ui.gui.resources.ImageManager;
 
 import java.util.Locale;
 
+/**
+ * Class onde sao feitas todas as tableViews do programa
+ * @see TableView
+ */
 public class tableViewsUI extends BorderPane {
     ProgManager manager;
     Button btnDelete,btnAdd;

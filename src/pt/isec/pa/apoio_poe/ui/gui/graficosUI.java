@@ -14,6 +14,10 @@ import pt.isec.pa.apoio_poe.model.ProgManager;
 
 import java.util.HashMap;
 
+/**
+ * Class onde sao desenhados os graficos para a ultima fase do programa
+ * @see GridPane
+ */
 public class graficosUI extends GridPane {
     ProgManager manager;
     ObservableList<PieChart.Data> pieChartData,pieChartData2;

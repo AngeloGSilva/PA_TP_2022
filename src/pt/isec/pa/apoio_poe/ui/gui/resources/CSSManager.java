@@ -2,6 +2,10 @@ package pt.isec.pa.apoio_poe.ui.gui.resources;
 
 import javafx.scene.Parent;
 
+/**
+ * Class para tratar o css
+ * @author Prof. Alvaro
+ */
 public class CSSManager {
     private CSSManager() { }
 

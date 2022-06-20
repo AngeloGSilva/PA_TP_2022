@@ -921,6 +921,10 @@ public class GestaoProj implements Serializable {
         return list;
     }
 
+    /**
+     * Metodo para adicionar uma Autoproposta ao Hashset das atribuicoes
+     * @see Atribuicao
+     */
     public void atribuiAutopropostos(){
         for (Candidatura c: candidaturas) {
             if (!verificaCandidaturaAtribuida(c.getAluno())) {
@@ -935,6 +939,10 @@ public class GestaoProj implements Serializable {
         }
     }
 
+    /**
+     * Medodo para adicionar os estagios sugeridos pelos alunos as atribuicoes
+     * @see Atribuicao
+     */
     public void atribuiEstagiosSugeridos(){
         for (Candidatura c: candidaturas) {
             if (!verificaCandidaturaAtribuida(c.getAluno())) {
@@ -951,6 +959,11 @@ public class GestaoProj implements Serializable {
     }
 
 
+    /**
+     * Metodo para adicionar as propostas sugeridads pelos docentes as atribuicoes
+     * @see Atribuicao
+     * @see Proposta
+     */
     public void atribuiPropostasDocentesCompletas(){
         for (Candidatura c: candidaturas) {
             for (Proposta p: c.getPropostas()) {
@@ -967,6 +980,13 @@ public class GestaoProj implements Serializable {
         }
     }
 
+    /**
+     * Metodo que verifica se um aluno ja esta atribuido
+     * @param aluno Aluno a verificar
+     * @return  true caso ja esteja atribuido , false caso nao esteje atribuido
+     * @see Atribuicao
+     * @see Aluno
+     */
     public boolean verificaCandidaturaAtribuida(Aluno aluno){
         for (Atribuicao a: atribuicoes) {
             if (a.getAluno().equals(aluno)){

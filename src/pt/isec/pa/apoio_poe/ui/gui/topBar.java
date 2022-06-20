@@ -10,6 +10,10 @@ import pt.isec.pa.apoio_poe.model.ProgManager;
 
 import java.io.File;
 
+/**
+ * class topBar class onde esta presente o save e load
+ * @see MenuBar
+ */
 public class topBar extends MenuBar {
     private  ProgManager manager;
     private MenuItem mnSave, mnLoad, mnExit;

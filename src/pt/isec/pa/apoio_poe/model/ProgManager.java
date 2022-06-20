@@ -12,6 +12,9 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Class que faz a ponte entre a interface grafica e o modelo de dados (UI - ProgManager - ProContexto - Dados)
+ */
 public class ProgManager {
 
     private ProContexto controladorDoPrograma;
