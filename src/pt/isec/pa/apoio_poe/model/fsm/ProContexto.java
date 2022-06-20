@@ -395,8 +395,8 @@ public class ProContexto {
         return state.removerAllAtribuicao();
     }
 
-    public void removeDocenteAtribuido(int IdProp) {
-        state.removeDocenteAtribuido(IdProp);
+    public boolean removeDocenteAtribuido(int IdProp) {
+        return state.removeDocenteAtribuido(IdProp);
     }
 
     public boolean VerificaAlunoJaCandidato(long nr_Aluno){

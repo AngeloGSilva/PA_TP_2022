@@ -1,5 +1,6 @@
 package pt.isec.pa.apoio_poe.model.data;
 
+import javax.print.Doc;
 import java.io.Serializable;
 import java.util.*;
 
@@ -1090,8 +1091,15 @@ public class GestaoProj implements Serializable {
                 if (atribuicao.getId() == id_atribuicao) {
                     if (atribuicao.getDocente() == null) {
                         for(Proposta p:propostas){
-                            if(p.getCod_ID().equals(atribuicao.getProposta().getCod_ID()))
+                            if(p.getCod_ID().equals(atribuicao.getProposta().getCod_ID())) {
                                 p.setEmail_Docente(getDocentePorEmailObjeto(docente).getEmail_Docente());
+                                for(Docente d:docentes){
+                                    if(d.getEmail_Docente().equals(p.getEmail_Docente())){
+                                        d.incContador();
+                                    }
+                                }
+
+                            }
                         }
                         atribuicao.setDocente(getDocentePorEmailObjeto(docente));
                         return true;
@@ -1485,6 +1493,7 @@ public class GestaoProj implements Serializable {
         ArrayList view = new ArrayList();
         view.add("\nAtribuições:\n");
         for(Atribuicao a :atribuicoes){
+            view.add("ID:{" + a.getId() +"}:");
             view.add("\nAluno: "+ a.getAluno().getNome_Aluno() + " Nrº-" +a.getAluno().getNr_Aluno());
             view.add("\n");
             if(a.getDocente()!=null) {
@@ -1556,17 +1565,25 @@ public class GestaoProj implements Serializable {
         return elim;
     }
 
-    public void removerDocenteAtribuido(int idProp) {
+    public boolean removerDocenteAtribuido(int idProp) {
         for(Atribuicao a:atribuicoes){
-            if(a.getId() == idProp){
-                for(Proposta p:propostas){
-                    if(p.getCod_ID().equals(a.getProposta().getCod_ID().equals(p.getCod_ID()))){
-                        p.setEmail_Docente(null);
+            if(a.getId() == idProp) {
+                if (a.getDocente() != null) {
+                    for (Proposta p : propostas) {
+                        if (p.getCod_ID().equals(a.getProposta().getCod_ID())) {
+                            for(Docente d:docentes){
+                                if(d.getEmail_Docente().equals(p.getEmail_Docente()))
+                                    d.decContador();
+                            }
+                            p.setEmail_Docente(null);
+                        }
                     }
+                    a.setDocente(null);
+                    return true;
                 }
-                a.setDocente(null);
             }
         }
+        return false;
     }
 
     public ArrayList<String> getPropostasChart() {
