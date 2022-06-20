@@ -306,6 +306,9 @@ public class ProContexto {
         dados.exportarCandidaturas(FileName);
     }
 
+    public void exportarInfoFinal(String FileName){
+        dados.exportarInfoFinal(FileName);
+    }
 
     public ArrayList<Proposta> getAutopropostasAlunos() {
         return dados.getPropostasAutopropostos();

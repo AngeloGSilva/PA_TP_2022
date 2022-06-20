@@ -1191,19 +1191,23 @@ public class GestaoProj implements Serializable {
     }
 
     public void exportarAlunos(String fileName){
-        Ficheiro.ExportarAlunos(fileName,this);
+        Ficheiro.exportarAlunos(fileName,this);
     }
 
     public void exportarPropostas(String fileName){
-        Ficheiro.ExportarPropostas(fileName,this);
+        Ficheiro.exportarPropostas(fileName,this);
     }
 
     public void exportarDocentes(String fileName){
-        Ficheiro.ExportarDocentes(fileName,this);
+        Ficheiro.exportarDocentes(fileName,this);
     }
 
     public void exportarCandidaturas(String filename){
-        Ficheiro.ExportarCandidaturas(filename,this);
+        Ficheiro.exportarCandidaturas(filename,this);
+    }
+
+    public void exportarInfoFinal(String filename) {
+        Ficheiro.exportarInfoFinal(filename, this);
     }
 
     public ArrayList<Proposta> getPropostasAutopropostos() {

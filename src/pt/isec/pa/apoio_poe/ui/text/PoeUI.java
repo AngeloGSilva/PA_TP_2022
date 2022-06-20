@@ -38,16 +38,21 @@ public class PoeUI {
     }
 
     private void consultaUI() {
+        System.out.println("A criar um ficheiro de resumo...");
+        controladorDoPrograma.exportarInfoFinal(PAInput.readString("Nome do Ficheiro [.csv] ", true));
+        System.out.println("--Alunos com proposta atribuida--");
         System.out.println(controladorDoPrograma.getAlunosPropostaAtribuida());
+        System.out.println("--Alunos sem proposta atribuida--");
         System.out.println(controladorDoPrograma.getAlunosSemPropostasComCadidaturaNaoAtribuida());
+        System.out.println("--Propostas Disponiveis--");
         System.out.println(controladorDoPrograma.getPropostasDisponiveis());
+        System.out.println("--Propostas Atribuidas--");
         System.out.println(controladorDoPrograma.getPropostasAtribuidas());
+        System.out.println("--Info Docentes--");
         System.out.println(controladorDoPrograma.getNumerodeOrientacoes());
 
-        //controladorDoPrograma.voltar(controladorDoPrograma.getFase_Orientador());
         if(PAInput.readString("[Sair para sair]:",true).equals("sair"))
             System.exit(0);
-        //PAInput.readNumber("poe numero qualquer .... so para parar o programa e dar debug");
     }
 
     private void atrOrientadorUI() {

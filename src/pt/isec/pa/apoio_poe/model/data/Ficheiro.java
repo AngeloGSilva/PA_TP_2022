@@ -321,7 +321,7 @@ public final class Ficheiro {
      * @see BufferedWriter
      * @see BufferedReader
      */
-    public static void ExportarAlunos(String fileName,GestaoProj gestaoProj){
+    public static void exportarAlunos(String fileName, GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
         f = new File(fileName);
         try {
@@ -363,7 +363,7 @@ public final class Ficheiro {
      * @see BufferedWriter
      * @see BufferedReader
      */
-    public static void ExportarPropostas(String fileName,GestaoProj gestaoProj){
+    public static void exportarPropostas(String fileName, GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
         f = new File(fileName);
         try {
@@ -373,6 +373,7 @@ public final class Ficheiro {
         }
         bw = new BufferedWriter(fw);
         pw = new PrintWriter(bw);
+
         for (Proposta p : gestaoProj.getPropostas()) {
             switch(p.getClass().getSimpleName()){
                 case "T1" ->{
@@ -434,7 +435,7 @@ public final class Ficheiro {
      * @see BufferedWriter
      * @see BufferedReader
      */
-    public static void ExportarDocentes(String fileName,GestaoProj gestaoProj){
+    public static void exportarDocentes(String fileName, GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
         f = new File(fileName);
         try {
@@ -467,7 +468,7 @@ public final class Ficheiro {
      * @see BufferedWriter
      * @see BufferedReader
      */
-    public static void ExportarCandidaturas(String fileName,GestaoProj gestaoProj){
+    public static void exportarCandidaturas(String fileName, GestaoProj gestaoProj){
         f = new File(fileName);
 
         try {
@@ -486,6 +487,40 @@ public final class Ficheiro {
             }
             pw.println();
         }
+        pw.flush();
+        pw.close();
+    }
+
+    public static void exportarInfoFinal(String fileName, GestaoProj gestaoProj){
+        f = new File(fileName);
+        try {
+            fw = new FileWriter(f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        bw = new BufferedWriter(fw);
+        pw = new PrintWriter(bw);
+
+        for(Atribuicao a: gestaoProj.getAtribuicoesTV()){
+            pw.print("Aluno:");
+            pw.print(a.getAluno().getNome_Aluno());
+            pw.print(',');
+            pw.print(" Nrº:");
+            pw.print(a.getAluno().getNr_Aluno());
+            for(Candidatura c: gestaoProj.getCandidaturas()){
+                if(c.getAluno().getNr_Aluno() == a.getAluno().getNr_Aluno()){
+                    pw.print(" Propostas:");
+                    pw.print(c.getIdPropostas());
+                }
+            }
+            pw.print(" Docente:");
+            pw.print(a.getDocente().getNome_Docente());
+            pw.print(',');
+            pw.print(" Email:");
+            pw.print(a.getDocente().getEmail_Docente());
+            pw.println();
+        }
+
         pw.flush();
         pw.close();
     }
