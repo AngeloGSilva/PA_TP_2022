@@ -5,6 +5,9 @@ import pt.isec.pa.apoio_poe.model.ProgManager;
 import pt.isec.pa.apoio_poe.ui.gui.resources.CSSManager;
 import pt.isec.pa.apoio_poe.ui.gui.resources.FontManager;
 
+/**
+ * Class RootPane class base da janela grafica
+ */
 public class RootPane extends BorderPane {
     ProgManager manager;
 

@@ -23,7 +23,7 @@ public class MainJFX extends Application {
         stage.setMinWidth(800);
         stage.setMinHeight(650);
         stage.setMaxHeight(850);
-        stage.setMaxWidth(1100);
+        stage.setMaxWidth(950);
         //stage.setResizable(false);
         stage.show();
     }
