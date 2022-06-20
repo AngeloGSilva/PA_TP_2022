@@ -347,6 +347,18 @@ public class GestaoProj implements Serializable {
         return String.valueOf(Autopropostos);
     }
 
+
+    public ArrayList<Proposta> toStringAutopropostasTV(){
+        ArrayList<Proposta> Autopropostos = new ArrayList<>();
+        String buffer;
+        for(Proposta p : propostas){
+            if(p.getClass().getSimpleName().equals("T3")){
+                Autopropostos.add(p);
+            }
+        }
+        return Autopropostos;
+    }
+
     /**
      * Retornar o docente a qual pertence o email
      * @param email email do docente

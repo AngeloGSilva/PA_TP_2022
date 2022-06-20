@@ -9,6 +9,7 @@ import pt.isec.pa.apoio_poe.model.fsm.opCandidaturaState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProgManager {
@@ -69,6 +70,11 @@ public class ProgManager {
         boolean resultado = controladorDoPrograma.removerProposta(id_Proposta);
         pcs.firePropertyChange(null,null,null);
         return resultado;
+    }
+
+    public ObservableList<Proposta> toStringAutopropostasTV() {
+        ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.toStringAutopropostasTV());
+        return ob;
     }
 
     public ObservableList<Aluno> getAlunos() {

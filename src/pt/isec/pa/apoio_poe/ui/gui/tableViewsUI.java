@@ -13,7 +13,6 @@ import pt.isec.pa.apoio_poe.model.data.*;
 import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import pt.isec.pa.apoio_poe.ui.gui.resources.ImageManager;
 
-import java.awt.event.MouseEvent;
 import java.util.Locale;
 
 public class tableViewsUI extends BorderPane {
@@ -23,6 +22,8 @@ public class tableViewsUI extends BorderPane {
     SplitMenuButton btnMenuAluno,btnMenuProposta;
     MenuItem itemAuto, itemNotReg, itemReg;
     MenuItem itemAutoPropostas, itemProDocentes, itemProCandidaturas, itemProSemCandidaturas;
+    MenuItem itemAutoAssociadoProposta, itemPropostasAtri, itemPropostaNaoAssociada;
+    MenuItem itemAutoAssociadoAluno, itemPropostasDisp, itemPropostasAtribuidas;
 
     //ToggleButton tbAuto,tbNotReg,tbReg;
     ToggleButton tbAluno,tbDocente,tbProposta,tbCandidatura,tbAtribuicoes;
@@ -453,6 +454,74 @@ public class tableViewsUI extends BorderPane {
                     btnAdd.setVisible(false);
                 }
 
+                tableAlunos = new TableView<Aluno>();
+                nome = new TableColumn("Nome");
+                nome.setCellValueFactory(new PropertyValueFactory<Aluno, String>("nome_Aluno"));
+                nome.setMinWidth(100);
+
+                nr_Aluno = new TableColumn("Numero");
+                nr_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, Long>("nr_Aluno"));
+                nr_Aluno.setMinWidth(85);
+
+                email_Aluno = new TableColumn("Email");
+                email_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, String>("email_Aluno"));
+                email_Aluno.setMinWidth(140);
+
+                curso = new TableColumn("Curso");
+                curso.setCellValueFactory(new PropertyValueFactory<Aluno, String>("curso"));
+                curso.setMinWidth(50);
+
+                ramo_Aluno = new TableColumn("Ramo");
+                ramo_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, String>("ramo_Aluno"));
+                ramo_Aluno.setMinWidth(50);
+
+                classificacao_Aluno = new TableColumn("Classificacão");
+                classificacao_Aluno.setCellValueFactory(new PropertyValueFactory<Aluno, Double>("classificacao_Aluno"));
+                classificacao_Aluno.setMinWidth(50);
+
+                aceder_a_Estagio = new TableColumn("Estagio");
+                aceder_a_Estagio.setCellValueFactory(new PropertyValueFactory<Aluno, Boolean>("aceder_a_Estagio"));
+                aceder_a_Estagio.setMinWidth(50);
+                tableAlunos.getColumns().addAll(nome,nr_Aluno,email_Aluno,curso,ramo_Aluno,classificacao_Aluno,aceder_a_Estagio);
+
+                tableAlunos.setMaxWidth(750);
+                tableAlunos.setMaxHeight(450);
+
+                tableAlunos.setItems(manager.getCandidaturasNotReg());
+                tableAlunos.setVisible(false);
+
+                tableProposta = new TableView<Proposta>();
+                id_Proposta = new TableColumn("Codigo");
+                id_Proposta.setCellValueFactory(new PropertyValueFactory<Proposta, String>("cod_ID"));
+                id_Proposta.setMinWidth(100);
+
+                titulo = new TableColumn("Titulo");
+                titulo.setCellValueFactory(new PropertyValueFactory<Docente, String>("titulo"));
+                titulo.setMinWidth(100);
+
+                codigo_Aluno = new TableColumn("Codigo Aluno");
+                codigo_Aluno.setCellValueFactory(new PropertyValueFactory<Docente, String>("codigo_Aluno"));
+                codigo_Aluno.setMinWidth(100);
+
+                email_Docente = new TableColumn("Email Docente");
+                email_Docente.setCellValueFactory(new PropertyValueFactory<Docente, String>("email_Docente"));
+                email_Docente.setMinWidth(100);
+
+                empresa = new TableColumn("Empresa");
+                empresa.setCellValueFactory(new PropertyValueFactory<Docente, String>("empresa"));
+                empresa.setMinWidth(100);
+
+                ramo = new TableColumn("Ramo");
+                ramo.setCellValueFactory(new PropertyValueFactory<Docente, String>("ramo"));
+                ramo.setMinWidth(100);
+
+                tableProposta.getColumns().addAll(id_Proposta,titulo,codigo_Aluno,email_Docente,empresa,ramo);
+
+                tableProposta.setMaxWidth(750);
+                tableProposta.setMaxHeight(450);
+
+                tableProposta.setVisible(false);
+
                 tableAtribuicoesPro = new TableView<Atribuicao>();
 
                 TableColumn<Atribuicao, String> nome_Aluno = new TableColumn<Atribuicao, String>("Nome");
@@ -485,6 +554,25 @@ public class tableViewsUI extends BorderPane {
                 this.setCenter(tableAtribuicoesPro);
                 tableAtribuicoesPro.getItems().clear();
                 tableAtribuicoesPro.setItems(manager.getAtribuicoes());
+
+                hboxFilters = new HBox();
+                hboxFilters.getChildren().addAll(btnMenuAluno,btnMenuProposta);
+                hboxFilters.setAlignment(Pos.BOTTOM_CENTER);
+                this.setTop(hboxFilters);
+
+                itemAutoAssociadoProposta = new MenuItem("Auroproposta Associada");
+                itemReg = new MenuItem("Candidatura Registada");
+                itemPropostasAtri = new MenuItem("Proposta Atribuida");
+                itemNotReg = new MenuItem("Sem Prosposta Associada");
+
+                btnMenuAluno.getItems().addAll(itemAutoAssociadoProposta,itemReg,itemPropostasAtri,itemNotReg);
+
+                itemAutoAssociadoAluno = new MenuItem("AutoPropostas de alunos");
+                itemProDocentes = new MenuItem("Propostas de Docentes");
+                itemPropostasDisp = new MenuItem("Propostas Disponiveis");
+                itemPropostasAtribuidas = new MenuItem("Propostas Atribuidas");
+
+                btnMenuProposta.getItems().addAll(itemAutoAssociadoAluno,itemProDocentes,itemPropostasDisp,itemPropostasAtribuidas);
             }
             case ATRIBUIR_ORIENTADOR -> {
                 tableAtribuicoesOri = new TableView<Atribuicao>();
@@ -856,6 +944,36 @@ public class tableViewsUI extends BorderPane {
                     btnAdd.setDisable(true);
                 }
             });
+        }
+
+        if (manager.getState().equals(PoeState.ATRIBUIR_PROPOSTA)){
+            itemAutoAssociadoProposta.setOnAction(event -> {
+                tableAtribuicoesPro.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
+
+                tableAlunos.setVisible(true);
+                tableAtribuicoesPro.setVisible(false);
+                tableProposta.setItems(manager.toStringAutopropostasTV());
+                tableProposta.setVisible(false);
+                this.setCenter(tableAlunos);
+                tableAlunos.setManaged(true);
+                tableAtribuicoesPro.setManaged(false);
+                tableProposta.setManaged(false);
+                if (!manager.getFase_Proposta()){
+                    btnDelete.setManaged(true);
+                    btnAdd.setManaged(true);
+                    btnDelete.setDisable(true);
+                    btnAdd.setDisable(true);
+                }});
+            itemReg.setOnAction(event -> {});
+            itemPropostasAtri.setOnAction(event -> {});
+            itemNotReg.setOnAction(event -> {});
+
+            itemAutoAssociadoAluno.setOnAction(event -> {});
+            itemProDocentes.setOnAction(event -> {});
+            itemPropostasDisp.setOnAction(event -> {});
+            itemPropostasAtribuidas.setOnAction(event -> {});
         }
 
         if (manager.getState().equals(PoeState.CONFIGURACAO) && manager.getFase_gestao()) {

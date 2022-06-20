@@ -357,6 +357,10 @@ public class ProContexto {
         return dados.getConflitosTV();
     }
 
+    public ArrayList<Proposta> toStringAutopropostasTV() {
+        return dados.toStringAutopropostasTV();
+    }
+
     public Proposta getPropostaConflito() {
         return dados.getPropostaConflito();
     }
