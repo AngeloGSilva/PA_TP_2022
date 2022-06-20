@@ -597,7 +597,7 @@ public class Popup extends VBox{
         email_Docente.setPrefColumnCount(15);
         grid.getChildren().add(email_Docente);
 
-        Label estagio = new Label("Pode Acerder a Estagio?");
+        Label estagio = new Label("Proponente de projeto?");
         grid.getChildren().add(estagio);
         estagio.setAlignment(Pos.CENTER);
 
@@ -620,12 +620,12 @@ public class Popup extends VBox{
         grid.getChildren().add(btnApagar);
 
         GridPane.setConstraints(nome_Docente,0,0);
-        GridPane.setConstraints(email_Docente,0,2);
-        GridPane.setConstraints(estagio,0,7);
-        GridPane.setConstraints(acede,0,8);
-        GridPane.setConstraints(naoAcede,1,8);
-        GridPane.setConstraints(btnAdd,2,2);
-        GridPane.setConstraints(btnApagar,2,3);
+        GridPane.setConstraints(email_Docente,0,1);
+        GridPane.setConstraints(estagio,0,5);
+        GridPane.setConstraints(acede,0,6);
+        GridPane.setConstraints(naoAcede,1,6);
+        GridPane.setConstraints(btnAdd,2,0);
+        GridPane.setConstraints(btnApagar,2,1);
 
         btnAdd.setOnAction(e-> {
             RadioButton rb = (RadioButton) acederEstagio.getSelectedToggle();
@@ -634,7 +634,7 @@ public class Popup extends VBox{
                 resultado = true;
             else
                 resultado = false;
-            manager.adicionarDocente(nome_Docente.getText(),email_Docente.getText(),true);
+            manager.adicionarDocente(nome_Docente.getText(),email_Docente.getText(),resultado);
             popupwindow.close();
         });
 
@@ -644,9 +644,9 @@ public class Popup extends VBox{
         });
 
         Scene nscene = new Scene(grid, 200, 100);
-        popupwindow.setTitle("Adicionar Aluno");
+        popupwindow.setTitle("Adicionar Docente");
         popupwindow.setMinWidth(350);
-        popupwindow.setMinHeight(300);
+        popupwindow.setMinHeight(200);
 
         popupwindow.setMaxWidth(nscene.getWidth());
         popupwindow.setMaxHeight(nscene.getHeight());

@@ -72,8 +72,23 @@ public class ProgManager {
         return resultado;
     }
 
-    public ObservableList<Proposta> toStringAutopropostasTV() {
-        ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.toStringAutopropostasTV());
+    public ObservableList<Aluno> getAlunosPropostaAtribuida() {
+        ObservableList<Aluno> ob = FXCollections.observableArrayList(controladorDoPrograma.getAlunosPropostaAtribuida());
+        return ob;
+    }
+
+    public ObservableList<Aluno> getAlunosSemProposta() {
+        ObservableList<Aluno> ob = FXCollections.observableArrayList(controladorDoPrograma.getAlunosSemProposta());
+        return ob;
+    }
+
+    public ObservableList<Proposta> getAutopropostasAlunos() {
+        ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.getAutopropostasAlunos());
+        return ob;
+    }
+
+    public ObservableList<Aluno> toStringAutopropostasTV() {
+        ObservableList<Aluno> ob = FXCollections.observableArrayList(controladorDoPrograma.getAlunosAutopropostos());
         return ob;
     }
 
@@ -112,6 +127,11 @@ public class ProgManager {
         ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.getPropostasDocentes());
         System.out.println("Criar a lista de obs");
         System.out.println(ob);
+        return ob;
+    }
+
+    public ObservableList<Proposta> getPropostasDisponiveis() {
+        ObservableList<Proposta> ob = FXCollections.observableArrayList(controladorDoPrograma.getPropostasDisponiveis());
         return ob;
     }
 
@@ -206,8 +226,6 @@ public class ProgManager {
     public boolean isConflitoON() {
         return controladorDoPrograma.isConflitoON();
     }
-
-
 
 
     public boolean lerFicheiroDebug(String fileName){
