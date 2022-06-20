@@ -14,11 +14,19 @@ import java.util.*;
 public class GestaoProj implements Serializable {
     //array de erros para utilizar no UI
     ArrayList<String> erros = new ArrayList<>();
-
-
     HashSet<Aluno> conflitos = new HashSet<>();
+
     Proposta propostaConflito;
     boolean conflitoON = false;
+
+    //Validar entradas
+    //arrays para verificacoes que vao permitir usar o contains
+    private  String[] ramos = {"DA", "SI", "RAS"};
+    private  List<String> Ramos = Arrays.asList(ramos);
+    private  String[] curso = {"LEI", "LEI-PL"};
+    private  List<String> Curso = Arrays.asList(curso);
+    private  String[] tipos = {"T1", "T2", "T3"};
+    private  List<String> Tipos = Arrays.asList(tipos);
 
     public HashSet<Aluno> getConflitos() {
         return conflitos;
@@ -114,34 +122,66 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
+    /**
+     * Função de obtenção dos dados remetentes aos alunos
+     * @return ArrayList de alunos
+     */
     public ArrayList<Aluno> getAlunosTV(){
         return new ArrayList<Aluno>(alunos);
     }
 
+    /**
+     * Função de obtenção dos dados remetentes aos alunos em situação de conflito
+     * @return ArrayList de alunos
+     */
     public ArrayList<Aluno> getConflitosTV() {
         return new ArrayList<Aluno>(conflitos);
     }
 
+    /**
+     * Função de obtenção dos dados remetentes aos Docentes
+     * @return ArrayList de Docentes
+     */
     public ArrayList<Docente> getDocentesTV(){
         return new ArrayList<Docente>(docentes);
     }
 
+    /**
+     * Função de obtenção dos dados remetentes às propostas
+     * @return ArrayList de propostas
+     */
     public ArrayList<Proposta> getPropostaTV(){
         return new ArrayList<Proposta>(propostas);
     }
 
+    /**
+     * Função de obtenção dos dados remetentes às Candidaturas
+     * @return ArrayList de Candidaturas
+     */
     public ArrayList<Candidatura> getCandidaturaTV(){
         return new ArrayList<Candidatura>(candidaturas);
     }
 
+    /**
+     * Função de obtenção dos dados remetentes às Atribuições
+     * @return ArrayList de Atribuições
+     */
     public ArrayList<Atribuicao> getAtribuicoesTV(){
         return new ArrayList<Atribuicao>(atribuicoes);
     }
 
+    /**
+     * Função de obtenção dos dados remetentes às Candidaturas de alunos autopropostos
+     * @return ArrayList de Candidaturas
+     */
     public ArrayList<Candidatura> getCandidaturaTVAuto(){
         return getAutoPropostos();
     }
 
+    /**
+     * Função de obtenção dos dados remetentes aos alunos sem candidaturas registadas
+     * @return ArrayList de Alunos
+     */
     public ArrayList<Aluno> getCandidaturasTVNotReg(){
         return getAlunosNotReg();
     }
@@ -167,6 +207,10 @@ public class GestaoProj implements Serializable {
         return alunosNotReg;
     }
 
+    /**
+     * Função de obtenção dos dados remetentes aos alunos sem candidaturas registadas
+     * @return ArrayList de Alunos
+     */
     public ArrayList<Candidatura> getAutoPropostos(){
         ArrayList<Candidatura> autopropostos = new ArrayList<>();
         for(Proposta p : propostas){
@@ -181,7 +225,6 @@ public class GestaoProj implements Serializable {
         return autopropostos;
     }
 
-
     //toStrings dos varios arrays.... (nao sei se é necessario)
     public String toStringAlunos() {
         return "Alunos:\n " + alunos;
@@ -195,6 +238,10 @@ public class GestaoProj implements Serializable {
         return "Propostas:\n " + propostas;
     }
 
+    /**
+     * Obter as autopropostas e o aluno que as propos
+     * @return String com todas as autopropostas
+     */
     public String toStringAutopropostas(){
         ArrayList<String> Autopropostos = new ArrayList<>();
         String buffer;
@@ -217,31 +264,21 @@ public class GestaoProj implements Serializable {
     }
 
     public String toStringAtribuicoesSemDocente() {
-        return preencheAtribuicoesSemDocente().toString();
+        return getAtribuicoesSemDocente().toString();
     }
 
     public String toStringAlunosSemAtribuicao() {
-        return preencheAlunosDisponiveis().toString();
+        return getAlunosDisponiveis().toString();
     }
 
     public String toStringPropostasSemAtribuicao() {
-        return preenchePropostasDisponiveis().toString();
+        return retornaPropostasDisponiveis().toString();
     }
 
-    //Devolver um to.string()
-    //Alunos com autoproposta e Alunos com proposta de docente associada
-    public HashSet<Aluno> AlunosComAutoproposta(){
-        HashSet<Aluno> alunosCA= new HashSet<>();
-        for(Aluno a:alunos) {
-            if(get_codigoAluno(a.getNr_Aluno())){
-                alunosCA.add(a);
-            }
-        }
-        return alunosCA;
-    }
-
-
-    //Alunos com candidatura registada
+    /**
+     * Função de obtenção dos dados remetentes aos alunos com candidaturas registadas
+     * @return ArrayList de Alunos
+     */
     public HashSet<Aluno> alunosCandidaturaRegistada(){
         HashSet<Aluno> alunosD= new HashSet<>();
         for(Aluno a:alunos) {
@@ -252,7 +289,10 @@ public class GestaoProj implements Serializable {
         return alunosD;
     }
 
-    //Alunos sem candidatura registada
+    /**
+     * Função de obtenção dos dados remetentes aos alunos sem candidaturas registadas
+     * @return ArrayList de Alunos
+     */
     public HashSet<Aluno> alunosSemCandidaturaRegistada(){
         boolean existe = true;
         HashSet<Aluno> alunosSR= new HashSet<>();
@@ -270,7 +310,10 @@ public class GestaoProj implements Serializable {
         return alunosSR;
     }
 
-    //tamanho dos arrays
+    /**
+     * Função que tem como objetivo auxiliar a verificação de avanço da fase de configuração
+     * @return Numero de propostas por ramo
+     */
     public int getNrPropostas(String ramo){
         int cont=0;
         for(Proposta x: propostas) {
@@ -281,6 +324,10 @@ public class GestaoProj implements Serializable {
         return cont;
         }
 
+    /**
+     * Função que tem como objetivo auxiliar a verificação de avanço da fase de configuração
+     * @return Numero de alunos por ramo
+     */
     public int getNrAlunos(String ramo){
         int cont=0;
         for(Aluno x: alunos) {
@@ -291,8 +338,11 @@ public class GestaoProj implements Serializable {
         return cont;
     }
 
-    //Facilita a utilização dos Atribuicoes sem docentes
-    public HashSet<Atribuicao> preencheAtribuicoesSemDocente(){
+    /**
+     * Função que tem como objetivo auxiliar a atribuição de propostas a alunos
+     * @return Hashset de Atribuições contendo as atribuiçoes sem docente
+     */
+    public HashSet<Atribuicao> getAtribuicoesSemDocente(){
         HashSet<Atribuicao> atribuicaoSemDocente= new HashSet<>();
         for(Atribuicao a : atribuicoes) {
             if (a.getDocente() == null){
@@ -302,9 +352,11 @@ public class GestaoProj implements Serializable {
         return atribuicaoSemDocente;
     }
 
-    //isto nao esta a fazer muito sentido ... e nao esta a funcionar
-    //Facilita a utilização dos alunos e das propostas ao associar
-    public HashSet<Aluno> preencheAlunosDisponiveis(){
+    /**
+     * Função que tem como objetivo auxiliar a atribuição de propostas a alunos
+     * @return Hashset de Alunos contendo os alunos sem atribuição
+     */
+    public HashSet<Aluno> getAlunosDisponiveis(){
         HashSet<Aluno> alunosD= new HashSet<>();
         boolean existe = false;
         for(Aluno a:alunos) {
@@ -320,8 +372,11 @@ public class GestaoProj implements Serializable {
         return alunosD;
     }
 
-    //nao é != em vez de ==
-    public HashSet<Proposta> preenchePropostasDisponiveis(){
+    /**
+     * Função que tem como objetivo auxiliar a atribuição de propostas a alunos
+     * @return Hashset de Propostas contento as propostas sem Atribuição
+     */
+    public HashSet<Proposta> retornaPropostasDisponiveis(){
         HashSet<Proposta> PropostasD= new HashSet<>();
         boolean existe =  false;
         for(Proposta p:propostas) {
@@ -336,6 +391,10 @@ public class GestaoProj implements Serializable {
         return PropostasD;
     }
 
+    /**
+     * Função que tem como objetivo auxiliar o avanço da fase de configuração
+     * @return Boolean true->fase pode fechar, false->fase nao pode fechar
+     */
     public boolean condicaoAvancar(){
         boolean verificado=true;
         String[] ramos = {"DA", "SI", "RAS"};
@@ -347,7 +406,11 @@ public class GestaoProj implements Serializable {
             return verificado;
     }
 
-    //verifica se o numero passado ja esta vinculado a alguma candidatura
+    /**
+     * Verificar se o numero esta associado a uma candidatura
+     * @param nr_Aluno numero do aluno a verificar
+     * @return true se aluno possuir candidatura,false se não
+     */
     public boolean verificaAlunoJaCandidato(long nr_Aluno){
         for (Candidatura x : candidaturas) {
             if(x.getNraluno() == nr_Aluno){
@@ -357,7 +420,11 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
-    //verifica se o email pertence a algum docente e retorna o docente
+    /**
+     * Retornar o docente a qual pertence o email
+     * @param email email do docente
+     * @return Docente a qual pertence o email
+     */
     public Docente getDocentePorEmailObjeto(String email) {
         for (Docente d: docentes
         ) {
@@ -367,7 +434,11 @@ public class GestaoProj implements Serializable {
         return null;
     }
 
-    //verifica se o email pertence a algum docente
+    /**
+     * Verificar se o email pertence a algum docente
+     * @param email email do docente
+     * @return true se existe, false se não
+     */
     public boolean verificaEmailDocente(String email) {
         for (Docente d: docentes
         ) {
@@ -377,14 +448,11 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
-    //verifica se o numero pertence a algum aluno
-
     /**
-     *
-     * @param nr
-     * @return
+     * Verifica se um aluno existe
+     * @param nr numero do aluno a verificar
+     * @return true se aluno existe, false se não
      */
-
     public boolean verificaAlunoExiste(long nr) {
         if(alunos.size() == 0)
             return false;
@@ -396,7 +464,7 @@ public class GestaoProj implements Serializable {
     }
 
     /**
-     * explicar metodo
+     * Retornar o aluno a qual pertence o email
      * @param email email do aluno
      * @return false caso email ja exista true caso nao exista
      */
@@ -409,8 +477,12 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
-    //verifica se o aluno passado esta associado a alguma proposta T3
-    public boolean get_codigoAluno(Long nrAluno){
+    /**
+     * Verificar se aluno ja esta presente em alguma proposta
+     * @param nrAluno numero do aluno
+     * @return true se aluno estiver associado a proposta, false se não
+     */
+    public boolean verificaNumeroProposta(Long nrAluno){
         for (Proposta x: propostas) {
             if(x.getClass().getSimpleName().equals("T3") || x.getClass().getSimpleName().equals("T2") || x.getClass().getSimpleName().equals("T1")){
                 if(nrAluno.equals(x.getCodigo_Aluno())){
@@ -421,7 +493,11 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
-    //verifica se o Id da proposta ja pertence a alguma proposta
+    /**
+     * Verificar se um id ja existe nas propostas
+     * @param IDPro id a analisar
+     * @return true se ja existir, false se não
+     */
     public boolean verificaIdProposta(String IDPro){
         for (Proposta x: propostas) {
             if(x.getCod_ID().equals(IDPro)){
@@ -446,25 +522,48 @@ public class GestaoProj implements Serializable {
     public HashSet<Proposta> getPropostas() {
         return propostas;
     }
-    
-    //adicionar aos arrays
+
+    /**
+     * Adicionar alunos ao array de alunos
+     * @param aluno aluno a adicionar
+     * @return true se adicionou, false se não
+     */
     public boolean adicionarAlunos(Aluno aluno){
         return alunos.add(aluno);
     }
 
+    /**
+     * Adicionar Docentes ao array de docentes
+     * @param docente Docente a adicionar
+     * @return true se adicionou, false se não
+     */
     public boolean adicionarDocentes(Docente docente) {
         return docentes.add(docente);
     }
 
+    /**
+     * Adicionar alunos ao array de Propostas
+     * @param proposta Proposta a adicionar
+     * @return true se adicionou, false se não
+     */
     public boolean adicionarProposta(Proposta proposta){
         return propostas.add(proposta);
     }
 
+    /**
+     * Adicionar alunos ao array de Candidaturas
+     * @param candidatura Candidatura a adicionar
+     * @return true se adicionou, false se não
+     */
     public boolean adicionarCandidatura(Candidatura candidatura) {
         return candidaturas.add(candidatura);
     }
 
-    //remover dos arrays
+    /**
+     * Remover aluno do array de Alunos
+     * @param nr_aluno numero do aluno a remover
+     * @return true se removeu, false se nao
+     */
     public boolean removerAlunos(long nr_aluno){
         ArrayList<String> Eliminadas = new ArrayList<>();
         for (Candidatura candidatura: candidaturas){
@@ -486,6 +585,11 @@ public class GestaoProj implements Serializable {
         return alunos.remove(getAlunoPorNumero(nr_aluno));
     }
 
+    /**
+     * Remover docente do array de docentes
+     * @param email email do docente a remover
+     * @return true se removeu, false se nao
+     */
     public boolean removerDocente(String email){
         ArrayList<String> Eliminadas = new ArrayList<>();
         //Eliminadas.clear();
@@ -507,24 +611,93 @@ public class GestaoProj implements Serializable {
         return docentes.remove(getDocentePorEmailObjeto(email));
     }
 
-    //funcoes que recebem o nome do ficheiro do state e chama o metodo da class estatica correspondente
+    /**
+     * Remover Proposta do array de propostas
+     * @param cod_ID id da proposta
+     * @return true se removeu, false se não
+     */
+    public boolean removerProposta(String cod_ID){
+        String tipo = getPropostaPorId(cod_ID).getClass().getSimpleName();
+        Proposta aux = getPropostaPorId(cod_ID);
+        switch (tipo){
+            case "T1"->{
+                if (aux.getCodigo_Aluno() != null){
+                    for (Candidatura c : candidaturas){
+                        if (c.getNraluno().equals(aux.getCodigo_Aluno())){
+                            c.getPropostas().remove(aux);
+                        }
+                    }
+                }
+                propostas.remove(aux);
+                return true;
+            }
+            case "T2"->{
+                getDocentePorEmailObjeto(aux.getEmail_Docente()).setPapel_Docente(false);
+                getDocentePorEmailObjeto(aux.getEmail_Docente()).decContador();
+                if (aux.getCodigo_Aluno() !=null){
+                    for (Candidatura c : candidaturas){
+                        if (c.getNraluno().equals(aux.getCodigo_Aluno())){
+                            c.getPropostas().remove(aux);
+                        }
+                    }
+                }
+                propostas.remove(aux);
+                return true;
+            }
+            case "T3"->{
+                for (Candidatura c : candidaturas){
+                    if (c.getNraluno().equals(aux.getCodigo_Aluno())){
+                        c.getPropostas().remove(aux);
+                    }
+                }
+                propostas.remove(aux);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Chama o metodo de lerAlunos da classe Ficheiro
+     * @param fileName nome do ficheiro a ler
+     * @return numero de elementos lidos
+     */
     public int lerficheiroAluno(String fileName) {
         return Ficheiro.lerAlunos(fileName,this);
     }
 
+    /**
+     * Chama o metodo de lerDocentes da classe Ficheiro
+     * @param fileName nome do ficheiro a ler
+     * @return numero de elementos lidos
+     */
     public int lerficheiroDocente(String fileName) {
         return Ficheiro.lerDoncentes(fileName,this);
     }
 
+    /**
+     * Chama o metodo de lerPropostas da classe Ficheiro
+     * @param fileName nome do ficheiro a ler
+     * @return numero de elementos lidos
+     */
     public int lerficheiroProposta(String fileName) {
         return Ficheiro.lerPropostas(fileName,this);
     }
 
-    public int lerficheiroCandidaturas(String filename){
-        return Ficheiro.lercandidaturas(filename,this);
+    /**
+     * Chama o metodo de lerCandidaturas da classe Ficheiro
+     * @param fileName nome do ficheiro a ler
+     * @return numero de elementos lidos
+     */
+    public int lerficheiroCandidaturas(String fileName){
+        return Ficheiro.lercandidaturas(fileName,this);
     }
 
-    //verifica se a proposta passada tem algum aluno
+    /**
+     * Verifica se uma propsota contem aluno associado
+     * @param id_Proposta id da proposta a verificar
+     * @return true se ao tiver aluno, false se não
+     */
     public boolean verificaPropostaComAluno(String id_Proposta){
         for (Proposta x : propostas) {
             if (x.getCod_ID().equals(id_Proposta)){
@@ -536,7 +709,11 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
-    //verifica se o aluno passado esta associado a alguma proposta
+    /**
+     * Verifica se um aluno esta associado a uma proposta
+     * @param codaluno codigo do aluno a verificar
+     * @return true se estiver associado, false se não
+     */
     public boolean verificaNumeroAssociadoAProposta(String codaluno){
         for (Proposta x : propostas) {
             if (codaluno.equals(x.getCodigo_Aluno())){
@@ -546,15 +723,25 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
-    //metodos para mostrar o erro no UI etc
+    /**
+     * Metodo para limpar array de erros
+     */
     public void limparErros(){
         erros.clear();
     }
 
+    /**
+     * Metodo para retornar Lista de erros
+     * @return Lista dos erros
+     */
     public List<String> getErros() {
         return erros;
     }
 
+    /**
+     * metodo para adicionar um erro à lista de erros
+     * @param erro string a adicionar
+     */
     public void setErros(String erro) {
         erros.add(erro);
     }
@@ -570,6 +757,10 @@ public class GestaoProj implements Serializable {
                 '}';
     }
 
+    /**
+     * Função para obter os alunos autopropostos
+     * @return Arraylist de alunos autopropostos
+     */
     public ArrayList<Aluno> getAlunosAutopropostos() {
         ArrayList<Aluno> list;
         list = new ArrayList<>();
@@ -581,6 +772,11 @@ public class GestaoProj implements Serializable {
         return list;
     }
 
+    /**
+     * Funcao para obter um aluno dado o seu numero
+     * @param nr numero do aluno
+     * @return aluno a retornar, null se nao existir
+     */
     public Aluno getAlunoPorNumero(long nr) {
         for (Aluno d: alunos
         ) {
@@ -590,6 +786,11 @@ public class GestaoProj implements Serializable {
         return null;
     }
 
+    /**
+     * Funcao de obter uma proposta dado o seu id
+     * @param id id da proposta
+     * @return proposta , null se nao existir
+     */
     public Proposta getPropostaPorId(String id){
         for (Proposta p: propostas) {
          if (p.getCod_ID().equals(id))
@@ -598,6 +799,10 @@ public class GestaoProj implements Serializable {
         return null;
     }
 
+    /**
+     * Funcao de obter propostas com docentes
+     * @return Arraylist de propostas com docentes
+     */
     public ArrayList<Proposta> getPropostasDocentes() {
         ArrayList<Proposta> list;
         list = new ArrayList<>();
@@ -609,6 +814,10 @@ public class GestaoProj implements Serializable {
         return list;
     }
 
+    /**
+     *Funcao de obter propostas sem candidaturas
+     * @return Arraylist de propostas sem candidaturas
+     */
     public ArrayList<Proposta> getPropostasSemCandidaturas() {
         ArrayList<Proposta> list = new ArrayList<>();
         boolean existe = false;
@@ -627,6 +836,10 @@ public class GestaoProj implements Serializable {
         return list;
     }
 
+    /**
+     *Funcao de obter propostas com candidaturas
+     * @return Arraylist de propostas com candidaturas
+     */
     public ArrayList<Proposta> getPropostasComCandidaturas(){
         ArrayList<Proposta> list = new ArrayList<>();
         boolean existelist=false;
@@ -746,37 +959,6 @@ public class GestaoProj implements Serializable {
                 }
             }
         }
-
-        /*boolean encontrou = false;
-        boolean propostaTaken = false;
-        for (Aluno aluno: alunos) {
-            encontrou = false;
-            for (Atribuicao atribuicao: atribuicoes) {
-                if(aluno.getNr_Aluno() == atribuicao.getAluno().getNr_Aluno()){
-                    encontrou = true;
-                }
-            }
-            if (!encontrou){
-                for (Proposta proposta: propostas) {
-                    propostaTaken = false;
-                    if (proposta.getRamo().contains(aluno.getRamo_Aluno()) && VerificaAlunoAcederProposta(aluno.getNr_Aluno(),proposta.getCod_ID())){
-                        for (Atribuicao atribuicao : atribuicoes) {
-                            if (proposta.getCod_ID().equals(atribuicao.getProposta().getCod_ID())) {
-                                propostaTaken = true;
-                            }
-                        }
-                    if (!propostaTaken) {
-                        proposta.setCodigo_Aluno(aluno.getNr_Aluno());
-                        atribuicoes.add(new Atribuicao(aluno,getDocentePorEmailObjeto(proposta.getEmail_Docente()),proposta));
-                        //System.out.println(aluno);
-                        //System.out.println(proposta);
-                        //System.out.println(atribuicoes.toString());
-                        break;
-                    }
-                }
-                }
-            }
-        }*/
     }
 
     public ArrayList<String> ComparaClassificacoes(ArrayList<String> alunosconflito, Proposta proposta){
@@ -798,18 +980,11 @@ public class GestaoProj implements Serializable {
         if (contador>1){
             for (String aluno : alunosconflito) {
                 if (getAlunoPorNumero(Long.parseLong(aluno)).getClassificacao_Aluno() == maiorClassificacao){
-                    //System.out.println(getAlunoPorNumero(Long.parseLong(aluno)).toString());
                     propostaAlunos.add(aluno);
-
                 }
-                //System.out.println("Proposta: " + proposta.getCod_ID());
             }
             propostaAlunos.add(proposta.getCod_ID());
             return propostaAlunos;
-            /*String alunoEscolhido = PAInput.readString("Aluno:", true);
-            atribuiPropostaAluno(alunoEscolhido,proposta.getCod_ID());
-            //perguntar ao gajo
-            System.out.println("Repetidos seu crlh");*/
         }else{
             atribuicoes.add(new Atribuicao(getAlunoPorNumero(nrAluno),getDocentePorEmailObjeto(proposta.getEmail_Docente()),proposta));
             proposta.setCodigo_Aluno(getAlunoPorNumero(nrAluno).getNr_Aluno());
@@ -861,43 +1036,6 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
-    //Função de backup
-/*    public ArrayList<String> atribuiAutomaticamente() {
-        //ArrayList<String> conflitos = new ArrayList<>();
-        boolean repetido = false;
-        for (Candidatura c: candidaturas) {
-            if (!verificaCandidaturaAtribuida(c.getAluno())) {
-                for (Proposta p : c.getPropostas()) {
-                    if (!verificaPropostaAtribuida(p) && !verificaCandidaturaAtribuida(c.getAluno())) {
-                        conflitos.add(c.getAluno());
-                        for (Candidatura c2 : candidaturas) { //comparar com a segunda dos outros se perder
-                            if (!verificaCandidaturaAtribuida(c2.getAluno()) &&
-                                    !(c.getAluno().getNr_Aluno() == c2.getAluno().getNr_Aluno()) &&
-                                    p.equals(c2.getPropostas().get(0)) &&
-                                    c2.getAluno().getClassificacao_Aluno() >= c.getAluno().getClassificacao_Aluno()) {
-                                repetido = true;
-                                conflitos.add(String.valueOf(c2.getAluno().getNr_Aluno()));
-                            }
-                        }
-                        if (!repetido) {
-                            atribuicoes.add(new Atribuicao(c.getAluno(), getDocentePorEmailObjeto(p.getEmail_Docente()), p));
-                            p.setCodigo_Aluno(c.getAluno().getNr_Aluno());
-                            //System.out.println("Atribuiu a este cabecudo "+ c.getAluno().getNr_Aluno());
-                            conflitos.clear();
-                        } else {
-                            ArrayList<String> resultado = ComparaClassificacoes(conflitos, p);
-                            if (resultado != null){
-                                return resultado;
-                            }
-                            conflitos.clear();
-                            repetido = false;
-                        }
-                    }
-                }
-            }
-        }
-        return null;
-    }*/
 
     public String getCandidaturaPorNrAluno(Long nraluno) {
         for(Candidatura x : candidaturas){
@@ -1135,15 +1273,6 @@ public class GestaoProj implements Serializable {
         return String.valueOf(Orientadores);
     }
 
-    //Validar entradas
-    //arrays para verificacoes que vao permitir usar o contains
-    private  String[] ramos = {"DA", "SI", "RAS"};
-    private  List<String> Ramos = Arrays.asList(ramos);
-    private  String[] curso = {"LEI", "LEI-PL"};
-    private  List<String> Curso = Arrays.asList(curso);
-    private  String[] tipos = {"T1", "T2", "T3"};
-    private  List<String> Tipos = Arrays.asList(tipos);
-
 
     public Aluno validarAluno(String nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio, String curso){
         if (nr_Aluno.length() == 10 && //se o numero tem 10 digitos
@@ -1228,7 +1357,7 @@ public class GestaoProj implements Serializable {
             case "T3" -> {
                 if (verificaAlunoExiste(codigo_Aluno) && //numero de aluno valido
                         !verificaIdProposta(cod_ID) && //id da proposta repetido
-                        !get_codigoAluno(codigo_Aluno)) //se aluno ja nao esta associado a um T3
+                        !verificaNumeroProposta(codigo_Aluno)) //se aluno ja nao esta associado a um T3
                 {
                     adicionarCandidatura(new Candidatura(getAlunoPorNumero(codigo_Aluno),getPropostaPorId(cod_ID)));
                     return new T3(cod_ID, titulo, codigo_Aluno,getAlunoPorNumero(codigo_Aluno).getRamo_Aluno());
@@ -1271,47 +1400,6 @@ public class GestaoProj implements Serializable {
             return null;
         }
         return null;
-    }
-
-    public boolean removerProposta(String cod_ID){
-        String tipo = getPropostaPorId(cod_ID).getClass().getSimpleName();
-        Proposta aux = getPropostaPorId(cod_ID);
-        switch (tipo){
-            case "T1"->{
-                if (aux.getCodigo_Aluno() != null){
-                    for (Candidatura c : candidaturas){
-                        if (c.getNraluno().equals(aux.getCodigo_Aluno())){
-                            c.getPropostas().remove(aux);
-                        }
-                    }
-                }
-                propostas.remove(aux);
-                return true;
-            }
-            case "T2"->{
-                getDocentePorEmailObjeto(aux.getEmail_Docente()).setPapel_Docente(false);
-                getDocentePorEmailObjeto(aux.getEmail_Docente()).decContador();
-                if (aux.getCodigo_Aluno() !=null){
-                    for (Candidatura c : candidaturas){
-                        if (c.getNraluno().equals(aux.getCodigo_Aluno())){
-                            c.getPropostas().remove(aux);
-                        }
-                    }
-                }
-                propostas.remove(aux);
-                return true;
-            }
-            case "T3"->{
-                for (Candidatura c : candidaturas){
-                    if (c.getNraluno().equals(aux.getCodigo_Aluno())){
-                        c.getPropostas().remove(aux);
-                    }
-                }
-                propostas.remove(aux);
-                return true;
-            }
-        }
-        return false;
     }
 
     public boolean removerPropostaDeCandidatura(String nr_Aluno, String id_proposta){
@@ -1451,7 +1539,7 @@ public class GestaoProj implements Serializable {
         for(Atribuicao a:atribuicoes){
             if(a.getId() == idProp){
                 for(Proposta p:propostas){
-                    if(a.getProposta().getCod_ID().equals(p.getCod_ID())){
+                    if(p.getCod_ID().equals(a.getProposta().getCod_ID().equals(p.getCod_ID()))){
                         p.setEmail_Docente(null);
                     }
                 }
