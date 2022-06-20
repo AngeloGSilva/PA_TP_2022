@@ -10,7 +10,10 @@ import java.util.*;
 *
 * */
 
-
+/**
+ * Class principal
+ * @see Serializable
+ */
 public class GestaoProj implements Serializable {
     //array de erros para utilizar no UI
     ArrayList<String> erros = new ArrayList<>();
@@ -56,12 +59,52 @@ public class GestaoProj implements Serializable {
     private boolean fase_Fechada_atriOrientador = false;
     private boolean fase_Fechada_atriProposta = false;
 
+    /**
+     * HashSet para guardar Alunos
+     * @see Aluno
+     * @see HashSet
+     */
     private HashSet<Aluno> alunos;
+    /**
+     * Hashset para guardar Docentes
+     * @see Docente
+     * @see HashSet
+     */
     private HashSet<Docente> docentes;
+    /**
+     * Hashet para guardar Propostas
+     * @see Proposta
+     * @see HashSet
+     */
     private HashSet<Proposta> propostas;
+    /**
+     * Hashet para guardar Cadidaturas efetuadas pelos Alunos
+     * @see Candidatura
+     * @see Proposta
+     * @see Aluno
+     * @see HashSet
+     */
     private HashSet<Candidatura> candidaturas;
+    /**
+     * HashSet para guardar Propostas Atribuidas a Alunos com o respetivo Orientador
+     * @see Atribuicao
+     * @see Proposta
+     * @see Aluno
+     * @see Docente
+     * @see HashSet
+     */
     private HashSet<Atribuicao> atribuicoes;
 
+    /**
+     * Construtor da Classe principal, onde é feita a inicialização dos HashSets dos Alunos, Docentes, Propostas, Candidaturas e Atribuições
+     * @see GestaoProj
+     * @see Aluno
+     * @see Docente
+     * @see Proposta
+     * @see Candidatura
+     * @see Atribuicao
+     * @see HashSet
+     */
     public GestaoProj() {
         alunos = new HashSet<>();
         docentes = new HashSet<>();
@@ -225,17 +268,66 @@ public class GestaoProj implements Serializable {
         return autopropostos;
     }
 
-    //toStrings dos varios arrays.... (nao sei se é necessario)
-    public String toStringAlunos() {
-        return "Alunos:\n " + alunos;
+    /**
+     * Função que tem como objetivo auxiliar a verificação de avanço da fase de configuração
+     * @return Numero de propostas por ramo
+     */
+    public int getNrPropostas(String ramo){
+        int cont=0;
+        for(Proposta x: propostas) {
+            if(x.getRamo()!=null && x.getRamo().contains(ramo)){
+                cont++;
+            }
+        }
+        return cont;
     }
 
-    public String toStringDocentes() {
-        return "Docentes:\n " + docentes;
+    /**
+     * Função que tem como objetivo auxiliar a verificação de avanço da fase de configuração
+     * @return Numero de alunos por ramo
+     */
+    public int getNrAlunos(String ramo){
+        int cont=0;
+        for(Aluno x: alunos) {
+            if(x.getRamo_Aluno().equals(ramo)){
+                cont++;
+            }
+        }
+        return cont;
     }
 
-    public String toStringPropostas(){
-        return "Propostas:\n " + propostas;
+    /**
+     * Função que tem como objetivo auxiliar a atribuição de propostas a alunos
+     * @return Hashset de Atribuições contendo as atribuiçoes sem docente
+     */
+    public HashSet<Atribuicao> getAtribuicoesSemDocente(){
+        HashSet<Atribuicao> atribuicaoSemDocente= new HashSet<>();
+        for(Atribuicao a : atribuicoes) {
+            if (a.getDocente() == null){
+                atribuicaoSemDocente.add(a);
+            }
+        }
+        return atribuicaoSemDocente;
+    }
+
+    /**
+     * Função que tem como objetivo auxiliar a atribuição de propostas a alunos
+     * @return Hashset de Alunos contendo os alunos sem atribuição
+     */
+    public HashSet<Aluno> getAlunosDisponiveis(){
+        HashSet<Aluno> alunosD= new HashSet<>();
+        boolean existe = false;
+        for(Aluno a:alunos) {
+            existe = false;
+            for (Atribuicao at : atribuicoes) {
+                if (a.getNr_Aluno() == at.getAluno().getNr_Aluno())
+                    existe = true;
+            }
+            if (!existe) {
+                alunosD.add(a);
+            }
+        }
+        return alunosD;
     }
 
     /**
@@ -253,6 +345,33 @@ public class GestaoProj implements Serializable {
             }
         }
         return String.valueOf(Autopropostos);
+    }
+
+    /**
+     * Retornar o docente a qual pertence o email
+     * @param email email do docente
+     * @return Docente a qual pertence o email
+     */
+    public Docente getDocentePorEmailObjeto(String email) {
+        for (Docente d: docentes
+        ) {
+            if (d.getEmail_Docente().equals(email))
+                return d;
+        }
+        return null;
+    }
+
+    //toStrings dos varios arrays.... (nao sei se é necessario)
+    public String toStringAlunos() {
+        return "Alunos:\n " + alunos;
+    }
+
+    public String toStringDocentes() {
+        return "Docentes:\n " + docentes;
+    }
+
+    public String toStringPropostas(){
+        return "Propostas:\n " + propostas;
     }
 
     public String toStringCandidaturas() {
@@ -310,67 +429,7 @@ public class GestaoProj implements Serializable {
         return alunosSR;
     }
 
-    /**
-     * Função que tem como objetivo auxiliar a verificação de avanço da fase de configuração
-     * @return Numero de propostas por ramo
-     */
-    public int getNrPropostas(String ramo){
-        int cont=0;
-        for(Proposta x: propostas) {
-                if(x.getRamo()!=null && x.getRamo().contains(ramo)){
-                   cont++;
-                }
-            }
-        return cont;
-        }
 
-    /**
-     * Função que tem como objetivo auxiliar a verificação de avanço da fase de configuração
-     * @return Numero de alunos por ramo
-     */
-    public int getNrAlunos(String ramo){
-        int cont=0;
-        for(Aluno x: alunos) {
-            if(x.getRamo_Aluno().equals(ramo)){
-                cont++;
-            }
-        }
-        return cont;
-    }
-
-    /**
-     * Função que tem como objetivo auxiliar a atribuição de propostas a alunos
-     * @return Hashset de Atribuições contendo as atribuiçoes sem docente
-     */
-    public HashSet<Atribuicao> getAtribuicoesSemDocente(){
-        HashSet<Atribuicao> atribuicaoSemDocente= new HashSet<>();
-        for(Atribuicao a : atribuicoes) {
-            if (a.getDocente() == null){
-                atribuicaoSemDocente.add(a);
-            }
-        }
-        return atribuicaoSemDocente;
-    }
-
-    /**
-     * Função que tem como objetivo auxiliar a atribuição de propostas a alunos
-     * @return Hashset de Alunos contendo os alunos sem atribuição
-     */
-    public HashSet<Aluno> getAlunosDisponiveis(){
-        HashSet<Aluno> alunosD= new HashSet<>();
-        boolean existe = false;
-        for(Aluno a:alunos) {
-            existe = false;
-            for (Atribuicao at : atribuicoes) {
-                if (a.getNr_Aluno() == at.getAluno().getNr_Aluno())
-                    existe = true;
-                }
-                 if (!existe) {
-                    alunosD.add(a);
-            }
-        }
-        return alunosD;
-    }
 
     /**
      * Função que tem como objetivo auxiliar a atribuição de propostas a alunos
@@ -420,19 +479,6 @@ public class GestaoProj implements Serializable {
         return false;
     }
 
-    /**
-     * Retornar o docente a qual pertence o email
-     * @param email email do docente
-     * @return Docente a qual pertence o email
-     */
-    public Docente getDocentePorEmailObjeto(String email) {
-        for (Docente d: docentes
-        ) {
-            if (d.getEmail_Docente().equals(email))
-                return d;
-        }
-        return null;
-    }
 
     /**
      * Verificar se o email pertence a algum docente

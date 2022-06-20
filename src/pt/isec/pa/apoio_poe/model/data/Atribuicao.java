@@ -5,6 +5,13 @@ import pt.isec.pa.apoio_poe.model.fsm.PoeState;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Class que representa uma Atribuicao onde tem a indicacao da Proposta atribuida o Aluno e o Docente encarregue
+ * @see Aluno
+ * @see Proposta
+ * @see Docente
+ * @see Serializable
+ */
 public class Atribuicao implements Serializable {
     private static int counter_globalAtribuicao = 0;
 
@@ -17,6 +24,15 @@ public class Atribuicao implements Serializable {
     Docente docente;
     Proposta proposta;
 
+    /**
+     * Construtor da Class Atribuicao
+     * @param aluno Aluno a qual a proposta foi atribuida
+     * @param docente Docente encarregue de orientar o Aluno
+     * @param proposta Proposta associada ao Aluno
+     * @see Aluno
+     * @see Docente
+     * @see Proposta
+     */
     public Atribuicao(Aluno aluno, Docente docente, Proposta proposta) {
         this.aluno = aluno;
         this.docente = docente;

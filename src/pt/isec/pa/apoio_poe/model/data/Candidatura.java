@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * Class que representa a Candidatura
+ * @see Proposta
+ * @see Aluno
+ * @see Serializable
+ */
 public class Candidatura implements Serializable {
     private static int counter_globalCandidatura = 0;
 
@@ -17,6 +23,14 @@ public class Candidatura implements Serializable {
     private Aluno aluno;
     private ArrayList<Proposta> propostas;
 
+    /**
+     * Construtor da Class Candidatura
+     * @param aluno Aluno que realizou a Candidatura
+     * @param propostas Array de Propostas a que o Aluno se Candidatou
+     * @see Aluno
+     * @see Proposta
+     * @see ArrayList
+     */
     public Candidatura(Aluno aluno, ArrayList<Proposta> propostas) {
         this.aluno = aluno;
         this.propostas = new ArrayList<>(propostas);

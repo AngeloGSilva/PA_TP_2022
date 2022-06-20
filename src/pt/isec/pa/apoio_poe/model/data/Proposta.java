@@ -3,6 +3,10 @@ package pt.isec.pa.apoio_poe.model.data;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Class que representa uma Proposta onde tem varios campos dependendo do tipo
+ * @see Serializable
+ */
 public class Proposta implements Serializable {
     private String cod_ID = null;
     private String titulo = null;
@@ -20,6 +24,24 @@ public class Proposta implements Serializable {
     }
 
     //geral
+
+    /**
+     * Construtor da Class Proposta
+     * @param cod_ID Identidicador da Proposta, este identificador é unico
+     * @param titulo Titulo dado a Proposta
+     * @param codigo_Aluno  Numero do Aluno associado a esta Proposta (Campo a null dependendo do tipo de Proposta)
+     * @param email_Docente Email do Docente associado a esta Proposta (Campo a null dependendo do tipo de Proposta)
+     * @param ramo  Ramo a que esta Proposta se destina (Pode ter um ou mais ramos) (Campo a null dependendo do tipo de Proposta)
+     * @param empresa   Empresa que propos a Proposta (Campo a null dependendo do tipo de Proposta)
+     * @see Aluno
+     * @see Docente
+     * @see Proposta
+     * @see Candidatura
+     * @see Atribuicao
+     * @see T1
+     * @see T2
+     * @see T3
+     */
     public Proposta(String cod_ID, String titulo, Long codigo_Aluno, String email_Docente, String ramo,String empresa) {
         this.cod_ID = cod_ID;
         this.titulo = titulo;

@@ -6,6 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Class Static onde são realizadas as leituras dos Ficheiros .csv
+ */
 public final class Ficheiro {
 
     private static String caminho = "C:\\Users\\Rodrigo\\Desktop\\Pa-tp\\PA_TP_2022\\Resources\\ficheiros\\";
@@ -38,6 +41,13 @@ public final class Ficheiro {
      * @param fileName Nome do ficheiro a partir do qual vai ler os Docentes
      * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
      * @return Devolve o numero de elemento lidos com sucesso
+     * @see Docente
+     * @see GestaoProj
+     * @see File
+     * @see FileWriter
+     * @see FileReader
+     * @see BufferedWriter
+     * @see BufferedReader
      */
     public static int lerDoncentes(String fileName, GestaoProj gestaoProj) {
         int count = 0;
@@ -75,6 +85,13 @@ public final class Ficheiro {
      * @param fileName Nome do ficheiro a partir do qual vai ler os Alunos
      * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
      * @return Devolve o numero de elemento lidos com sucesso
+     * @see Aluno
+     * @see GestaoProj
+     * @see File
+     * @see FileWriter
+     * @see FileReader
+     * @see BufferedWriter
+     * @see BufferedReader
      */
     public static int lerAlunos(String fileName, GestaoProj gestaoProj) {
         int count=0;
@@ -125,6 +142,13 @@ public final class Ficheiro {
      * @param fileName Nome do ficheiro a partir do qual vai ler os Alunos
      * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
      * @return Devolve o numero de elemento lidos com sucesso
+     * @see Proposta
+     * @see GestaoProj
+     * @see File
+     * @see FileWriter
+     * @see FileReader
+     * @see BufferedWriter
+     * @see BufferedReader
      */
     public static int lerPropostas(String fileName, GestaoProj gestaoProj) {
         int count=0;
@@ -227,6 +251,13 @@ public final class Ficheiro {
      * @param fileName Nome do ficheiro a partir do qual vai ler as Candidaturas
      * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
      * @return Devolve o numero de elemento lidos com sucesso
+     * @see Candidatura
+     * @see GestaoProj
+     * @see File
+     * @see FileWriter
+     * @see FileReader
+     * @see BufferedWriter
+     * @see BufferedReader
      */
     public static int lercandidaturas(String fileName, GestaoProj gestaoProj){
         ArrayList<Proposta> propostasPorAluno = new ArrayList<>();
@@ -282,6 +313,13 @@ public final class Ficheiro {
      * Função que vai exportar todos os Alunos para um ficheiro csv
      * @param fileName Nome do ficheiro a criar
      * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
+     * @see Aluno
+     * @see GestaoProj
+     * @see File
+     * @see FileWriter
+     * @see FileReader
+     * @see BufferedWriter
+     * @see BufferedReader
      */
     public static void ExportarAlunos(String fileName,GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
@@ -317,6 +355,13 @@ public final class Ficheiro {
      * Função que vai exportar todas as Propostas para um ficheiro csv
      * @param fileName Nome do ficheiro a criar
      * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
+     * @see Proposta
+     * @see GestaoProj
+     * @see File
+     * @see FileWriter
+     * @see FileReader
+     * @see BufferedWriter
+     * @see BufferedReader
      */
     public static void ExportarPropostas(String fileName,GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
@@ -381,6 +426,13 @@ public final class Ficheiro {
      * Função que vai exportar todos os Docentes para um ficheiro csv
      * @param fileName Nome do ficheiro a criar
      * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
+     * @see Docente
+     * @see GestaoProj
+     * @see File
+     * @see FileWriter
+     * @see FileReader
+     * @see BufferedWriter
+     * @see BufferedReader
      */
     public static void ExportarDocentes(String fileName,GestaoProj gestaoProj){
         //f = new File("C:\\Users\\Angelo\\Desktop\\______\\ISEC\\PA\\PA_TP2022\\PA_TP_2022\\Resources\\ficheiros\\" +fileName+".csv");
@@ -407,6 +459,13 @@ public final class Ficheiro {
      * Função que vai exportar todas as Candidaturas para um ficheiro csv
      * @param fileName Nome do ficheiro a criar
      * @param gestaoProj Instância da classe onde estão presentes todos os dados da aplicação
+     * @see Candidatura
+     * @see GestaoProj
+     * @see File
+     * @see FileWriter
+     * @see FileReader
+     * @see BufferedWriter
+     * @see BufferedReader
      */
     public static void ExportarCandidaturas(String fileName,GestaoProj gestaoProj){
         f = new File(fileName);

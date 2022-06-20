@@ -3,6 +3,10 @@ package pt.isec.pa.apoio_poe.model.data;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Class que representa o Aluno
+ * @see Serializable
+ */
 public class Aluno implements Serializable {
     private long nr_Aluno;
     private String nome_Aluno;
@@ -12,6 +16,16 @@ public class Aluno implements Serializable {
     private double classificacao_Aluno;
     private boolean aceder_a_Estagio; //true -- acesso a estagio e projetos ... false -- acesso a projeto
 
+    /**
+     * Construtor da Class Aluno
+     * @param nr_Aluno  Numero do Aluno
+     * @param nome_Aluno    Nome do Aluno
+     * @param email_Aluno   Email do Aluno fornecido pela instituicao
+     * @param ramo_Aluno    Ramo do curso do Aluno. DA, SI, RAS
+     * @param classificacao_Aluno   Classificao do Aluno (0..1)
+     * @param aceder_a_Estagio  true se pode aceder a Estagios e Projetos. False so pode entrar em Projetos
+     * @param curso Curso do Aluno. LEI-PL, LEI
+     */
     public Aluno(long nr_Aluno, String nome_Aluno, String email_Aluno, String ramo_Aluno, double classificacao_Aluno, boolean aceder_a_Estagio, String curso) {
         this.nr_Aluno = nr_Aluno;
         this.nome_Aluno = nome_Aluno;
@@ -22,6 +36,10 @@ public class Aluno implements Serializable {
         this.aceder_a_Estagio = aceder_a_Estagio;
     }
 
+    /**
+     * Construtor alternativo para a Class Aluno para o a criacao do Aluno temporario
+     * @param nr_Aluno Numero do Aluno
+     */
     public Aluno(long nr_Aluno){
         this.nr_Aluno=nr_Aluno;
         this.nome_Aluno = null;

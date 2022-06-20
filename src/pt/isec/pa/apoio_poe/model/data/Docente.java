@@ -3,12 +3,22 @@ package pt.isec.pa.apoio_poe.model.data;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Class que representa um Docente
+ * @see Serializable
+ */
 public class Docente implements Serializable {
     int contador = 0;
     private String nome_Docente;
     private String email_Docente;
     private boolean papel_Docente; //orientador - true, proponente de projeto - false
 
+    /**
+     * Construtor da Class Docente
+     * @param nome_Docente  Nome do Docente
+     * @param email_Docente Email do Docente fornecido pela Instituição
+     * @param papel_Docente Papel do Docente. Orientador - true, proponente de projeto - false
+     */
     public Docente(String nome_Docente, String email_Docente, boolean papel_Docente) {
         this.nome_Docente = nome_Docente;
         this.email_Docente = email_Docente;
