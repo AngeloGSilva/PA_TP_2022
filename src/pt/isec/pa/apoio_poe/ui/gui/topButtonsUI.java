@@ -215,6 +215,8 @@ public class topButtonsUI extends VBox{
                             Popup.avancarFase(manager);
                         else
                             manager.avancar(manager.getFase_Proposta());
+                    }case ATRIBUIR_ORIENTADOR -> {
+                        manager.avancar(manager.getFase_Orientador());
                     }
                     default -> Popup.avancarFase(manager);
 

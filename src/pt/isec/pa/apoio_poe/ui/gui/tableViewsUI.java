@@ -454,6 +454,29 @@ public class tableViewsUI extends BorderPane {
                     btnAdd.setVisible(false);
                 }
 
+                tableCandidatura = new TableView<Candidatura>();
+                TableColumn<Candidatura, String> numeroAluno = new TableColumn<Candidatura, String>("Numero");
+                numeroAluno.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getNralunoString()));
+                numeroAluno.setMinWidth(100);
+
+                TableColumn<Candidatura, String> nomeAluno = new TableColumn<Candidatura, String>("Nome");
+                nomeAluno.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getNomeAluno()));
+                nomeAluno.setMinWidth(100);
+
+                TableColumn<Candidatura, String> cod_ID = new TableColumn<Candidatura, String>("Codigo da Proposta");
+                cod_ID.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getIdPropostas().toString()));
+                cod_ID.setMinWidth(200);
+
+                tableCandidatura.getColumns().addAll(numeroAluno,nomeAluno,cod_ID);
+
+                tableCandidatura.setMaxWidth(750);
+                tableCandidatura.setMaxHeight(450);
+
+                tableCandidatura.setVisible(false);
+
                 tableAlunos = new TableView<Aluno>();
                 nome = new TableColumn("Nome");
                 nome.setCellValueFactory(new PropertyValueFactory<Aluno, String>("nome_Aluno"));
@@ -573,6 +596,20 @@ public class tableViewsUI extends BorderPane {
                 itemPropostasAtribuidas = new MenuItem("Propostas Atribuidas");
 
                 btnMenuProposta.getItems().addAll(itemAutoAssociadoAluno,itemProDocentes,itemPropostasDisp,itemPropostasAtribuidas);
+
+                if (manager.getFase_Proposta()){
+                    btnDelete.setManaged(false);
+                    btnAdd.setManaged(false);
+                    btnDelete.setVisible(false);
+                    btnAdd.setVisible(false);
+                }else {
+                    btnDelete.setManaged(true);
+                    btnAdd.setManaged(true);
+                    btnDelete.setVisible(true);
+                    btnAdd.setVisible(true);
+                    btnDelete.setDisable(false);
+                    btnAdd.setDisable(false);
+                }
             }
             case ATRIBUIR_ORIENTADOR -> {
                 tableAtribuicoesOri = new TableView<Atribuicao>();
@@ -953,27 +990,186 @@ public class tableViewsUI extends BorderPane {
                 tableAlunos.getItems().clear();
 
                 tableAlunos.setVisible(true);
+                tableCandidatura.setVisible(false);
                 tableAtribuicoesPro.setVisible(false);
-                tableProposta.setItems(manager.toStringAutopropostasTV());
+                tableAlunos.setItems(manager.toStringAutopropostasTV());
                 tableProposta.setVisible(false);
                 this.setCenter(tableAlunos);
                 tableAlunos.setManaged(true);
+                tableCandidatura.setManaged(false);
                 tableAtribuicoesPro.setManaged(false);
                 tableProposta.setManaged(false);
-                if (!manager.getFase_Proposta()){
-                    btnDelete.setManaged(true);
-                    btnAdd.setManaged(true);
-                    btnDelete.setDisable(true);
-                    btnAdd.setDisable(true);
+                if (manager.getFase_Proposta()){
+                    btnDelete.setManaged(false);
+                    btnAdd.setManaged(false);
+                    btnDelete.setVisible(false);
+                    btnAdd.setVisible(false);
                 }});
-            itemReg.setOnAction(event -> {});
-            itemPropostasAtri.setOnAction(event -> {});
-            itemNotReg.setOnAction(event -> {});
+            itemReg.setOnAction(event -> {
+                tableAtribuicoesPro.getItems().clear();
+                tableCandidatura.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
 
-            itemAutoAssociadoAluno.setOnAction(event -> {});
-            itemProDocentes.setOnAction(event -> {});
-            itemPropostasDisp.setOnAction(event -> {});
-            itemPropostasAtribuidas.setOnAction(event -> {});
+                tableAtribuicoesPro.setVisible(false);
+                tableProposta.setVisible(false);
+                tableAlunos.setVisible(false);
+                tableCandidatura.setVisible(true);
+                this.setCenter(tableCandidatura);
+                tableCandidatura.setItems(manager.getCandidaturas());
+                tableAlunos.setManaged(false);
+                tableCandidatura.setManaged(true);
+                tableProposta.setManaged(false);
+                tableAtribuicoesPro.setVisible(false);
+                if (manager.getFase_Proposta()){
+                    btnDelete.setManaged(false);
+                    btnAdd.setManaged(false);
+                    btnDelete.setVisible(false);
+                    btnAdd.setVisible(false);
+                }
+            });
+            itemPropostasAtri.setOnAction(event -> {
+                tableAtribuicoesPro.getItems().clear();
+                tableCandidatura.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
+
+                tableAtribuicoesPro.setVisible(false);
+                tableProposta.setVisible(false);
+                tableAlunos.setVisible(true);
+                tableCandidatura.setVisible(false);
+                this.setCenter(tableAlunos);
+                tableAlunos.setItems(manager.getAlunosPropostaAtribuida());
+                tableAlunos.setManaged(true);
+                tableCandidatura.setManaged(false);
+                tableProposta.setManaged(false);
+                tableAtribuicoesPro.setVisible(false);
+                if (manager.getFase_Proposta()){
+                    btnDelete.setManaged(false);
+                    btnAdd.setManaged(false);
+                    btnDelete.setVisible(false);
+                    btnAdd.setVisible(false);
+                }
+            });
+
+            itemNotReg.setOnAction(event -> {
+                tableAtribuicoesPro.getItems().clear();
+                tableCandidatura.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
+
+                tableAtribuicoesPro.setVisible(false);
+                tableProposta.setVisible(false);
+                tableAlunos.setVisible(true);
+                tableCandidatura.setVisible(false);
+                this.setCenter(tableAlunos);
+                tableAlunos.setItems(manager.getAlunosSemProposta());
+                tableAlunos.setManaged(true);
+                tableCandidatura.setManaged(false);
+                tableProposta.setManaged(false);
+                tableAtribuicoesPro.setVisible(false);
+                if (manager.getFase_Proposta()){
+                    btnDelete.setManaged(false);
+                    btnAdd.setManaged(false);
+                    btnDelete.setVisible(false);
+                    btnAdd.setVisible(false);
+                }
+            });
+
+            itemAutoAssociadoAluno.setOnAction(event -> {
+                tableAtribuicoesPro.getItems().clear();
+                tableCandidatura.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
+
+                tableAtribuicoesPro.setVisible(false);
+                tableProposta.setVisible(true);
+                tableAlunos.setVisible(false);
+                tableCandidatura.setVisible(false);
+                this.setCenter(tableProposta);
+                tableProposta.setItems(manager.getAutopropostasAlunos());
+                tableAlunos.setManaged(false);
+                tableCandidatura.setManaged(false);
+                tableProposta.setManaged(true);
+                tableAtribuicoesPro.setVisible(false);
+                if (manager.getFase_Proposta()){
+                    btnDelete.setManaged(false);
+                    btnAdd.setManaged(false);
+                    btnDelete.setVisible(false);
+                    btnAdd.setVisible(false);
+                }
+            });
+
+            itemProDocentes.setOnAction(event -> {
+                tableAtribuicoesPro.getItems().clear();
+                tableCandidatura.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
+
+                tableAtribuicoesPro.setVisible(false);
+                tableProposta.setVisible(true);
+                tableAlunos.setVisible(false);
+                tableCandidatura.setVisible(false);
+                this.setCenter(tableProposta);
+                tableProposta.setItems(manager.getPropostasDoc());
+                tableAlunos.setManaged(false);
+                tableCandidatura.setManaged(false);
+                tableProposta.setManaged(true);
+                tableAtribuicoesPro.setVisible(false);
+                if (manager.getFase_Proposta()){
+                    btnDelete.setManaged(false);
+                    btnAdd.setManaged(false);
+                    btnDelete.setVisible(false);
+                    btnAdd.setVisible(false);
+                }
+            });
+            itemPropostasDisp.setOnAction(event -> {
+                tableAtribuicoesPro.getItems().clear();
+                tableCandidatura.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
+
+                tableAtribuicoesPro.setVisible(false);
+                tableProposta.setVisible(true);
+                tableAlunos.setVisible(false);
+                tableCandidatura.setVisible(false);
+                this.setCenter(tableProposta);
+                tableProposta.setItems(manager.getPropostasDisponiveis());
+                tableAlunos.setManaged(false);
+                tableCandidatura.setManaged(false);
+                tableProposta.setManaged(true);
+                tableAtribuicoesPro.setVisible(false);
+                if (manager.getFase_Proposta()){
+                    btnDelete.setManaged(false);
+                    btnAdd.setManaged(false);
+                    btnDelete.setVisible(false);
+                    btnAdd.setVisible(false);
+                }
+            });
+
+            itemPropostasAtribuidas.setOnAction(event -> {
+                tableAtribuicoesPro.getItems().clear();
+                tableCandidatura.getItems().clear();
+                tableProposta.getItems().clear();
+                tableAlunos.getItems().clear();
+
+                tableAtribuicoesPro.setVisible(true);
+                tableProposta.setVisible(false);
+                tableAlunos.setVisible(false);
+                tableCandidatura.setVisible(false);
+                this.setCenter(tableAtribuicoesPro);
+                tableAtribuicoesPro.setItems(manager.getAtribuicoes());
+                tableAlunos.setManaged(false);
+                tableCandidatura.setManaged(false);
+                tableProposta.setManaged(false);
+                tableAtribuicoesPro.setVisible(true);
+                if (manager.getFase_Proposta()){
+                    btnDelete.setManaged(false);
+                    btnAdd.setManaged(false);
+                    btnDelete.setVisible(false);
+                    btnAdd.setVisible(false);
+                }
+            });
         }
 
         if (manager.getState().equals(PoeState.CONFIGURACAO) && manager.getFase_gestao()) {
