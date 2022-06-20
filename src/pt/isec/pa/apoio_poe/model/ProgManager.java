@@ -40,6 +40,14 @@ public class ProgManager {
         return controladorDoPrograma.getFase_Candidatura();
     }
 
+    public void load(){
+        controladorDoPrograma.load();
+    }
+
+    public void save(){
+        controladorDoPrograma.load();
+    }
+
     public boolean getFase_Orientador(){
         return controladorDoPrograma.getFase_Orientador();
     }
@@ -298,6 +306,9 @@ public class ProgManager {
         pcs.firePropertyChange(null,null,null);
     }
 
+    public Atribuicao getAtribuicaoporId(int id){
+        return controladorDoPrograma.getAtribuicaoporId(id);
+    }
 
     public boolean atribuirManualmenteDocente(String docente, int id_atribuicao){return false;}
 

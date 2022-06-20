@@ -327,6 +327,12 @@ public class tableViewsUI extends BorderPane {
             }
             case OPCAO_CANDIDATURA -> {
 
+                if (manager.getFase_Candidatura()){
+                    btnDelete.setManaged(false);
+                    btnAdd.setManaged(false);
+                    btnDelete.setVisible(false);
+                    btnAdd.setVisible(false);
+                }
                 btnDelete.setDisable(false);
 
                 tableAlunos = new TableView<Aluno>();
@@ -689,7 +695,7 @@ public class tableViewsUI extends BorderPane {
     private void registerHandlers() {
         manager.addPropertyChangeListener(evt -> { update(); });
 
-        if (manager.getState().equals(PoeState.OPCAO_CANDIDATURA) && manager.g) {
+        if (manager.getState().equals(PoeState.OPCAO_CANDIDATURA)) {
             itemAutoPropostas.setOnAction(event -> {
                 tableCandidatura.getItems().clear();
                 tableProposta.getItems().clear();
@@ -700,11 +706,15 @@ public class tableViewsUI extends BorderPane {
                 tableProposta.setItems(manager.getPropostasAuto());
                 tableProposta.setVisible(true);
                 this.setCenter(tableProposta);
-                btnDelete.setDisable(true);
-                btnAdd.setDisable(true);
                 tableAlunos.setManaged(false);
                 tableCandidatura.setManaged(false);
                 tableProposta.setManaged(true);
+                if (!manager.getFase_Candidatura()){
+                    btnDelete.setManaged(true);
+                    btnAdd.setManaged(true);
+                    btnDelete.setDisable(true);
+                    btnAdd.setDisable(true);
+                }
             });
 
             itemProDocentes.setOnAction(event -> {
@@ -719,11 +729,15 @@ public class tableViewsUI extends BorderPane {
                 this.setCenter(tableProposta);
                 tableProposta.setVisible(true);
                 tableProposta.setItems(manager.getPropostasDoc());
-                btnDelete.setDisable(true);
-                btnAdd.setDisable(true);
                 tableAlunos.setManaged(false);
                 tableCandidatura.setManaged(false);
                 tableProposta.setManaged(true);
+                if (!manager.getFase_Candidatura()){
+                    btnDelete.setManaged(true);
+                    btnAdd.setManaged(true);
+                    btnDelete.setDisable(true);
+                    btnAdd.setDisable(true);
+                }
             });
 
             itemProCandidaturas.setOnAction(event -> {
@@ -738,11 +752,15 @@ public class tableViewsUI extends BorderPane {
                 this.setCenter(tableProposta);
                 tableProposta.setVisible(true);
                 tableProposta.setItems(manager.getPropostasComCandidatura());
-                btnDelete.setDisable(true);
-                btnAdd.setDisable(true);
                 tableAlunos.setManaged(false);
                 tableCandidatura.setManaged(false);
                 tableProposta.setManaged(true);
+                if (!manager.getFase_Candidatura()){
+                    btnDelete.setManaged(true);
+                    btnAdd.setManaged(true);
+                    btnDelete.setDisable(true);
+                    btnAdd.setDisable(true);
+                }
             });
 
             itemProSemCandidaturas.setOnAction(event -> {
@@ -757,11 +775,15 @@ public class tableViewsUI extends BorderPane {
                 this.setCenter(tableProposta);
                 tableProposta.setVisible(true);
                 tableProposta.setItems(manager.getPropostasSemCandidatura());
-                btnDelete.setDisable(true);
-                btnAdd.setDisable(true);
                 tableAlunos.setManaged(false);
                 tableCandidatura.setManaged(false);
                 tableProposta.setManaged(true);
+                if (!manager.getFase_Candidatura()){
+                    btnDelete.setManaged(true);
+                    btnAdd.setManaged(true);
+                    btnDelete.setDisable(true);
+                    btnAdd.setDisable(true);
+                }
             });
 
             itemReg.setOnAction(e -> {
@@ -775,11 +797,15 @@ public class tableViewsUI extends BorderPane {
                 this.setCenter(tableCandidatura);
                 tableCandidatura.getItems().clear();
                 tableCandidatura.setItems(manager.getCandidaturas());
-                btnDelete.setDisable(false);
-                btnAdd.setDisable(false);
                 tableAlunos.setManaged(false);
                 tableCandidatura.setManaged(true);
                 tableProposta.setManaged(false);
+                if (!manager.getFase_Candidatura()){
+                    btnDelete.setManaged(true);
+                    btnAdd.setManaged(true);
+                    btnDelete.setDisable(false);
+                    btnAdd.setDisable(false);
+                }
             });
 
             itemAuto.setOnAction(e -> {
@@ -792,11 +818,15 @@ public class tableViewsUI extends BorderPane {
                 tableCandidatura.setVisible(true);
                 this.setCenter(tableCandidatura);
                 tableCandidatura.setItems(manager.getCandidaturasAuto());
-                btnDelete.setDisable(true);
-                btnAdd.setDisable(true);
                 tableAlunos.setManaged(false);
                 tableCandidatura.setManaged(true);
                 tableProposta.setManaged(false);
+                if (!manager.getFase_Candidatura()){
+                    btnDelete.setManaged(true);
+                    btnAdd.setManaged(true);
+                    btnDelete.setDisable(true);
+                    btnAdd.setDisable(true);
+                }
             });
 
             itemNotReg.setOnAction(e -> {
@@ -809,11 +839,15 @@ public class tableViewsUI extends BorderPane {
                 this.setCenter(tableAlunos);
                 tableAlunos.setVisible(true);
                 tableAlunos.setItems(manager.getCandidaturasNotReg());
-                btnDelete.setDisable(true);
-                btnAdd.setDisable(true);
                 tableAlunos.setManaged(true);
                 tableCandidatura.setManaged(false);
                 tableProposta.setManaged(false);
+                if (!manager.getFase_Candidatura()){
+                    btnDelete.setManaged(true);
+                    btnAdd.setManaged(true);
+                    btnDelete.setDisable(true);
+                    btnAdd.setDisable(true);
+                }
             });
         }
 
@@ -865,9 +899,15 @@ public class tableViewsUI extends BorderPane {
             }
             case OPCAO_CANDIDATURA -> {
                 if (tableCandidatura !=null) {
-                        Popup.addCandidatura(manager);
-                    }
+                    Popup.addCandidatura(manager);
                 }
+            }
+            case ATRIBUIR_PROPOSTA -> {
+                Popup.addAtribuicaoPro(manager);
+            }
+            case ATRIBUIR_ORIENTADOR -> {
+                Popup.addAtribuicaoDoc(manager);
+            }
             }
         });
 

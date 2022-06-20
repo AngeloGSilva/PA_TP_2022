@@ -30,7 +30,7 @@ public class graficosUI extends GridPane {
     Label caption;
 
     Group r;
-
+    
     public graficosUI(ProgManager manager) {
         this.manager = manager;
 

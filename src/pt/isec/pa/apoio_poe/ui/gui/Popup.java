@@ -58,7 +58,113 @@ public class Popup extends VBox{
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
     }
+    public static void addAtribuicaoDoc(ProgManager manager){
+        Stage popupwindow = new Stage();
+        popupwindow.initModality(Modality.APPLICATION_MODAL);
 
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(5);
+        grid.setHgap(5);
+
+        TextField id_Proposta = new TextField();
+        id_Proposta.setPromptText("ID Proposta");
+        id_Proposta.setPrefColumnCount(15);
+        grid.getChildren().add(id_Proposta);
+
+        TextField email_Docente = new TextField();
+        email_Docente.setPromptText("Email Docente");
+        email_Docente.setPrefColumnCount(15);
+        grid.getChildren().add(email_Docente);
+
+        Button btnAdd = new Button("Adicionar");
+        grid.getChildren().add(btnAdd);
+
+        Button btnApagar = new Button("Apagar");
+        grid.getChildren().add(btnApagar);
+
+        GridPane.setConstraints(id_Proposta,0,0);
+        GridPane.setConstraints(email_Docente,0,1);
+        GridPane.setConstraints(btnAdd,2,0);
+        GridPane.setConstraints(btnApagar,2,1);
+
+        btnAdd.setOnAction(e-> {
+            //manager.atribuirManualmenteDocente(email_Docente.getText(), manager.getAtribuicaoporId(id_Proposta.getText()).ge);
+            popupwindow.close();
+        });
+
+        btnApagar.setOnAction(e-> {
+            email_Docente.clear();
+            id_Proposta.clear();
+        });
+
+        Scene nscene = new Scene(grid, 200, 100);
+        popupwindow.setTitle("Atribuir Docente");
+        popupwindow.setMinWidth(300);
+        popupwindow.setMinHeight(125);
+
+        popupwindow.setMaxWidth(nscene.getWidth());
+        popupwindow.setMaxHeight(nscene.getHeight());
+        popupwindow.setResizable(false);
+        popupwindow.setScene(nscene);
+        popupwindow.showAndWait();
+    }
+    public static void addAtribuicaoPro(ProgManager manager){
+        Stage popupwindow = new Stage();
+        popupwindow.initModality(Modality.APPLICATION_MODAL);
+
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(5);
+        grid.setHgap(5);
+
+
+        TextField nr_Aluno = new TextField();
+        nr_Aluno.setPromptText("Numero do Aluno");
+        nr_Aluno.setPrefColumnCount(15);
+        grid.getChildren().add(nr_Aluno);
+
+
+        TextField id_Proposta = new TextField();
+        id_Proposta.setPromptText("ID Proposta");
+        id_Proposta.setPrefColumnCount(15);
+        grid.getChildren().add(id_Proposta);
+
+
+        Button btnAdd = new Button("Adicionar");
+        grid.getChildren().add(btnAdd);
+
+        Button btnApagar = new Button("Apagar");
+        grid.getChildren().add(btnApagar);
+
+        GridPane.setConstraints(nr_Aluno,0,0);
+        GridPane.setConstraints(id_Proposta,0,1);
+        GridPane.setConstraints(btnAdd,2,0);
+        GridPane.setConstraints(btnApagar,2,1);
+
+        btnAdd.setOnAction(e-> {
+            if (!manager.VerificaAlunoJaCandidato((Long.parseLong(nr_Aluno.getText())))){
+                manager.atribuirManualmenteAluno(Long.parseLong(nr_Aluno.getText()), id_Proposta.getText().toUpperCase());
+            }
+            popupwindow.close();
+        });
+
+        btnApagar.setOnAction(e-> {
+            nr_Aluno.clear();
+            id_Proposta.clear();
+        });
+
+        Scene nscene = new Scene(grid, 200, 100);
+        popupwindow.setTitle("Atribuir Proposta");
+        popupwindow.setMinWidth(300);
+        popupwindow.setMinHeight(125);
+
+        popupwindow.setMaxWidth(nscene.getWidth());
+        popupwindow.setMaxHeight(nscene.getHeight());
+        popupwindow.setResizable(false);
+        popupwindow.setScene(nscene);
+        popupwindow.showAndWait();
+    }
     public static void addProposta(ProgManager manager){
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL);
@@ -358,7 +464,6 @@ public class Popup extends VBox{
         popupwindow.setScene(nscene);
         popupwindow.showAndWait();
     }
-
     public static void addAluno(ProgManager manager){
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL);
@@ -688,6 +793,9 @@ public class Popup extends VBox{
                 }
                 case GESTAO_DOCENTE -> {
                     manager.exportarDocentes(nome_Ficheiro.getText());
+                }
+                case OPCAO_CANDIDATURA -> {
+                    manager.exportarCandidaturas(nome_Ficheiro.getText());
                 }
             }
             popupwindow.close();

@@ -358,6 +358,10 @@ public class ProContexto {
         return dados.getPropostaConflito();
     }
 
+    public Atribuicao getAtribuicaoporId(int id){
+        return dados.getAtribuicaoporId(id);
+    }
+
     public boolean isConflitoON() {
         return dados.isConflitoON();
     }

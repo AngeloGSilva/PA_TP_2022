@@ -48,16 +48,8 @@ public class configuracaoUI extends BorderPane{
             //this.getChildren().addAll(hBox);
             this.setCenter(hBox);
         }else {
-            HBox hBox = new HBox();
+            this.setTop(new topButtonsUI(manager));
             this.setCenter(new tableViewsUI(manager));
-            btnExit = new Button("Exit");
-            btnExit.setMinWidth(100);
-            btnAvancar = new Button("Avancar");
-            btnAvancar.setMinWidth(100);
-            hBox.setSpacing(10);
-            hBox.setAlignment(Pos.CENTER);
-            hBox.getChildren().addAll(btnExit,btnAvancar);
-            this.setTop(hBox);
         }
     }
 
@@ -77,15 +69,7 @@ public class configuracaoUI extends BorderPane{
             btnProjetos.setOnAction(event -> {
                 manager.selecionar(PoeState.GESTAO_PROPOSTA);
             });
-        }else {
-            btnAvancar.setOnAction(event -> {
-                manager.avancar(true);
-            });
         }
-        btnExit.setOnAction(event -> {
-            Platform.exit();
-        });
-
     }
 
     private void update() {

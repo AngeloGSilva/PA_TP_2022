@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,7 +19,7 @@ import java.io.File;
 public class topButtonsUI extends VBox{
 
         ProgManager manager;
-        Button btnExportar, btnLerFich,btnAvancar,btnVoltar,btnAutoDoc,btnAtriAuto,btnManual,btnAtriDoc,btnGraficos,btnTabelas;
+        Button btnExportar, btnLerFich,btnAvancar,btnVoltar,btnAutoDoc,btnAtriAuto,btnManual,btnAtriDoc,btnExit,btnGraficos,btnTabelas;
         Label info;
 
         ImageView imageView;
@@ -45,7 +46,7 @@ public class topButtonsUI extends VBox{
                 case GESTAO_ALUNO -> info.setText("Alunos");
                 case ATRIBUIR_ORIENTADOR -> info.setText("Atribuir Orientadores");
                 case ATRIBUIR_PROPOSTA ->  info.setText("Atribuir Propostas");
-                case CONFIGURACAO -> info.setText("Em Construcao");
+                case CONFIGURACAO -> info.setText("Configuracao");
                 case OPCAO_CANDIDATURA -> info.setText("Candidaturas");
                 case GESTAO_DOCENTE -> info.setText("Docentes");
                 case GESTAO_PROPOSTA -> info.setText("Propostas");
@@ -54,22 +55,22 @@ public class topButtonsUI extends VBox{
             info.setFont(new Font(30));
             info.setPadding(new Insets(10));
             info.setAlignment(Pos.TOP_CENTER);
+            //this.setPadding(new Insets(30));
+            btnAvancar = new Button();
+            imageView = new ImageView(ImageManager.getImage("avance.png"));
+            btnAvancar.setContentDisplay(ContentDisplay.RIGHT);
+            btnAvancar.setGraphic(imageView);
+            btnAvancar.setText("Avancar");
 
+            btnVoltar = new Button();
+            imageView = new ImageView(ImageManager.getImage("back.png"));
+            btnVoltar.setGraphic(imageView);
+            btnVoltar.setText("Voltar");
 
-
-                //this.setPadding(new Insets(30));
-                btnAvancar = new Button();
-                imageView = new ImageView(ImageManager.getImage("avance.png"));
-                btnAvancar.setContentDisplay(ContentDisplay.RIGHT);
-                btnAvancar.setGraphic(imageView);
-                btnAvancar.setText("Avancar");
-
-                btnVoltar = new Button();
-                imageView = new ImageView(ImageManager.getImage("back.png"));
-                btnVoltar.setGraphic(imageView);
-                btnVoltar.setText("Voltar");
-
-
+            btnExportar = new Button();
+            imageView = new ImageView(ImageManager.getImage("upload.png"));
+            btnExportar.setGraphic(imageView);
+            btnExportar.setText("Exportar");
 
             switch (manager.getState()){
                 case ATRIBUIR_PROPOSTA -> {
@@ -83,13 +84,7 @@ public class topButtonsUI extends VBox{
                     btnAtriAuto.setGraphic(imageView);
                     btnAtriAuto.setText("Automaticamente");
 
-                    btnManual = new Button();
-                    imageView = new ImageView(ImageManager.getImage("assign.png"));
-                    btnManual.setContentDisplay(ContentDisplay.RIGHT);
-                    btnManual.setGraphic(imageView);
-                    btnManual.setText("Manualmente");
-
-                    hbox.getChildren().addAll(btnVoltar, btnAutoDoc, btnAtriAuto, btnManual, btnAvancar);
+                    hbox.getChildren().addAll(btnVoltar, btnAutoDoc, btnAtriAuto,btnExportar, btnAvancar);
                     hbox.setAlignment(Pos.CENTER);
                     hbox.setSpacing(10);
                 }
@@ -100,37 +95,51 @@ public class topButtonsUI extends VBox{
                     btnAtriDoc.setGraphic(imageView);
                     btnAtriDoc.setText("Automaticamente");
 
-                    btnManual = new Button();
-                    imageView = new ImageView(ImageManager.getImage("assign.png"));
-                    btnManual.setContentDisplay(ContentDisplay.RIGHT);
-                    btnManual.setGraphic(imageView);
-                    btnManual.setText("Manualmente");
-
-                    hbox.getChildren().addAll(btnVoltar, btnAtriDoc, btnManual, btnAvancar);
+                    hbox.getChildren().addAll(btnVoltar, btnAtriDoc,btnExportar, btnAvancar);
                     hbox.setAlignment(Pos.CENTER);
                     hbox.setSpacing(10);
 
+                }case CONFIGURACAO -> {
+                    btnExit = new Button();
+                    imageView = new ImageView(ImageManager.getImage("sair.png"));
+                    btnExit.setContentDisplay(ContentDisplay.LEFT);
+                    btnExit.setGraphic(imageView);
+                    btnExit.setText("Sair");
+
+                    hbox.getChildren().addAll(btnExit,btnAvancar);
+                    hbox.setAlignment(Pos.CENTER);
+                    hbox.setSpacing(10);
                 }
                 default -> {
-                    tooltip = new Tooltip();
                     btnLerFich = new Button();
                     imageView = new ImageView(ImageManager.getImage("download.png"));
                     btnLerFich.setGraphic(imageView);
                     btnLerFich.setText("Importar");
 
-                    btnExportar = new Button();
-                    imageView = new ImageView(ImageManager.getImage("upload.png"));
-                    btnExportar.setGraphic(imageView);
-                    btnExportar.setText("Exportar");
-
-
                     hbox.getChildren().addAll(btnVoltar, btnLerFich, btnExportar, btnAvancar);
                     hbox.setAlignment(Pos.TOP_CENTER);
                     hbox.setSpacing(10);
+                    btnLerFich.setManaged(true);
+                    btnLerFich.setVisible(true);
+                    if (manager.getFase_Candidatura()){
+                        btnLerFich.setManaged(false);
+                        btnLerFich.setVisible(false);
+                    }
                 }
             }
 
+            topBar topBar = new topBar(manager);
+
+            AnchorPane anchorPane = new AnchorPane();
+            anchorPane.getChildren().add(topBar);
+
+            AnchorPane.setTopAnchor(anchorPane,0.0);
+            AnchorPane.setLeftAnchor(anchorPane,0.0);
+            AnchorPane.setRightAnchor(anchorPane,0.0);
+            AnchorPane.setBottomAnchor(anchorPane,0.0);
+
             this.setAlignment(Pos.TOP_CENTER);
+            this.getChildren().add(anchorPane);
             this.getChildren().add(info);
             this.getChildren().add(hbox);
 
@@ -153,10 +162,13 @@ public class topButtonsUI extends VBox{
                 btnAtriDoc.setOnAction(event -> {
                     manager.atribuirDocentesauto();
                 });
+            }else if(manager.getState() == PoeState.CONFIGURACAO){
+
             }else {
                 btnExportar.setOnAction(event ->{
                     Popup.exportar(manager);
                 });
+
                 btnLerFich.setOnAction(event ->{
                     FileChooser fileChooser = new FileChooser();
                     fileChooser.setTitle("File open...");
@@ -171,9 +183,25 @@ public class topButtonsUI extends VBox{
                     Popup.display(PopupSupport.POPUP_LERFICH,aux);
                 });
             }
+
             btnAvancar.setOnAction(event ->{
-                Popup.avancarFase(manager);
+                switch (manager.getState()) {
+                    case CONFIGURACAO -> {
+                        if (!manager.getFase_gestao())
+                            Popup.avancarFase(manager);
+                        else
+                            manager.avancar(manager.getFase_gestao());
+                    }case OPCAO_CANDIDATURA -> {
+                        if (!manager.getFase_Candidatura())
+                            Popup.avancarFase(manager);
+                        else
+                            manager.avancar(manager.getFase_Candidatura());
+                    }
+                    default -> Popup.avancarFase(manager);
+
+                }
             });
+
             btnVoltar.setOnAction(event ->{
                 manager.voltar(false);
             });
